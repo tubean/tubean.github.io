@@ -19,5 +19,23 @@
       <description></description>
     </item>
     
+    <item>
+      <title>Hugo</title>
+      <link>https://tubean.github.io/categories/hugo/</link>
+      <pubDate>Sun, 04 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://tubean.github.io/categories/hugo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Setup</title>
+      <link>https://tubean.github.io/categories/setup/</link>
+      <pubDate>Sun, 04 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://tubean.github.io/categories/setup/</guid>
+      <description></description>
+    </item>
+    
   </channel>
 </rss>

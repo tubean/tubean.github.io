@@ -7,40 +7,40 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="generator" content="Hugo 0.20 with theme Tranquilpeak 0.4.3-SNAPSHOT">
 <meta name="author" content="Tu Bean">
-<meta name="keywords" content="">
-<meta name="description" content="Để chào mừng bài post đầu tiên, một phút quốc ca bắt đầu!
-">
+<meta name="keywords" content="Hugo, Go, Blog, Github, Setup">
+<meta name="description" content="Bên cạnh các dịch vụ support người dùng tạo các trang blog cá nhân như blogger, wordpress,&hellip; thì các dịch vụ hosting như github, bitbucket,&hellip; cũng đã cho phép chúng ta xây dựng các trang blog trên chính tên miền của họ. Phổ biến hiện nay là các trang miền github.io được xây dựng trên nền tảng Jekyll. Tuy nhiên Jekyll không phải là duy nhất và cũng có những nhược điểm của riêng nó.">
 
 
-<meta property="og:description" content="Để chào mừng bài post đầu tiên, một phút quốc ca bắt đầu!
-">
+<meta property="og:description" content="Bên cạnh các dịch vụ support người dùng tạo các trang blog cá nhân như blogger, wordpress,&hellip; thì các dịch vụ hosting như github, bitbucket,&hellip; cũng đã cho phép chúng ta xây dựng các trang blog trên chính tên miền của họ. Phổ biến hiện nay là các trang miền github.io được xây dựng trên nền tảng Jekyll. Tuy nhiên Jekyll không phải là duy nhất và cũng có những nhược điểm của riêng nó.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello">
-<meta name="twitter:title" content="Hello">
-<meta property="og:url" content="https://tubean.github.io/2018/10/hello/">
-<meta property="twitter:url" content="https://tubean.github.io/2018/10/hello/">
+<meta property="og:title" content="[Hugo] Hướng dẫn xây dựng blog cá nhân bằng Hugo &#43; Github">
+<meta name="twitter:title" content="[Hugo] Hướng dẫn xây dựng blog cá nhân bằng Hugo &#43; Github">
+<meta property="og:url" content="https://tubean.github.io/2018/11/blog-with-hugo/">
+<meta property="twitter:url" content="https://tubean.github.io/2018/11/blog-with-hugo/">
 <meta property="og:site_name" content="Bean&#39;s blog">
-<meta property="og:description" content="Để chào mừng bài post đầu tiên, một phút quốc ca bắt đầu!
-">
-<meta name="twitter:description" content="Để chào mừng bài post đầu tiên, một phút quốc ca bắt đầu!
-">
+<meta property="og:description" content="Bên cạnh các dịch vụ support người dùng tạo các trang blog cá nhân như blogger, wordpress,&hellip; thì các dịch vụ hosting như github, bitbucket,&hellip; cũng đã cho phép chúng ta xây dựng các trang blog trên chính tên miền của họ. Phổ biến hiện nay là các trang miền github.io được xây dựng trên nền tảng Jekyll. Tuy nhiên Jekyll không phải là duy nhất và cũng có những nhược điểm của riêng nó.">
+<meta name="twitter:description" content="Bên cạnh các dịch vụ support người dùng tạo các trang blog cá nhân như blogger, wordpress,&hellip; thì các dịch vụ hosting như github, bitbucket,&hellip; cũng đã cho phép chúng ta xây dựng các trang blog trên chính tên miền của họ. Phổ biến hiện nay là các trang miền github.io được xây dựng trên nền tảng Jekyll. Tuy nhiên Jekyll không phải là duy nhất và cũng có những nhược điểm của riêng nó.">
 <meta property="og:locale" content="vi">
 
   
   
-    <meta property="article:modified_time" content="2018-10-31T00:00:00">
+    <meta property="article:modified_time" content="2018-11-04T00:00:00">
   
   
   
     
-      <meta property="article:section" content="Hello World">
+      <meta property="article:section" content="Hugo">
+    
+      <meta property="article:section" content="Setup">
     
   
   
     
-      <meta property="article:tag" content="Hello">
+      <meta property="article:tag" content="Hugo">
     
-      <meta property="article:tag" content="youtube">
+      <meta property="article:tag" content="Github">
+    
+      <meta property="article:tag" content="Blog">
     
   
 
@@ -53,9 +53,12 @@
 
 
 
-  <meta property="og:image" content="//www.bienphong.com.vn/images/media/es1k_21a_w550.jpg">
-  <meta property="twitter:image" content="//www.bienphong.com.vn/images/media/es1k_21a_w550.jpg">
+  <meta property="og:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1541267744/Hugo-designstyle-friday-m.png">
+  <meta property="twitter:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1541267744/Hugo-designstyle-friday-m.png">
 
+
+  <meta property="og:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1541273502/Black_flag.svg.png">
+  <meta property="twitter:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1541273502/Black_flag.svg.png">
 
 
 
@@ -64,14 +67,14 @@
   <meta property="twitter:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/c_scale,w_1836/v1540914499/C360_2016-03-22-17-45-21-487.jpg">
 
 
-    <title>Hello</title>
+    <title>[Hugo] Hướng dẫn xây dựng blog cá nhân bằng Hugo &#43; Github</title>
 
     <link rel="icon" href="https://tubean.github.io/favicon/flappybird.png">
     
 
     
 
-    <link rel="canonical" href="https://tubean.github.io/2018/10/hello/">
+    <link rel="canonical" href="https://tubean.github.io/2018/11/blog-with-hugo/">
 
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
@@ -238,26 +241,24 @@ ga('send', 'pageview');
 </nav>
 
       
-
-      <div id="main" data-behavior="5"
-        class="
-               hasCoverMetaIn
-               ">
-        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
-          
-          
-            <div class="post-header main-content-wrap text-left">
+  <div class="post-header-cover
+              text-center
+              "
+       style="background-image:url('https://res.cloudinary.com/deop9ytsv/image/upload/v1541273502/Black_flag.svg.png')"
+       data-behavior="5">
+    
+      <div class="post-header main-content-wrap text-center">
   
     <h1 class="post-title" itemprop="headline">
-      Hello
+      [Hugo] Hướng dẫn xây dựng blog cá nhân bằng Hugo &#43; Github
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2018-10-31T00:00:00Z">
+      <time itemprop="datePublished" datetime="2018-11-04T00:00:00Z">
         
-  tháng 10 31, 2018
+  tháng 11 4, 2018
 
       </time>
     
@@ -266,25 +267,118 @@ ga('send', 'pageview');
   
     <span>mục</span>
     
-      <a class="category-link" href="https://tubean.github.io/categories/hello-world">Hello World</a>
+      <a class="category-link" href="https://tubean.github.io/categories/hugo">Hugo</a>, 
+    
+      <a class="category-link" href="https://tubean.github.io/categories/setup">Setup</a>
     
   
 
   </div>
 
 </div>
+    
+  </div>
+
+
+      <div id="main" data-behavior="5"
+        class="hasCover
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <p>Để chào mừng bài post đầu tiên, một phút quốc ca bắt đầu!
-</p>
+              
 
-<p><strong>Youtube</strong></p>
+<p>Bên cạnh các dịch vụ support người dùng tạo các trang blog cá nhân như <code>blogger</code>, <code>wordpress</code>,&hellip; thì các dịch vụ hosting như <code>github</code>, <code>bitbucket</code>,&hellip; cũng đã cho phép chúng ta xây dựng các trang blog trên chính tên miền của họ. Phổ biến hiện nay là các trang miền github.io được xây dựng trên nền tảng <code>Jekyll</code>. Tuy nhiên <code>Jekyll</code> không phải là duy nhất và cũng có những nhược điểm của riêng nó. Bài viết này tôi sẽ hướng dẫn các bạn xây dựng trang blog cá nhân của riêng mình trên tên miền github.io nhưng dựa trên công nghệ Hugo nina và bọn trẻ :smile:.</p>
 
+<h1 id="1-hugo-là-ai-à-là-gì">1. Hugo là ai? À là gì?</h1>
 
-<div style="position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden;">
-  <iframe src="//www.youtube.com/embed/dLY5TsY0dTY" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" allowfullscreen frameborder="0"></iframe>
- </div>
+<p>Hugo hay Jekyll thì nó cũng là một nền tảng xây dựng website tĩnh, chính xác thì là chúng ta sẽ viết các bài post bằng <code>markdown (.md)</code> và các công nghệ này sẽ tự động generate ra các trang html, css theo một template cho trước. <code>Jekyll</code> thì được viết bằng <code>Ruby</code>, còn <code>Hugo</code> được xây dựng trên ngôn ngữ <code>Go</code>. Cá nhân mình thấy sử dụng Jekyll thì setup và build trên github nhanh hơn, nhưng mình là mình thích Hugo nina và bọn trẻ nên là mình xây dựng trang blog này trên nền tảng Hugo :sweat_smile:</p>
+
+<h1 id="2-đặt-tên-miền-cho-blog">2. Đặt tên miền cho blog</h1>
+
+<p>Trước tiên bạn phải chọn cho mình cái tên để đặt cho blog. À nhưng mà bạn không có quyền lựa chọn đâu, vì xây dựng trên miền github.io thì mặc định tên miền trang blog phải tên mẫu <code>username.github.io</code>, trong đó <code>username</code> chính là tên tài khoản github của bạn. Vì thế nên nếu muốn có cái tên gì hay ho thì tốt nhất là tạo một account github mới mà dùng :grin:
+Ok, nếu bạn đã có tài khoản github với một cái tên mĩ miều thì hãy vào tạo một repository mới với cái tên theo mẫu <code>username.github.io</code>, trong đó <code>username</code> là cái gì thì vừa nói rồi.  :laughing: Mỗi tài khoản github chỉ được tạo duy nhất một trang host như vậy nên muốn tạo nhiều blog thì mạnh dạn đăng ký nhiều tài khoản github nhé  :smile:</p>
+
+<h1 id="3-cài-đặt-repository">3. Cài đặt repository</h1>
+
+<p>Đối với các trang blog xây dựng bằng <code>Jekyll</code> thì có lẽ bạn chỉ cần duy nhất một repository như bước 2 là đủ ( tùy một số theme yêu cầu cài plugin mà github không hỗ trợ thì phải làm hơi khác). Nhưng với trang blog xây dựng bằng <code>Hugo</code> thì bạn cần thêm một repository nữa (cái này tên gì cũng được vì không được public ra ngoài).
+Như vậy chúng ta sẽ tạo 2 repository với mục đích như sau:
+1. <code>&lt;blog-name&gt;-hugo</code> (tạm gọi là repo lớn) : mục tiêu cao cả là lưu trữ toàn bộ source code của bạn.
+2. <code>&lt;github username&gt;.github.io</code> (tạm gọi là repo nhỏ) : nhiệm vụ lưu trữ những thứ được generate ra và host trang blog của bạn.
+Tạo xong hai repository thì bạn clone chúng về máy tính, tuy nhiên bạn cần chú ý là đặt repo <code>github.io</code> làm submodule của repo lớn, để khi chúng ta update repo nhỏ thì repo lớn tự động update:</p>
+
+<pre><code>git clone git@github.com:&lt;username&gt;/&lt;blog-name&gt;-hugo.git
+git submodule add git@github.com:&lt;username&gt;/&lt;username&gt;.github.io.git
+</code></pre>
+
+<h1 id="4-chọn-theme-phù-hợp">4. Chọn theme phù hợp</h1>
+
+<p>Giờ là lúc các bạn đi chợ chọn cho mình bộ quần áo đẹp cho trang blog. Hàng free rất nhiều, hàng tính phí cũng đa chủng loại, tất cả đều có ở <a href="https://themes.gohugo.io/">đây</a>.
+Các bạn nhớ chọn xong thì xem hướng dẫn sử dụng để biết theme phù hợp với phiên bản Hugo bao nhiêu nhé  :grin:</p>
+
+<h1 id="5-cài-đặt-hugo">5. Cài đặt Hugo</h1>
+
+<p>Như trên <a href="https://gohugo.io/getting-started/quick-start/">trang chủ</a> của Hugo cũng đã hướng dẫn chi tiết cách cài đặt, tuy nhiên nếu chẳng may gặp vấn đề do version thì chúng ta sẽ không biết cài bản thấp hơn như thế nào đúng không? Vì thế mình khuyên các bạn nên đọc version mà theme support để cài, sau đó thì vào <a href="https://github.com/gohugoio/hugo/releases/">đây</a> để tìm phiên bản phù hợp.
+ Chú ý cài trên window thì dùng bản có đuôi mở rộng <code>.tar.gz</code>, còn linux và mac thì dùng bản <code>.deb</code> .</p>
+
+<h1 id="6-tạo-blog-cùng-chị-hugo-nina">6. Tạo blog cùng chị Hugo Nina</h1>
+
+<p>Bật powershell hoặc terminal và trỏ đến folder repo lớn, sau đó gõ lệnh sau:</p>
+
+<pre><code>hugo new site quickstart
+</code></pre>
+
+<p>Hugo sẽ tự động tạo các file cần thiết. Việc tiếp theo của chúng ta là thêm template vào giúp nó. Giả sử như bạn sử dụng theme <a href="https://themes.gohugo.io/gohugo-theme-ananke/">Ananke</a> thì bạn sẽ vào trang theme đó, chọn download -&gt; trình duyệt tự động chuyển đến repository của theme trên github. Copy link http và sửa đoạn code sau theo theme của bạn:</p>
+
+<pre><code class="language-terminal"> # Tạo submodule trong thư mục themes và đặt tên là ananke
+	git submodule add https://github.com/budparr/gohugo-theme-ananke.git 	themes/ananke;\
+ # Sửa file config.toml: thêm dòng 'theme = &quot;ananke&quot; để chỉ thư mục ananke chứa theme
+	echo  'theme = &quot;ananke&quot;' &gt;&gt; config.toml
+</code></pre>
+
+<p>Mỗi loại theme đều có phần config file <code>config.toml</code> cơ bản nằm trong phần <code>example</code> của nó. Các bạn nên copy toàn bộ nội dung trong file <code>config.toml</code> của nó rồi paste vào file <code>config.toml</code> của mình. Nhớ sửa lại dòng <code>theme= &lt;tên folder chứa theme bạn clone về&gt;</code>.</p>
+
+<h1 id="7-tạo-bài-viết-đầu-tiên">7. Tạo bài viết đầu tiên</h1>
+
+<pre><code>#Tạo post mới tên là about.md
+hugo new about.md
+</code></pre>
+
+<p>Gõ lệnh trên vào terminal, nhớ là terminal vẫn đang ở thư mục repo lớn. Sau đó vào folder <code>content</code> kiểm tra, bạn sẽ thấy file <code>about.md</code>. Viết linh tinh gì trong đấy theo ý bạn :wink:
+Chạy tiếp lệnh sau:</p>
+
+<pre><code>hugo
+</code></pre>
+
+<p>Lúc này bạn kiểm tra bằng lệnh <code>ls</code> hoặc dùng editor nào có khả năng nhìn thấy thư mục ẩn thì bạn sẽ phát hiện ra thư mục <code>public</code> được tạo, bên trong nó là các file html, css, bla bla&hellip; Đây là những file được generate từ project của bạn và bạn cần đẩy nó lên repo nhỏ của mình.
+Để nó luôn generate vào thư mục chứa của repo nhỏ thì bạn sẽ vào file <code>config.toml</code> của project ( là của project chứ không phải example nhé) và tìm dòng <code>publishdir</code> . Nếu không tìm thấy thì bạn thêm dòng này vào trong file <code>config.toml</code> (chú ý sửa lại tên cho đúng của bạn, đừng copy vô tội vạ   :smirk:)</p>
+
+<pre><code>publishdir = &quot;&lt;github username&gt;.github.io&quot;
+</code></pre>
+
+<h1 id="8-chạy-thử-trên-local">8. Chạy thử trên local</h1>
+
+<p>Chạy lệnh sau để pulish lên local</p>
+
+<pre><code>hugo server
+</code></pre>
+
+<p>Blog của bạn sẽ được publish tại địa chỉ <code>http://localhost:1313</code>.</p>
+
+<h1 id="9-cho-mọi-thứ-lên-github">9. Cho mọi thứ lên github</h1>
+
+<p>Trước tiên bạn phải kiểm tra lại thư mục <code>public</code> còn không, nếu còn thì xóa nó đi và chạy lại lệnh <code>hugo</code> để generate lại các file tĩnh vào thư mục chứa repo nhỏ.
+Cuối cùng là commit và push hết lên github thôi  :laughing:
+Để đơn giản thì bạn chỉ cần chạy lệnh sau, các submodule sẽ tự động cập nhật</p>
+
+<pre><code>git push --recurse-submodules=on-demand
+</code></pre>
+
+<p>Cuối cùng, lên trang <code>http://&lt;github username&gt;.github.io</code> để nhận hàng  :kissing:</p>
+
               
             </div>
           </div>
@@ -296,9 +390,11 @@ ga('send', 'pageview');
                   <div class="post-footer-tags">
                     <span class="text-color-light text-small">THẺ ĐÁNH DẤU</span><br/>
                     
-  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/hello/">Hello</a>
+  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/hugo/">Hugo</a>
 
-  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/youtube/">youtube</a>
+  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/github/">Github</a>
+
+  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/blog/">Blog</a>
 
                   </div>
                 
@@ -311,7 +407,7 @@ ga('send', 'pageview');
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2018/11/blog-with-hugo/" data-tooltip="[Hugo] Hướng dẫn xây dựng blog cá nhân bằng Hugo &#43; Github">
+                <a class="post-action-btn btn btn--disabled">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">Tiếp</span>
@@ -319,7 +415,7 @@ ga('send', 'pageview');
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--disabled">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2018/10/hello/" data-tooltip="Hello">
               
                   <span class="hide-xs hide-sm text-small icon-mr">Trước</span>
                   <i class="fa fa-angle-right"></i>
@@ -337,19 +433,19 @@ ga('send', 'pageview');
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://tubean.github.io/2018/10/hello/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://tubean.github.io/2018/11/blog-with-hugo/">
               <i class="fa fa-facebook-official"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://tubean.github.io/2018/10/hello/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://tubean.github.io/2018/11/blog-with-hugo/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://tubean.github.io/2018/10/hello/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://tubean.github.io/2018/11/blog-with-hugo/">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -397,7 +493,7 @@ ga('send', 'pageview');
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2018/11/blog-with-hugo/" data-tooltip="[Hugo] Hướng dẫn xây dựng blog cá nhân bằng Hugo &#43; Github">
+                <a class="post-action-btn btn btn--disabled">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">Tiếp</span>
@@ -405,7 +501,7 @@ ga('send', 'pageview');
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--disabled">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2018/10/hello/" data-tooltip="Hello">
               
                   <span class="hide-xs hide-sm text-small icon-mr">Trước</span>
                   <i class="fa fa-angle-right"></i>
@@ -423,19 +519,19 @@ ga('send', 'pageview');
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://tubean.github.io/2018/10/hello/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://tubean.github.io/2018/11/blog-with-hugo/">
               <i class="fa fa-facebook-official"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://tubean.github.io/2018/10/hello/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://tubean.github.io/2018/11/blog-with-hugo/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://tubean.github.io/2018/10/hello/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://tubean.github.io/2018/11/blog-with-hugo/">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -465,19 +561,19 @@ ga('send', 'pageview');
   <ul class="share-options">
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ftubean.github.io%2F2018%2F10%2Fhello%2F">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ftubean.github.io%2F2018%2F11%2Fblog-with-hugo%2F">
           <i class="fa fa-facebook-official"></i><span>Chia sẻ với Facebook</span>
         </a>
       </li>
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Ftubean.github.io%2F2018%2F10%2Fhello%2F">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Ftubean.github.io%2F2018%2F11%2Fblog-with-hugo%2F">
           <i class="fa fa-twitter"></i><span>Chia sẻ với Twitter</span>
         </a>
       </li>
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Ftubean.github.io%2F2018%2F10%2Fhello%2F">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Ftubean.github.io%2F2018%2F11%2Fblog-with-hugo%2F">
           <i class="fa fa-google-plus"></i><span>Chia sẻ với Google&#43;</span>
         </a>
       </li>
@@ -644,9 +740,9 @@ $(document).ready(function() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = 'https:\/\/tubean.github.io\/2018\/10\/hello\/';
+          this.page.url = 'https:\/\/tubean.github.io\/2018\/11\/blog-with-hugo\/';
           
-            this.page.identifier = '\/2018\/10\/hello\/'
+            this.page.identifier = '\/2018\/11\/blog-with-hugo\/'
           
         };
         (function() {

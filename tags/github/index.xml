@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Bean&#39;s blog</title>
-    <link>https://tubean.github.io/</link>
-    <description>Recent content on Bean&#39;s blog</description>
+    <title>Github on Bean&#39;s blog</title>
+    <link>https://tubean.github.io/tags/github/</link>
+    <description>Recent content in Github on Bean&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>vi</language>
     <lastBuildDate>Sun, 04 Nov 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://tubean.github.io/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://tubean.github.io/tags/github/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -18,16 +18,6 @@
       
       <guid>https://tubean.github.io/2018/11/blog-with-hugo/</guid>
       <description>Bên cạnh các dịch vụ support người dùng tạo các trang blog cá nhân như blogger, wordpress,&amp;hellip; thì các dịch vụ hosting như github, bitbucket,&amp;hellip; cũng đã cho phép chúng ta xây dựng các trang blog trên chính tên miền của họ. Phổ biến hiện nay là các trang miền github.io được xây dựng trên nền tảng Jekyll. Tuy nhiên Jekyll không phải là duy nhất và cũng có những nhược điểm của riêng nó.</description>
-    </item>
-    
-    <item>
-      <title>Hello</title>
-      <link>https://tubean.github.io/2018/10/hello/</link>
-      <pubDate>Wed, 31 Oct 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://tubean.github.io/2018/10/hello/</guid>
-      <description>&lt;p&gt;Để chào mừng bài post đầu tiên, một phút quốc ca bắt đầu!
-&lt;/p&gt;</description>
     </item>
     
   </channel>
