@@ -291,16 +291,16 @@ ga('send', 'pageview');
             <div class="main-content-wrap">
               
 
-<p>Bên cạnh các dịch vụ support người dùng tạo các trang blog cá nhân như <code>blogger</code>, <code>wordpress</code>,&hellip; thì các dịch vụ hosting như <code>github</code>, <code>bitbucket</code>,&hellip; cũng đã cho phép chúng ta xây dựng các trang blog trên chính tên miền của họ. Phổ biến hiện nay là các trang miền github.io được xây dựng trên nền tảng <code>Jekyll</code>. Tuy nhiên <code>Jekyll</code> không phải là duy nhất và cũng có những nhược điểm của riêng nó. Bài viết này tôi sẽ hướng dẫn các bạn xây dựng trang blog cá nhân của riêng mình trên tên miền github.io nhưng dựa trên công nghệ Hugo nina và bọn trẻ :smile:.</p>
+<p>Bên cạnh các dịch vụ support người dùng tạo các trang blog cá nhân như <code>blogger</code>, <code>wordpress</code>,&hellip; thì các dịch vụ hosting như <code>github</code>, <code>bitbucket</code>,&hellip; cũng đã cho phép chúng ta xây dựng các trang blog trên chính tên miền của họ. Phổ biến hiện nay là các trang miền github.io được xây dựng trên nền tảng <code>Jekyll</code>. Tuy nhiên <code>Jekyll</code> không phải là duy nhất và cũng có những nhược điểm của riêng nó. Bài viết này tôi sẽ hướng dẫn các bạn xây dựng trang blog cá nhân của riêng mình trên tên miền github.io nhưng dựa trên công nghệ Hugo nina và bọn trẻ 😄.</p>
 
 <h1 id="1-hugo-là-ai-à-là-gì">1. Hugo là ai? À là gì?</h1>
 
-<p>Hugo hay Jekyll thì nó cũng là một nền tảng xây dựng website tĩnh, chính xác thì là chúng ta sẽ viết các bài post bằng <code>markdown (.md)</code> và các công nghệ này sẽ tự động generate ra các trang html, css theo một template cho trước. <code>Jekyll</code> thì được viết bằng <code>Ruby</code>, còn <code>Hugo</code> được xây dựng trên ngôn ngữ <code>Go</code>. Cá nhân mình thấy sử dụng Jekyll thì setup và build trên github nhanh hơn, nhưng mình là mình thích Hugo nina và bọn trẻ nên là mình xây dựng trang blog này trên nền tảng Hugo :sweat_smile:</p>
+<p>Hugo hay Jekyll thì nó cũng là một nền tảng xây dựng website tĩnh, chính xác thì là chúng ta sẽ viết các bài post bằng <code>markdown (.md)</code> và các công nghệ này sẽ tự động generate ra các trang html, css theo một template cho trước. <code>Jekyll</code> thì được viết bằng <code>Ruby</code>, còn <code>Hugo</code> được xây dựng trên ngôn ngữ <code>Go</code>. Cá nhân mình thấy sử dụng Jekyll thì setup và build trên github nhanh hơn, nhưng mình là mình thích Hugo nina và bọn trẻ nên là mình xây dựng trang blog này trên nền tảng Hugo 😅</p>
 
 <h1 id="2-đặt-tên-miền-cho-blog">2. Đặt tên miền cho blog</h1>
 
-<p>Trước tiên bạn phải chọn cho mình cái tên để đặt cho blog. À nhưng mà bạn không có quyền lựa chọn đâu, vì xây dựng trên miền github.io thì mặc định tên miền trang blog phải tên mẫu <code>username.github.io</code>, trong đó <code>username</code> chính là tên tài khoản github của bạn. Vì thế nên nếu muốn có cái tên gì hay ho thì tốt nhất là tạo một account github mới mà dùng :grin:
-Ok, nếu bạn đã có tài khoản github với một cái tên mĩ miều thì hãy vào tạo một repository mới với cái tên theo mẫu <code>username.github.io</code>, trong đó <code>username</code> là cái gì thì vừa nói rồi.  :laughing: Mỗi tài khoản github chỉ được tạo duy nhất một trang host như vậy nên muốn tạo nhiều blog thì mạnh dạn đăng ký nhiều tài khoản github nhé  :smile:</p>
+<p>Trước tiên bạn phải chọn cho mình cái tên để đặt cho blog. À nhưng mà bạn không có quyền lựa chọn đâu, vì xây dựng trên miền github.io thì mặc định tên miền trang blog phải tên mẫu <code>username.github.io</code>, trong đó <code>username</code> chính là tên tài khoản github của bạn. Vì thế nên nếu muốn có cái tên gì hay ho thì tốt nhất là tạo một account github mới mà dùng 😁
+Ok, nếu bạn đã có tài khoản github với một cái tên mĩ miều thì hãy vào tạo một repository mới với cái tên theo mẫu <code>username.github.io</code>, trong đó <code>username</code> là cái gì thì vừa nói rồi.  😆 Mỗi tài khoản github chỉ được tạo duy nhất một trang host như vậy nên muốn tạo nhiều blog thì mạnh dạn đăng ký nhiều tài khoản github nhé  😄</p>
 
 <h1 id="3-cài-đặt-repository">3. Cài đặt repository</h1>
 
@@ -317,7 +317,7 @@ git submodule add git@github.com:&lt;username&gt;/&lt;username&gt;.github.io.git
 <h1 id="4-chọn-theme-phù-hợp">4. Chọn theme phù hợp</h1>
 
 <p>Giờ là lúc các bạn đi chợ chọn cho mình bộ quần áo đẹp cho trang blog. Hàng free rất nhiều, hàng tính phí cũng đa chủng loại, tất cả đều có ở <a href="https://themes.gohugo.io/">đây</a>.
-Các bạn nhớ chọn xong thì xem hướng dẫn sử dụng để biết theme phù hợp với phiên bản Hugo bao nhiêu nhé  :grin:</p>
+Các bạn nhớ chọn xong thì xem hướng dẫn sử dụng để biết theme phù hợp với phiên bản Hugo bao nhiêu nhé  😁</p>
 
 <h1 id="5-cài-đặt-hugo">5. Cài đặt Hugo</h1>
 
@@ -347,14 +347,14 @@ Các bạn nhớ chọn xong thì xem hướng dẫn sử dụng để biết th
 hugo new about.md
 </code></pre>
 
-<p>Gõ lệnh trên vào terminal, nhớ là terminal vẫn đang ở thư mục repo lớn. Sau đó vào folder <code>content</code> kiểm tra, bạn sẽ thấy file <code>about.md</code>. Viết linh tinh gì trong đấy theo ý bạn :wink:
+<p>Gõ lệnh trên vào terminal, nhớ là terminal vẫn đang ở thư mục repo lớn. Sau đó vào folder <code>content</code> kiểm tra, bạn sẽ thấy file <code>about.md</code>. Viết linh tinh gì trong đấy theo ý bạn 😉
 Chạy tiếp lệnh sau:</p>
 
 <pre><code>hugo
 </code></pre>
 
 <p>Lúc này bạn kiểm tra bằng lệnh <code>ls</code> hoặc dùng editor nào có khả năng nhìn thấy thư mục ẩn thì bạn sẽ phát hiện ra thư mục <code>public</code> được tạo, bên trong nó là các file html, css, bla bla&hellip; Đây là những file được generate từ project của bạn và bạn cần đẩy nó lên repo nhỏ của mình.
-Để nó luôn generate vào thư mục chứa của repo nhỏ thì bạn sẽ vào file <code>config.toml</code> của project ( là của project chứ không phải example nhé) và tìm dòng <code>publishdir</code> . Nếu không tìm thấy thì bạn thêm dòng này vào trong file <code>config.toml</code> (chú ý sửa lại tên cho đúng của bạn, đừng copy vô tội vạ   :smirk:)</p>
+Để nó luôn generate vào thư mục chứa của repo nhỏ thì bạn sẽ vào file <code>config.toml</code> của project ( là của project chứ không phải example nhé) và tìm dòng <code>publishdir</code> . Nếu không tìm thấy thì bạn thêm dòng này vào trong file <code>config.toml</code> (chú ý sửa lại tên cho đúng của bạn, đừng copy vô tội vạ   😏)</p>
 
 <pre><code>publishdir = &quot;&lt;github username&gt;.github.io&quot;
 </code></pre>
@@ -371,13 +371,13 @@ Chạy tiếp lệnh sau:</p>
 <h1 id="9-cho-mọi-thứ-lên-github">9. Cho mọi thứ lên github</h1>
 
 <p>Trước tiên bạn phải kiểm tra lại thư mục <code>public</code> còn không, nếu còn thì xóa nó đi và chạy lại lệnh <code>hugo</code> để generate lại các file tĩnh vào thư mục chứa repo nhỏ.
-Cuối cùng là commit và push hết lên github thôi  :laughing:
+Cuối cùng là commit và push hết lên github thôi  😆
 Để đơn giản thì bạn chỉ cần chạy lệnh sau, các submodule sẽ tự động cập nhật</p>
 
 <pre><code>git push --recurse-submodules=on-demand
 </code></pre>
 
-<p>Cuối cùng, lên trang <code>http://&lt;github username&gt;.github.io</code> để nhận hàng  :kissing:</p>
+<p>Cuối cùng, lên trang <code>http://&lt;github username&gt;.github.io</code> để nhận hàng  😗</p>
 
               
             </div>
