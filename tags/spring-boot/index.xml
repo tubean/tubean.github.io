@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Spring Boot on Bean&#39;s blog</title>
+    <link>https://tubean.github.io/tags/spring-boot/</link>
+    <description>Recent content in Spring Boot on Bean&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>vi</language>
+    <lastBuildDate>Tue, 06 Nov 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://tubean.github.io/tags/spring-boot/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>[Spring Boot] Secu thập chưởng bảo vệ app Spring Boot của bạn</title>
+      <link>https://tubean.github.io/2018/11/spring-boot-10-ways-security/</link>
+      <pubDate>Tue, 06 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://tubean.github.io/2018/11/spring-boot-10-ways-security/</guid>
+      <description>Spring Boot được release lần đầu năm 2014 và không có nhiều thay đổi đáng kể cho đến hiện tại. Với mục tiêu tự động cấu hình và giảm thiểu lượng code để có thể start một ứng dụng, Spring Boot đã giúp cho không biết con dân nhà Spring dễ sống và bớt chửi thề đi. Giống như khi dùng bất kì một framework nào để xây dựng ứng dụng, điều bạn cần quan tâm không chỉ là chất lượng code, vượt qua các test case, &amp;hellip; mà còn là khả năng bảo mật của ứng dụng.</description>
+    </item>
+    
+  </channel>
+</rss>

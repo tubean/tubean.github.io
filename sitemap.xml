@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://tubean.github.io/2018/11/spring-boot-10-ways-security/</loc>
+    <lastmod>2018-11-06T00:00:00+00:00</lastmod>
+  </url>
   
   <url>
     <loc>https://tubean.github.io/2018/11/blog-with-hugo/</loc>
@@ -18,7 +24,7 @@
   
   <url>
     <loc>https://tubean.github.io/</loc>
-    <lastmod>2018-11-04T00:00:00+00:00</lastmod>
+    <lastmod>2018-11-06T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -65,13 +71,37 @@
   
   <url>
     <loc>https://tubean.github.io/post/</loc>
-    <lastmod>2018-11-04T00:00:00+00:00</lastmod>
+    <lastmod>2018-11-06T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://tubean.github.io/tags/security/</loc>
+    <lastmod>2018-11-06T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://tubean.github.io/categories/security/</loc>
+    <lastmod>2018-11-06T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://tubean.github.io/categories/setup/</loc>
     <lastmod>2018-11-04T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://tubean.github.io/tags/spring-boot/</loc>
+    <lastmod>2018-11-06T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://tubean.github.io/categories/spring-boot/</loc>
+    <lastmod>2018-11-06T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

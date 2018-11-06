@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.20 with theme Tranquilpeak 0.4.3-SNAPSHOT">
+<meta name="generator" content="Hugo 0.50 with theme Tranquilpeak 0.4.3-SNAPSHOT">
 <meta name="author" content="Tu Bean">
 <meta name="keywords" content="Hugo, Go, Blog, Github, Setup">
 <meta name="description" content="Bên cạnh các dịch vụ support người dùng tạo các trang blog cá nhân như blogger, wordpress,&hellip; thì các dịch vụ hosting như github, bitbucket,&hellip; cũng đã cho phép chúng ta xây dựng các trang blog trên chính tên miền của họ. Phổ biến hiện nay là các trang miền github.io được xây dựng trên nền tảng Jekyll. Tuy nhiên Jekyll không phải là duy nhất và cũng có những nhược điểm của riêng nó.">
@@ -22,6 +22,8 @@
 <meta name="twitter:description" content="Bên cạnh các dịch vụ support người dùng tạo các trang blog cá nhân như blogger, wordpress,&hellip; thì các dịch vụ hosting như github, bitbucket,&hellip; cũng đã cho phép chúng ta xây dựng các trang blog trên chính tên miền của họ. Phổ biến hiện nay là các trang miền github.io được xây dựng trên nền tảng Jekyll. Tuy nhiên Jekyll không phải là duy nhất và cũng có những nhược điểm của riêng nó.">
 <meta property="og:locale" content="vi">
 
+  
+    <meta property="article:published_time" content="2018-11-04T00:00:00">
   
   
     <meta property="article:modified_time" content="2018-11-04T00:00:00">
@@ -96,14 +98,17 @@
 
     
       
-<script>
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-ga('create', 'UA-128433621-1', 'auto');
-ga('send', 'pageview');
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-128433621-1', 'auto');
+	
+	ga('send', 'pageview');
+}
 </script>
 
     
@@ -208,6 +213,16 @@ ga('send', 'pageview');
       <i class="sidebar-button-icon fa fa-lg fa-bitbucket-square"></i>
       
       <span class="sidebar-button-desc">Bitbucket</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://ask.fm/zeref_bean" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">Github</span>
     </a>
   </li>
 
@@ -407,7 +422,7 @@ Cuối cùng là commit và push hết lên github thôi  😆
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--disabled">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2018/11/spring-boot-10-ways-security/" data-tooltip="[Spring Boot] Secu thập chưởng bảo vệ app Spring Boot của bạn">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">Tiếp</span>
@@ -493,7 +508,7 @@ Cuối cùng là commit và push hết lên github thôi  😆
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--disabled">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2018/11/spring-boot-10-ways-security/" data-tooltip="[Spring Boot] Secu thập chưởng bảo vệ app Spring Boot của bạn">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">Tiếp</span>
@@ -634,6 +649,23 @@ Cuối cùng là commit và push hết lên github thôi  😆
           <div class="media">
             
             <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/11/spring-boot-10-ways-security/">
+                <h3 class="media-heading">[Spring Boot] Secu thập chưởng bảo vệ app Spring Boot của bạn</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Spring Boot được release lần đầu năm 2014 và không có nhiều thay đổi đáng kể cho đến hiện tại. Với mục tiêu tự động cấu hình và giảm thiểu lượng code để có thể start một ứng dụng, Spring Boot đã giúp cho không biết con dân nhà Spring dễ sống và bớt chửi thề đi. Giống như khi dùng bất kì một framework nào để xây dựng ứng dụng, điều bạn cần quan tâm không chỉ là chất lượng code, vượt qua các test case, &hellip; mà còn là khả năng bảo mật của ứng dụng.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
               <a class="link-unstyled" href="https://tubean.github.io/2018/11/blog-with-hugo/">
                 <h3 class="media-heading">[Hugo] Hướng dẫn xây dựng blog cá nhân bằng Hugo &#43; Github</h3>
               </a>
@@ -673,7 +705,7 @@ Cuối cùng là commit và push hết lên github thôi  😆
          data-message-zero="không tìm thấy kết quả"
          data-message-one="tìm thấy 1 kết quả "
          data-message-other="tìm thấy {n} kết quả">
-         2 posts found
+         3 posts found
       </p>
     </div>
   </div>

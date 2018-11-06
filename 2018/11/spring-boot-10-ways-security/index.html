@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.50 with theme Tranquilpeak 0.4.3-SNAPSHOT">
+<meta name="author" content="Tu Bean">
+<meta name="keywords" content="Spring, Spring Boot, Security, Share">
+<meta name="description" content="Spring Boot được release lần đầu năm 2014 và không có nhiều thay đổi đáng kể cho đến hiện tại. Với mục tiêu tự động cấu hình và giảm thiểu lượng code để có thể start một ứng dụng, Spring Boot đã giúp cho không biết con dân nhà Spring dễ sống và bớt chửi thề đi. Giống như khi dùng bất kì một framework nào để xây dựng ứng dụng, điều bạn cần quan tâm không chỉ là chất lượng code, vượt qua các test case, &hellip; mà còn là khả năng bảo mật của ứng dụng.">
+
+
+<meta property="og:description" content="Spring Boot được release lần đầu năm 2014 và không có nhiều thay đổi đáng kể cho đến hiện tại. Với mục tiêu tự động cấu hình và giảm thiểu lượng code để có thể start một ứng dụng, Spring Boot đã giúp cho không biết con dân nhà Spring dễ sống và bớt chửi thề đi. Giống như khi dùng bất kì một framework nào để xây dựng ứng dụng, điều bạn cần quan tâm không chỉ là chất lượng code, vượt qua các test case, &hellip; mà còn là khả năng bảo mật của ứng dụng.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Spring Boot] Secu thập chưởng bảo vệ app Spring Boot của bạn">
+<meta name="twitter:title" content="[Spring Boot] Secu thập chưởng bảo vệ app Spring Boot của bạn">
+<meta property="og:url" content="https://tubean.github.io/2018/11/spring-boot-10-ways-security/">
+<meta property="twitter:url" content="https://tubean.github.io/2018/11/spring-boot-10-ways-security/">
+<meta property="og:site_name" content="Bean&#39;s blog">
+<meta property="og:description" content="Spring Boot được release lần đầu năm 2014 và không có nhiều thay đổi đáng kể cho đến hiện tại. Với mục tiêu tự động cấu hình và giảm thiểu lượng code để có thể start một ứng dụng, Spring Boot đã giúp cho không biết con dân nhà Spring dễ sống và bớt chửi thề đi. Giống như khi dùng bất kì một framework nào để xây dựng ứng dụng, điều bạn cần quan tâm không chỉ là chất lượng code, vượt qua các test case, &hellip; mà còn là khả năng bảo mật của ứng dụng.">
+<meta name="twitter:description" content="Spring Boot được release lần đầu năm 2014 và không có nhiều thay đổi đáng kể cho đến hiện tại. Với mục tiêu tự động cấu hình và giảm thiểu lượng code để có thể start một ứng dụng, Spring Boot đã giúp cho không biết con dân nhà Spring dễ sống và bớt chửi thề đi. Giống như khi dùng bất kì một framework nào để xây dựng ứng dụng, điều bạn cần quan tâm không chỉ là chất lượng code, vượt qua các test case, &hellip; mà còn là khả năng bảo mật của ứng dụng.">
+<meta property="og:locale" content="vi">
+
+  
+    <meta property="article:published_time" content="2018-11-06T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2018-11-06T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="Spring Boot">
+    
+      <meta property="article:section" content="Security">
+    
+  
+  
+    
+      <meta property="article:tag" content="Spring Boot">
+    
+      <meta property="article:tag" content="Security">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://assets.simpleviewcms.com/simpleview/image/fetch/c_limit,h_640,q_60,w_800/https://res.cloudinary.com/simpleview/image/upload/crm/howardcounty/spring-boot-icon0_cf21dec4-5056-b3a8-49c015fd3bde6cb5.png">
+  <meta property="twitter:image" content="https://assets.simpleviewcms.com/simpleview/image/fetch/c_limit,h_640,q_60,w_800/https://res.cloudinary.com/simpleview/image/upload/crm/howardcounty/spring-boot-icon0_cf21dec4-5056-b3a8-49c015fd3bde6cb5.png">
+
+
+  <meta property="og:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1541273502/Black_flag.svg.png">
+  <meta property="twitter:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1541273502/Black_flag.svg.png">
+
+
+
+
+  <meta property="og:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/c_scale,w_1836/v1540914499/C360_2016-03-22-17-45-21-487.jpg">
+  <meta property="twitter:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/c_scale,w_1836/v1540914499/C360_2016-03-22-17-45-21-487.jpg">
+
+
+    <title>[Spring Boot] Secu thập chưởng bảo vệ app Spring Boot của bạn</title>
+
+    <link rel="icon" href="https://tubean.github.io/favicon/flappybird.png">
+    
+
+    
+
+    <link rel="canonical" href="https://tubean.github.io/2018/11/spring-boot-10-ways-security/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://tubean.github.io/css/style-nnm2spxvve8onlujjlegkkytaehyadd4ksxc1hyzzq9a2wvtrgbljqyulomn.min.css" />
+    
+    
+      
+        <link rel="stylesheet"  crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" integrity="sha384-TEMocfGvRuD1rIAacqrknm5BQZ7W7uWitoih+jMNFXQIbNl16bO8OZmylH/Vi/Ei">
+      
+    
+      
+        <link rel="stylesheet"  href="https://tubean.github.io/css/main.css">
+      
+    
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-128433621-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://tubean.github.io/">Bean&#39;s blog</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://tubean.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://res.cloudinary.com/deop9ytsv/image/upload/c_scale,w_1836/v1540914499/C360_2016-03-22-17-45-21-487.jpg" alt="Ảnh đại diện" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://tubean.github.io/#about">
+          <img class="sidebar-profile-picture" src="https://res.cloudinary.com/deop9ytsv/image/upload/c_scale,w_1836/v1540914499/C360_2016-03-22-17-45-21-487.jpg" alt="Ảnh đại diện" />
+        </a>
+        <h4 class="sidebar-profile-name">Tu Bean</h4>
+        
+          <h5 class="sidebar-profile-bio">Coding, writing and sharing</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tubean.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Trang chủ</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tubean.github.io/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">Danh mục</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tubean.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Thẻ thông tin</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tubean.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Lưu trữ</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tubean.github.io/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">Thông tin</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://bitbucket.org/tubean/" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bitbucket-square"></i>
+      
+      <span class="sidebar-button-desc">Bitbucket</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://ask.fm/zeref_bean" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">Github</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.instagram.com/zeref_bean/" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-instagram"></i>
+      
+      <span class="sidebar-button-desc">Instagram</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.linkedin.com/in/tubean/" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-linkedin"></i>
+      
+      <span class="sidebar-button-desc">LinkedIn</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+  <div class="post-header-cover
+              text-center
+              "
+       style="background-image:url('https://res.cloudinary.com/deop9ytsv/image/upload/v1541273502/Black_flag.svg.png')"
+       data-behavior="5">
+    
+      <div class="post-header main-content-wrap text-center">
+  
+    <h1 class="post-title" itemprop="headline">
+      [Spring Boot] Secu thập chưởng bảo vệ app Spring Boot của bạn
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2018-11-06T00:00:00Z">
+        
+  tháng 11 6, 2018
+
+      </time>
+    
+    
+  
+  
+    <span>mục</span>
+    
+      <a class="category-link" href="https://tubean.github.io/categories/spring-boot">Spring Boot</a>, 
+    
+      <a class="category-link" href="https://tubean.github.io/categories/security">Security</a>
+    
+  
+
+  </div>
+
+</div>
+    
+  </div>
+
+
+      <div id="main" data-behavior="5"
+        class="hasCover
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              
+
+<p>Spring Boot được release lần đầu năm 2014 và không có nhiều thay đổi đáng kể cho đến hiện tại. Với mục tiêu tự động cấu hình và giảm thiểu lượng code để có thể start một ứng dụng, Spring Boot đã giúp cho không biết con dân nhà Spring dễ sống và bớt chửi thề đi.
+Giống như khi dùng bất kì một framework nào để xây dựng ứng dụng, điều bạn cần quan tâm không chỉ là chất lượng code, vượt qua các test case, &hellip; mà còn là khả năng bảo mật của ứng dụng. Các cụ có câu: &ldquo;Phật cao một thước, ma cao một trượng&rdquo;. Thế nên bạn nào chưa có tư tưởng phát triển ứng dụng mà cần bảo mật thì liệu mà quan tâm đi. Bộ bí kíp này được truyền lại theo <a href="https://developer.okta.com/blog/2018/07/30/10-ways-to-secure-spring-boot">Matt Raible</a> và được việt hoá bởi tôi, nhằm mục đích hướng dẫn các bạn những tuyệt chiêu xây dựng một ứng dụng Spring Boot bảo mật.</p>
+
+<h1 id="chưởng-1-hãy-sử-dụng-https-cho-môi-trường-production">Chưởng 1: Hãy sử dụng HTTPS cho môi trường production</h1>
+
+<p><code>Transport Layer Security (TLS)</code> hay còn được biết đến với cái tên <code>HTTPS</code> hay khái niệm <code>SSL (Secure Sockets Layer)</code>. <code>TLS</code> là một giao thức bảo mật cung cấp một môi trường giao tiếp an toàn trên mạng máy tính, đảm bảo sự riêng tư và tính toàn vẹn giữa các ứng dụng máy tính.</p>
+
+<p>Để sử dụng được giao thức này, bạn cần mua chứng chỉ TLS, hoặc dùng hàng miễn phí. Chi tiết vụ mua bán này có lẽ mình sẽ viết trong một bài viết khác. Bạn nào rảnh rỗi có thể nghiên cứu thêm ở <a href="https://letsencrypt.org/">đây</a></p>
+
+<p>Để bật chế độ HTTPS trong ứng dụng Spring Boot, bạn cần có một class thừa kế <code>WebSecurityConfigurerAdapter</code> và dùng method <code>requiresSecure()</code> như sau:</p>
+
+<pre><code class="language-java">@Configuration
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
+ @Override
+ protected void configure(HttpSecurity http) throws Exception {
+   http.requiresChannel().requiresSecure();
+ }
+}
+</code></pre>
+
+<p>Cách cấu hình này có thể sử dụng trong môi trường &ldquo;độc lập tự do&rdquo;, nơi mà hầu hết chúng ta đều gặp đau thương khi phải tự mình mua và cài đặt một chứng chỉ TLS. Nếu bạn sử dụng <a href="https://www.heroku.com/">Heroku</a>, <a href="https://www.cloudfoundry.org/">Cloud Foundry</a> hay bất kì một nhà cung cấp dịch vụ cloud nào khác, các chứng chỉ TLS sẽ được tự động cung cấp cho người dùng, vì vậy bạn chỉ cần thêm một ít code nữa như dưới đây là đủ.</p>
+
+<pre><code class="language-java">@Configuration
+public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.requiresChannel()
+            .requestMatchers(r -&gt; r.getHeader(&quot;X-Forwarded-Proto&quot;) != null)
+            .requiresSecure();
+    }
+}
+</code></pre>
+
+<h1 id="chưởng-2-kiểm-tra-dependencies-bằng-snyk">Chưởng 2: Kiểm tra Dependencies bằng Snyk</h1>
+
+<p>Thông thường khi chúng ta sử dụng các tool quản lý thư viện như Maven, Gradle,&hellip; chúng ta thường thêm các dependencies mà không hề kiểm tra cũng như kiểm soát tính bảo mật của những thư viện này. Vì vậy, những kẻ tà ma ngoại đạo có thể tấn công thông qua các <code>open source</code> này mà nhưng con dân tin người như chúng ta hoàn toàn không hay biết. 😁</p>
+
+<p><a href="https://snyk.io/">Snyk</a> là một công cụ giúp kiểm tra ứng dụng của chúng ta có sử dụng <code>dependencies</code> nào nguy hại không. Nó sẽ liệt kê hết các nguy cơ, lỗ hổng tồn tại trong những <code>packages</code> mà chúng ta sử dụng lên một <code>dashboard</code>.</p>
+
+<p><img src="https://developer.okta.com/assets/blog/spring-boot-10-ways-to-secure/snyk-vulnerabilities-9687d386d37830a36649fc93b2e7b3bc946ccdd5e84374c0a95e7b24e84555a3.png" alt="" />
+Ngoài ra nó còn giúp đưa ra các giải pháp ngăn chặn bằng cách tạo tạo một <code>pull request</code> lên source code của bạn. Nó cũng giúp kiểm tra và đảm bảo tất cả các <code>pull request</code> đều không gặp phải các lỗ hổng bảo mật đã biết.</p>
+
+<p>Thêm nữa là nó cũng có sẵn giao diện người dùng như CLI, vì vậy bạn có thể tích hợp nó với môi trường CI của mình, đảm bảo hệ thống sẽ an toàn ngay từ lúc build.
+Bạn có thể sử dụng <code>Snyk</code> phiên bản free để dành cho các <code>open source</code> của bạn hoặc các dự án riêng với giới hạn thời gian test.</p>
+
+<h1 id="chưởng-3-sử-dụng-các-bản-lastest-release">Chưởng 3: Sử dụng các bản Lastest Release</h1>
+
+<p>Có rất nhiều lí do để chúng ta phải thường xuyên cập nhật các <code>dependencies</code> cho ứng dụng của mình. Và lí do bảo mật là một trong những nỗi lo hàng đầu. Các ứng dụng spring boot được generate từ <a href="https://start.spring.io/">https://start.spring.io/</a> luôn sử dụng các version mới nhất cho các package, các dependencies nếu có thể.</p>
+
+<p>Khi bạn phát hiện ra một lỗ hổng bảo mật trong ứng dụng của mình, hoặc là bạn sẽ có 3 lựa chọn : upgrade, tạo bản vá (Patch) hoặc không làm gì cả. Upgrade là an toàn nhất cho ứng dụng, nhưng thường thì nó sẽ gây ra nhiều phiền toán vì các method, thư viện thay đổi khiến chúng ta phải code lại, làm mất thời gian nghiên cứu và code. Tạo bản vá (Patch) có lẽ sẽ khả thi hơn vì chúng ta sẽ chỉ phải vá lại chỗ nào bị lỗ hổng. Cuối cùng, việc bỏ qua không làm gì với các lỗ hổng, dĩ nhiên cũng là một sự lựa chọn vì nó không làm ứng dụng của chúng ta shutdown ngay, tuy nhiên một ngày đẹp trời nào đấy bạn sẽ không muốn bị khách hàng gọi điện liên tục và chửi bới này nọ đâu. 😁</p>
+
+<h1 id="chưởng-4-ngăn-chặn-csrf">Chưởng 4: Ngăn chặn CSRF</h1>
+
+<p><a href="https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)">Cross-Site Request Forgery (CSRF)</a> là một hình thức tấn công website phổ biến hiện nay. Spring Security đã support ngăn chặn <code>CSRF</code> một cách mặc định.
+Nếu bạn sử dụng Spring MVC và dùng tag <code>form:form</code> hoặc <code>Thymeleaf</code> và sử dụng annotation <code>@EnableWebSecurity</code> thì  <code>CSRF token</code> sẽ tự động được thêm vào các <code>input field</code> ẩn.
+Nếu bạn sử dụng Javascript framework như Angular hay React thì bạn cần cấu hình <code>CookieCsrfTokenRepository</code> để JavaScript có thể đọc token trong cookie.</p>
+
+<pre><code class="language-java">@EnableWebSecurity
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http
+            .csrf()
+                .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+    }
+}
+</code></pre>
+
+<p>Nếu bạn dùng Angular, đoạn code trên là đủ rồi. Còn nếu bạn dùng React, bạn cần lấy <code>XSRF-TOKEN</code> cookie và gửi kèm nó trong header. Mình sẽ viết một bài viết về cách build một Spring Boot app tích hợp React sau, còn nếu muốn bạn có thể tham khảo thêm tại <a href="https://developer.okta.com/blog/2018/07/19/simple-crud-react-and-spring-boot#modify-react-to-handle-csrf-and-be-identity-aware">đây</a>.</p>
+
+<p>Spring Security sẽ tự động thêm <code>secure flag</code> vào <code>XSRF cookie</code> khi có bất kì request nào đến thông qua giao thức HTTPS. Spring Security không sử dụng flag <code>SameSite=strict</code> cho CSRF cookies, nhưng nó sẽ được dùng khi sử dụng Spring Session hoặc WebFlux session handling.</p>
+
+<h1 id="chưởng-5-sử-dụng-content-security-policy-để-ngăn-chặn-tấn-công-xss">Chưởng 5: Sử dụng Content Security Policy để ngăn chặn tấn công XSS</h1>
+
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP">Content Security Policy</a> (CSP) là một lớp bảo mật giúp giảm thiểu tấn công <a href="https://www.owasp.org/index.php/Cross-site_Scripting_(XSS)">XSS(cross-site cripting)</a> và tấn công <code>data injection</code>. Để kích hoạt chế độ này, bạn cần cấu hình app để trả về <code>Content-Security-Policy</code> header. Bạn cũng có thể dùng thẻ tag <code>meta http-equiv=&quot;Content-Security-Policty&quot;&gt;</code> trong trang HTML.</p>
+
+<p>Spring security cung cấp một số <a href="https://docs.spring.io/spring-security/site/docs/current/reference/html/web-app-security.html#default-security-headers">thuộc tính bảo mật mặc định</a> trong header:</p>
+
+<pre><code>Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+X-Content-Type-Options: nosniff
+Strict-Transport-Security: max-age=31536000 ; includeSubDomains
+X-Frame-Options: DENY
+X-XSS-Protection: 1; mode=block
+</code></pre>
+
+<p>Spring Security không kích hoạt CSP một cách mặc định. Muốn kích hoạt CSP header, bạn cấu hình ứng dụng như sau:</p>
+
+<pre><code class="language-java">@EnableWebSecurity
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.headers()
+            .contentSecurityPolicy(&quot;script-src 'self' https://trustedscripts.example.com; object-src https://trustedplugins.example.com; report-uri /csp-report-endpoint/&quot;);
+    }
+}
+</code></pre>
+
+<p>Bạn có thể kiểm tra <code>CSP header</code> trên ứng dụng của bạn tại <a href="https://securityheaders.com/">đây</a>.</p>
+
+<h1 id="chưởng-6-sử-dụng-openid-connect-cho-authentication">Chưởng 6: Sử dụng OpenID Connect cho Authentication</h1>
+
+<p>OpenID Connect (OIDC) là một OAuth 2.0 extension với mục đích cung cấp thông tin người dùng cho app của mình.
+Dưới đây là diagram về cách OIDC xác thực:
+<img src="https://developer.okta.com/assets/blog/spring-boot-10-ways-to-secure/oidc-for-authentication-2d91f30a19fbb9f9bced6dbbd44b76aa599fcc2c52233f61981399863bb04228.png" alt="" />
+Để tìm hiểu thêm về cách sử dụng OIDC trong ứng dụng Spring Boot, bạn có thể xem thêm <a href="https://developer.okta.com/blog/2017/12/18/spring-security-5-oidc">bài viết này</a>.</p>
+
+<h1 id="chưởng-7-sử-dụng-password-hashing-để-quản-lý-password">Chưởng 7: Sử dụng Password Hashing để quản lý Password</h1>
+
+<p>Việc lưu trữ mật khẩu nhạy cảm dưới dạng <code>plain text</code> là một trong những việc làm tệ nhất mà bạn dành cho ứng dụng yêu quý của mình. May mắn cho bạn là Spring Security có một <a href="https://docs.spring.io/spring-security/site/docs/current/reference/html/servlet-webclient.html#crypto">cryto module</a> giúp bạn mã hoá mật khẩu.
+<code>PasswordEncoder</code> là interface khai báo các method cho việc mã hoá mật khẩu:</p>
+
+<pre><code>public interface PasswordEncoder {
+    String encode(String rawPassword);
+    boolean matches(String rawPassword, String encodedPassword);
+}
+</code></pre>
+
+<p>Có một vài implementations cho việc mã hoá này, phổ biến nhất là <code>BCryptPasswordEncoder</code> và <code>Pbkdf2PasswordEncoder</code>.</p>
+
+<h1 id="chưởng-8-lưu-trữ-các-thông-tin-nhạy-cảm-một-cách-bảo-mật">Chưởng 8: Lưu trữ các thông tin nhạy cảm một cách bảo mật</h1>
+
+<p>Các thông tin nhạy cảm như mật khẩu, token,&hellip; cần được xử lý cẩn thận để tránh bị lộ. Bạn không thể lưu chúng dưới dạng <code>plain text</code> hoặc bất kì một dạng có thể đoán được nếu giữ chúng ở ổ cứng cá nhân. Chúng ta thường không đủ cẩn thận khi lưu trữ các thông tin nhạy cảm. Dĩ nhiên bạn có thể mã hoá chúng giống như mã hoá mật khẩu. Nhưng khi mật khẩu an toàn, bạn lại có thêm một cái khác cần lưu trữ, đó chính là chìa khoá để giải mã. <em>(Thực tế thì chúng ta thường dùng các hàm hash một chiều để mã hoá mật khẩu, tức là không thể dịch ngược lại một khi đã mã hoá. Nhưng trong trường hợp này là các tài liệu nhạy cảm cần đọc được chứ không chỉ đơn giản là để so sánh)</em>.</p>
+
+<p><a href="http://projects.spring.io/spring-vault/">Spring Vault</a> được coi là một giải pháp an toàn giúp chúng ta lưu trữ các thông tin nhạy cảm, cung cấp cách truy cập và cả tự động tạo thông tin đăng nhập cho chúng ta sử dụng.</p>
+
+<h1 id="chưởng-9-kiểm-tra-ứng-dụng-với-owasp-zap">Chưởng 9: Kiểm tra ứng dụng với OWASP ZAP</h1>
+
+<p>Công cụ bảo mật <a href="https://www.owasp.org/index.php/OWASP_Zed_Attack_Proxy_Project">OWASP ZAP</a> là một proxy thực hiện việc kiểm tra bằng cách cố gắng xâm nhập ứng dụng tại lúc runtime. Hai phương pháp <code>OWASP ZAP</code> sử dụng để tìm kiếm các lỗ hổng là <code>Spider</code> và <code>Active Scan</code>.</p>
+
+<p>Công cụ <code>Spider</code> sẽ bắt đầu bằng một chuỗi các URL, nó sẽ truy cập và phân tích cú pháp thông qua các response, xác định các hyperlink và thêm chúng vào một danh sách. Sau đó nó sẽ cố gắng tạo ra một bản đồ URLs dành riêng cho ứng dụng của bạn.</p>
+
+<p>Công cụ <code>Active Scan</code> sẽ tự động kiểm tra và cung cấp cho bạn một báo cáo về những nơi ứng dụng của bạn có thể bị khai thác cũng như chi tiết về các lỗ hổng.</p>
+
+<h1 id="chưởng-10-thành-lập-một-team-bảo-mật-để-review-code">Chưởng 10: Thành lập một team bảo mật để review code.</h1>
+
+<p>Code review là việc làm cần thiết cho bất kì một team phát triển dự án nào. Nếu bạn phải làm việc với những thông tin nhạy cảm, bạn nên xây dựng một team gồm các chuyên gia bảo mật để phân tích và báo cáo các lỗ hổng tiềm năng trong hệ thống. Nhưng nếu công ty hoặc khách hàng của bạn không có budget cho việc đó thì bạn cứ làm hết khả năng của mình là được. 😝</p>
+
+<p>Tải <a href="https://res.cloudinary.com/snyk/image/upload/v1534422834/blog/Spring_Boot_Security_Cheat_Sheet.pdf">Cheat sheet</a></p>
+
+<p>Via: <a href="https://developer.okta.com/blog/2018/07/30/10-ways-to-secure-spring-boot">https://developer.okta.com/blog/2018/07/30/10-ways-to-secure-spring-boot</a></p>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">THẺ ĐÁNH DẤU</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/spring-boot/">Spring Boot</a>
+
+  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/security/">Security</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">Tiếp</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2018/11/blog-with-hugo/" data-tooltip="[Hugo] Hướng dẫn xây dựng blog cá nhân bằng Hugo &#43; Github">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">Trước</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://tubean.github.io/2018/11/spring-boot-10-ways-security/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://tubean.github.io/2018/11/spring-boot-10-ways-security/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://tubean.github.io/2018/11/spring-boot-10-ways-security/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2018 <a href="https://bitbucket.org/tubean/">Do Anh Tu</a>. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">Tiếp</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2018/11/blog-with-hugo/" data-tooltip="[Hugo] Hướng dẫn xây dựng blog cá nhân bằng Hugo &#43; Github">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">Trước</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://tubean.github.io/2018/11/spring-boot-10-ways-security/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://tubean.github.io/2018/11/spring-boot-10-ways-security/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://tubean.github.io/2018/11/spring-boot-10-ways-security/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ftubean.github.io%2F2018%2F11%2Fspring-boot-10-ways-security%2F">
+          <i class="fa fa-facebook-official"></i><span>Chia sẻ với Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Ftubean.github.io%2F2018%2F11%2Fspring-boot-10-ways-security%2F">
+          <i class="fa fa-twitter"></i><span>Chia sẻ với Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Ftubean.github.io%2F2018%2F11%2Fspring-boot-10-ways-security%2F">
+          <i class="fa fa-google-plus"></i><span>Chia sẻ với Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://res.cloudinary.com/deop9ytsv/image/upload/c_scale,w_1836/v1540914499/C360_2016-03-22-17-45-21-487.jpg" alt="Ảnh đại diện" />
+    
+    <h4 id="about-card-name">Tu Bean</h4>
+    
+      <div id="about-card-bio">Coding, writing and sharing</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Web developer
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        Viet Nam
+      </div>
+    
+  </div>
+</div>
+
+    <div id="algolia-search-modal" class="modal-container">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="close-button"><i class="fa fa-close"></i></span>
+      <a href="https://algolia.com" target="_blank" rel="noopener" class="searchby-algolia text-color-light link-unstyled">
+        <span class="searchby-algolia-text text-color-light text-small">by</span>
+        <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+      </a>
+      <i class="search-icon fa fa-search"></i>
+      <form id="algolia-search-form">
+        <input type="text" id="algolia-search-input" name="search"
+          class="form-control input--large search-input" placeholder="Tìm kiếm" />
+      </form>
+    </div>
+    <div class="modal-body">
+      <div class="no-result text-color-light text-center">không tìm thấy kết quả</div>
+      <div class="results">
+        
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/11/spring-boot-10-ways-security/">
+                <h3 class="media-heading">[Spring Boot] Secu thập chưởng bảo vệ app Spring Boot của bạn</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Spring Boot được release lần đầu năm 2014 và không có nhiều thay đổi đáng kể cho đến hiện tại. Với mục tiêu tự động cấu hình và giảm thiểu lượng code để có thể start một ứng dụng, Spring Boot đã giúp cho không biết con dân nhà Spring dễ sống và bớt chửi thề đi. Giống như khi dùng bất kì một framework nào để xây dựng ứng dụng, điều bạn cần quan tâm không chỉ là chất lượng code, vượt qua các test case, &hellip; mà còn là khả năng bảo mật của ứng dụng.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/11/blog-with-hugo/">
+                <h3 class="media-heading">[Hugo] Hướng dẫn xây dựng blog cá nhân bằng Hugo &#43; Github</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Bên cạnh các dịch vụ support người dùng tạo các trang blog cá nhân như blogger, wordpress,&hellip; thì các dịch vụ hosting như github, bitbucket,&hellip; cũng đã cho phép chúng ta xây dựng các trang blog trên chính tên miền của họ. Phổ biến hiện nay là các trang miền github.io được xây dựng trên nền tảng Jekyll. Tuy nhiên Jekyll không phải là duy nhất và cũng có những nhược điểm của riêng nó.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/10/hello/">
+                <h3 class="media-heading">Hello</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Oct 10, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Để chào mừng bài post đầu tiên, một phút quốc ca bắt đầu!
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+      </div>
+    </div>
+    <div class="modal-footer">
+      <p class="results-count text-medium"
+         data-message-zero="không tìm thấy kết quả"
+         data-message-one="tìm thấy 1 kết quả "
+         data-message-other="tìm thấy {n} kết quả">
+         3 posts found
+      </p>
+    </div>
+  </div>
+</div>
+    
+  
+    
+    <div id="cover" style="background-image:url('https://tubean.github.io/images/cover-v1.2.0.jpg');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://tubean.github.io/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+
+
+  
+    <script crossorigin="anonymous" integrity="sha384-jmxIlussZWB7qCuB+PgKG1uLjjxbVVIayPJwi6cG6Zb4YKq0JIw+OMnkkEC7kYCq" src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js"></script>
+  
+
+  
+    <script crossorigin="anonymous" integrity="sha384-IiI65aU9ZYub2MY9zhtKd1H2ps7xxf+eb2YFG9lX6uRqpXCvBTOidPRCXCrQ++Uc" src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/contrib/auto-render.min.js"></script>
+  
+
+  
+    <script src="https://tubean.github.io/js/main.js"></script>
+  
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'https:\/\/tubean.github.io\/2018\/11\/spring-boot-10-ways-security\/';
+          
+            this.page.identifier = '\/2018\/11\/spring-boot-10-ways-security\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'beans-blog';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+

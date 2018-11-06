@@ -29,11 +29,29 @@
     </item>
     
     <item>
+      <title>Security</title>
+      <link>https://tubean.github.io/categories/security/</link>
+      <pubDate>Tue, 06 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://tubean.github.io/categories/security/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Setup</title>
       <link>https://tubean.github.io/categories/setup/</link>
       <pubDate>Sun, 04 Nov 2018 00:00:00 +0000</pubDate>
       
       <guid>https://tubean.github.io/categories/setup/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Spring Boot</title>
+      <link>https://tubean.github.io/categories/spring-boot/</link>
+      <pubDate>Tue, 06 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://tubean.github.io/categories/spring-boot/</guid>
       <description></description>
     </item>
     
