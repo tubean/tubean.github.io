@@ -308,7 +308,7 @@ if (!doNotTrack) {
 
 <h1 id="1-lambda-expresstion-là-gì">1. Lambda expresstion là gì?</h1>
 
-<p><code>Lambda expression</code> là một feature mới và nổi bật nhất của java 8 giúp số lượng code được giảm và là bước đầu khiến Java bước vào thế giới <code>functional programming</code>. Một lamba expression là một function được tạo mà không thuộc bất kì một class nào. Nó là một hàm không tên (unamed function) với các tham số (parameters) và phần body chứa khối lệnh được tách biệt với các tham số bằng dấu <code>-&gt;</code>. Ví du:</p>
+<p><code>Lambda expression</code> là một feature mới và nổi bật nhất của java 8 giúp số lượng code được giảm và là bước đầu khiến Java bước vào thế giới <code>functional programming</code>. Một lamba expression là một function được tạo mà không thuộc bất kì một class nào. Nó là một hàm không tên (unamed function) với các tham số (parameters) và phần body chứa khối lệnh được tách biệt với các tham số bằng dấu <code>-&gt;</code>. Ví dụ:</p>
 
 <pre><code>
 (int x) -&gt; x + 1 // Có một tham số kiểu int và trả về giá trị tham số tăng lên 1
@@ -332,34 +332,67 @@ msg -&gt; System.out.println(msg) // Có một tham số không cần xác đị
 
 <h1 id="2-functional-interface-là-gì">2. Functional interface là gì?</h1>
 
-<p>Một interface chỉ chứa duy nhất một method trừu tượng được gọi là <code>function interface</code>. Nó cũng có thể được gọi là <code>Single Abstract Interface</code>(SAM). Functional interface sử dụng annotation <code>@FunctionalInterface</code> để khai báo. Tuy nhiên việc này là không bắt buộc, nó chỉ đảm bảo cho quá trình complile, giúp chương trình báo lỗi khi có từ 2 method trừu tượng trở lên.
-Mục đích của functional interface chính là chúng ta có thể dùng lambda expression để tạo ra một instance cho interface đó.
-Ví dụ:</p>
+<p>Một interface chỉ chứa duy nhất một method trừu tượng được gọi là <code>function interface</code>. Nó cũng có thể được gọi là <code>Single Abstract Interface</code>(SAM). Functional interface sử dụng annotation <code>@FunctionalInterface</code> để khai báo. Tuy nhiên việc này là không bắt buộc, nó chỉ đảm bảo cho quá trình complile, giúp chương trình báo lỗi khi có từ 2 method trừu tượng trở lên.</p>
+
+<p>Để sử dụng biểu thức Lambda thì đầu tiên cần phải có một <em>functional interface</em> chứa một phương thức cần overide lại trong biểu thức lambda. Ví dụ interface <code>Runnable</code> là một <em>functional interface</em>:</p>
 
 <pre><code class="language-java">
-	public class Main {
-		public static void main(String[] argv) {
-			Processor stringProcessor = (String str) -&gt; str.length();
-			String name = &quot;Java Lambda&quot;;
-			int length = stringProcessor.getStringLength(name);
-			System.out.println(length);
-		}
-	}
-
 	@FunctionalInterface
-	interface Processor {
-		int getStringLength(String str);
+	public interface Runnable {
+		public abstract void run();
 	}
 
 </code></pre>
 
-<p>Để tạo được một lambda đúng chuẩn với một functional interface thì các parameter và kiểu trả về của lamda express phải giống với abtract method.</p>
+<p>Trước java 8 thì có vài cách để implement method trong một interface:</p>
+
+<ul>
+<li>Cách 1: Tạo một class mới:</li>
+</ul>
+
+<pre><code class="language-java">
+	public class MyRunnable implements Runnable {
+		@Override
+		public void run() {
+			System.out.println(&quot;I have implemented Runnable!&quot;);
+		}
+
+		public static void main(String args[]) {
+			MyRunnable runnable = new MyRunnable();
+			runnable.run();
+		}
+	}
+
+</code></pre>
+
+<ul>
+<li>Cách 2: Tạo một class Annonymous:</li>
+</ul>
+
+<pre><code class="language-java">
+	Runnable runnable = new Runnable() {
+		@Override
+		public void run() {
+			System.out.println(&quot;I have implemented Runnable!&quot;);
+		}
+	};
+	runnable.run();
+
+</code></pre>
+
+<p>Còn nếu chúng ta sử dụng biểu thức lambda thì chỉ cần code đơn giản như sau:</p>
+
+<pre><code class="language-java">
+	Runnable runnable = () -&gt; System.out.println(&quot;I have implemented Runnable!&quot;);
+	runnable.run();
+
+</code></pre>
 
 <h1 id="3-funtional-interface-api-trong-java-8">3. Funtional Interface API trong Java 8</h1>
 
 <p>Java 8 xây dựng sẵn một số functional interface được sử dụng trong các biểu thức lambda:</p>
 
-<h2 id="3-1-java-util-function-consumer">3.1 java.util.function.Consumer</h2>
+<h4 id="3-1-java-util-function-consumer">3.1 java.util.function.Consumer</h4>
 
 <pre><code class="language-java">
 	package java.util.function;
@@ -396,7 +429,7 @@ Ví dụ:</p>
 
 </code></pre>
 
-<h2 id="3-2-java-util-function-predicate">3.2 java.util.function.Predicate</h2>
+<h4 id="3-2-java-util-function-predicate">3.2 java.util.function.Predicate</h4>
 
 <pre><code class="language-java">
 	package java.util.function;
@@ -439,7 +472,7 @@ Ví dụ:</p>
 
 </code></pre>
 
-<h2 id="3-3-java-util-function-function">3.3 java.util.function.Function</h2>
+<h4 id="3-3-java-util-function-function">3.3 java.util.function.Function</h4>
 
 <pre><code class="language-java">
 	package java.util.function;
@@ -487,7 +520,7 @@ Ví dụ:</p>
 <li>java.util.function.LongFunction<R>: dữ liệu chuyển về kiểu Long</li>
 </ul>
 
-<h2 id="3-4-java-util-function-supplier">3.4 java.util.function.Supplier</h2>
+<h4 id="3-4-java-util-function-supplier">3.4 java.util.function.Supplier</h4>
 
 <pre><code class="language-java">
 	package java.util.function;
