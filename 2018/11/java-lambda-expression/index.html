@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.50 with theme Tranquilpeak 0.4.3-SNAPSHOT">
+<meta name="author" content="Tu Bean">
+<meta name="keywords" content="Java, Java 8, Lambda, Expression, Functional Interface">
+<meta name="description" content="1. Lambda expresstion là gì? Lambda expression là một feature mới và nổi bật nhất của java 8 giúp số lượng code được giảm và là bước đầu khiến Java bước vào thế giới functional programming. Một lamba expression là một function được tạo mà không thuộc bất kì một class nào. Nó là một hàm không tên (unamed function) với các tham số (parameters) và phần body chứa khối lệnh được tách biệt với các tham số bằng dấu -&gt;.">
+
+
+<meta property="og:description" content="1. Lambda expresstion là gì? Lambda expression là một feature mới và nổi bật nhất của java 8 giúp số lượng code được giảm và là bước đầu khiến Java bước vào thế giới functional programming. Một lamba expression là một function được tạo mà không thuộc bất kì một class nào. Nó là một hàm không tên (unamed function) với các tham số (parameters) và phần body chứa khối lệnh được tách biệt với các tham số bằng dấu -&gt;.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Java 8] Lambda Expression trong Java 8">
+<meta name="twitter:title" content="[Java 8] Lambda Expression trong Java 8">
+<meta property="og:url" content="https://tubean.github.io/2018/11/java-lambda-expression/">
+<meta property="twitter:url" content="https://tubean.github.io/2018/11/java-lambda-expression/">
+<meta property="og:site_name" content="Bean&#39;s blog">
+<meta property="og:description" content="1. Lambda expresstion là gì? Lambda expression là một feature mới và nổi bật nhất của java 8 giúp số lượng code được giảm và là bước đầu khiến Java bước vào thế giới functional programming. Một lamba expression là một function được tạo mà không thuộc bất kì một class nào. Nó là một hàm không tên (unamed function) với các tham số (parameters) và phần body chứa khối lệnh được tách biệt với các tham số bằng dấu -&gt;.">
+<meta name="twitter:description" content="1. Lambda expresstion là gì? Lambda expression là một feature mới và nổi bật nhất của java 8 giúp số lượng code được giảm và là bước đầu khiến Java bước vào thế giới functional programming. Một lamba expression là một function được tạo mà không thuộc bất kì một class nào. Nó là một hàm không tên (unamed function) với các tham số (parameters) và phần body chứa khối lệnh được tách biệt với các tham số bằng dấu -&gt;.">
+<meta property="og:locale" content="vi">
+
+  
+    <meta property="article:published_time" content="2018-11-07T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2018-11-07T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="Java">
+    
+      <meta property="article:section" content="Lambda expression">
+    
+  
+  
+    
+      <meta property="article:tag" content="Java">
+    
+      <meta property="article:tag" content="Java 8">
+    
+      <meta property="article:tag" content="Lambda expression">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1541576734/eer0Pfq.png">
+  <meta property="twitter:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1541576734/eer0Pfq.png">
+
+
+  <meta property="og:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1541273502/Black_flag.svg.png">
+  <meta property="twitter:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1541273502/Black_flag.svg.png">
+
+
+
+
+  <meta property="og:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/c_scale,w_1836/v1540914499/C360_2016-03-22-17-45-21-487.jpg">
+  <meta property="twitter:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/c_scale,w_1836/v1540914499/C360_2016-03-22-17-45-21-487.jpg">
+
+
+    <title>[Java 8] Lambda Expression trong Java 8</title>
+
+    <link rel="icon" href="https://tubean.github.io/favicon/flappybird.png">
+    
+
+    
+
+    <link rel="canonical" href="https://tubean.github.io/2018/11/java-lambda-expression/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://tubean.github.io/css/style-nnm2spxvve8onlujjlegkkytaehyadd4ksxc1hyzzq9a2wvtrgbljqyulomn.min.css" />
+    
+    
+      
+        <link rel="stylesheet"  crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" integrity="sha384-TEMocfGvRuD1rIAacqrknm5BQZ7W7uWitoih+jMNFXQIbNl16bO8OZmylH/Vi/Ei">
+      
+    
+      
+        <link rel="stylesheet"  href="https://tubean.github.io/css/main.css">
+      
+    
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-128433621-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://tubean.github.io/">Bean&#39;s blog</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://tubean.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://res.cloudinary.com/deop9ytsv/image/upload/c_scale,w_1836/v1540914499/C360_2016-03-22-17-45-21-487.jpg" alt="Ảnh đại diện" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://tubean.github.io/#about">
+          <img class="sidebar-profile-picture" src="https://res.cloudinary.com/deop9ytsv/image/upload/c_scale,w_1836/v1540914499/C360_2016-03-22-17-45-21-487.jpg" alt="Ảnh đại diện" />
+        </a>
+        <h4 class="sidebar-profile-name">Tu Bean</h4>
+        
+          <h5 class="sidebar-profile-bio">Coding, writing and sharing</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tubean.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Trang chủ</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tubean.github.io/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">Danh mục</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tubean.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Thẻ thông tin</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tubean.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Lưu trữ</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tubean.github.io/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">Thông tin</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://bitbucket.org/tubean/" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bitbucket-square"></i>
+      
+      <span class="sidebar-button-desc">Bitbucket</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://ask.fm/zeref_bean" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">Github</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.instagram.com/zeref_bean/" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-instagram"></i>
+      
+      <span class="sidebar-button-desc">Instagram</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.linkedin.com/in/tubean/" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-linkedin"></i>
+      
+      <span class="sidebar-button-desc">LinkedIn</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+  <div class="post-header-cover
+              text-center
+              "
+       style="background-image:url('https://res.cloudinary.com/deop9ytsv/image/upload/v1541273502/Black_flag.svg.png')"
+       data-behavior="5">
+    
+      <div class="post-header main-content-wrap text-center">
+  
+    <h1 class="post-title" itemprop="headline">
+      [Java 8] Lambda Expression trong Java 8
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2018-11-07T00:00:00Z">
+        
+  tháng 11 7, 2018
+
+      </time>
+    
+    
+  
+  
+    <span>mục</span>
+    
+      <a class="category-link" href="https://tubean.github.io/categories/java">Java</a>, 
+    
+      <a class="category-link" href="https://tubean.github.io/categories/lambda-expression">Lambda expression</a>
+    
+  
+
+  </div>
+
+</div>
+    
+  </div>
+
+
+      <div id="main" data-behavior="5"
+        class="hasCover
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              
+
+<h1 id="1-lambda-expresstion-là-gì">1. Lambda expresstion là gì?</h1>
+
+<p><code>Lambda expression</code> là một feature mới và nổi bật nhất của java 8 giúp số lượng code được giảm và là bước đầu khiến Java bước vào thế giới <code>functional programming</code>. Một lamba expression là một function được tạo mà không thuộc bất kì một class nào. Nó là một hàm không tên (unamed function) với các tham số (parameters) và phần body chứa khối lệnh được tách biệt với các tham số bằng dấu <code>-&gt;</code>. Ví du:</p>
+
+<pre><code>
+(int x) -&gt; x + 1 // Có một tham số kiểu int và trả về giá trị tham số tăng lên 1
+---
+(int x, int y) // Có 2 tham số kiểu int và trả về tổng của chúng
+---
+(String msg) -&gt; {System.out.printl(msg);} // Có một tham số kiểu String và in ra console
+---
+msg -&gt; System.out.println(msg) // Có một tham số không cần xác định kiểu và in ra console
+---
+() -&gt; &quot;Hi&quot; // Không có tham số và trả về một chuỗi
+---
+(int x, int y) -&gt; {
+	int max = x &gt; y ? x:y;
+	return max;
+} // 2 tham số và trả về số lớn hơn.
+
+</code></pre>
+
+<p>Lambda expression thường được sử dụng để implement những <code>event listeners/callback</code> đơn giản hoặc trong <code>functional programming</code> cùng với <code>Java Streams API</code>.</p>
+
+<h1 id="2-functional-interface-là-gì">2. Functional interface là gì?</h1>
+
+<p>Một interface chỉ chứa duy nhất một method trừu tượng được gọi là <code>function interface</code>. Nó cũng có thể được gọi là <code>Single Abstract Interface</code>(SAM). Functional interface sử dụng annotation <code>@FunctionalInterface</code> để khai báo. Tuy nhiên việc này là không bắt buộc, nó chỉ đảm bảo cho quá trình complile, giúp chương trình báo lỗi khi có từ 2 method trừu tượng trở lên.
+Mục đích của functional interface chính là chúng ta có thể dùng lambda expression để tạo ra một instance cho interface đó.
+Ví dụ:</p>
+
+<pre><code class="language-java">
+	public class Main {
+		public static void main(String[] argv) {
+			Processor stringProcessor = (String str) -&gt; str.length();
+			String name = &quot;Java Lambda&quot;;
+			int length = stringProcessor.getStringLength(name);
+			System.out.println(length);
+		}
+	}
+
+	@FunctionalInterface
+	interface Processor {
+		int getStringLength(String str);
+	}
+
+</code></pre>
+
+<p>Để tạo được một lambda đúng chuẩn với một functional interface thì các parameter và kiểu trả về của lamda express phải giống với abtract method.</p>
+
+<h1 id="3-funtional-interface-api-trong-java-8">3. Funtional Interface API trong Java 8</h1>
+
+<p>Java 8 xây dựng sẵn một số functional interface được sử dụng trong các biểu thức lambda:</p>
+
+<h2 id="3-1-java-util-function-consumer">3.1 java.util.function.Consumer</h2>
+
+<pre><code class="language-java">
+	package java.util.function;
+
+	import java.util.Objects;
+
+	@FunctionalInterface
+	public  interface Consumer&lt;T&gt; {
+		// Phương thức chấp nhận một tham số đầu vào
+		// và không trả về gì cả.
+		void  accept(T t);
+	}
+
+</code></pre>
+
+<p><strong>Sử dụng khi:</strong> Consumer thường được dùng với list, stream để xử lý các phần tử bên trong.</p>
+
+<p>Ví dụ đoạn code sau in ra tất cả các giá trị của 1 list:</p>
+
+<pre><code class="language-java">
+	List&lt;String&gt; list = Arrays.asList(&quot;tu&quot;, &quot;bean&quot;, &quot;tubean.github.io&quot;);
+
+	// Sử dụng List.forEach(Consumer) để in ra giá trị của các phần tử trong list
+	list.forEach(new Consumer&lt;String&gt;()  {
+		@Override
+		public  void  accept(String t)  {
+			System.out.println(t);
+		}
+	});
+	System.out.println(&quot;----------------&quot;);
+
+	// Sử dụng List.forEach(Consumer) với cú pháp lambda expression:
+	list.forEach(t -&gt; System.out.println(t));
+
+</code></pre>
+
+<h2 id="3-2-java-util-function-predicate">3.2 java.util.function.Predicate</h2>
+
+<pre><code class="language-java">
+	package java.util.function;
+	import java.util.Objects;
+
+	@FunctionalInterface
+	public  interface Predicate&lt;T&gt; {
+		// Kiểm tra một tham số đầu vào và trả về true hoặc false.
+		boolean  test(T t);
+	}
+
+</code></pre>
+
+<p>** Sử dụng khi: ** Kiểm tra từng phần tử  lúc xoá, lọc,&hellip; dùng với list, stream&hellip;
+Ví dụ:</p>
+
+<pre><code class="language-java">
+	List&lt;Integer&gt; list = new ArrayList&lt;&gt;();
+	list.add(-1);
+	list.add(1);
+	list.add(0);
+	list.add(-2);
+	list.add(3);
+
+	// lệnh removeIf sẽ thực hiện duyệt từng phần tử,
+	// nếu method test của Predicate trả về true thì sẽ remove phần tử đó khỏi list
+	list.removeIf(new Predicate&lt;Integer&gt;()  {
+		@Override
+		public  boolean  test(Integer t)  {
+			return t &lt; 0;
+		}
+	});
+	list.forEach(t -&gt; System.out.println(t));
+	System.out.println(&quot;-----------------------------&quot;);
+
+	// Sử dụng Predicate với cú pháp Lambda Expression
+	// loại bỏ các phần tử lớn hơn 1
+	list.removeIf(t -&gt; t &gt; 1);
+	list.forEach(t -&gt; System.out.println(t));
+
+</code></pre>
+
+<h2 id="3-3-java-util-function-function">3.3 java.util.function.Function</h2>
+
+<pre><code class="language-java">
+	package java.util.function;
+
+	import java.util.Objects;
+
+	@FunctionalInterface
+	public  interface Function&lt;T, R&gt; {
+
+		// Method này nhận đầu vào là 1 tham số và trả về một giá trị.
+		R apply(T t);
+
+	}
+
+</code></pre>
+
+<p>** Sử dụng khi: ** Function thường được dùng với Stream khi muốn thay đổi giá trị cho từng phần tử trong stream.
+Ví dụ:</p>
+
+<pre><code class="language-java">
+	List&lt;String&gt; list = Arrays.asList(&quot;tubean&quot;, &quot;JAVA&quot;, &quot;demo&quot;, &quot;Function&quot;);
+	Stream&lt;String&gt; stream = list.stream();
+
+	// chuyển tất cả các phần tử của stream thành chữ in hoa
+	stream.map(new Function&lt;String, String&gt;()  {
+		@Override
+		public  String  apply(String t)  {
+			return t.toUpperCase();
+		}
+	}).forEach(t -&gt; System.out.println(t));
+	System.out.println(&quot;---------------&quot;);
+	// Function với cú pháp Lambda Expression
+	// chuyển tất cả các phần tử của stream thành chữ thường
+
+	stream = list.stream();// lưu ý là stream ko thể dùng lại nên phải khởi tạo lại
+	stream.map(t -&gt; t.toLowerCase()).forEach(t -&gt; System.out.println(t))
+
+</code></pre>
+
+<p>Một số Function interface tương tự:</p>
+
+<ul>
+<li>java.util.function.IntFunction<R>: dữ liệu chuyển về kiểu Integer</li>
+<li>java.util.function.DoubleFunction<R>: dữ liệu chuyển về kiểu Double</li>
+<li>java.util.function.LongFunction<R>: dữ liệu chuyển về kiểu Long</li>
+</ul>
+
+<h2 id="3-4-java-util-function-supplier">3.4 java.util.function.Supplier</h2>
+
+<pre><code class="language-java">
+	package java.util.function;
+
+	@FunctionalInterface
+	public  interface Supplier&lt;T&gt; {
+
+		// method này không có tham số nhưng trả về một kết quả.
+		T get();
+
+	}
+
+</code></pre>
+
+<p>Ví dụ:</p>
+
+<pre><code class="language-java">
+	Random random = new  Random();
+	Stream&lt;Integer&gt; stream = Stream.generate(new Supplier&lt;Integer&gt;()  {
+		@Override
+		public Integer get()  {
+			return random.nextInt(10);
+		}
+	}).limit(5);
+
+	stream.forEach(t -&gt; System.out.print(t +&quot; &quot;));
+	System.out.println(&quot;\n--------------------&quot;);
+
+	// Sử dụng Supplier với cú pháp Lambda Expression:
+	stream = Stream.generate(() -&gt; random.nextInt(10)).limit(5);
+	stream.forEach(t -&gt; System.out.print(t +&quot; &quot;));
+
+</code></pre>
+
+<h1 id="4-interface-có-default-và-static-method">4. Interface có default và static method</h1>
+
+<p>Từ phiên bản java 8 thì các <code>Interface</code> còn có thể có <code>default methods</code> và <code>static method</code>. Cả 2 loại method này đều được định nghĩa implementation ngay trong interface. Điều đó có nghĩa là, một lambda expression có thể implement một interface với nhiều hơn một method. Hay nói cách khác, nếu một interface có chứa cả <em>default method</em> và <em>static method</em> thì nó vẫn được coi là một <strong>functional interface</strong>, miễn là nó chỉ có duy nhất một <em>abtract method</em>.
+Ví dụ:</p>
+
+<pre><code class="language-java">
+	import java.io.IOException;
+	import java.io.OutputStream;
+
+	public interface MyInterface {
+
+		void printIt(String text);
+
+		default public void printUtf8To(String text, OutputStream outputStream){
+			try {
+				outputStream.write(text.getBytes(&quot;UTF-8&quot;));
+			} catch (IOException e) {
+				throw new RuntimeException(&quot;Error writing String as UTF-8 to OutputStream&quot;, e);
+			}
+		}
+
+		static void printItToSystemOut(String text){
+			System.out.println(text);
+		}
+	}
+
+</code></pre>
+
+<p>và lambda sẽ trông như sau:</p>
+
+<pre><code class="language-java">
+	MyInterface myInterface = (String text) -&gt; {
+		System.out.print(text);
+	};
+
+</code></pre>
+
+<h1 id="5-lambda-expression-và-anonymous-interface-implementations">5. Lambda Expression và Anonymous Interface Implementations</h1>
+
+<p>Ngay cả khi <em>lambda expression</em> trông có vẻ giống <em>anonymous interface implementations (AII)</em> thì chúng cũng có vài điều khác biệt. Trong đó, điểm khác biệt lớn nhất chính là một AII có thể có các biến local trong khi đó một lambda expression thì không có. Cùng xem ví dụ dưới đây:</p>
+
+<pre><code class="language-java">
+	public interface MyEventConsumer {
+		// interface MyEventConsumner có một abtract method 1 parameter
+		public void consume(Object event);
+	}
+
+</code></pre>
+
+<p>Interface <code>MyEventConsumer</code> được implement từ một AII như sau:</p>
+
+<pre><code class="language-java">
+	MyEventConsumer consumer = new MyEventConsumer() {
+		public void consume(Object event){
+			System.out.println(event.toString() + &quot; consumed&quot;);
+		}
+	};
+
+</code></pre>
+
+<p>AII <code>MyeventConsumer</code> có thể có khai báo thêm biến local của riêng nó như sau:</p>
+
+<pre><code class="language-java">
+	MyEventConsumer myEventConsumer = new MyEventConsumer() {
+		private int eventCount = 0; // biến khai báo trong AII, không thể khai báo như này nếu dùng lambda
+		public void consume(Object event) {
+			System.out.println(event.toString() + &quot; consumed &quot; + this.eventCount++ + &quot; times.&quot;);
+		}
+	};
+
+</code></pre>
+
+<h1 id="6-variable-capture">6: Variable Capture</h1>
+
+<p>Tuy rằng không thể khai báo biến bên trong biểu thức lambda, nhưng nó vẫn cho phép các biến được khai báo bên ngoài được sử dụng bình thường trong phần body. Lambda có thể <em>capture</em> được các loại biến như sau:
+1. Local Variable Capture</p>
+
+<pre><code class="language-java">
+	// Chúng ta có một interface MyFactory
+	public interface MyFactory {
+		public String create(char[] chars);
+	}
+
+	// Lambda như này
+	MyFactory myFactory = (chars) -&gt; {
+		return new String(chars);
+	};
+
+	// Capture local variable
+	String myString = &quot;Test&quot;;
+	MyFactory myFactory = (chars) -&gt; {
+		return myString + &quot;:&quot; + new String(chars);
+	};
+
+</code></pre>
+
+<ol>
+<li>Instance Variable Capture</li>
+</ol>
+
+<pre><code class="language-java">
+	public class EventConsumerImpl {
+
+		private String name = &quot;MyConsumer&quot;;
+
+		public void attach(MyEventProducer eventProducer){
+			eventProducer.listen(e -&gt; {
+				System.out.println(this.name);
+			});
+		}
+	}
+
+</code></pre>
+
+<ol>
+<li>Static Variable Capture</li>
+</ol>
+
+<pre><code class="language-java">
+	public class EventConsumerImpl {
+		private static String someStaticVar = &quot;Some text&quot;;
+
+		public void attach(MyEventProducer eventProducer){
+			eventProducer.listen(e -&gt; {
+				System.out.println(someStaticVar);
+			});
+		}
+	}
+
+</code></pre>
+
+<h1 id="7-sử-dụng-các-phương-thức-tham-chiếu-method-referencees-là-lambda">7. Sử dụng các phương thức tham chiếu (Method Referencees) là Lambda</h1>
+
+<p>Giả sử chúng ta có một interface <code>MyPrinter</code> với  một method trừu tượng truyền vào một parameter s:</p>
+
+<pre><code class="language-java">
+	public interface MyPrinter{
+		public void print(String s);
+	}
+
+</code></pre>
+
+<p>Thông thường chúng ta sẽ dùng lambda như sau:</p>
+
+<pre><code class="language-java">
+	MyPrinter myPrinter = (s) -&gt; { System.out.println(s); };
+
+</code></pre>
+
+<p>Tuy nhiên, do biểu thức lambda chỉ có một câu lệnh, nên dấu <code>{}</code> có thể bỏ qua. Ta rút gọn lại thành:</p>
+
+<pre><code class="language-java">
+	MyPrinter myPrinter = s -&gt; System.out.println(s);
+
+</code></pre>
+
+<p>Bởi vì tham số truyền vào là <code>s</code> và được sử dụng để làm tham số trong biểu thức lambda luôn nên java cho phép chúng ta rút gọn lại nữa như sau:</p>
+
+<pre><code class="language-java">
+	MyPrinter myPrinter = System.out::println;
+
+</code></pre>
+
+<p>Dấu <code>::</code> cho <em>Java compiler</em> biết đây là một <em>method reference</em>.</p>
+
+<p>Chúng ta có các loại <em>method reference</em> sau:</p>
+
+<ul>
+<li>Static method references</li>
+</ul>
+
+<pre><code class="language-java">
+	// khai báo interface
+	public interface Finder {
+		public int find(String s1, String s2);
+	}
+
+	// khai báo class MyClass có một phương thức static có cùng signature với Interface
+	public class MyClass{
+		public static int doFind(String s1, String s2){
+			return s1.lastIndexOf(s2);
+		}
+	}
+
+	// biểu thức lambda như sau:
+	Finder finder = MyClass::doFind;
+
+</code></pre>
+
+<ul>
+<li>Parameter Method Reference</li>
+</ul>
+
+<pre><code class="language-java">	public interface Finder {
+		public int find(String s1, String s2);
+	}
+
+	// Biểu thức lambda
+	Finder finder = String::indexOf;
+	// Dòng code trên có thể được viết dễ hiểu hơn như sau:
+	Finder finder = (s1, s2) -&gt; s1.indexOf(s2);
+
+</code></pre>
+
+<ul>
+<li>Instance Method References</li>
+</ul>
+
+<pre><code class="language-java">
+	// Interface
+	public interface Deserializer {
+		public int deserialize(String v1);
+	}
+	// Class StringConverter nào đó có method converToInt cùng signature với method trong interface
+	public class StringConverter {
+		public int convertToInt(String v1){
+			return Integer.valueOf(v1);
+		}
+	}
+	// Tạo một instance của class StringConverter
+	StringConverter stringConverter = new StringConverter();
+	// Biểu thức lambda implement interface
+	Deserializer des = stringConverter::convertToInt;
+
+</code></pre>
+
+<ul>
+<li>Constructor References</li>
+</ul>
+
+<pre><code class="language-java">
+	// Interface
+	public interface Factory {
+		public String create(char[] val);
+	}
+
+	// Thay vì viết như này:
+	Factory factory = chars -&gt; new String(chars);
+	// Ta viết như này:
+	Factory factory = String::new;
+
+</code></pre>
+
+<p><em>Tham khảo</em> :</p>
+
+<ul>
+<li><p><a href="http://tutorials.jenkov.com/java/lambda-expressions.html">http://tutorials.jenkov.com/java/lambda-expressions.html</a></p></li>
+
+<li><p><a href="https://viblo.asia/p/gioi-thieu-lambda-expression-trong-java-8-EyORkbklGqB">https://viblo.asia/p/gioi-thieu-lambda-expression-trong-java-8-EyORkbklGqB</a></p></li>
+
+<li><p><a href="https://stackjava.com/java8/functional-interface-la-gi-functional-interface-trong-java-8.html">https://stackjava.com/java8/functional-interface-la-gi-functional-interface-trong-java-8.html</a></p></li>
+</ul>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">THẺ ĐÁNH DẤU</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/java/">Java</a>
+
+  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/java-8/">Java 8</a>
+
+  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/lambda-expression/">Lambda expression</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">Tiếp</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2018/11/spring-boot-10-ways-security/" data-tooltip="[Spring Boot] Secu thập chưởng bảo vệ app Spring Boot của bạn">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">Trước</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://tubean.github.io/2018/11/java-lambda-expression/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://tubean.github.io/2018/11/java-lambda-expression/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://tubean.github.io/2018/11/java-lambda-expression/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2018 <a href="https://bitbucket.org/tubean/">Do Anh Tu</a>. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">Tiếp</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2018/11/spring-boot-10-ways-security/" data-tooltip="[Spring Boot] Secu thập chưởng bảo vệ app Spring Boot của bạn">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">Trước</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://tubean.github.io/2018/11/java-lambda-expression/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://tubean.github.io/2018/11/java-lambda-expression/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://tubean.github.io/2018/11/java-lambda-expression/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ftubean.github.io%2F2018%2F11%2Fjava-lambda-expression%2F">
+          <i class="fa fa-facebook-official"></i><span>Chia sẻ với Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Ftubean.github.io%2F2018%2F11%2Fjava-lambda-expression%2F">
+          <i class="fa fa-twitter"></i><span>Chia sẻ với Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Ftubean.github.io%2F2018%2F11%2Fjava-lambda-expression%2F">
+          <i class="fa fa-google-plus"></i><span>Chia sẻ với Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://res.cloudinary.com/deop9ytsv/image/upload/c_scale,w_1836/v1540914499/C360_2016-03-22-17-45-21-487.jpg" alt="Ảnh đại diện" />
+    
+    <h4 id="about-card-name">Tu Bean</h4>
+    
+      <div id="about-card-bio">Coding, writing and sharing</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Web developer
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        Viet Nam
+      </div>
+    
+  </div>
+</div>
+
+    <div id="algolia-search-modal" class="modal-container">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="close-button"><i class="fa fa-close"></i></span>
+      <a href="https://algolia.com" target="_blank" rel="noopener" class="searchby-algolia text-color-light link-unstyled">
+        <span class="searchby-algolia-text text-color-light text-small">by</span>
+        <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+      </a>
+      <i class="search-icon fa fa-search"></i>
+      <form id="algolia-search-form">
+        <input type="text" id="algolia-search-input" name="search"
+          class="form-control input--large search-input" placeholder="Tìm kiếm" />
+      </form>
+    </div>
+    <div class="modal-body">
+      <div class="no-result text-color-light text-center">không tìm thấy kết quả</div>
+      <div class="results">
+        
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/11/java-lambda-expression/">
+                <h3 class="media-heading">[Java 8] Lambda Expression trong Java 8</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">1. Lambda expresstion là gì? Lambda expression là một feature mới và nổi bật nhất của java 8 giúp số lượng code được giảm và là bước đầu khiến Java bước vào thế giới functional programming. Một lamba expression là một function được tạo mà không thuộc bất kì một class nào. Nó là một hàm không tên (unamed function) với các tham số (parameters) và phần body chứa khối lệnh được tách biệt với các tham số bằng dấu -&gt;.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/11/spring-boot-10-ways-security/">
+                <h3 class="media-heading">[Spring Boot] Secu thập chưởng bảo vệ app Spring Boot của bạn</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Spring Boot được release lần đầu năm 2014 và không có nhiều thay đổi đáng kể cho đến hiện tại. Với mục tiêu tự động cấu hình và giảm thiểu lượng code để có thể start một ứng dụng, Spring Boot đã giúp cho không biết con dân nhà Spring dễ sống và bớt chửi thề đi. Giống như khi dùng bất kì một framework nào để xây dựng ứng dụng, điều bạn cần quan tâm không chỉ là chất lượng code, vượt qua các test case, &hellip; mà còn là khả năng bảo mật của ứng dụng.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/11/blog-with-hugo/">
+                <h3 class="media-heading">[Hugo] Hướng dẫn xây dựng blog cá nhân bằng Hugo &#43; Github</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Bên cạnh các dịch vụ support người dùng tạo các trang blog cá nhân như blogger, wordpress,&hellip; thì các dịch vụ hosting như github, bitbucket,&hellip; cũng đã cho phép chúng ta xây dựng các trang blog trên chính tên miền của họ. Phổ biến hiện nay là các trang miền github.io được xây dựng trên nền tảng Jekyll. Tuy nhiên Jekyll không phải là duy nhất và cũng có những nhược điểm của riêng nó.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/10/hello/">
+                <h3 class="media-heading">Hello</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Oct 10, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Để chào mừng bài post đầu tiên, một phút quốc ca bắt đầu!
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+      </div>
+    </div>
+    <div class="modal-footer">
+      <p class="results-count text-medium"
+         data-message-zero="không tìm thấy kết quả"
+         data-message-one="tìm thấy 1 kết quả "
+         data-message-other="tìm thấy {n} kết quả">
+         4 posts found
+      </p>
+    </div>
+  </div>
+</div>
+    
+  
+    
+    <div id="cover" style="background-image:url('https://tubean.github.io/images/cover-v1.2.0.jpg');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://tubean.github.io/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+
+
+  
+    <script crossorigin="anonymous" integrity="sha384-jmxIlussZWB7qCuB+PgKG1uLjjxbVVIayPJwi6cG6Zb4YKq0JIw+OMnkkEC7kYCq" src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js"></script>
+  
+
+  
+    <script crossorigin="anonymous" integrity="sha384-IiI65aU9ZYub2MY9zhtKd1H2ps7xxf+eb2YFG9lX6uRqpXCvBTOidPRCXCrQ++Uc" src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/contrib/auto-render.min.js"></script>
+  
+
+  
+    <script src="https://tubean.github.io/js/main.js"></script>
+  
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'https:\/\/tubean.github.io\/2018\/11\/java-lambda-expression\/';
+          
+            this.page.identifier = '\/2018\/11\/java-lambda-expression\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'beans-blog';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+
