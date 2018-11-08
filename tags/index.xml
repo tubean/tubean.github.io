@@ -50,7 +50,7 @@
     <item>
       <title>Java</title>
       <link>https://tubean.github.io/tags/java/</link>
-      <pubDate>Wed, 07 Nov 2018 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 08 Nov 2018 00:00:00 +0000</pubDate>
       
       <guid>https://tubean.github.io/tags/java/</guid>
       <description></description>
@@ -59,7 +59,7 @@
     <item>
       <title>Java 8</title>
       <link>https://tubean.github.io/tags/java-8/</link>
-      <pubDate>Wed, 07 Nov 2018 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 08 Nov 2018 00:00:00 +0000</pubDate>
       
       <guid>https://tubean.github.io/tags/java-8/</guid>
       <description></description>
@@ -89,6 +89,15 @@
       <pubDate>Tue, 06 Nov 2018 00:00:00 +0000</pubDate>
       
       <guid>https://tubean.github.io/tags/spring-boot/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Stream</title>
+      <link>https://tubean.github.io/tags/stream/</link>
+      <pubDate>Thu, 08 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://tubean.github.io/tags/stream/</guid>
       <description></description>
     </item>
     

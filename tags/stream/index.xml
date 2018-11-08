@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Java on Bean&#39;s blog</title>
-    <link>https://tubean.github.io/categories/java/</link>
-    <description>Recent content in Java on Bean&#39;s blog</description>
+    <title>Stream on Bean&#39;s blog</title>
+    <link>https://tubean.github.io/tags/stream/</link>
+    <description>Recent content in Stream on Bean&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>vi</language>
     <lastBuildDate>Thu, 08 Nov 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://tubean.github.io/categories/java/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://tubean.github.io/tags/stream/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -18,15 +18,6 @@
       
       <guid>https://tubean.github.io/2018/11/java-stream/</guid>
       <description>Lambda expression kể từ trở thành một phần của Java thì đã làm thay đổi đáng kể thói quen sử dụng các Collection như chúng ta đã từng dùng ở các phiên bản trước Java 8. Mặc dù có thể xây dựng lại một bộ API Collections thay thế, nhưng nó sẽ ảnh hưởng rất lớn đến toàn bộ hệ sinh thái Java. Vì vậy mà những nhà phát triển Java đã có một chiến lược tốt hơn, đó là thêm các phương thức mở rộng vào các interface có sẵn (như là Collection, List, Iterable,&amp;hellip;) cùng các lớp abstraction như Stream để thực hiện các phép toán tổng hợp trên tập dữ liệu, cung cấp thêm cho các lớp hiện có các phương thức để có thể làm việc với Stream mà không ảnh hưởng với các cách làm việc cũ.</description>
-    </item>
-    
-    <item>
-      <title>[Java 8] Lambda Expression trong Java 8</title>
-      <link>https://tubean.github.io/2018/11/java-lambda-expression/</link>
-      <pubDate>Wed, 07 Nov 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://tubean.github.io/2018/11/java-lambda-expression/</guid>
-      <description>1. Lambda expresstion là gì? Lambda expression là một feature mới và nổi bật nhất của java 8 giúp số lượng code được giảm và là bước đầu khiến Java bước vào thế giới functional programming. Một lamba expression là một function được tạo mà không thuộc bất kì một class nào. Nó là một hàm không tên (unamed function) với các tham số (parameters) và phần body chứa khối lệnh được tách biệt với các tham số bằng dấu -&amp;gt;.</description>
     </item>
     
   </channel>
