@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.50 with theme Tranquilpeak 0.4.3-SNAPSHOT">
+<meta name="generator" content="Hugo 0.49 with theme Tranquilpeak 0.4.3-SNAPSHOT">
 <meta name="author" content="Tu Bean">
 <meta name="keywords" content="Java, Java 8, Lambda, Expression, Functional Interface">
 <meta name="description" content="1. Lambda expresstion là gì? Lambda expression là một feature mới và nổi bật nhất của java 8 giúp số lượng code được giảm và là bước đầu khiến Java bước vào thế giới functional programming. Một lamba expression là một function được tạo mà không thuộc bất kì một class nào. Nó là một hàm không tên (unamed function) với các tham số (parameters) và phần body chứa khối lệnh được tách biệt với các tham số bằng dấu -&gt;.">
@@ -322,8 +322,8 @@ msg -&gt; System.out.println(msg) // Có một tham số không cần xác đị
 () -&gt; &quot;Hi&quot; // Không có tham số và trả về một chuỗi
 ---
 (int x, int y) -&gt; {
-	int max = x &gt; y ? x:y;
-	return max;
+    int max = x &gt; y ? x:y;
+    return max;
 } // 2 tham số và trả về số lớn hơn.
 
 </code></pre>
@@ -337,10 +337,10 @@ msg -&gt; System.out.println(msg) // Có một tham số không cần xác đị
 <p>Để sử dụng biểu thức Lambda thì đầu tiên cần phải có một <em>functional interface</em> chứa một phương thức cần overide lại trong biểu thức lambda. Ví dụ interface <code>Runnable</code> là một <em>functional interface</em>:</p>
 
 <pre><code class="language-java">
-	@FunctionalInterface
-	public interface Runnable {
-		public abstract void run();
-	}
+    @FunctionalInterface
+    public interface Runnable {
+        public abstract void run();
+    }
 
 </code></pre>
 
@@ -351,17 +351,17 @@ msg -&gt; System.out.println(msg) // Có một tham số không cần xác đị
 </ul>
 
 <pre><code class="language-java">
-	public class MyRunnable implements Runnable {
-		@Override
-		public void run() {
-			System.out.println(&quot;I have implemented Runnable!&quot;);
-		}
+    public class MyRunnable implements Runnable {
+        @Override
+        public void run() {
+            System.out.println(&quot;I have implemented Runnable!&quot;);
+        }
 
-		public static void main(String args[]) {
-			MyRunnable runnable = new MyRunnable();
-			runnable.run();
-		}
-	}
+        public static void main(String args[]) {
+            MyRunnable runnable = new MyRunnable();
+            runnable.run();
+        }
+    }
 
 </code></pre>
 
@@ -370,21 +370,21 @@ msg -&gt; System.out.println(msg) // Có một tham số không cần xác đị
 </ul>
 
 <pre><code class="language-java">
-	Runnable runnable = new Runnable() {
-		@Override
-		public void run() {
-			System.out.println(&quot;I have implemented Runnable!&quot;);
-		}
-	};
-	runnable.run();
+    Runnable runnable = new Runnable() {
+        @Override
+        public void run() {
+            System.out.println(&quot;I have implemented Runnable!&quot;);
+        }
+    };
+    runnable.run();
 
 </code></pre>
 
 <p>Còn nếu chúng ta sử dụng biểu thức lambda thì chỉ cần code đơn giản như sau:</p>
 
 <pre><code class="language-java">
-	Runnable runnable = () -&gt; System.out.println(&quot;I have implemented Runnable!&quot;);
-	runnable.run();
+    Runnable runnable = () -&gt; System.out.println(&quot;I have implemented Runnable!&quot;);
+    runnable.run();
 
 </code></pre>
 
@@ -395,16 +395,16 @@ msg -&gt; System.out.println(msg) // Có một tham số không cần xác đị
 <h4 id="3-1-java-util-function-consumer">3.1 java.util.function.Consumer</h4>
 
 <pre><code class="language-java">
-	package java.util.function;
+    package java.util.function;
 
-	import java.util.Objects;
+    import java.util.Objects;
 
-	@FunctionalInterface
-	public  interface Consumer&lt;T&gt; {
-		// Phương thức chấp nhận một tham số đầu vào
-		// và không trả về gì cả.
-		void  accept(T t);
-	}
+    @FunctionalInterface
+    public  interface Consumer&lt;T&gt; {
+        // Phương thức chấp nhận một tham số đầu vào
+        // và không trả về gì cả.
+        void  accept(T t);
+    }
 
 </code></pre>
 
@@ -413,33 +413,33 @@ msg -&gt; System.out.println(msg) // Có một tham số không cần xác đị
 <p>Ví dụ đoạn code sau in ra tất cả các giá trị của 1 list:</p>
 
 <pre><code class="language-java">
-	List&lt;String&gt; list = Arrays.asList(&quot;tu&quot;, &quot;bean&quot;, &quot;tubean.github.io&quot;);
+    List&lt;String&gt; list = Arrays.asList(&quot;tu&quot;, &quot;bean&quot;, &quot;tubean.github.io&quot;);
 
-	// Sử dụng List.forEach(Consumer) để in ra giá trị của các phần tử trong list
-	list.forEach(new Consumer&lt;String&gt;()  {
-		@Override
-		public  void  accept(String t)  {
-			System.out.println(t);
-		}
-	});
-	System.out.println(&quot;----------------&quot;);
+    // Sử dụng List.forEach(Consumer) để in ra giá trị của các phần tử trong list
+    list.forEach(new Consumer&lt;String&gt;()  {
+        @Override
+        public  void  accept(String t)  {
+            System.out.println(t);
+        }
+    });
+    System.out.println(&quot;----------------&quot;);
 
-	// Sử dụng List.forEach(Consumer) với cú pháp lambda expression:
-	list.forEach(t -&gt; System.out.println(t));
+    // Sử dụng List.forEach(Consumer) với cú pháp lambda expression:
+    list.forEach(t -&gt; System.out.println(t));
 
 </code></pre>
 
 <h4 id="3-2-java-util-function-predicate">3.2 java.util.function.Predicate</h4>
 
 <pre><code class="language-java">
-	package java.util.function;
-	import java.util.Objects;
+    package java.util.function;
+    import java.util.Objects;
 
-	@FunctionalInterface
-	public  interface Predicate&lt;T&gt; {
-		// Kiểm tra một tham số đầu vào và trả về true hoặc false.
-		boolean  test(T t);
-	}
+    @FunctionalInterface
+    public  interface Predicate&lt;T&gt; {
+        // Kiểm tra một tham số đầu vào và trả về true hoặc false.
+        boolean  test(T t);
+    }
 
 </code></pre>
 
@@ -447,45 +447,45 @@ msg -&gt; System.out.println(msg) // Có một tham số không cần xác đị
 Ví dụ:</p>
 
 <pre><code class="language-java">
-	List&lt;Integer&gt; list = new ArrayList&lt;&gt;();
-	list.add(-1);
-	list.add(1);
-	list.add(0);
-	list.add(-2);
-	list.add(3);
+    List&lt;Integer&gt; list = new ArrayList&lt;&gt;();
+    list.add(-1);
+    list.add(1);
+    list.add(0);
+    list.add(-2);
+    list.add(3);
 
-	// lệnh removeIf sẽ thực hiện duyệt từng phần tử,
-	// nếu method test của Predicate trả về true thì sẽ remove phần tử đó khỏi list
-	list.removeIf(new Predicate&lt;Integer&gt;()  {
-		@Override
-		public  boolean  test(Integer t)  {
-			return t &lt; 0;
-		}
-	});
-	list.forEach(t -&gt; System.out.println(t));
-	System.out.println(&quot;-----------------------------&quot;);
+    // lệnh removeIf sẽ thực hiện duyệt từng phần tử,
+    // nếu method test của Predicate trả về true thì sẽ remove phần tử đó khỏi list
+    list.removeIf(new Predicate&lt;Integer&gt;()  {
+        @Override
+        public  boolean  test(Integer t)  {
+            return t &lt; 0;
+        }
+    });
+    list.forEach(t -&gt; System.out.println(t));
+    System.out.println(&quot;-----------------------------&quot;);
 
-	// Sử dụng Predicate với cú pháp Lambda Expression
-	// loại bỏ các phần tử lớn hơn 1
-	list.removeIf(t -&gt; t &gt; 1);
-	list.forEach(t -&gt; System.out.println(t));
+    // Sử dụng Predicate với cú pháp Lambda Expression
+    // loại bỏ các phần tử lớn hơn 1
+    list.removeIf(t -&gt; t &gt; 1);
+    list.forEach(t -&gt; System.out.println(t));
 
 </code></pre>
 
 <h4 id="3-3-java-util-function-function">3.3 java.util.function.Function</h4>
 
 <pre><code class="language-java">
-	package java.util.function;
+    package java.util.function;
 
-	import java.util.Objects;
+    import java.util.Objects;
 
-	@FunctionalInterface
-	public  interface Function&lt;T, R&gt; {
+    @FunctionalInterface
+    public  interface Function&lt;T, R&gt; {
 
-		// Method này nhận đầu vào là 1 tham số và trả về một giá trị.
-		R apply(T t);
+        // Method này nhận đầu vào là 1 tham số và trả về một giá trị.
+        R apply(T t);
 
-	}
+    }
 
 </code></pre>
 
@@ -493,22 +493,22 @@ Ví dụ:</p>
 Ví dụ:</p>
 
 <pre><code class="language-java">
-	List&lt;String&gt; list = Arrays.asList(&quot;tubean&quot;, &quot;JAVA&quot;, &quot;demo&quot;, &quot;Function&quot;);
-	Stream&lt;String&gt; stream = list.stream();
+    List&lt;String&gt; list = Arrays.asList(&quot;tubean&quot;, &quot;JAVA&quot;, &quot;demo&quot;, &quot;Function&quot;);
+    Stream&lt;String&gt; stream = list.stream();
 
-	// chuyển tất cả các phần tử của stream thành chữ in hoa
-	stream.map(new Function&lt;String, String&gt;()  {
-		@Override
-		public  String  apply(String t)  {
-			return t.toUpperCase();
-		}
-	}).forEach(t -&gt; System.out.println(t));
-	System.out.println(&quot;---------------&quot;);
-	// Function với cú pháp Lambda Expression
-	// chuyển tất cả các phần tử của stream thành chữ thường
+    // chuyển tất cả các phần tử của stream thành chữ in hoa
+    stream.map(new Function&lt;String, String&gt;()  {
+        @Override
+        public  String  apply(String t)  {
+            return t.toUpperCase();
+        }
+    }).forEach(t -&gt; System.out.println(t));
+    System.out.println(&quot;---------------&quot;);
+    // Function với cú pháp Lambda Expression
+    // chuyển tất cả các phần tử của stream thành chữ thường
 
-	stream = list.stream();// lưu ý là stream ko thể dùng lại nên phải khởi tạo lại
-	stream.map(t -&gt; t.toLowerCase()).forEach(t -&gt; System.out.println(t))
+    stream = list.stream();// lưu ý là stream ko thể dùng lại nên phải khởi tạo lại
+    stream.map(t -&gt; t.toLowerCase()).forEach(t -&gt; System.out.println(t))
 
 </code></pre>
 
@@ -523,35 +523,35 @@ Ví dụ:</p>
 <h4 id="3-4-java-util-function-supplier">3.4 java.util.function.Supplier</h4>
 
 <pre><code class="language-java">
-	package java.util.function;
+    package java.util.function;
 
-	@FunctionalInterface
-	public  interface Supplier&lt;T&gt; {
+    @FunctionalInterface
+    public  interface Supplier&lt;T&gt; {
 
-		// method này không có tham số nhưng trả về một kết quả.
-		T get();
+        // method này không có tham số nhưng trả về một kết quả.
+        T get();
 
-	}
+    }
 
 </code></pre>
 
 <p>Ví dụ:</p>
 
 <pre><code class="language-java">
-	Random random = new  Random();
-	Stream&lt;Integer&gt; stream = Stream.generate(new Supplier&lt;Integer&gt;()  {
-		@Override
-		public Integer get()  {
-			return random.nextInt(10);
-		}
-	}).limit(5);
+    Random random = new  Random();
+    Stream&lt;Integer&gt; stream = Stream.generate(new Supplier&lt;Integer&gt;()  {
+        @Override
+        public Integer get()  {
+            return random.nextInt(10);
+        }
+    }).limit(5);
 
-	stream.forEach(t -&gt; System.out.print(t +&quot; &quot;));
-	System.out.println(&quot;\n--------------------&quot;);
+    stream.forEach(t -&gt; System.out.print(t +&quot; &quot;));
+    System.out.println(&quot;\n--------------------&quot;);
 
-	// Sử dụng Supplier với cú pháp Lambda Expression:
-	stream = Stream.generate(() -&gt; random.nextInt(10)).limit(5);
-	stream.forEach(t -&gt; System.out.print(t +&quot; &quot;));
+    // Sử dụng Supplier với cú pháp Lambda Expression:
+    stream = Stream.generate(() -&gt; random.nextInt(10)).limit(5);
+    stream.forEach(t -&gt; System.out.print(t +&quot; &quot;));
 
 </code></pre>
 
@@ -561,34 +561,34 @@ Ví dụ:</p>
 Ví dụ:</p>
 
 <pre><code class="language-java">
-	import java.io.IOException;
-	import java.io.OutputStream;
+    import java.io.IOException;
+    import java.io.OutputStream;
 
-	public interface MyInterface {
+    public interface MyInterface {
 
-		void printIt(String text);
+        void printIt(String text);
 
-		default public void printUtf8To(String text, OutputStream outputStream){
-			try {
-				outputStream.write(text.getBytes(&quot;UTF-8&quot;));
-			} catch (IOException e) {
-				throw new RuntimeException(&quot;Error writing String as UTF-8 to OutputStream&quot;, e);
-			}
-		}
+        default public void printUtf8To(String text, OutputStream outputStream){
+            try {
+                outputStream.write(text.getBytes(&quot;UTF-8&quot;));
+            } catch (IOException e) {
+                throw new RuntimeException(&quot;Error writing String as UTF-8 to OutputStream&quot;, e);
+            }
+        }
 
-		static void printItToSystemOut(String text){
-			System.out.println(text);
-		}
-	}
+        static void printItToSystemOut(String text){
+            System.out.println(text);
+        }
+    }
 
 </code></pre>
 
 <p>và lambda sẽ trông như sau:</p>
 
 <pre><code class="language-java">
-	MyInterface myInterface = (String text) -&gt; {
-		System.out.print(text);
-	};
+    MyInterface myInterface = (String text) -&gt; {
+        System.out.print(text);
+    };
 
 </code></pre>
 
@@ -597,33 +597,33 @@ Ví dụ:</p>
 <p>Ngay cả khi <em>lambda expression</em> trông có vẻ giống <em>anonymous interface implementations (AII)</em> thì chúng cũng có vài điều khác biệt. Trong đó, điểm khác biệt lớn nhất chính là một AII có thể có các biến local trong khi đó một lambda expression thì không có. Cùng xem ví dụ dưới đây:</p>
 
 <pre><code class="language-java">
-	public interface MyEventConsumer {
-		// interface MyEventConsumner có một abtract method 1 parameter
-		public void consume(Object event);
-	}
+    public interface MyEventConsumer {
+        // interface MyEventConsumner có một abtract method 1 parameter
+        public void consume(Object event);
+    }
 
 </code></pre>
 
 <p>Interface <code>MyEventConsumer</code> được implement từ một AII như sau:</p>
 
 <pre><code class="language-java">
-	MyEventConsumer consumer = new MyEventConsumer() {
-		public void consume(Object event){
-			System.out.println(event.toString() + &quot; consumed&quot;);
-		}
-	};
+    MyEventConsumer consumer = new MyEventConsumer() {
+        public void consume(Object event){
+            System.out.println(event.toString() + &quot; consumed&quot;);
+        }
+    };
 
 </code></pre>
 
 <p>AII <code>MyeventConsumer</code> có thể có khai báo thêm biến local của riêng nó như sau:</p>
 
 <pre><code class="language-java">
-	MyEventConsumer myEventConsumer = new MyEventConsumer() {
-		private int eventCount = 0; // biến khai báo trong AII, không thể khai báo như này nếu dùng lambda
-		public void consume(Object event) {
-			System.out.println(event.toString() + &quot; consumed &quot; + this.eventCount++ + &quot; times.&quot;);
-		}
-	};
+    MyEventConsumer myEventConsumer = new MyEventConsumer() {
+        private int eventCount = 0; // biến khai báo trong AII, không thể khai báo như này nếu dùng lambda
+        public void consume(Object event) {
+            System.out.println(event.toString() + &quot; consumed &quot; + this.eventCount++ + &quot; times.&quot;);
+        }
+    };
 
 </code></pre>
 
@@ -633,21 +633,21 @@ Ví dụ:</p>
 1. Local Variable Capture</p>
 
 <pre><code class="language-java">
-	// Chúng ta có một interface MyFactory
-	public interface MyFactory {
-		public String create(char[] chars);
-	}
+    // Chúng ta có một interface MyFactory
+    public interface MyFactory {
+        public String create(char[] chars);
+    }
 
-	// Lambda như này
-	MyFactory myFactory = (chars) -&gt; {
-		return new String(chars);
-	};
+    // Lambda như này
+    MyFactory myFactory = (chars) -&gt; {
+        return new String(chars);
+    };
 
-	// Capture local variable
-	String myString = &quot;Test&quot;;
-	MyFactory myFactory = (chars) -&gt; {
-		return myString + &quot;:&quot; + new String(chars);
-	};
+    // Capture local variable
+    String myString = &quot;Test&quot;;
+    MyFactory myFactory = (chars) -&gt; {
+        return myString + &quot;:&quot; + new String(chars);
+    };
 
 </code></pre>
 
@@ -656,16 +656,16 @@ Ví dụ:</p>
 </ol>
 
 <pre><code class="language-java">
-	public class EventConsumerImpl {
+    public class EventConsumerImpl {
 
-		private String name = &quot;MyConsumer&quot;;
+        private String name = &quot;MyConsumer&quot;;
 
-		public void attach(MyEventProducer eventProducer){
-			eventProducer.listen(e -&gt; {
-				System.out.println(this.name);
-			});
-		}
-	}
+        public void attach(MyEventProducer eventProducer){
+            eventProducer.listen(e -&gt; {
+                System.out.println(this.name);
+            });
+        }
+    }
 
 </code></pre>
 
@@ -674,15 +674,15 @@ Ví dụ:</p>
 </ol>
 
 <pre><code class="language-java">
-	public class EventConsumerImpl {
-		private static String someStaticVar = &quot;Some text&quot;;
+    public class EventConsumerImpl {
+        private static String someStaticVar = &quot;Some text&quot;;
 
-		public void attach(MyEventProducer eventProducer){
-			eventProducer.listen(e -&gt; {
-				System.out.println(someStaticVar);
-			});
-		}
-	}
+        public void attach(MyEventProducer eventProducer){
+            eventProducer.listen(e -&gt; {
+                System.out.println(someStaticVar);
+            });
+        }
+    }
 
 </code></pre>
 
@@ -691,30 +691,30 @@ Ví dụ:</p>
 <p>Giả sử chúng ta có một interface <code>MyPrinter</code> với  một method trừu tượng truyền vào một parameter s:</p>
 
 <pre><code class="language-java">
-	public interface MyPrinter{
-		public void print(String s);
-	}
+    public interface MyPrinter{
+        public void print(String s);
+    }
 
 </code></pre>
 
 <p>Thông thường chúng ta sẽ dùng lambda như sau:</p>
 
 <pre><code class="language-java">
-	MyPrinter myPrinter = (s) -&gt; { System.out.println(s); };
+    MyPrinter myPrinter = (s) -&gt; { System.out.println(s); };
 
 </code></pre>
 
 <p>Tuy nhiên, do biểu thức lambda chỉ có một câu lệnh, nên dấu <code>{}</code> có thể bỏ qua. Ta rút gọn lại thành:</p>
 
 <pre><code class="language-java">
-	MyPrinter myPrinter = s -&gt; System.out.println(s);
+    MyPrinter myPrinter = s -&gt; System.out.println(s);
 
 </code></pre>
 
 <p>Bởi vì tham số truyền vào là <code>s</code> và được sử dụng để làm tham số trong biểu thức lambda luôn nên java cho phép chúng ta rút gọn lại nữa như sau:</p>
 
 <pre><code class="language-java">
-	MyPrinter myPrinter = System.out::println;
+    MyPrinter myPrinter = System.out::println;
 
 </code></pre>
 
@@ -727,20 +727,20 @@ Ví dụ:</p>
 </ul>
 
 <pre><code class="language-java">
-	// khai báo interface
-	public interface Finder {
-		public int find(String s1, String s2);
-	}
+    // khai báo interface
+    public interface Finder {
+        public int find(String s1, String s2);
+    }
 
-	// khai báo class MyClass có một phương thức static có cùng signature với Interface
-	public class MyClass{
-		public static int doFind(String s1, String s2){
-			return s1.lastIndexOf(s2);
-		}
-	}
+    // khai báo class MyClass có một phương thức static có cùng signature với Interface
+    public class MyClass{
+        public static int doFind(String s1, String s2){
+            return s1.lastIndexOf(s2);
+        }
+    }
 
-	// biểu thức lambda như sau:
-	Finder finder = MyClass::doFind;
+    // biểu thức lambda như sau:
+    Finder finder = MyClass::doFind;
 
 </code></pre>
 
@@ -748,14 +748,14 @@ Ví dụ:</p>
 <li>Parameter Method Reference</li>
 </ul>
 
-<pre><code class="language-java">	public interface Finder {
-		public int find(String s1, String s2);
-	}
+<pre><code class="language-java">    public interface Finder {
+        public int find(String s1, String s2);
+    }
 
-	// Biểu thức lambda
-	Finder finder = String::indexOf;
-	// Dòng code trên có thể được viết dễ hiểu hơn như sau:
-	Finder finder = (s1, s2) -&gt; s1.indexOf(s2);
+    // Biểu thức lambda
+    Finder finder = String::indexOf;
+    // Dòng code trên có thể được viết dễ hiểu hơn như sau:
+    Finder finder = (s1, s2) -&gt; s1.indexOf(s2);
 
 </code></pre>
 
@@ -764,20 +764,20 @@ Ví dụ:</p>
 </ul>
 
 <pre><code class="language-java">
-	// Interface
-	public interface Deserializer {
-		public int deserialize(String v1);
-	}
-	// Class StringConverter nào đó có method converToInt cùng signature với method trong interface
-	public class StringConverter {
-		public int convertToInt(String v1){
-			return Integer.valueOf(v1);
-		}
-	}
-	// Tạo một instance của class StringConverter
-	StringConverter stringConverter = new StringConverter();
-	// Biểu thức lambda implement interface
-	Deserializer des = stringConverter::convertToInt;
+    // Interface
+    public interface Deserializer {
+        public int deserialize(String v1);
+    }
+    // Class StringConverter nào đó có method converToInt cùng signature với method trong interface
+    public class StringConverter {
+        public int convertToInt(String v1){
+            return Integer.valueOf(v1);
+        }
+    }
+    // Tạo một instance của class StringConverter
+    StringConverter stringConverter = new StringConverter();
+    // Biểu thức lambda implement interface
+    Deserializer des = stringConverter::convertToInt;
 
 </code></pre>
 
@@ -786,15 +786,15 @@ Ví dụ:</p>
 </ul>
 
 <pre><code class="language-java">
-	// Interface
-	public interface Factory {
-		public String create(char[] val);
-	}
+    // Interface
+    public interface Factory {
+        public String create(char[] val);
+    }
 
-	// Thay vì viết như này:
-	Factory factory = chars -&gt; new String(chars);
-	// Ta viết như này:
-	Factory factory = String::new;
+    // Thay vì viết như này:
+    Factory factory = chars -&gt; new String(chars);
+    // Ta viết như này:
+    Factory factory = String::new;
 
 </code></pre>
 
