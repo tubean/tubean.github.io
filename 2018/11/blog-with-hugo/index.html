@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.49 with theme Tranquilpeak 0.4.3-SNAPSHOT">
+<meta name="generator" content="Hugo 0.50 with theme Tranquilpeak 0.4.3-SNAPSHOT">
 <meta name="author" content="Tu Bean">
 <meta name="keywords" content="Hugo, Go, Blog, Github, Setup">
 <meta name="description" content="Bên cạnh các dịch vụ support người dùng tạo các trang blog cá nhân như blogger, wordpress,&hellip; thì các dịch vụ hosting như github, bitbucket,&hellip; cũng đã cho phép chúng ta xây dựng các trang blog trên chính tên miền của họ. Phổ biến hiện nay là các trang miền github.io được xây dựng trên nền tảng Jekyll. Tuy nhiên Jekyll không phải là duy nhất và cũng có những nhược điểm của riêng nó.">
@@ -349,9 +349,9 @@ Các bạn nhớ chọn xong thì xem hướng dẫn sử dụng để biết th
 <p>Hugo sẽ tự động tạo các file cần thiết. Việc tiếp theo của chúng ta là thêm template vào giúp nó. Giả sử như bạn sử dụng theme <a href="https://themes.gohugo.io/gohugo-theme-ananke/">Ananke</a> thì bạn sẽ vào trang theme đó, chọn download -&gt; trình duyệt tự động chuyển đến repository của theme trên github. Copy link http và sửa đoạn code sau theo theme của bạn:</p>
 
 <pre><code class="language-terminal"> # Tạo submodule trong thư mục themes và đặt tên là ananke
-    git submodule add https://github.com/budparr/gohugo-theme-ananke.git    themes/ananke;\
+	git submodule add https://github.com/budparr/gohugo-theme-ananke.git 	themes/ananke;\
  # Sửa file config.toml: thêm dòng 'theme = &quot;ananke&quot; để chỉ thư mục ananke chứa theme
-    echo  'theme = &quot;ananke&quot;' &gt;&gt; config.toml
+	echo  'theme = &quot;ananke&quot;' &gt;&gt; config.toml
 </code></pre>
 
 <p>Mỗi loại theme đều có phần config file <code>config.toml</code> cơ bản nằm trong phần <code>example</code> của nó. Các bạn nên copy toàn bộ nội dung trong file <code>config.toml</code> của nó rồi paste vào file <code>config.toml</code> của mình. Nhớ sửa lại dòng <code>theme= &lt;tên folder chứa theme bạn clone về&gt;</code>.</p>
@@ -649,6 +649,25 @@ Cuối cùng là commit và push hết lên github thôi  😆
           <div class="media">
             
             <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/11/java-stream-part2/">
+                <h3 class="media-heading">[Java 8] Stream trong Java 8 (Phần 2)</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Tiếp theo bài viết trước, bài viết này sẽ đi vào tìm hiểu cách sử dụng Stream trong Java.
+1. Tạo một stream Có nhiều cách tạo một stream instance từ các source khác nhau. Mỗi khi được tạo thì instance sẽ không làm thay đổi source cũ, vì vậy chúng ta có thể thoải mái tạo nhiều instance stream khác nhau từ một source.
+ Stream rỗng (Empty stream)  Khi muốn tạo một stream rỗng, ta dùng method empty():</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
               <a class="link-unstyled" href="https://tubean.github.io/2018/11/java-stream/">
                 <h3 class="media-heading">[Java 8] Stream trong Java 8 (Phần 1)</h3>
               </a>
@@ -739,7 +758,7 @@ Cuối cùng là commit và push hết lên github thôi  😆
          data-message-zero="không tìm thấy kết quả"
          data-message-one="tìm thấy 1 kết quả "
          data-message-other="tìm thấy {n} kết quả">
-         5 posts found
+         6 posts found
       </p>
     </div>
   </div>
