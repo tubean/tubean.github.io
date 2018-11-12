@@ -61,8 +61,8 @@
 
 
 
-  <meta property="og:image" content="https://imgur.com/eer0Pfq">
-  <meta property="twitter:image" content="https://imgur.com/eer0Pfq">
+  <meta property="og:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1541576734/eer0Pfq.png">
+  <meta property="twitter:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1541576734/eer0Pfq.png">
 
 
   <meta property="og:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1541273502/Black_flag.svg.png">
@@ -544,6 +544,26 @@ List&lt;String&gt; list = people.stream()
 Map&lt;Integer, List&lt;Person&gt;&gt; map = people.stream()
 	.filter(p -&gt; p.getAge() &gt; 20)
 	.collect(Collectors.groupingBy(Person::getAge));
+</code></pre>
+
+<h1 id="6-mapping">6. Mapping</h1>
+
+<p>Stream API cung cấp method map(), flatMap() thể thực hiện việc bước mapping, method này trả về một stream, vì thế nó chính là một intermediary operation.</p>
+
+<p>Ngoài ra cũng như forEach() sử dụng Consumer hay filter() sử dụng Predicate, map() hay flatMap() sử dụng một thứ gọi là Function để quy định việc mapping, và Function cũng là một Functional Inteface.</p>
+
+<pre><code class="language-java">&lt;R&gt; Stream&lt;R&gt; flatMap(Function&lt;T, Stream&lt;R&gt;&gt; flatMapper);
+
+&lt;R&gt; Stream&lt;R&gt; map(Function&lt;T, R&gt; mapper);
+</code></pre>
+
+<p>Cách dùng:</p>
+
+<pre><code class="language-java">Stream&lt;String&gt; names = Stream.of(&quot;tu&quot;, &quot;bean&quot;, &quot;tubean.github.io&quot;);
+System.out.println(names.map(s -&gt; {
+    return s.toUpperCase();
+  }).collect(Collectors.toList()));
+//prints [TU, BEAN, TUBEAN.GITHUB.IO]
 </code></pre>
 
 <ul>
