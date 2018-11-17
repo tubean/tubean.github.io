@@ -1,0 +1,1279 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.49 with theme Tranquilpeak 0.4.3-SNAPSHOT">
+<meta name="author" content="Tu Bean">
+<meta name="keywords" content="Spring, Hướng dẫn, Spring Boot, Thymeleaf, Crud app">
+<meta name="description" content="Để remind kiến thức cũng như tổng kết khi mới bắt đầu học một công nghệ mới, mình thường tạo một app đơn giản có đủ các thao tác thêm, xóa, sửa (CRUD). Bài viết này là một tutorial dạng cơ bản nhất khi học về Spring, sử dụng các công nghệ sau: - Spring Boot: để khởi tạo và cấu hình ứng dụng một cách nhanh chóng. - Spring MVC: để xây dựng app.">
+
+
+<meta property="og:description" content="Để remind kiến thức cũng như tổng kết khi mới bắt đầu học một công nghệ mới, mình thường tạo một app đơn giản có đủ các thao tác thêm, xóa, sửa (CRUD). Bài viết này là một tutorial dạng cơ bản nhất khi học về Spring, sử dụng các công nghệ sau: - Spring Boot: để khởi tạo và cấu hình ứng dụng một cách nhanh chóng. - Spring MVC: để xây dựng app.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Spring Boot] Dựng app CRUD đơn giản bằng Spring Boot &#43; Thymeleaf trên Intelij">
+<meta name="twitter:title" content="[Spring Boot] Dựng app CRUD đơn giản bằng Spring Boot &#43; Thymeleaf trên Intelij">
+<meta property="og:url" content="https://tubean.github.io/2018/11/spring-boot-crud-app/">
+<meta property="twitter:url" content="https://tubean.github.io/2018/11/spring-boot-crud-app/">
+<meta property="og:site_name" content="Bean&#39;s blog">
+<meta property="og:description" content="Để remind kiến thức cũng như tổng kết khi mới bắt đầu học một công nghệ mới, mình thường tạo một app đơn giản có đủ các thao tác thêm, xóa, sửa (CRUD). Bài viết này là một tutorial dạng cơ bản nhất khi học về Spring, sử dụng các công nghệ sau: - Spring Boot: để khởi tạo và cấu hình ứng dụng một cách nhanh chóng. - Spring MVC: để xây dựng app.">
+<meta name="twitter:description" content="Để remind kiến thức cũng như tổng kết khi mới bắt đầu học một công nghệ mới, mình thường tạo một app đơn giản có đủ các thao tác thêm, xóa, sửa (CRUD). Bài viết này là một tutorial dạng cơ bản nhất khi học về Spring, sử dụng các công nghệ sau: - Spring Boot: để khởi tạo và cấu hình ứng dụng một cách nhanh chóng. - Spring MVC: để xây dựng app.">
+<meta property="og:locale" content="vi">
+
+  
+    <meta property="article:published_time" content="2018-11-17T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2018-11-17T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="Spring">
+    
+      <meta property="article:section" content="Tutorial">
+    
+      <meta property="article:section" content="SpringBoot">
+    
+  
+  
+    
+      <meta property="article:tag" content="Spring Boot">
+    
+      <meta property="article:tag" content="Tutorial">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1542422606/spring-boot-icon0_cf21dec4-5056-b3a8-49c015fd3bde6cb5.png">
+  <meta property="twitter:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1542422606/spring-boot-icon0_cf21dec4-5056-b3a8-49c015fd3bde6cb5.png">
+
+
+  <meta property="og:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1541267618/maxresdefault.jpg">
+  <meta property="twitter:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1541267618/maxresdefault.jpg">
+
+
+
+
+  <meta property="og:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/c_scale,w_1836/v1540914499/C360_2016-03-22-17-45-21-487.jpg">
+  <meta property="twitter:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/c_scale,w_1836/v1540914499/C360_2016-03-22-17-45-21-487.jpg">
+
+
+    <title>[Spring Boot] Dựng app CRUD đơn giản bằng Spring Boot &#43; Thymeleaf trên Intelij</title>
+
+    <link rel="icon" href="https://tubean.github.io/favicon/flappybird.png">
+    
+
+    
+
+    <link rel="canonical" href="https://tubean.github.io/2018/11/spring-boot-crud-app/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://tubean.github.io/css/style-nnm2spxvve8onlujjlegkkytaehyadd4ksxc1hyzzq9a2wvtrgbljqyulomn.min.css" />
+    
+    
+      
+        <link rel="stylesheet"  crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" integrity="sha384-TEMocfGvRuD1rIAacqrknm5BQZ7W7uWitoih+jMNFXQIbNl16bO8OZmylH/Vi/Ei">
+      
+    
+      
+        <link rel="stylesheet"  href="https://tubean.github.io/css/main.css">
+      
+    
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-128433621-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://tubean.github.io/">Bean&#39;s blog</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://tubean.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://res.cloudinary.com/deop9ytsv/image/upload/c_scale,w_1836/v1540914499/C360_2016-03-22-17-45-21-487.jpg" alt="Ảnh đại diện" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://tubean.github.io/#about">
+          <img class="sidebar-profile-picture" src="https://res.cloudinary.com/deop9ytsv/image/upload/c_scale,w_1836/v1540914499/C360_2016-03-22-17-45-21-487.jpg" alt="Ảnh đại diện" />
+        </a>
+        <h4 class="sidebar-profile-name">Tu Bean</h4>
+        
+          <h5 class="sidebar-profile-bio">Coding, writing and sharing</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tubean.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Trang chủ</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tubean.github.io/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">Danh mục</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tubean.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Thẻ thông tin</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tubean.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Lưu trữ</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tubean.github.io/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">Thông tin</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://bitbucket.org/tubean/" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bitbucket-square"></i>
+      
+      <span class="sidebar-button-desc">Bitbucket</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://ask.fm/zeref_bean" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">Github</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.instagram.com/zeref_bean/" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-instagram"></i>
+      
+      <span class="sidebar-button-desc">Instagram</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.linkedin.com/in/tubean/" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-linkedin"></i>
+      
+      <span class="sidebar-button-desc">LinkedIn</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+  <div class="post-header-cover
+              text-center
+              "
+       style="background-image:url('https://res.cloudinary.com/deop9ytsv/image/upload/v1541267618/maxresdefault.jpg')"
+       data-behavior="5">
+    
+      <div class="post-header main-content-wrap text-center">
+  
+    <h1 class="post-title" itemprop="headline">
+      [Spring Boot] Dựng app CRUD đơn giản bằng Spring Boot &#43; Thymeleaf trên Intelij
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2018-11-17T00:00:00Z">
+        
+  tháng 11 17, 2018
+
+      </time>
+    
+    
+  
+  
+    <span>mục</span>
+    
+      <a class="category-link" href="https://tubean.github.io/categories/spring">Spring</a>, 
+    
+      <a class="category-link" href="https://tubean.github.io/categories/tutorial">Tutorial</a>, 
+    
+      <a class="category-link" href="https://tubean.github.io/categories/springboot">SpringBoot</a>
+    
+  
+
+  </div>
+
+</div>
+    
+  </div>
+
+
+      <div id="main" data-behavior="5"
+        class="hasCover
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              
+
+<p>Để remind kiến thức cũng như tổng kết khi mới bắt đầu học một công nghệ mới, mình thường tạo một app đơn giản có đủ các thao tác thêm, xóa, sửa (CRUD). Bài viết này là một tutorial dạng cơ bản nhất khi học về Spring, sử dụng các công nghệ sau:
+- Spring Boot: để khởi tạo và cấu hình ứng dụng một cách nhanh chóng.
+- Spring MVC: để xây dựng app.
+- Spring Data: cụ thể là Spring Data JPA, dùng để giúp ứng dụng thao tác với tầng cơ sở dữ liệu.
+- Hệ quản trị cơ sở dữ liệu: MySQL.
+- Template engine: Thymeleaf và Bootstrap css.
+- Tool IDE: Intellij JetBrain.
+- Công nghệ khác: Maven 3, 1.  Tomcat Embed 8.</p>
+
+<h2 id="source-code-dự-án-https-github-com-tubean-spring-boot-application">Source code dự án: <a href="https://github.com/tubean/spring-boot-application">https://github.com/tubean/spring-boot-application</a></h2>
+
+<p>Các chức năng chính sẽ xây dựng:
+- Hiển thị quản lý user.
+- Thêm user.
+- Sửa user.</p>
+
+<h2 id="xóa-user">- Xóa user.</h2>
+
+<p>Cơ sở dữ liệu cần chuẩn bị:
+Bảng <code>user</code>:</p>
+
+<pre><code class="language-sql">CREATE TABLE `user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) NOT NULL,
+  `email` varchar(45) NOT NULL,
+  `phone` varchar(45) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+</code></pre>
+
+<hr />
+
+<h1 id="1-khởi-tạo-dự-án-bằng-intellij">1. Khởi tạo dự án bằng Intellij</h1>
+
+<p>Đầu tiên chúng ta khởi động intellij, chọn new project -&gt; Spring Initializr</p>
+
+<p><img src="https://res.cloudinary.com/deop9ytsv/image/upload/v1542364170/Screen_Shot_2018-11-16_at_11.22.22_AM.png" alt="khởi tạo dự án" />
+- Chọn Next, điền các thông tin <code>Group</code>, <code>Artifact</code>, <code>Name</code>, <code>Description</code></p>
+
+<p><img src="https://res.cloudinary.com/deop9ytsv/image/upload/v1542364169/Screen_Shot_2018-11-16_at_11.25.53_AM.png" alt="thông tin cơ bản" /></p>
+
+<ul>
+<li>Chọn tiếp các <code>dependencies</code> cần thiết: <code>Web</code>, <code>Thymeleaf</code>, <code>MySQL</code>, <code>JPA</code>:</li>
+</ul>
+
+<p><img src="https://res.cloudinary.com/deop9ytsv/image/upload/v1542364170/Screen_Shot_2018-11-16_at_11.27.08_AM.png" alt="dependencies" /></p>
+
+<p>Đặt tên project và finish bước khởi tạo.</p>
+
+<h1 id="2-cấu-trúc-dự-án">2. Cấu trúc dự án</h1>
+
+<p>Cây thư mục dự án như sau:</p>
+
+<p><img src="https://res.cloudinary.com/deop9ytsv/image/upload/v1542424758/Screenshot_1.jpg" alt="structure" /></p>
+
+<ul>
+<li>Để sử dụng bootstrap css, các bạn tải <a href="https://getbootstrap.com/">bootstrap</a> , sau đó giải nén và copy file <code>bootstrap.min.css</code> vào thư mục <em>resources/static</em></li>
+<li>Kiểm tra cấu hình file <code>pom.xml</code></li>
+</ul>
+
+<pre><code class="language-xml">&lt;parent&gt;  
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;  
+    &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;  
+    &lt;version&gt;2.1.0.RELEASE&lt;/version&gt;  
+    &lt;relativePath/&gt; &lt;!-- lookup parent from repository --&gt;  
+&lt;/parent&gt;  
+
+&lt;properties&gt;  
+    &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;  
+    &lt;project.reporting.outputEncoding&gt;UTF-8&lt;/project.reporting.outputEncoding&gt;  
+    &lt;java.version&gt;1.8&lt;/java.version&gt;  
+&lt;/properties&gt;  
+
+&lt;dependencies&gt;  
+    &lt;dependency&gt;  
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;  
+        &lt;artifactId&gt;spring-boot-starter-data-jpa&lt;/artifactId&gt;  
+    &lt;/dependency&gt;  
+    &lt;dependency&gt;  
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;  
+        &lt;artifactId&gt;spring-boot-starter-thymeleaf&lt;/artifactId&gt;  
+    &lt;/dependency&gt;  
+    &lt;dependency&gt;  
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;  
+        &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;  
+    &lt;/dependency&gt;  
+
+    &lt;dependency&gt;  
+        &lt;groupId&gt;mysql&lt;/groupId&gt;  
+        &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;  
+        &lt;scope&gt;runtime&lt;/scope&gt;  
+    &lt;/dependency&gt;  
+    &lt;dependency&gt;  
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;  
+        &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;  
+        &lt;scope&gt;test&lt;/scope&gt;  
+    &lt;/dependency&gt;  
+&lt;/dependencies&gt;
+</code></pre>
+
+<h1 id="3-xây-dựng-view">3. Xây dựng view</h1>
+
+<ul>
+<li>Nếu sử dụng Spring MVC và Thymeleaf, chúng ta sẽ cần config khá nhiều thứ mới có thể sử dụng engine Thymeleaf. Tuy nhiên sử dụng Spring Boot thì chúng ta không cần quan tâm nhiều đến thế. Các file <code>html</code> được Spring Boot chỉ định đặt trong folder <code>src/main/resources</code> nên chúng ta sẽ bỏ các file layout vào trong này.</li>
+<li>Để không phải relaunch server để xem các thay đổi trên giao diện, các bạn vào file <code>application.properties</code> thêm cấu hình sau:
+<code>xml
+spring.thymeleaf.cache=false
+</code></li>
+</ul>
+
+<h4 id="quản-lý-resources">Quản lý resources</h4>
+
+<p>Các file static resources (css, js, ảnh) sẽ được Spring Boot đọc từ thư mục  <code>static</code>  trong  <code>src/main/resources</code>. Để cho tiện quản lý:</p>
+
+<ul>
+<li>Các file css được đặt trong  <code>static/css</code></li>
+<li>Các file js được đặt trong  <code>static/js</code></li>
+<li>Các file ảnh được đặt trong  <code>static/images</code></li>
+</ul>
+
+<p>Trong dự án này do chỉ sử dụng một file <code>bootstrap.min.css</code> nên mình không tạo thêm các folder khác 😄.</p>
+
+<h3 id="xây-dựng-layout">Xây dựng layout</h3>
+
+<p>Trong ứng dụng này sẽ có 3 màn hình chính là:
+- Màn hình hiển thị user: index.html
+- Thêm mới một user: addUser.html
+- Sửa một user: editUser.html</p>
+
+<p>Nội dung các file như sau:</p>
+
+<p><code>index.html</code></p>
+
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;  
+&lt;html lang=&quot;en&quot; xmlns:th=&quot;http://www.springframework.org/schema/data/jaxb&quot;&gt;  
+&lt;head&gt;  
+    &lt;title&gt;User List&lt;/title&gt;  
+    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;/&gt;  
+    &lt;link type=&quot;text/css&quot; rel=&quot;stylesheet&quot; href=&quot;bootstrap.min.css&quot; th:href=&quot;@{bootstrap.min.css}&quot;/&gt;  
+&lt;/head&gt;  
+&lt;body&gt;  
+&lt;div class=&quot;col-3&quot;&gt;&lt;/div&gt;  
+&lt;div class=&quot;container col-6&quot;&gt;  
+    &lt;h1&gt;Manage User&lt;/h1&gt;  
+    &lt;table class=&quot;table table-active&quot;&gt;  
+        &lt;tr&gt;  
+            &lt;th&gt;Name&lt;/th&gt;  
+            &lt;th&gt;Email&lt;/th&gt;  
+            &lt;th&gt;Phone&lt;/th&gt;  
+            &lt;th&gt;Actions&lt;/th&gt;  
+        &lt;/tr&gt;  
+        &lt;tr th:each=&quot;user : ${users}&quot;&gt;  
+            &lt;td th:text=&quot;${user.name}&quot;&gt;&lt;/td&gt;  
+            &lt;td th:text=&quot;${user.email}&quot;&gt;&lt;/td&gt;  
+            &lt;td th:text=&quot;${user.phone}&quot;&gt;&lt;/td&gt;  
+            &lt;td&gt;  
+                &lt;a th:href=&quot;@{/edit?id={id}(id=${user.id})}&quot; class=&quot;btn btn-primary&quot;&gt;Edit&lt;/a&gt;  
+                &lt;a th:href=&quot;@{/delete?id={id}(id=${user.id})}&quot; class=&quot;btn btn-danger&quot;&gt;Delete&lt;/a&gt;  
+            &lt;/td&gt;  
+        &lt;/tr&gt;  
+    &lt;/table&gt;  
+    &lt;a href=&quot;/add&quot; class=&quot;btn btn-success&quot;&gt;Add User&lt;/a&gt;  
+&lt;/div&gt;  
+&lt;/body&gt;  
+&lt;/html&gt;
+</code></pre>
+
+<pre><code class="language-addUser.html`">```html
+&lt;!DOCTYPE html&gt;  
+&lt;html lang=&quot;en&quot; xmlns:th=&quot;http://www.springframework.org/schema/data/jaxb&quot;&gt;  
+&lt;head&gt;  
+    &lt;meta charset=&quot;UTF-8&quot;&gt;  
+    &lt;title&gt;Add User&lt;/title&gt;  
+    &lt;link type=&quot;text/css&quot; rel=&quot;stylesheet&quot; href=&quot;bootstrap.min.css&quot; th:href=&quot;@{bootstrap.min.css}&quot;/&gt;  
+&lt;/head&gt;  
+&lt;body&gt;  
+&lt;div class=&quot;col-3&quot;&gt;&lt;/div&gt;  
+&lt;div class=&quot;container col-6&quot;&gt;  
+    &lt;h1&gt;New User&lt;/h1&gt;  
+    &lt;div class=&quot;col-md-auto&quot;&gt;  
+        &lt;form th:object=&quot;${user}&quot; th:action=&quot;@{save}&quot; action=&quot;#&quot; method=&quot;post&quot;&gt;  
+            &lt;div&gt;  
+                &lt;label th:text=&quot;Name&quot; th:for=&quot;name&quot;&gt;&lt;/label&gt;  
+                &lt;input type=&quot;text&quot; th:field=&quot;*{name}&quot; class=&quot;form-control&quot; placeholder=&quot;Name&quot;/&gt;  
+            &lt;/div&gt;  
+            &lt;div style=&quot;clear: both; display: block; height: 10px&quot;&gt;&lt;/div&gt;  
+            &lt;div&gt;  
+                &lt;label th:text=&quot;Email&quot; th:for=&quot;email&quot;&gt;&lt;/label&gt;  
+                &lt;input type=&quot;text&quot; th:field=&quot;*{email}&quot; class=&quot;form-control&quot; placeholder=&quot;Email&quot;/&gt;  
+            &lt;/div&gt;  
+            &lt;div style=&quot;clear: both; display: block; height: 10px&quot;&gt;&lt;/div&gt;  
+            &lt;div&gt;  
+                &lt;label th:text=&quot;Phone&quot; th:for=&quot;phone&quot;&gt;&lt;/label&gt;  
+                &lt;input type=&quot;text&quot; th:field=&quot;*{phone}&quot; class=&quot;form-control&quot; placeholder=&quot;Phone&quot;/&gt;  
+            &lt;/div&gt;  
+            &lt;div style=&quot;clear: both; display: block; height: 10px&quot;&gt;&lt;/div&gt;  
+            &lt;input type=&quot;submit&quot; class=&quot;btn btn-success&quot; value=&quot;Save&quot;/&gt;  
+        &lt;/form&gt;  
+    &lt;/div&gt;  
+&lt;/div&gt;  
+&lt;/body&gt;  
+&lt;/html&gt;
+</code></pre>
+
+<p><code>editUser</code></p>
+
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;  
+&lt;html lang=&quot;en&quot; xmlns:th=&quot;http://www.springframework.org/schema/data/jaxb&quot;&gt;  
+&lt;head&gt;  
+    &lt;meta charset=&quot;UTF-8&quot;&gt;  
+    &lt;title&gt;Edit User&lt;/title&gt;  
+    &lt;link type=&quot;text/css&quot; rel=&quot;stylesheet&quot; href=&quot;bootstrap.min.css&quot; th:href=&quot;@{bootstrap.min.css}&quot;/&gt;  
+&lt;/head&gt;  
+&lt;body&gt;  
+&lt;div class=&quot;col-3&quot;&gt;&lt;/div&gt;  
+&lt;div class=&quot;container col-6&quot;&gt;  
+    &lt;h1&gt;Edit User&lt;/h1&gt;  
+    &lt;form th:object=&quot;${user}&quot; th:action=&quot;@{save}&quot; action=&quot;#&quot; method=&quot;post&quot;&gt;  
+        &lt;input type=&quot;hidden&quot; th:field=&quot;*{id}&quot;&gt;  
+        &lt;div&gt;  
+            &lt;label th:text=&quot;Name&quot; th:for=&quot;name&quot;&gt;&lt;/label&gt;  
+            &lt;input type=&quot;text&quot; th:field=&quot;*{name}&quot; class=&quot;form-control&quot;/&gt;  
+        &lt;/div&gt;  
+        &lt;div style=&quot;clear: both; display: block; height: 10px&quot;&gt;&lt;/div&gt;  
+        &lt;div&gt;  
+            &lt;label th:text=&quot;Email&quot; th:for=&quot;email&quot;&gt;&lt;/label&gt;  
+            &lt;input type=&quot;text&quot; th:field=&quot;*{email}&quot; class=&quot;form-control&quot;/&gt;  
+        &lt;/div&gt;  
+        &lt;div style=&quot;clear: both; display: block; height: 10px&quot;&gt;&lt;/div&gt;  
+        &lt;div&gt;  
+            &lt;label th:text=&quot;Phone&quot; th:for=&quot;phone&quot;&gt;&lt;/label&gt;  
+            &lt;input type=&quot;text&quot; th:field=&quot;*{phone}&quot; class=&quot;form-control&quot;/&gt;  
+        &lt;/div&gt;  
+        &lt;div style=&quot;clear: both; display: block; height: 10px&quot;&gt;&lt;/div&gt;  
+        &lt;input type=&quot;submit&quot; class=&quot;btn btn-success&quot; value=&quot;Save&quot;/&gt;  
+    &lt;/form&gt;  
+&lt;/div&gt;  
+&lt;/body&gt;  
+&lt;/html&gt;
+</code></pre>
+
+<p>Chú ý khi khai báo file css trong layout:
+-   Thuộc tính  <code>href</code>  là của HTML5, cung cấp đường dẫn tới file  <code>style.css</code>  cho trình duyệt nếu như  <em>server chưa run</em>. Cho nên chúng ta hoàn toàn có thể mở file html để xem dù chưa run server.
+-   Thuộc tính  <code>th:href</code>  là của Thymeleaf, cung cấp đường dẫn tới file  <code>style.css</code>  cho trình duyệt khi  <em>server run</em>.  <code>@{}</code>  mà một biểu thức  <a href="https://springframework.guru/introduction-spring-expression-language-spel/">SPeL</a>  xác định đường dẫn.</p>
+
+<h1 id="4-xây-dựng-dataaccess-layer-và-service-layer">4. Xây dựng DataAccess layer và Service layer</h1>
+
+<h4 id="cấu-hình-datasource-jpa">Cấu hình DataSource, JPA</h4>
+
+<p>Các cấu hình liên quan đến DataSource, JPA chúng ta sẽ viết trong file <code>application.properties</code> của <code>java/main/resources</code>. Chúng ta có thể cấu hình đơn giản như sau:</p>
+
+<pre><code>spring.datasource.url=jdbc:mysql://localhost:3306/spring_app  
+spring.datasource.username=root  
+spring.datasource.password=  
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+</code></pre>
+
+<p><em>Chú ý thay đổi các giá trị url, username, password cho phù hợp với môi trường của bạn.</em></p>
+
+<h4 id="entity">Entity</h4>
+
+<p>Đây là các java bean được ánh xạ từ các bảng trong cơ sở dữ liệu. Với chỉ duy nhất một bảng <code>user</code>, mình sẽ tạo một class <code>User</code> trong package <code>entity</code>:</p>
+
+<pre><code class="language-java">package io.github.tubean.myspringcrud.entity;  
+
+import javax.persistence.*;  
+
+@Entity  
+@Table(name = &quot;user&quot;)
+public class User {  
+  @Id  
+ @GeneratedValue(strategy = GenerationType.AUTO)  
+  private Long id;  
+
+  @Column(name = &quot;name&quot;)  
+  private String name;  
+
+  @Column(name = &quot;email&quot;)  
+  private String email;  
+
+  @Column(name = &quot;phone&quot;)  
+  private String phone;  
+
+  public User() {}  
+
+  public User(String name, String email, String phone) {  
+    this.name = name;  
+    this.email = email;  
+    this.phone = phone;  
+  }  
+
+  public Long getId() {  
+    return id;  
+  }  
+
+  public void setId(Long id) {  
+    this.id = id;  
+  }  
+
+  public String getName() {  
+    return name;  
+  }  
+
+  public void setName(String name) {  
+    this.name = name;  
+  }  
+
+  public String getEmail() {  
+    return email;  
+  }  
+
+  public void setEmail(String email) {  
+    this.email = email;  
+  }  
+
+  public String getPhone() {  
+    return phone;  
+  }  
+
+  public void setPhone(String phone) {  
+    this.phone = phone;  
+  }  
+}
+</code></pre>
+
+<p>Các annotation mình sử dụng trong đoạn code trên là các annotation của JPA:</p>
+
+<ul>
+<li><code>@Entity</code>  xác định lớp hiện tại là một entity.</li>
+<li><code>@Table</code>  xác định tên bảng ánh xạ sang.</li>
+<li><code>@Id</code>  xác định thuộc tính hiện tại là ID trong bảng CSDL.</li>
+<li><code>@GeneratedValue</code>  xác định kiểu sinh khóa chính, ở đây là AUTO_INCREMENT.</li>
+<li><code>@Column</code>  xác định thuộc tính hiện tại là một cột trong CSDL.</li>
+</ul>
+
+<h4 id="repository">Repository</h4>
+
+<p>Đây là các interface giúp chúng ta thao tác với CSDL. Trong Spring Data JPA có một tính năng rất hay đó là  <strong>CRUD Repository</strong>. Đây là một interface cung cấp các  <a href="http://docs.spring.io/spring-data/commons/docs/current/api/org/springframework/data/repository/CrudRepository.html">phương thức</a>  CRUD cơ bản. Chúng ta chỉ cần định nghĩa một interface kế thừa CRUD Repository, Spring Data JPA sẽ dùng các generic và reflection để sinh implementation tương ứng với interface đó.
+Trong dự án này chúng ta tạo một interface <code>UserRepository</code>:</p>
+
+<pre><code class="language-java">package io.github.tubean.myspringcrud.repository;  
+
+import io.github.tubean.myspringcrud.entity.User;  
+import org.springframework.data.repository.CrudRepository;  
+import org.springframework.stereotype.Repository;  
+
+@Repository  
+public interface UserRepository extends CrudRepository&lt;User, Long&gt; {}
+</code></pre>
+
+<p>Các tham số trong CrudRepository là tên entity (User) và kiểu làm khóa chính (Long).</p>
+
+<h4 id="service">Service</h4>
+
+<p>Trong mô hình MVC thì nơi xử lý các business logic được đặt trong package <code>service</code>. Chúng ta có một interface <code>UserService</code> :</p>
+
+<pre><code class="language-java">package io.github.tubean.myspringcrud.service;  
+
+import io.github.tubean.myspringcrud.entity.User;  
+
+import java.util.List;  
+import java.util.Optional;  
+
+public interface UserService {  
+  List&lt;User&gt; getAllUser();  
+
+  void saveUser(User user);  
+
+  void deleteUser(Long id);  
+
+  Optional&lt;User&gt; findUserById(Long id);  
+}
+</code></pre>
+
+<p>và một implementation <code>UserServiceImpl</code> của nó:</p>
+
+<pre><code class="language-java">package io.github.tubean.myspringcrud.service.impl;  
+
+import io.github.tubean.myspringcrud.entity.User;  
+import io.github.tubean.myspringcrud.repository.UserRepository;  
+import io.github.tubean.myspringcrud.service.UserService;  
+import org.springframework.beans.factory.annotation.Autowired;  
+import org.springframework.stereotype.Service;  
+
+import java.util.List;  
+import java.util.Optional;  
+
+@Service  
+public class UserServiceImpl implements UserService {  
+  @Autowired private UserRepository userRepository;  
+
+  @Override  
+  public List&lt;User&gt; getAllUser() {  
+    return (List&lt;User&gt;) userRepository.findAll();  
+  }  
+
+  @Override  
+  public void saveUser(User user) {  
+    userRepository.save(user);  
+  }  
+
+  @Override  
+  public void deleteUser(Long id) {  
+    userRepository.deleteById(id);  
+  }  
+
+  @Override  
+  public Optional&lt;User&gt; findUserById(Long id) {  
+    return userRepository.findById(id);  
+  }  
+}
+</code></pre>
+
+<p>Trong đó:
+-   Annotation  <code>@Service</code>  giúp Spring xác định lớp hiện tại là một Service và tạo một bean cho lớp đó.
+-   Annotation  <code>@Autowired</code>  dùng để inject UserRepository vào UserServiceImpl.</p>
+
+<h1 id="5-tạo-controller-để-điều-hướng-các-request-đến-business-và-view-tương-ứng">5. Tạo controller để điều hướng các request đến business và view tương ứng:</h1>
+
+<p>Chúng ta tạo một controller <code>UserController</code> trong package <code>controller</code>:</p>
+
+<pre><code class="language-java">package io.github.tubean.myspringcrud.controller;  
+
+import io.github.tubean.myspringcrud.entity.User;  
+import io.github.tubean.myspringcrud.service.UserService;  
+import org.springframework.beans.factory.annotation.Autowired;  
+import org.springframework.stereotype.Controller;  
+import org.springframework.ui.Model;  
+import org.springframework.web.bind.annotation.RequestMapping;  
+import org.springframework.web.bind.annotation.RequestMethod;  
+import org.springframework.web.bind.annotation.RequestParam;  
+
+import java.util.List;  
+import java.util.Optional;  
+
+@Controller  
+public class UserController {  
+  @Autowired private UserService userService;  
+
+  @RequestMapping(&quot;/&quot;)  
+  public String index(Model model) {  
+    List&lt;User&gt; users = userService.getAllUser();  
+
+    model.addAttribute(&quot;users&quot;, users);  
+
+    return &quot;index&quot;;  
+  }  
+
+  @RequestMapping(value = &quot;add&quot;)  
+  public String addUser(Model model) {  
+    model.addAttribute(&quot;user&quot;, new User());  
+    return &quot;addUser&quot;;  
+  }  
+
+  @RequestMapping(value = &quot;/edit&quot;, method = RequestMethod.GET)  
+  public String editUser(@RequestParam(&quot;id&quot;) Long userId, Model model) {  
+    Optional&lt;User&gt; userEdit = userService.findUserById(userId);  
+    userEdit.ifPresent(user -&gt; model.addAttribute(&quot;user&quot;, user));  
+    return &quot;editUser&quot;;  
+  }  
+
+  @RequestMapping(value = &quot;save&quot;, method = RequestMethod.POST)  
+  public String save(User user) {  
+    userService.saveUser(user);  
+    return &quot;redirect:/&quot;;  
+  }  
+
+  @RequestMapping(value = &quot;/delete&quot;, method = RequestMethod.GET)  
+  public String deleteUser(@RequestParam(&quot;id&quot;) Long userId, Model model) {  
+    userService.deleteUser(userId);  
+    return &quot;redirect:/&quot;;  
+  }  
+}
+</code></pre>
+
+<p>Trong đó:</p>
+
+<ul>
+<li>Annotation  <code>@Controller</code>  giúp Spring xác định lớp hiện tại là một Controller.</li>
+<li>Annotation  <code>RequestMapping(/)</code>  xác định phương thức  <code>index()</code>  sẽ đón nhận các request có HTTP method là  <strong>GET</strong>  và URI pattern là  <code>/</code>.</li>
+<li>Annotation  <code>@Autowired</code>  inject ContactService vào ContactController</li>
+
+<li><p>Phương thức  <code>index()</code>  được truyền vào 1 tham số có kiểu dữ liệu là  <strong>Model</strong>. Model có nhiệm vụ truyền dữ liệu từ Controller cho View. Ở đây mình sẽ lấy ra danh sách các user thông qua  <code>userService.getAllUser()</code>. Sau đó gắn danh sách này vào Model thông qua phương thức  <code>addAttribute()</code>,  <code>users</code>  chính là tên biến đại diện cho danh sách mà ta sẽ dùng ở View sau này.</p></li>
+
+<li><p>Phương thức  <code>index()</code>  trả về 1 String, từ String này Spring sẽ suy ra View nào sẽ nhận dữ liệu từ Controller:  <code>return &quot;index&quot;;&quot;</code>  =&gt; view là  <code>index.html</code></p></li>
+</ul>
+
+<hr />
+
+<p>Cuối cùng start ứng dụng bằng intellij và truy cập vào đường dẫn <a href="http://localhost:8080/">http://localhost:8080/</a> để thao tác với ứng dụng.</p>
+
+<p>Mục tiêu của bài viết là để remind và hướng dẫn tạo một ứng dụng nhanh gọn bằng Spring Boot nên có nhiều phần mình không giải thích rõ ràng. Để tìm hiểu chi tiết các kiến thức được sử dụng một cách đầy đủ hơn, các bạn có thể tham khảo thêm bài viết dưới đây:
+<a href="https://kipalog.com/posts/Lap-trinh-Spring-voi-ung-dung-MyContact">https://kipalog.com/posts/Lap-trinh-Spring-voi-ung-dung-MyContact</a>.</p>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">THẺ ĐÁNH DẤU</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/spring-boot/">Spring Boot</a>
+
+  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/tutorial/">Tutorial</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">Tiếp</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2018/11/java-stream-part2/" data-tooltip="[Java 8] Stream trong Java 8 (Phần 2)">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">Trước</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://tubean.github.io/2018/11/spring-boot-crud-app/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://tubean.github.io/2018/11/spring-boot-crud-app/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://tubean.github.io/2018/11/spring-boot-crud-app/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2018 <a href="https://bitbucket.org/tubean/">Do Anh Tu</a>. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">Tiếp</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2018/11/java-stream-part2/" data-tooltip="[Java 8] Stream trong Java 8 (Phần 2)">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">Trước</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://tubean.github.io/2018/11/spring-boot-crud-app/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://tubean.github.io/2018/11/spring-boot-crud-app/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://tubean.github.io/2018/11/spring-boot-crud-app/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ftubean.github.io%2F2018%2F11%2Fspring-boot-crud-app%2F">
+          <i class="fa fa-facebook-official"></i><span>Chia sẻ với Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Ftubean.github.io%2F2018%2F11%2Fspring-boot-crud-app%2F">
+          <i class="fa fa-twitter"></i><span>Chia sẻ với Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Ftubean.github.io%2F2018%2F11%2Fspring-boot-crud-app%2F">
+          <i class="fa fa-google-plus"></i><span>Chia sẻ với Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://res.cloudinary.com/deop9ytsv/image/upload/c_scale,w_1836/v1540914499/C360_2016-03-22-17-45-21-487.jpg" alt="Ảnh đại diện" />
+    
+    <h4 id="about-card-name">Tu Bean</h4>
+    
+      <div id="about-card-bio">Coding, writing and sharing</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Web developer
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        Viet Nam
+      </div>
+    
+  </div>
+</div>
+
+    <div id="algolia-search-modal" class="modal-container">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="close-button"><i class="fa fa-close"></i></span>
+      <a href="https://algolia.com" target="_blank" rel="noopener" class="searchby-algolia text-color-light link-unstyled">
+        <span class="searchby-algolia-text text-color-light text-small">by</span>
+        <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+      </a>
+      <i class="search-icon fa fa-search"></i>
+      <form id="algolia-search-form">
+        <input type="text" id="algolia-search-input" name="search"
+          class="form-control input--large search-input" placeholder="Tìm kiếm" />
+      </form>
+    </div>
+    <div class="modal-body">
+      <div class="no-result text-color-light text-center">không tìm thấy kết quả</div>
+      <div class="results">
+        
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/11/spring-boot-crud-app/">
+                <h3 class="media-heading">[Spring Boot] Dựng app CRUD đơn giản bằng Spring Boot &#43; Thymeleaf trên Intelij</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Để remind kiến thức cũng như tổng kết khi mới bắt đầu học một công nghệ mới, mình thường tạo một app đơn giản có đủ các thao tác thêm, xóa, sửa (CRUD). Bài viết này là một tutorial dạng cơ bản nhất khi học về Spring, sử dụng các công nghệ sau: - Spring Boot: để khởi tạo và cấu hình ứng dụng một cách nhanh chóng. - Spring MVC: để xây dựng app.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/11/java-stream-part2/">
+                <h3 class="media-heading">[Java 8] Stream trong Java 8 (Phần 2)</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Tiếp theo bài viết trước, bài viết này sẽ đi vào tìm hiểu cách sử dụng Stream trong Java.
+1. Tạo một stream Có nhiều cách tạo một stream instance từ các source khác nhau. Mỗi khi được tạo thì instance sẽ không làm thay đổi source cũ, vì vậy chúng ta có thể thoải mái tạo nhiều instance stream khác nhau từ một source.
+ Stream rỗng (Empty stream)  Khi muốn tạo một stream rỗng, ta dùng method empty():</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/11/java-stream/">
+                <h3 class="media-heading">[Java 8] Stream trong Java 8 (Phần 1)</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Lambda expression kể từ trở thành một phần của Java thì đã làm thay đổi đáng kể thói quen sử dụng các Collection như chúng ta đã từng dùng ở các phiên bản trước Java 8. Mặc dù có thể xây dựng lại một bộ API Collections thay thế, nhưng nó sẽ ảnh hưởng rất lớn đến toàn bộ hệ sinh thái Java. Vì vậy mà những nhà phát triển Java đã có một chiến lược tốt hơn, đó là thêm các phương thức mở rộng vào các interface có sẵn (như là Collection, List, Iterable,&hellip;) cùng các lớp abstraction như Stream để thực hiện các phép toán tổng hợp trên tập dữ liệu, cung cấp thêm cho các lớp hiện có các phương thức để có thể làm việc với Stream mà không ảnh hưởng với các cách làm việc cũ.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/11/java-lambda-expression/">
+                <h3 class="media-heading">[Java 8] Lambda Expression trong Java 8</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">1. Lambda expresstion là gì? Lambda expression là một feature mới và nổi bật nhất của java 8 giúp số lượng code được giảm và là bước đầu khiến Java bước vào thế giới functional programming. Một lamba expression là một function được tạo mà không thuộc bất kì một class nào. Nó là một hàm không tên (unamed function) với các tham số (parameters) và phần body chứa khối lệnh được tách biệt với các tham số bằng dấu -&gt;.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/11/spring-boot-10-ways-security/">
+                <h3 class="media-heading">[Spring Boot] Secu thập chưởng bảo vệ app Spring Boot của bạn</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Spring Boot được release lần đầu năm 2014 và không có nhiều thay đổi đáng kể cho đến hiện tại. Với mục tiêu tự động cấu hình và giảm thiểu lượng code để có thể start một ứng dụng, Spring Boot đã giúp cho không biết con dân nhà Spring dễ sống và bớt chửi thề đi. Giống như khi dùng bất kì một framework nào để xây dựng ứng dụng, điều bạn cần quan tâm không chỉ là chất lượng code, vượt qua các test case, &hellip; mà còn là khả năng bảo mật của ứng dụng.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/11/blog-with-hugo/">
+                <h3 class="media-heading">[Hugo] Hướng dẫn xây dựng blog cá nhân bằng Hugo &#43; Github</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Bên cạnh các dịch vụ support người dùng tạo các trang blog cá nhân như blogger, wordpress,&hellip; thì các dịch vụ hosting như github, bitbucket,&hellip; cũng đã cho phép chúng ta xây dựng các trang blog trên chính tên miền của họ. Phổ biến hiện nay là các trang miền github.io được xây dựng trên nền tảng Jekyll. Tuy nhiên Jekyll không phải là duy nhất và cũng có những nhược điểm của riêng nó.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/10/hello/">
+                <h3 class="media-heading">Hello</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Oct 10, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Để chào mừng bài post đầu tiên, một phút quốc ca bắt đầu!
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+      </div>
+    </div>
+    <div class="modal-footer">
+      <p class="results-count text-medium"
+         data-message-zero="không tìm thấy kết quả"
+         data-message-one="tìm thấy 1 kết quả "
+         data-message-other="tìm thấy {n} kết quả">
+         7 posts found
+      </p>
+    </div>
+  </div>
+</div>
+    
+  
+    
+    <div id="cover" style="background-image:url('https://tubean.github.io/images/cover-v1.2.0.jpg');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://tubean.github.io/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+
+
+  
+    <script crossorigin="anonymous" integrity="sha384-jmxIlussZWB7qCuB+PgKG1uLjjxbVVIayPJwi6cG6Zb4YKq0JIw+OMnkkEC7kYCq" src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js"></script>
+  
+
+  
+    <script crossorigin="anonymous" integrity="sha384-IiI65aU9ZYub2MY9zhtKd1H2ps7xxf+eb2YFG9lX6uRqpXCvBTOidPRCXCrQ++Uc" src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/contrib/auto-render.min.js"></script>
+  
+
+  
+    <script src="https://tubean.github.io/js/main.js"></script>
+  
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'https:\/\/tubean.github.io\/2018\/11\/spring-boot-crud-app\/';
+          
+            this.page.identifier = '\/2018\/11\/spring-boot-crud-app\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'beans-blog';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+

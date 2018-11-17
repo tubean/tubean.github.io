@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.50 with theme Tranquilpeak 0.4.3-SNAPSHOT">
+<meta name="generator" content="Hugo 0.49 with theme Tranquilpeak 0.4.3-SNAPSHOT">
 <meta name="author" content="Tu Bean">
 <meta name="keywords" content="Java, Java 8, Stream, Collection">
 <meta name="description" content="Tiếp theo bài viết trước, bài viết này sẽ đi vào tìm hiểu cách sử dụng Stream trong Java.
@@ -328,7 +328,7 @@ if (!doNotTrack) {
 <p>Chúng ta thường sử dụng stream rỗng nếu muốn trả về một stream không có element khi check null collection.</p>
 
 <pre><code class="language-java">public Stream&lt;String&gt; streamOf(List&lt;String&gt; list) {
-	return list == null || list.isEmpty() ? Stream.empty() : list.stream();
+    return list == null || list.isEmpty() ? Stream.empty() : list.stream();
 }
 </code></pre>
 
@@ -442,7 +442,7 @@ Stream&lt;String&gt; streamWithCharset = Files.lines(path, Charset.forName(&quot
 <p>Có một điểm cần chú ý như đã nhắc trong bài viết trước, đó là sau khi sử dụng phép toán terminal thì stream sẽ coi như đã bị huỷ, muốn dùng lại thì phải tạo một stream mới. Ví dụ:</p>
 
 <pre><code class="language-java">Stream&lt;String&gt; stream = Stream.of(&quot;a&quot;,&quot;b&quot;, &quot;c&quot;)
-	.filter(element -&gt; element.contains(&quot;b&quot;));
+    .filter(element -&gt; element.contains(&quot;b&quot;));
 Optional&lt;String&gt; anyElement = stream.finAny();
 </code></pre>
 
@@ -454,8 +454,8 @@ Optional&lt;String&gt; anyElement = stream.finAny();
 <p>Để sửa lại đoạn code trên, ta có thể viết lại như sau:</p>
 
 <pre><code class="language-java">List&lt;String&gt; elements =
-	Stream.of(&quot;a&quot;,&quot;b&quot;,&quot;c&quot;).filter(element -&gt; element.contains(&quot;b&quot;)
-	.collect(Collector.toList());
+    Stream.of(&quot;a&quot;,&quot;b&quot;,&quot;c&quot;).filter(element -&gt; element.contains(&quot;b&quot;)
+    .collect(Collector.toList());
 Optional&lt;String&gt; anyElement = elements.stream().findAny();
 Optional&lt;String&gt; firstElement = elements.stream().findFirst();
 </code></pre>
@@ -465,16 +465,16 @@ Optional&lt;String&gt; firstElement = elements.stream().findFirst();
 <p>Để đảm bảo hiệu suất tốt nhất thì thứ tự thực thi các phép toán trong một stream pineline là điều quan trọng.</p>
 
 <pre><code class="language-java">long size = list.stream().map(element -&gt; {
-	wasCalled();
-	return element.substring(0, 3);
+    wasCalled();
+    return element.substring(0, 3);
 }).skip(2).count();
 </code></pre>
 
 <p>trong đoạn code trên, stream có 3 phần tử -&gt; method <code>map()</code> sẽ được gọi đến 3 lần. (chạy  Đổi vị trí <code>skip()</code> và <code>method</code>, phương thức <code>map()</code> sẽ chỉ phải gọi 1 lần, do đó hiệu suất hơn hẳn vì không cần phải <code>subtring()</code> 2 phần tử bị loại bỏ.</p>
 
 <pre><code class="language-java">long size = list.stream().skip(2).map(element -&gt; {
-	wasCalled();
-	return element.substring(0, 3);
+    wasCalled();
+    return element.substring(0, 3);
 }).count();
 </code></pre>
 
@@ -532,18 +532,18 @@ Integer reduce5 = list3.stream.reduce(id4, Integer::max);
 
 <pre><code class="language-Java">List&lt;Person&gt; people = new ArrayList&lt;&gt;();
 String result = people.stream()
-	.filter(p -&gt; p.getAge() &gt; 20)
-	.map(Person::getLastname)
-	.collect(Collectors.joining(&quot;,&quot;));
+    .filter(p -&gt; p.getAge() &gt; 20)
+    .map(Person::getLastname)
+    .collect(Collectors.joining(&quot;,&quot;));
 
 List&lt;String&gt; list = people.stream()
-	.filter(p -&gt; p.getAge() &gt; 20)
-	.map(Person::getLastname)
-	.collect(Collectors.toList());
+    .filter(p -&gt; p.getAge() &gt; 20)
+    .map(Person::getLastname)
+    .collect(Collectors.toList());
 
 Map&lt;Integer, List&lt;Person&gt;&gt; map = people.stream()
-	.filter(p -&gt; p.getAge() &gt; 20)
-	.collect(Collectors.groupingBy(Person::getAge));
+    .filter(p -&gt; p.getAge() &gt; 20)
+    .collect(Collectors.groupingBy(Person::getAge));
 </code></pre>
 
 <h1 id="6-mapping">6. Mapping</h1>
@@ -600,7 +600,7 @@ System.out.println(names.map(s -&gt; {
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--disabled">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2018/11/spring-boot-crud-app/" data-tooltip="[Spring Boot] Dựng app CRUD đơn giản bằng Spring Boot &#43; Thymeleaf trên Intelij">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">Tiếp</span>
@@ -686,7 +686,7 @@ System.out.println(names.map(s -&gt; {
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--disabled">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2018/11/spring-boot-crud-app/" data-tooltip="[Spring Boot] Dựng app CRUD đơn giản bằng Spring Boot &#43; Thymeleaf trên Intelij">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">Tiếp</span>
@@ -827,6 +827,23 @@ System.out.println(names.map(s -&gt; {
           <div class="media">
             
             <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/11/spring-boot-crud-app/">
+                <h3 class="media-heading">[Spring Boot] Dựng app CRUD đơn giản bằng Spring Boot &#43; Thymeleaf trên Intelij</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Để remind kiến thức cũng như tổng kết khi mới bắt đầu học một công nghệ mới, mình thường tạo một app đơn giản có đủ các thao tác thêm, xóa, sửa (CRUD). Bài viết này là một tutorial dạng cơ bản nhất khi học về Spring, sử dụng các công nghệ sau: - Spring Boot: để khởi tạo và cấu hình ứng dụng một cách nhanh chóng. - Spring MVC: để xây dựng app.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
               <a class="link-unstyled" href="https://tubean.github.io/2018/11/java-stream-part2/">
                 <h3 class="media-heading">[Java 8] Stream trong Java 8 (Phần 2)</h3>
               </a>
@@ -936,7 +953,7 @@ System.out.println(names.map(s -&gt; {
          data-message-zero="không tìm thấy kết quả"
          data-message-one="tìm thấy 1 kết quả "
          data-message-other="tìm thấy {n} kết quả">
-         6 posts found
+         7 posts found
       </p>
     </div>
   </div>

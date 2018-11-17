@@ -6,10 +6,19 @@
     <description>Recent content on Bean&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>vi</language>
-    <lastBuildDate>Mon, 12 Nov 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 17 Nov 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://tubean.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>[Spring Boot] Dựng app CRUD đơn giản bằng Spring Boot &#43; Thymeleaf trên Intelij</title>
+      <link>https://tubean.github.io/2018/11/spring-boot-crud-app/</link>
+      <pubDate>Sat, 17 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://tubean.github.io/2018/11/spring-boot-crud-app/</guid>
+      <description>Để remind kiến thức cũng như tổng kết khi mới bắt đầu học một công nghệ mới, mình thường tạo một app đơn giản có đủ các thao tác thêm, xóa, sửa (CRUD). Bài viết này là một tutorial dạng cơ bản nhất khi học về Spring, sử dụng các công nghệ sau: - Spring Boot: để khởi tạo và cấu hình ứng dụng một cách nhanh chóng. - Spring MVC: để xây dựng app.</description>
+    </item>
     
     <item>
       <title>[Java 8] Stream trong Java 8 (Phần 2)</title>
