@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.49 with theme Tranquilpeak 0.4.3-SNAPSHOT">
+<meta name="generator" content="Hugo 0.50 with theme Tranquilpeak 0.4.3-SNAPSHOT">
 <meta name="author" content="Tu Bean">
 <meta name="keywords" content="Hugo, Go, Blog, Github, Setup">
 <meta name="description" content="Bên cạnh các dịch vụ support người dùng tạo các trang blog cá nhân như blogger, wordpress,&hellip; thì các dịch vụ hosting như github, bitbucket,&hellip; cũng đã cho phép chúng ta xây dựng các trang blog trên chính tên miền của họ. Phổ biến hiện nay là các trang miền github.io được xây dựng trên nền tảng Jekyll. Tuy nhiên Jekyll không phải là duy nhất và cũng có những nhược điểm của riêng nó.">
@@ -349,9 +349,9 @@ Các bạn nhớ chọn xong thì xem hướng dẫn sử dụng để biết th
 <p>Hugo sẽ tự động tạo các file cần thiết. Việc tiếp theo của chúng ta là thêm template vào giúp nó. Giả sử như bạn sử dụng theme <a href="https://themes.gohugo.io/gohugo-theme-ananke/">Ananke</a> thì bạn sẽ vào trang theme đó, chọn download -&gt; trình duyệt tự động chuyển đến repository của theme trên github. Copy link http và sửa đoạn code sau theo theme của bạn:</p>
 
 <pre><code class="language-terminal"> # Tạo submodule trong thư mục themes và đặt tên là ananke
-    git submodule add https://github.com/budparr/gohugo-theme-ananke.git    themes/ananke;\
+	git submodule add https://github.com/budparr/gohugo-theme-ananke.git 	themes/ananke;\
  # Sửa file config.toml: thêm dòng 'theme = &quot;ananke&quot; để chỉ thư mục ananke chứa theme
-    echo  'theme = &quot;ananke&quot;' &gt;&gt; config.toml
+	echo  'theme = &quot;ananke&quot;' &gt;&gt; config.toml
 </code></pre>
 
 <p>Mỗi loại theme đều có phần config file <code>config.toml</code> cơ bản nằm trong phần <code>example</code> của nó. Các bạn nên copy toàn bộ nội dung trong file <code>config.toml</code> của nó rồi paste vào file <code>config.toml</code> của mình. Nhớ sửa lại dòng <code>theme= &lt;tên folder chứa theme bạn clone về&gt;</code>.</p>
@@ -649,6 +649,24 @@ Cuối cùng là commit và push hết lên github thôi  😆
           <div class="media">
             
             <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/11/magical-1000-vs-100/">
+                <h3 class="media-heading">[Magical Java] Tại sao 1000 == 1000 là sai, nhưng 100 == 100 lại đúng?</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Cùng xem đoạn code sau và dự đoán kết quá:
+Integer a = 1000, b = 1000; System.out.println(a == b);//1 Integer c = 100, d = 100; System.out.println(c == d);//2  Nếu các bạn đưa ra đáp án là false, false thì xin chúc mừng, các bạn nắm lý thuyết rất tốt. Ở đây chúng ta đang so sánh 2 object với nhau, và khi dùng toán tử &ldquo;==&rdquo; thì kết quả sẽ trả về false nếu 2 tham chiếu không cùng trỏ đến cùng một đối tượng.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
               <a class="link-unstyled" href="https://tubean.github.io/2018/11/spring-boot-crud-app/">
                 <h3 class="media-heading">[Spring Boot] Dựng app CRUD đơn giản bằng Spring Boot &#43; Thymeleaf trên Intelij</h3>
               </a>
@@ -657,7 +675,8 @@ Cuối cùng là commit và push hết lên github thôi  😆
                   Nov 11, 2018
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather">Để remind kiến thức cũng như tổng kết khi mới bắt đầu học một công nghệ mới, mình thường tạo một app đơn giản có đủ các thao tác thêm, xóa, sửa (CRUD). Bài viết này là một tutorial dạng cơ bản nhất khi học về Spring, sử dụng các công nghệ sau: - Spring Boot: để khởi tạo và cấu hình ứng dụng một cách nhanh chóng. - Spring MVC: để xây dựng app.</div>
+              <div class="media-content hide-xs font-merryweather">Để remind kiến thức cũng như tổng kết khi mới bắt đầu học một công nghệ mới, mình thường tạo một app đơn giản có đủ các thao tác thêm, xóa, sửa (CRUD). Bài viết này là một tutorial dạng cơ bản nhất khi học về Spring, sử dụng các công nghệ sau:
+ Spring Boot: để khởi tạo và cấu hình ứng dụng một cách nhanh chóng. Spring MVC: để xây dựng app.</div>
             </div>
             <div style="clear:both;"></div>
             <hr>
@@ -775,7 +794,7 @@ Cuối cùng là commit và push hết lên github thôi  😆
          data-message-zero="không tìm thấy kết quả"
          data-message-one="tìm thấy 1 kết quả "
          data-message-other="tìm thấy {n} kết quả">
-         7 posts found
+         8 posts found
       </p>
     </div>
   </div>

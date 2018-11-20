@@ -17,7 +17,8 @@
       <pubDate>Sat, 17 Nov 2018 00:00:00 +0000</pubDate>
       
       <guid>https://tubean.github.io/2018/11/spring-boot-crud-app/</guid>
-      <description>Để remind kiến thức cũng như tổng kết khi mới bắt đầu học một công nghệ mới, mình thường tạo một app đơn giản có đủ các thao tác thêm, xóa, sửa (CRUD). Bài viết này là một tutorial dạng cơ bản nhất khi học về Spring, sử dụng các công nghệ sau: - Spring Boot: để khởi tạo và cấu hình ứng dụng một cách nhanh chóng. - Spring MVC: để xây dựng app.</description>
+      <description>Để remind kiến thức cũng như tổng kết khi mới bắt đầu học một công nghệ mới, mình thường tạo một app đơn giản có đủ các thao tác thêm, xóa, sửa (CRUD). Bài viết này là một tutorial dạng cơ bản nhất khi học về Spring, sử dụng các công nghệ sau:
+ Spring Boot: để khởi tạo và cấu hình ứng dụng một cách nhanh chóng. Spring MVC: để xây dựng app.</description>
     </item>
     
     <item>

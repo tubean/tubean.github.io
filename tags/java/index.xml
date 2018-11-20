@@ -6,10 +6,20 @@
     <description>Recent content in Java on Bean&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>vi</language>
-    <lastBuildDate>Mon, 12 Nov 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 20 Nov 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://tubean.github.io/tags/java/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>[Magical Java] Tại sao 1000 == 1000 là sai, nhưng 100 == 100 lại đúng?</title>
+      <link>https://tubean.github.io/2018/11/magical-1000-vs-100/</link>
+      <pubDate>Tue, 20 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://tubean.github.io/2018/11/magical-1000-vs-100/</guid>
+      <description>Cùng xem đoạn code sau và dự đoán kết quá:
+Integer a = 1000, b = 1000; System.out.println(a == b);//1 Integer c = 100, d = 100; System.out.println(c == d);//2  Nếu các bạn đưa ra đáp án là false, false thì xin chúc mừng, các bạn nắm lý thuyết rất tốt. Ở đây chúng ta đang so sánh 2 object với nhau, và khi dùng toán tử &amp;ldquo;==&amp;rdquo; thì kết quả sẽ trả về false nếu 2 tham chiếu không cùng trỏ đến cùng một đối tượng.</description>
+    </item>
     
     <item>
       <title>[Java 8] Stream trong Java 8 (Phần 2)</title>

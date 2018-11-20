@@ -7,20 +7,48 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="generator" content="Hugo 0.50 with theme Tranquilpeak 0.4.3-SNAPSHOT">
 <meta name="author" content="Tu Bean">
-<meta name="keywords" content="">
-<meta name="description" content="Bean&#39;s blog">
+<meta name="keywords" content="Java, Cache, Integer, Magic">
+<meta name="description" content="Cùng xem đoạn code sau và dự đoán kết quá:
+Integer a = 1000, b = 1000; System.out.println(a == b);//1 Integer c = 100, d = 100; System.out.println(c == d);//2  Nếu các bạn đưa ra đáp án là false, false thì xin chúc mừng, các bạn nắm lý thuyết rất tốt. Ở đây chúng ta đang so sánh 2 object với nhau, và khi dùng toán tử &ldquo;==&rdquo; thì kết quả sẽ trả về false nếu 2 tham chiếu không cùng trỏ đến cùng một đối tượng.">
 
 
-<meta property="og:description" content="Bean&#39;s blog">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Hugo">
-<meta name="twitter:title" content="Hugo">
-<meta property="og:url" content="https://tubean.github.io/categories/hugo/">
-<meta property="twitter:url" content="https://tubean.github.io/categories/hugo/">
+<meta property="og:description" content="Cùng xem đoạn code sau và dự đoán kết quá:
+Integer a = 1000, b = 1000; System.out.println(a == b);//1 Integer c = 100, d = 100; System.out.println(c == d);//2  Nếu các bạn đưa ra đáp án là false, false thì xin chúc mừng, các bạn nắm lý thuyết rất tốt. Ở đây chúng ta đang so sánh 2 object với nhau, và khi dùng toán tử &ldquo;==&rdquo; thì kết quả sẽ trả về false nếu 2 tham chiếu không cùng trỏ đến cùng một đối tượng.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Magical Java] Tại sao 1000 == 1000 là sai, nhưng 100 == 100 lại đúng?">
+<meta name="twitter:title" content="[Magical Java] Tại sao 1000 == 1000 là sai, nhưng 100 == 100 lại đúng?">
+<meta property="og:url" content="https://tubean.github.io/2018/11/magical-1000-vs-100/">
+<meta property="twitter:url" content="https://tubean.github.io/2018/11/magical-1000-vs-100/">
 <meta property="og:site_name" content="Bean&#39;s blog">
-<meta property="og:description" content="Bean&#39;s blog">
-<meta name="twitter:description" content="Bean&#39;s blog">
+<meta property="og:description" content="Cùng xem đoạn code sau và dự đoán kết quá:
+Integer a = 1000, b = 1000; System.out.println(a == b);//1 Integer c = 100, d = 100; System.out.println(c == d);//2  Nếu các bạn đưa ra đáp án là false, false thì xin chúc mừng, các bạn nắm lý thuyết rất tốt. Ở đây chúng ta đang so sánh 2 object với nhau, và khi dùng toán tử &ldquo;==&rdquo; thì kết quả sẽ trả về false nếu 2 tham chiếu không cùng trỏ đến cùng một đối tượng.">
+<meta name="twitter:description" content="Cùng xem đoạn code sau và dự đoán kết quá:
+Integer a = 1000, b = 1000; System.out.println(a == b);//1 Integer c = 100, d = 100; System.out.println(c == d);//2  Nếu các bạn đưa ra đáp án là false, false thì xin chúc mừng, các bạn nắm lý thuyết rất tốt. Ở đây chúng ta đang so sánh 2 object với nhau, và khi dùng toán tử &ldquo;==&rdquo; thì kết quả sẽ trả về false nếu 2 tham chiếu không cùng trỏ đến cùng một đối tượng.">
 <meta property="og:locale" content="vi">
+
+  
+    <meta property="article:published_time" content="2018-11-20T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2018-11-20T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="Java">
+    
+      <meta property="article:section" content="Magical Java">
+    
+  
+  
+    
+      <meta property="article:tag" content="Java">
+    
+      <meta property="article:tag" content="Tutorial">
+    
+      <meta property="article:tag" content="Trick">
+    
+  
 
 
 <meta name="twitter:card" content="summary">
@@ -31,6 +59,12 @@
 
 
 
+  <meta property="og:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1542691153/java_logo.png">
+  <meta property="twitter:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1542691153/java_logo.png">
+
+
+  <meta property="og:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1541273502/Black_flag.svg.png">
+  <meta property="twitter:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1541273502/Black_flag.svg.png">
 
 
 
@@ -39,16 +73,14 @@
   <meta property="twitter:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/c_scale,w_1836/v1540914499/C360_2016-03-22-17-45-21-487.jpg">
 
 
-    <title>Hugo</title>
+    <title>[Magical Java] Tại sao 1000 == 1000 là sai, nhưng 100 == 100 lại đúng?</title>
 
     <link rel="icon" href="https://tubean.github.io/favicon/flappybird.png">
     
-      <link rel="alternate" type="application/rss+xml" title="RSS" href="https://tubean.github.io/categories/hugo/index.xml">
-    
 
     
 
-    <link rel="canonical" href="https://tubean.github.io/categories/hugo/">
+    <link rel="canonical" href="https://tubean.github.io/2018/11/magical-1000-vs-100/">
 
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
@@ -89,7 +121,7 @@ if (!doNotTrack) {
 
   <body>
     <div id="blog">
-      <header id="header" data-behavior="2">
+      <header id="header" data-behavior="5">
   <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
   <div class="header-title">
     <a class="header-title-link" href="https://tubean.github.io/">Bean&#39;s blog</a>
@@ -109,7 +141,7 @@ if (!doNotTrack) {
   
 </header>
 
-      <nav id="sidebar" data-behavior="2">
+      <nav id="sidebar" data-behavior="5">
   <div class="sidebar-container">
     
       <div class="sidebar-profile">
@@ -228,40 +260,24 @@ if (!doNotTrack) {
 </nav>
 
       
-        
-
-      
-      <div id="main" data-behavior="2"
-        class="
-               hasCoverMetaIn
-               ">
-        
-          <section class="postShorten-group main-content-wrap">
-            
-            
-              
-  
+  <div class="post-header-cover
+              text-center
+              "
+       style="background-image:url('https://res.cloudinary.com/deop9ytsv/image/upload/v1541273502/Black_flag.svg.png')"
+       data-behavior="5">
     
+      <div class="post-header main-content-wrap text-center">
   
-
-
+    <h1 class="post-title" itemprop="headline">
+      [Magical Java] Tại sao 1000 == 1000 là sai, nhưng 100 == 100 lại đúng?
+    </h1>
   
-
-<article class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="https://tubean.github.io/2018/11/blog-with-hugo/">
-          [Hugo] Hướng dẫn xây dựng blog cá nhân bằng Hugo &#43; Github
-        </a>
-      </h1>
-      
+  
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2018-11-04T00:00:00Z">
+      <time itemprop="datePublished" datetime="2018-11-20T00:00:00Z">
         
-  tháng 11 4, 2018
+  tháng 11 20, 2018
 
       </time>
     
@@ -270,39 +286,258 @@ if (!doNotTrack) {
   
     <span>mục</span>
     
-      <a class="category-link" href="https://tubean.github.io/categories/hugo">Hugo</a>, 
+      <a class="category-link" href="https://tubean.github.io/categories/java">Java</a>, 
     
-      <a class="category-link" href="https://tubean.github.io/categories/setup">Setup</a>
+      <a class="category-link" href="https://tubean.github.io/categories/magical-java">Magical Java</a>
     
   
 
   </div>
 
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      
-        Bên cạnh các dịch vụ support người dùng tạo các trang blog cá nhân như blogger, wordpress,&hellip; thì các dịch vụ hosting như github, bitbucket,&hellip; cũng đã cho phép chúng ta xây dựng các trang blog trên chính tên miền của họ. Phổ biến hiện nay là các trang miền github.io được xây dựng trên nền tảng Jekyll. Tuy nhiên Jekyll không phải là duy nhất và cũng có những nhược điểm của riêng nó.
-      
-      <p>
-        <a href="https://tubean.github.io/2018/11/blog-with-hugo/" class="postShorten-excerpt_link link">Đọc tiếp...</a>
-        
-      </p>
-    </div>
+</div>
+    
   </div>
-  
-    <a href="https://tubean.github.io/2018/11/blog-with-hugo/">
-      <div class="postShorten-thumbnailimg">
-        <img alt="" itemprop="image" src="https://res.cloudinary.com/deop9ytsv/image/upload/v1541267744/Hugo-designstyle-friday-m.png"/>
-      </div>
-    </a>
-  
-</article>
 
-            
-            
 
-          </section>
+      <div id="main" data-behavior="5"
+        class="hasCover
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              
+
+<p>Cùng xem đoạn code sau và dự đoán kết quá:</p>
+
+<pre><code class="language-java">Integer a = 1000, b = 1000;
+
+ System.out.println(a == b);//1
+
+ Integer c = 100, d = 100;
+
+ System.out.println(c == d);//2
+</code></pre>
+
+<p>Nếu các bạn đưa ra đáp án là <strong>false, false</strong> thì xin chúc mừng, các bạn nắm lý thuyết rất tốt. Ở đây chúng ta đang so sánh 2 object với nhau, và khi dùng toán tử &ldquo;==&rdquo; thì kết quả sẽ trả về <em>false</em> nếu 2 tham chiếu không cùng trỏ đến cùng một đối tượng. Tuy nhiên nếu bạn chạy thử đoạn code trên thì thực tế nó không được như dự đoán làm. Kết quả sẽ trả về là :</p>
+
+<pre><code class="language-java">false
+true
+</code></pre>
+
+<p>Suy luận một chút, nếu ở bước so sánh đầu tiên đúng như dự đoán, tức là <em>a</em> và <em>b</em> đang trỏ đến 2 object khác nhau. Vậy thì ở bước thứ 2, phải chăng cả <em>c</em> và <em>d</em> đang trỏ đến cùng một object?</p>
+
+<p>Muốn hiểu rõ vấn đề này, chúng ta cần tìm kiếm thêm thông tin trong lớp <code>Integer.java</code>.  Trong class này, hãy để ý đến một lớp <em>private static</em> trong nó, đó là <code>IntegerCache</code>. Theo như mô tả thì nhiệm vụ của class này là:</p>
+
+<blockquote>
+<p>Cache to support the object identity semantics of autoboxing for values between  -128 and 127 (inclusive) as required by JLS.</p>
+</blockquote>
+
+<p>Điều đó có nghĩ là tất các số nguyên từ -128 đến 127 sẽ được lưu trong cache, và khi chúng ta khai báo:</p>
+
+<pre><code class="language-java">Integer c = 100;
+</code></pre>
+
+<p>thì thực tế nó sẽ như thế này:</p>
+
+<pre><code class="language-java">Integer c = Integer.valueOf(100);
+</code></pre>
+
+<p>Bây giờ nhìn vào phương thức <code>valueOf()</code>:</p>
+
+<pre><code class="language-java">public static Integer valueOf(int i) {  
+    if (i &gt;= IntegerCache.low &amp;&amp; i &lt;= IntegerCache.high)  
+        return IntegerCache.cache[i + (-IntegerCache.low)];  
+    return new Integer(i);  
+}
+</code></pre>
+
+<p>Như vậy là tất cả các số nguyên Integer mà nằm trong vùng cache thì sẽ trả về cùng một đối tượng. Và đó là lí do tại sao biểu thức số #2 lại trả về <code>true</code>.</p>
+
+<p>Câu hỏi đặt ra là, tại sao chúng ta lại phải <code>cache</code>? Câu trả lời là do những số trong khoảng cache này được sử dụng nhiều hơn các số integer khác, do đó việc tạo ra một vùng cache sẽ là một chiến thuật tốt để cân bằng bộ nhớ. Bởi nếu không cache thì việc sử dụng nhiều lần cùng một số integer là không tốt, và nếu cache toàn bộ thì bộ nhớ phải sử dụng là quá nhiều. Vì vậy chỉ cache một khoảng data được sử dụng nhiều sẽ là hợp lý.</p>
+
+<p>Dựa vào lý thuyết bên trên, chúng ta có thể lợi dụng để tạo ra một số tính năng <em>dị thường</em>:</p>
+
+<pre><code class="language-java">public static void main(String[] args) throws NoSuchFieldException, IllegalAccessException {
+
+ Class cache = Integer.class.getDeclaredClasses()[0]; //1
+
+ Field myCache = cache.getDeclaredField(&quot;cache&quot;); //2
+
+ myCache.setAccessible(true);//3
+
+ Integer[] newCache = (Integer[]) myCache.get(cache); //4
+
+ newCache[132] = newCache[133]; //5
+
+ int a = 2;
+
+ int b = a + a;
+
+ System.out.printf(&quot;%d + %d = %d&quot;, a, a, b); //
+
+ }
+</code></pre>
+
+<p>Chạy đoạn code trên và bạn sẽ nhận được kết quả như sau:</p>
+
+<pre><code>2 + 2 = 5
+</code></pre>
+
+<p>Giải thích đoạn code trên như sau:</p>
+
+<p>#1. Sử dụng reflection API để lấy ra class được khai báo bên trong class <code>Integer</code>. Điều đó có nghĩa là reference <code>cache</code> trỏ đến chính là class <code>IntegerCache</code>. Nội dung class này như sau:</p>
+
+<pre><code class="language-java">private static class IntegerCache {  
+    static final int low = -128;  
+    static final int high;  
+    static final Integer cache[];  
+
+    static {  
+        // high value may be configured by property  
+  int h = 127;  
+        String integerCacheHighPropValue =  
+            sun.misc.VM.getSavedProperty(&quot;java.lang.Integer.IntegerCache.high&quot;);  
+        if (integerCacheHighPropValue != null) {  
+            try {  
+                int i = parseInt(integerCacheHighPropValue);  
+                i = Math.max(i, 127);  
+                // Maximum array size is Integer.MAX_VALUE  
+  h = Math.min(i, Integer.MAX_VALUE - (-low) -1);  
+            } catch( NumberFormatException nfe) {  
+                // If the property cannot be parsed into an int, ignore it.  
+  }  
+        }  
+        high = h;  
+
+        cache = new Integer[(high - low) + 1];  
+        int j = low;  
+        for(int k = 0; k &lt; cache.length; k++)  
+            cache[k] = new Integer(j++);  
+
+        // range [-128, 127] must be interned (JLS7 5.1.7)  
+  assert IntegerCache.high &gt;= 127;  
+    }  
+
+    private IntegerCache() {}  
+}
+</code></pre>
+
+<p>#2. Tạo một Field để trỏ đến field <code>Integer cache[]</code> trong class <code>IntegerCache</code>,  đặt tên là <code>myCache</code>.</p>
+
+<p>#3. Set quyền truy cập cho field <code>myCache</code>.</p>
+
+<p>#4. Lấy ra mảng các số integer được cache, chính là mảng gồm các số từ -128 đến 127.</p>
+
+<p>#5. Thay đổi giá trị của phần tử có index = 132 (ở đây chính là phần tử có giá trị bằng 4) bằng phần tử có index = 133 (có giá trị bằng 5).</p>
+
+<p>Như vậy, khi thực hiện phép cộng 2 + 2 thì kết quả được trả về là phần tử có index = 132 trong mảng cache, và có giá trị đã được sửa đổi là bằng 5.</p>
+
+<h3 id="tham-khảo">Tham khảo:</h3>
+
+<p><a href="https://dzone.com/articles/why-1000-1000-returns-false-but-100-100-returns-tr">https://dzone.com/articles/why-1000-1000-returns-false-but-100-100-returns-tr</a></p>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">THẺ ĐÁNH DẤU</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/java/">Java</a>
+
+  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/tutorial/">Tutorial</a>
+
+  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/trick/">Trick</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">Tiếp</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2018/11/spring-boot-crud-app/" data-tooltip="[Spring Boot] Dựng app CRUD đơn giản bằng Spring Boot &#43; Thymeleaf trên Intelij">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">Trước</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
         
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://tubean.github.io/2018/11/magical-1000-vs-100/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://tubean.github.io/2018/11/magical-1000-vs-100/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://tubean.github.io/2018/11/magical-1000-vs-100/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
     &copy; 2018 <a href="https://bitbucket.org/tubean/">Do Anh Tu</a>. All Rights Reserved
@@ -310,6 +545,102 @@ if (!doNotTrack) {
 </footer>
 
       </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">Tiếp</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2018/11/spring-boot-crud-app/" data-tooltip="[Spring Boot] Dựng app CRUD đơn giản bằng Spring Boot &#43; Thymeleaf trên Intelij">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">Trước</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://tubean.github.io/2018/11/magical-1000-vs-100/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://tubean.github.io/2018/11/magical-1000-vs-100/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://tubean.github.io/2018/11/magical-1000-vs-100/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ftubean.github.io%2F2018%2F11%2Fmagical-1000-vs-100%2F">
+          <i class="fa fa-facebook-official"></i><span>Chia sẻ với Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Ftubean.github.io%2F2018%2F11%2Fmagical-1000-vs-100%2F">
+          <i class="fa fa-twitter"></i><span>Chia sẻ với Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Ftubean.github.io%2F2018%2F11%2Fmagical-1000-vs-100%2F">
+          <i class="fa fa-google-plus"></i><span>Chia sẻ với Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
     </div>
     
     <div id="about">
@@ -570,6 +901,32 @@ $(document).ready(function() {
 });
 </script>
 
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'https:\/\/tubean.github.io\/2018\/11\/magical-1000-vs-100\/';
+          
+            this.page.identifier = '\/2018\/11\/magical-1000-vs-100\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'beans-blog';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
 
 
 
