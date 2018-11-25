@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Adapter on Bean&#39;s blog</title>
+    <link>https://tubean.github.io/tags/adapter/</link>
+    <description>Recent content in Adapter on Bean&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>vi</language>
+    <lastBuildDate>Sun, 25 Nov 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://tubean.github.io/tags/adapter/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>[Design Patterns] Adapter Design Pattern</title>
+      <link>https://tubean.github.io/2018/11/adapter-design-patterns/</link>
+      <pubDate>Sun, 25 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://tubean.github.io/2018/11/adapter-design-patterns/</guid>
+      <description>Chuyện kể rằng bạn Bean là một developer và đang phát triển một website e-commerce. Trang web này cho phép người dùng mua và thanh toán online bằng cách dùng một cổng thanh toán của bên thứ 3. Mọi thứ đều nhẹ nhàng như cân đường hộp sữa, cho đến một ngày mưa gió bão bùng&amp;hellip; Vào cái ngày định mệnh ấy, PM của bạn Bean thông báo rằng sắp tới website sẽ thay đổi cổng thanh toán và bạn Bean sẽ phải chuẩn bị cho thay đổi này.</description>
+    </item>
+    
+  </channel>
+</rss>

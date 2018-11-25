@@ -11,6 +11,15 @@
     
     
     <item>
+      <title>Design Patterns</title>
+      <link>https://tubean.github.io/categories/design-patterns/</link>
+      <pubDate>Sun, 25 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://tubean.github.io/categories/design-patterns/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Hello World</title>
       <link>https://tubean.github.io/categories/hello-world/</link>
       <pubDate>Wed, 31 Oct 2018 00:00:00 +0000</pubDate>
@@ -31,7 +40,7 @@
     <item>
       <title>Java</title>
       <link>https://tubean.github.io/categories/java/</link>
-      <pubDate>Tue, 20 Nov 2018 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 25 Nov 2018 00:00:00 +0000</pubDate>
       
       <guid>https://tubean.github.io/categories/java/</guid>
       <description></description>

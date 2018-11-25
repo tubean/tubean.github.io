@@ -7,48 +7,42 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="generator" content="Hugo 0.49 with theme Tranquilpeak 0.4.3-SNAPSHOT">
 <meta name="author" content="Tu Bean">
-<meta name="keywords" content="Java, Java 8, Stream, Collection">
-<meta name="description" content="Tiếp theo bài viết trước, bài viết này sẽ đi vào tìm hiểu cách sử dụng Stream trong Java.
-1. Tạo một stream Có nhiều cách tạo một stream instance từ các source khác nhau. Mỗi khi được tạo thì instance sẽ không làm thay đổi source cũ, vì vậy chúng ta có thể thoải mái tạo nhiều instance stream khác nhau từ một source.
- Stream rỗng (Empty stream)  Khi muốn tạo một stream rỗng, ta dùng method empty():">
+<meta name="keywords" content="java, design, pattern, adapter">
+<meta name="description" content="Chuyện kể rằng bạn Bean là một developer và đang phát triển một website e-commerce. Trang web này cho phép người dùng mua và thanh toán online bằng cách dùng một cổng thanh toán của bên thứ 3. Mọi thứ đều nhẹ nhàng như cân đường hộp sữa, cho đến một ngày mưa gió bão bùng&hellip; Vào cái ngày định mệnh ấy, PM của bạn Bean thông báo rằng sắp tới website sẽ thay đổi cổng thanh toán và bạn Bean sẽ phải chuẩn bị cho thay đổi này.">
 
 
-<meta property="og:description" content="Tiếp theo bài viết trước, bài viết này sẽ đi vào tìm hiểu cách sử dụng Stream trong Java.
-1. Tạo một stream Có nhiều cách tạo một stream instance từ các source khác nhau. Mỗi khi được tạo thì instance sẽ không làm thay đổi source cũ, vì vậy chúng ta có thể thoải mái tạo nhiều instance stream khác nhau từ một source.
- Stream rỗng (Empty stream)  Khi muốn tạo một stream rỗng, ta dùng method empty():">
+<meta property="og:description" content="Chuyện kể rằng bạn Bean là một developer và đang phát triển một website e-commerce. Trang web này cho phép người dùng mua và thanh toán online bằng cách dùng một cổng thanh toán của bên thứ 3. Mọi thứ đều nhẹ nhàng như cân đường hộp sữa, cho đến một ngày mưa gió bão bùng&hellip; Vào cái ngày định mệnh ấy, PM của bạn Bean thông báo rằng sắp tới website sẽ thay đổi cổng thanh toán và bạn Bean sẽ phải chuẩn bị cho thay đổi này.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[Java 8] Stream trong Java 8 (Phần 2)">
-<meta name="twitter:title" content="[Java 8] Stream trong Java 8 (Phần 2)">
-<meta property="og:url" content="https://tubean.github.io/2018/11/java-stream-part2/">
-<meta property="twitter:url" content="https://tubean.github.io/2018/11/java-stream-part2/">
+<meta property="og:title" content="[Design Patterns] Adapter Design Pattern">
+<meta name="twitter:title" content="[Design Patterns] Adapter Design Pattern">
+<meta property="og:url" content="https://tubean.github.io/2018/11/adapter-design-patterns/">
+<meta property="twitter:url" content="https://tubean.github.io/2018/11/adapter-design-patterns/">
 <meta property="og:site_name" content="Bean&#39;s blog">
-<meta property="og:description" content="Tiếp theo bài viết trước, bài viết này sẽ đi vào tìm hiểu cách sử dụng Stream trong Java.
-1. Tạo một stream Có nhiều cách tạo một stream instance từ các source khác nhau. Mỗi khi được tạo thì instance sẽ không làm thay đổi source cũ, vì vậy chúng ta có thể thoải mái tạo nhiều instance stream khác nhau từ một source.
- Stream rỗng (Empty stream)  Khi muốn tạo một stream rỗng, ta dùng method empty():">
-<meta name="twitter:description" content="Tiếp theo bài viết trước, bài viết này sẽ đi vào tìm hiểu cách sử dụng Stream trong Java.
-1. Tạo một stream Có nhiều cách tạo một stream instance từ các source khác nhau. Mỗi khi được tạo thì instance sẽ không làm thay đổi source cũ, vì vậy chúng ta có thể thoải mái tạo nhiều instance stream khác nhau từ một source.
- Stream rỗng (Empty stream)  Khi muốn tạo một stream rỗng, ta dùng method empty():">
+<meta property="og:description" content="Chuyện kể rằng bạn Bean là một developer và đang phát triển một website e-commerce. Trang web này cho phép người dùng mua và thanh toán online bằng cách dùng một cổng thanh toán của bên thứ 3. Mọi thứ đều nhẹ nhàng như cân đường hộp sữa, cho đến một ngày mưa gió bão bùng&hellip; Vào cái ngày định mệnh ấy, PM của bạn Bean thông báo rằng sắp tới website sẽ thay đổi cổng thanh toán và bạn Bean sẽ phải chuẩn bị cho thay đổi này.">
+<meta name="twitter:description" content="Chuyện kể rằng bạn Bean là một developer và đang phát triển một website e-commerce. Trang web này cho phép người dùng mua và thanh toán online bằng cách dùng một cổng thanh toán của bên thứ 3. Mọi thứ đều nhẹ nhàng như cân đường hộp sữa, cho đến một ngày mưa gió bão bùng&hellip; Vào cái ngày định mệnh ấy, PM của bạn Bean thông báo rằng sắp tới website sẽ thay đổi cổng thanh toán và bạn Bean sẽ phải chuẩn bị cho thay đổi này.">
 <meta property="og:locale" content="vi">
 
   
-    <meta property="article:published_time" content="2018-11-12T00:00:00">
+    <meta property="article:published_time" content="2018-11-25T00:00:00">
   
   
-    <meta property="article:modified_time" content="2018-11-12T00:00:00">
+    <meta property="article:modified_time" content="2018-11-25T00:00:00">
   
   
   
     
       <meta property="article:section" content="Java">
     
+      <meta property="article:section" content="Design Patterns">
+    
   
   
     
       <meta property="article:tag" content="Java">
     
-      <meta property="article:tag" content="Java 8">
+      <meta property="article:tag" content="Design Pattern">
     
-      <meta property="article:tag" content="Stream">
+      <meta property="article:tag" content="Adapter">
     
   
 
@@ -61,8 +55,8 @@
 
 
 
-  <meta property="og:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1541576734/eer0Pfq.png">
-  <meta property="twitter:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1541576734/eer0Pfq.png">
+  <meta property="og:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1543156961/design-pattern-logo.jpg">
+  <meta property="twitter:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1543156961/design-pattern-logo.jpg">
 
 
   <meta property="og:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1541273502/Black_flag.svg.png">
@@ -75,14 +69,14 @@
   <meta property="twitter:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/c_scale,w_1836/v1540914499/C360_2016-03-22-17-45-21-487.jpg">
 
 
-    <title>[Java 8] Stream trong Java 8 (Phần 2)</title>
+    <title>[Design Patterns] Adapter Design Pattern</title>
 
     <link rel="icon" href="https://tubean.github.io/favicon/flappybird.png">
     
 
     
 
-    <link rel="canonical" href="https://tubean.github.io/2018/11/java-stream-part2/">
+    <link rel="canonical" href="https://tubean.github.io/2018/11/adapter-design-patterns/">
 
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
@@ -271,15 +265,15 @@ if (!doNotTrack) {
       <div class="post-header main-content-wrap text-center">
   
     <h1 class="post-title" itemprop="headline">
-      [Java 8] Stream trong Java 8 (Phần 2)
+      [Design Patterns] Adapter Design Pattern
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2018-11-12T00:00:00Z">
+      <time itemprop="datePublished" datetime="2018-11-25T00:00:00Z">
         
-  tháng 11 12, 2018
+  tháng 11 25, 2018
 
       </time>
     
@@ -288,7 +282,9 @@ if (!doNotTrack) {
   
     <span>mục</span>
     
-      <a class="category-link" href="https://tubean.github.io/categories/java">Java</a>
+      <a class="category-link" href="https://tubean.github.io/categories/java">Java</a>, 
+    
+      <a class="category-link" href="https://tubean.github.io/categories/design-patterns">Design Patterns</a>
     
   
 
@@ -310,267 +306,187 @@ if (!doNotTrack) {
             <div class="main-content-wrap">
               
 
-<p>Tiếp theo bài viết <a href="https://tubean.github.io/2018/11/java-stream/">trước</a>, bài viết này sẽ đi vào tìm hiểu cách sử dụng Stream trong Java.</p>
+<p>Chuyện kể rằng bạn Bean là một developer và đang phát triển một website e-commerce. Trang web này cho phép người dùng mua và thanh toán online bằng cách dùng một cổng thanh toán của bên thứ 3. Mọi thứ đều nhẹ nhàng như cân đường hộp sữa, cho đến một ngày mưa gió bão bùng&hellip;
+Vào cái ngày định mệnh ấy, PM của bạn Bean thông báo rằng sắp tới website sẽ thay đổi cổng thanh toán và bạn Bean sẽ phải chuẩn bị cho thay đổi này.
+Để dễ hình dung thì giả sử hệ thống hiện tại đang sử dụng cổng thanh toán Xpay và yêu cầu người dùng nhập các thông tin như sau:</p>
 
-<h1 id="1-tạo-một-stream">1. Tạo một stream</h1>
+<pre><code class="language-java">public interface Xpay {  
+    public String getCreditCardNo();  
+    public String getCustomerName();  
+    public String getCardExpMonth();  
+    public String getCardExpYear();  
+    public Short getCardCVVNo();  
+    public Double getAmount();  
 
-<p>Có nhiều cách tạo một <code>stream instance</code> từ các source khác nhau. Mỗi khi được tạo thì instance sẽ không làm thay đổi source cũ, vì vậy chúng ta có thể thoải mái tạo nhiều instance stream khác nhau từ một source.</p>
-
-<ul>
-<li>Stream rỗng (Empty stream)</li>
-</ul>
-
-<p>Khi muốn tạo một stream rỗng, ta dùng method <code>empty()</code>:</p>
-
-<pre><code class="language-java">Stream&lt;String&gt; streamEmpty = Stream.empty();
-</code></pre>
-
-<p>Chúng ta thường sử dụng stream rỗng nếu muốn trả về một stream không có element khi check null collection.</p>
-
-<pre><code class="language-java">public Stream&lt;String&gt; streamOf(List&lt;String&gt; list) {
-    return list == null || list.isEmpty() ? Stream.empty() : list.stream();
+    public void setCreditCardNo(String creditCardNo);  
+    public void setCustomerName(String customerName);  
+    public void setCardExpMonth(String cardExpMonth);  
+    public void setCardExpYear(String cardExpYear);  
+    public void setCardCVVNo(Short cardCVVNo);  
+    public void setAmount(Double amount);  
 }
 </code></pre>
 
-<ul>
-<li>Stream từ Collection</li>
-</ul>
+<p>Tình trạng code hiện tại:
+<img src="https://res.cloudinary.com/deop9ytsv/image/upload/v1543157770/Screenshot_3.jpg" alt="image1" /></p>
 
-<p>Stream có thể được tạo từ bất kì loại Collection nào (Collection, List, Set):</p>
+<p>Và yêu cầu hiện tại là chuyển sang một cổng thanh toán PayD mới yêu cầu các thông số sau:</p>
 
-<pre><code class="language-java">Collection&lt;String&gt; collection = Arrays.asList(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;);
-Stream&lt;String&gt; streamOfCollection = collection.stream();
+<pre><code class="language-java">public interface PayD {  
+    public String getCustCardNo();  
+    public String getCardOwnerName();  
+    public String getCardExpMonthDate();  
+    public Integer getCVVNo();  
+    public Double getTotalAmount();  
+
+    public void setCustCardNo(String custCardNo);  
+    public void setCardOwnerName(String cardOwnerName);  
+    public void setCardExpMonthDate(String cardExpMonthDate);  
+    public void setCVVNo(Integer cVVNo);  
+    public void setTotalAmount(Double totalAmount);  
+}
 </code></pre>
 
-<ul>
-<li>Stream từ Array</li>
-</ul>
+<p>Yêu cầu phát triển:
+<img src="https://res.cloudinary.com/deop9ytsv/image/upload/v1543157900/adapter2.jpg" alt="image2" /></p>
 
-<p>Array có thể là một source của Stream:</p>
+<h1 id="cách-giải-quyết">Cách giải quyết</h1>
 
-<pre><code class="language-java">Stream&lt;String&gt; streamOfArray = Stream.of(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;);
+<p>Bởi vì code hiện tại đang chạy tốt trên production nên bạn Bean không thể nào thay đổi toàn bộ source code, refactor lại chỗ nào dùng Xpay thì viết lại thành PayD. Như vậy Bean sẽ một thứ gì đó để chuyển đổi linh hoạt từ Xpay sang PayD, giống như khi bạn có một dây sạc USB-type A mà điện thoại của bạn chỉ nhận cổng USB-type C thì bạn cần mua thêm một adapter để sử dụng. Tương tự trường hợp hiện tại, bạn Bean cũng cần một adapter giúp chuyển từ cổng Xpay sang PayD.</p>
+
+<p><code>Adapter design pattern</code> là mẫu thiết kế cho phép chúng ta điều chỉnh một đối tượng có sẵn sang một đối tượng mong muốn. Đó là mẫu thiết kế hướng về sự linh hoạt sử dụng các interface khác nhau cho cùng một mục đích nào đó mà không cần chỉnh sửa trực tiếp các interface mỗi khi có yêu cầu thay đổi.
+Một adapter sẽ sử dụng đối tượng cần thay đổi (Xpay), sau đó dịch nó sang đối tượng mong muốn có (PayD).
+<img src="https://res.cloudinary.com/deop9ytsv/image/upload/v1543159903/adapter3.jpg" alt="image3" /></p>
+
+<p>Như trong trường hợp của bạn Bean, chúng ta có thể viết một adapter như sau:</p>
+
+<pre><code class="language-java">public class XpayToPayDAdapter implements PayD {  
+    private String custCardNo;  
+    private String cardOwnerName;  
+    private String cardExpMonthDate;  
+    private Integer cVVNo;  
+    private Double totalAmount;  
+
+    private final Xpay xpay;  
+
+    public XpayToPayDAdapter(Xpay xpay){  
+        this.xpay = xpay;  
+        setProp();  
+    }  
+
+    @Override  
+  public String getCustCardNo() {  
+        return custCardNo;  
+    }  
+
+    @Override  
+  public String getCardOwnerName() {  
+        return cardOwnerName;  
+    }  
+
+    @Override  
+  public String getCardExpMonthDate() {  
+        return cardExpMonthDate;  
+    }  
+
+    @Override  
+  public Integer getCVVNo() {  
+        return cVVNo;  
+    }  
+
+    @Override  
+  public Double getTotalAmount() {  
+        return totalAmount;  
+    }  
+
+    @Override  
+  public void setCustCardNo(String custCardNo) {  
+        this.custCardNo = custCardNo;  
+    }  
+
+    @Override  
+  public void setCardOwnerName(String cardOwnerName) {  
+        this.cardOwnerName = cardOwnerName;  
+    }  
+
+    @Override  
+  public void setCardExpMonthDate(String cardExpMonthDate) {  
+        this.cardExpMonthDate = cardExpMonthDate;  
+    }  
+
+    @Override  
+  public void setCVVNo(Integer cVVNo) {  
+        this.cVVNo = cVVNo;  
+    }  
+
+    @Override  
+  public void setTotalAmount(Double totalAmount) {  
+        this.totalAmount = totalAmount;  
+    }  
+
+    private void setProp(){  
+        setCardOwnerName(this.xpay.getCustomerName());  
+        setCustCardNo(this.xpay.getCreditCardNo());  
+        setCardExpMonthDate(this.xpay.getCardExpMonth()+&quot;/&quot;+this.xpay.getCardExpYear());  
+        setCVVNo(this.xpay.getCardCVVNo().intValue());  
+        setTotalAmount(this.xpay.getAmount());  
+    }
 </code></pre>
 
-<p>Stream cũng có thể được tạo từ một array có sẵn hoặc một phần của Array</p>
+<p>Adapter impleament theo PayD interface - loại object mong muốn. Và chúng ta thử xem cách sử dụng adapter:</p>
 
-<pre><code class="language-java">String[] arr = new String[]{&quot;a&quot;, &quot;b&quot;, &quot;c&quot;};
-Stream&lt;String&gt; streamOfArrayFull = Arrays.stream(arr);
-Stream&lt;String&gt; streamOfArrayPart = Arrays.stream(arr, 1, 3);
+<pre><code class="language-java">public class RunAdapterExample {  
+    public static void main(String[] args) {  
+
+        // Object for Xpay  
+  Xpay xpay = new XpayImpl();  
+        xpay.setCreditCardNo(&quot;4789565874102365&quot;);  
+        xpay.setCustomerName(&quot;Tu Bean&quot;);  
+        xpay.setCardExpMonth(&quot;01&quot;);  
+        xpay.setCardExpYear(&quot;2020&quot;);  
+        xpay.setCardCVVNo((short)123);  
+        xpay.setAmount(2565.23);  
+
+        PayD payD = new XpayToPayDAdapter(xpay);  
+        testPayD(payD);  
+    }  
+
+    private static void testPayD(PayD payD){  
+
+        System.out.println(payD.getCardOwnerName());  
+        System.out.println(payD.getCustCardNo());  
+        System.out.println(payD.getCardExpMonthDate());  
+        System.out.println(payD.getCVVNo());  
+        System.out.println(payD.getTotalAmount());  
+    }  
+}
 </code></pre>
 
-<ul>
-<li>Stream.builder()</li>
-</ul>
+<p>Như vậy chúng ta có thể tạo ra một object kiểu PayD thông qua một contructor có tham số truyền vào là Xpay. Các method bên trong adapter cũng đã giúp chuyển đổi phương thức của Xpay sang các phương thức của PayD. Tuy nhiên thì do các method của 2 loại cổng thanh toán là khác nhau nên đôi khi sự chuyển đổi chỉ mang tính tương đối. Ví dụ như ở trên, cổng PayD chỉ có 1 thông số là <code>CardExpMonthDate</code>, còn Xpay thì có 2 thông số <code>CardExpMonth</code> và <code>CardExpYear</code>. Để tạo ra một cách chuyển đổi linh hoạt, chúng ta tạo ra một method chuyển đổi từ 2 thông số của Xpay sang PayD như sau:</p>
 
-<p>Phương thức builder() tạo ra một builder của Stream.</p>
-
-<pre><code class="language-java">//Sử dụng Stream builder()
-Stream.Builder&lt;String&gt; builder = Stream.builder();
-
-// Thêm một element vào trong stream
-Stream&lt;String&gt; stream = builder.add(&quot;Bean&quot;).build();
-
-// Xuất thông tin ra màn hình
-stream.forEach(System.out::println);
+<pre><code class="language-java">setCardExpMonthDate(this.xpay.getCardExpMonth()+&quot;/&quot;+this.xpay.getCardExpYear());
 </code></pre>
 
-<ul>
-<li>Stream.generate()</li>
-</ul>
+<p>Giải pháp của chúng ta nhìn tổng quát lại như sau:</p>
 
-<p>Phương thức generate() cho phép truyền một Supplier<T> vào để tự động generate ra element. Nếu như kết quả của stream là vô hạn, chúng ta cần chỉ định rõ giới hạn size.</p>
+<p><img src="https://res.cloudinary.com/deop9ytsv/image/upload/v1543160681/adapter4.jpg" alt="image4" /></p>
 
-<pre><code class="language-java">// Dòng code sau tạo ra 1 stream trong đó có 10 phần tử &quot;element&quot;
-Stream&lt;String&gt; streamGenerated = Stream.generate(() -&gt; &quot;element&quot;).limit(10);
-</code></pre>
+<h1 id="class-adapter">Class Adapter</h1>
 
-<ul>
-<li>Stream.iterate()</li>
-</ul>
+<p>Có 2 loại adapter là <code>object adapter</code> và <code>class adapter</code>.  Trong ví dụ trên chúng ta đã dùng loại <code>object adapter</code>, tức là loại adapter sử dụng các thành phần trong object cần chuyển đổi để tạo ra object mong muốn. Trong khi đó, <code>class adapter</code> sẽ dựa vào đa kế thừa để tạo ra một interface thích ứng với các class khác nhau. Tuy nhiên trong java chúng ta không có đa kế thừa như C++ nên loại này có thể không cần để ý.</p>
 
-<p>Một cách khác để tạo ra một stream vô hạn là sử dụng iterate()</p>
+<h1 id="khi-nào-sử-dụng-adapter-pattern">Khi nào sử dụng Adapter Pattern</h1>
 
-<pre><code class="language-java">Stream&lt;Integer&gt; streamIterated = Stream.iterate(40, n -&gt; n + 2).limit(20);
-</code></pre>
-
-<p>Phần tử đầu tiên của stream được tạo sẽ là param đầu tiên được truyền vào iterate(). Như vậy trong đoạn code trên, stream sau khi tạo sẽ có các phần tử 40,42,44,&hellip;</p>
-
-<ul>
-<li>Stream của kiểu dữ liệu nguyên thuỷ</li>
-</ul>
-
-<p>Java 8 cho phép tạo stream từ 3 kiểu dữ liệu nguyên thuỷ: <em>int</em>, <em>long</em> và <em>double</em> tương ứng với 3 interface <code>IntStream</code>, <code>LongStream</code>, <code>DoubleStream</code>.</p>
-
-<pre><code class="language-java">IntStream intStream = IntStream.range(1,3);
-LongStream longStream = LongStream.rangeClosed(1,3);
-</code></pre>
-
-<p>Phương thức <code>range(int startInclusive, int endExclusive)</code> tạo ra một stream có chứa các phần tử được sắp xếp liên tiếp từ <em>startInclusive</em> đến <em>endExclusive</em></p>
-
-<p>Phương thức <code>rangeClosed(int startInclusive, int endExclusive)</code> tương tự nhưng bao gồm cả phần tử <em>endExclusive</em>.</p>
-
-<p>Ngoài ra Java 8 còn có class <code>Random</code> cung cấp các method để tạo ra một stream kiểu nguyên thuỷ và các phần tử ngẫu nhiên:</p>
-
-<pre><code class="language-java">Random random = new Random();
-DoubleStream doubleStream = random.doubles(3);
-</code></pre>
-
-<ul>
-<li>Stream từ một String.</li>
-</ul>
-
-<p>String cũng có thể là một nguồn tạo ra stream.
-Vì không có interface <em>CharStream</em> trong JDK nên <em>IntStream</em> được dùng để đại diện cho một stream gồm các phần tử kiểu char.</p>
-
-<pre><code class="language-java">IntStream streamOfChars = &quot;abc&quot;.chars();
-// hoặc dùng RegEx
-Stream&lt;String&gt; streamOfString = Pattern.compile(&quot;,&quot;).splitAsStream(&quot;a&quot;,&quot;b&quot;,&quot;c&quot;);
-</code></pre>
-
-<ul>
-<li>Stream từ một File
-Lớp <code>Files</code> trong Java NIO cho phép tạo ra một <code>Stream&lt;String&gt;</code> của một file văn bản bằng phương thức <code>line()</code>. Mỗi dòng của file text này sẽ trở thành một phần tử của stream.</li>
-</ul>
-
-<pre><code class="language-java">Path path = Paths.get(&quot;C:\\file.txt&quot;);
-Stream&lt;String&gt; streamOfStrings = Files.lines(path);
-Stream&lt;String&gt; streamWithCharset = Files.lines(path, Charset.forName(&quot;UTF-8&quot;));
-</code></pre>
-
-<h1 id="3-tham-chiếu-đến-một-stream">3. Tham chiếu đến một Stream</h1>
-
-<p>Có một điểm cần chú ý như đã nhắc trong bài viết trước, đó là sau khi sử dụng phép toán terminal thì stream sẽ coi như đã bị huỷ, muốn dùng lại thì phải tạo một stream mới. Ví dụ:</p>
-
-<pre><code class="language-java">Stream&lt;String&gt; stream = Stream.of(&quot;a&quot;,&quot;b&quot;, &quot;c&quot;)
-    .filter(element -&gt; element.contains(&quot;b&quot;));
-Optional&lt;String&gt; anyElement = stream.finAny();
-</code></pre>
-
-<p>Đến đây thì đoạn code vẫn đúng. Nhưng nếu ta sử dụng biến stream để tiếp tục một phép toán terminal nữa thì một IllegalStateException sẽ được throw ra trong lúc chạy runtime.</p>
-
-<pre><code class="language-java">Optional&lt;String&gt; firstElement = stream.findFirst(); // IllegalStateException when runtime.
-</code></pre>
-
-<p>Để sửa lại đoạn code trên, ta có thể viết lại như sau:</p>
-
-<pre><code class="language-java">List&lt;String&gt; elements =
-    Stream.of(&quot;a&quot;,&quot;b&quot;,&quot;c&quot;).filter(element -&gt; element.contains(&quot;b&quot;)
-    .collect(Collector.toList());
-Optional&lt;String&gt; anyElement = elements.stream().findAny();
-Optional&lt;String&gt; firstElement = elements.stream().findFirst();
-</code></pre>
-
-<h1 id="4-thứ-tự-thực-thi">4. Thứ tự thực thi</h1>
-
-<p>Để đảm bảo hiệu suất tốt nhất thì thứ tự thực thi các phép toán trong một stream pineline là điều quan trọng.</p>
-
-<pre><code class="language-java">long size = list.stream().map(element -&gt; {
-    wasCalled();
-    return element.substring(0, 3);
-}).skip(2).count();
-</code></pre>
-
-<p>trong đoạn code trên, stream có 3 phần tử -&gt; method <code>map()</code> sẽ được gọi đến 3 lần. (chạy  Đổi vị trí <code>skip()</code> và <code>method</code>, phương thức <code>map()</code> sẽ chỉ phải gọi 1 lần, do đó hiệu suất hơn hẳn vì không cần phải <code>subtring()</code> 2 phần tử bị loại bỏ.</p>
-
-<pre><code class="language-java">long size = list.stream().skip(2).map(element -&gt; {
-    wasCalled();
-    return element.substring(0, 3);
-}).count();
-</code></pre>
-
-<p>Bài học rút ra là đối với các <em>intermediate operation</em> làm giảm kích cỡ của stream thì nó nên được đặt trước các phép toán được sử dụng trên mỗi phần tử của stream. Vì vậy, luôn đặt các <code>skip()</code>, <code>filter()</code>, <code>distinct()</code> lên đầu của stream pineline.</p>
-
-<h1 id="5-các-phương-thức-reduction">5. Các phương thức reduction</h1>
-
-<p>Có nhiều phép toán terminal cho phép stream trả về một kết quả cụ thể như count(), max(), min(), sum()&hellip; Nhưng nếu ta không chỉ muốn trả về theo một công thức như tính tích của tất cả các phần tử, hay in tổng của chúng ra kèm với các số lẻ,&hellip; Chúng ta gọi chúng là các <em>reduction</em> (làm giảm kích cỡ của stream thông qua một số thao tác nào đó.)
-Có 2 loại <code>reduction</code> trong Stream API là <code>Aggregation</code> và <code>Collection</code>.</p>
-
-<ul>
-<li>Aggregation</li>
-</ul>
-
-<p>Bao gồm các phép toán như sum, max, min,&hellip;</p>
-
-<pre><code class="language-java">List&lt;Integer&gt; ages = new ArrayList&lt;&gt;();
-Stream&lt;Integer&gt; stream = ages.stream();
-Integer sum = stream.reduce(0, (age1, age2) -&gt; age1 + age2));
-</code></pre>
-
-<p>Tham số thứ nhất là <code>identity element</code> để xác định giá trị gốc của kết quả trả về, tham số thứ hai là <code>reduce operation</code> <em>(một reduce operation là một BinaryOperator, BinaryOperator là một Java Interface tương tự như Consumer, Predicate hay Function.)</em></p>
-
-<pre><code class="language-java">List&lt;Integer&gt; list1 = Arrays.asList(10, 10);
-Stream&lt;Integer&gt; stream1 = list1.stream();
-BinaryOperation&lt;Integer&gt; sum = (i1, i2) -&gt; i1 + i2;
-Integer id1 = 0;
-
-Integer reduce1 = stream1.reduce(id1, sum);
-
-Stream&lt;Integer&gt; stream2 = Stream.empty();
-// result is 0
-Integer reduce2 = stream2.reduce(id1, sum);
-
-Integer id2 = 100;
-// result is 120
-Integer reduce3 = stream1.reduce(id2, sum);
-
-Integer id3 = 0;
-List&lt;Integer&gt; list2 = Arrays.asList(10);
-// resut is 10
-Integer reduce4 = list2.stream.reduce(id3, Integer::max);
-
-Integer id4 = 0;
-List&lt;Integer&gt; list3 = Arrays.asList(-10);
-// resut is 0
-Integer reduce5 = list3.stream.reduce(id4, Integer::max);
-</code></pre>
+<p>Mẫu thiết kế này được sử dụng khi:</p>
 
 <ul>
-<li>Collection</li>
+<li>Bạn đã có sẵn một class nhưng interface của nó thì lại khác phù hợp với cái bạn cần.</li>
+<li>Bạn muốn tạo một class có thể tái sử dụng với các lớp không liên quan hoặc không đoán trước được, các class này không nhất thiết phải có các interface phù hợp trước.</li>
 </ul>
 
-<p>Collection hay còn gọi là mutable reduction, là việc gom hết tất cả các phần tử trả về từ stream sau khi mapping, filtering vào một container.</p>
+<h1 id="source-code">Source code:</h1>
 
-<pre><code class="language-Java">List&lt;Person&gt; people = new ArrayList&lt;&gt;();
-String result = people.stream()
-    .filter(p -&gt; p.getAge() &gt; 20)
-    .map(Person::getLastname)
-    .collect(Collectors.joining(&quot;,&quot;));
-
-List&lt;String&gt; list = people.stream()
-    .filter(p -&gt; p.getAge() &gt; 20)
-    .map(Person::getLastname)
-    .collect(Collectors.toList());
-
-Map&lt;Integer, List&lt;Person&gt;&gt; map = people.stream()
-    .filter(p -&gt; p.getAge() &gt; 20)
-    .collect(Collectors.groupingBy(Person::getAge));
-</code></pre>
-
-<h1 id="6-mapping">6. Mapping</h1>
-
-<p>Stream API cung cấp method map(), flatMap() thể thực hiện việc bước mapping, method này trả về một stream, vì thế nó chính là một intermediary operation.</p>
-
-<p>Ngoài ra cũng như forEach() sử dụng Consumer hay filter() sử dụng Predicate, map() hay flatMap() sử dụng một thứ gọi là Function để quy định việc mapping, và Function cũng là một Functional Inteface.</p>
-
-<pre><code class="language-java">&lt;R&gt; Stream&lt;R&gt; flatMap(Function&lt;T, Stream&lt;R&gt;&gt; flatMapper);
-
-&lt;R&gt; Stream&lt;R&gt; map(Function&lt;T, R&gt; mapper);
-</code></pre>
-
-<p>Cách dùng:</p>
-
-<pre><code class="language-java">Stream&lt;String&gt; names = Stream.of(&quot;tu&quot;, &quot;bean&quot;, &quot;tubean.github.io&quot;);
-System.out.println(names.map(s -&gt; {
-    return s.toUpperCase();
-  }).collect(Collectors.toList()));
-//prints [TU, BEAN, TUBEAN.GITHUB.IO]
-</code></pre>
-
-<ul>
-<li>Tham khảo:
-<a href="https://www.baeldung.com/java-8-streams">https://www.baeldung.com/java-8-streams</a>
-<a href="https://codeaholicguy.com/2015/12/20/java-nhung-dieu-co-the-ban-da-biet-co-gi-moi-trong-java-8-phan-2/">https://codeaholicguy.com/2015/12/20/java-nhung-dieu-co-the-ban-da-biet-co-gi-moi-trong-java-8-phan-2/</a></li>
-</ul>
+<p><a href="https://github.com/tubean/design-pattern">https://github.com/tubean/design-pattern</a></p>
 
               
             </div>
@@ -585,9 +501,9 @@ System.out.println(names.map(s -&gt; {
                     
   <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/java/">Java</a>
 
-  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/java-8/">Java 8</a>
+  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/design-pattern/">Design Pattern</a>
 
-  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/stream/">Stream</a>
+  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/adapter/">Adapter</a>
 
                   </div>
                 
@@ -600,7 +516,7 @@ System.out.println(names.map(s -&gt; {
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2018/11/spring-boot-crud-app/" data-tooltip="[Spring Boot] Dựng app CRUD đơn giản bằng Spring Boot &#43; Thymeleaf trên Intelij">
+                <a class="post-action-btn btn btn--disabled">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">Tiếp</span>
@@ -608,7 +524,7 @@ System.out.println(names.map(s -&gt; {
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2018/11/java-stream/" data-tooltip="[Java 8] Stream trong Java 8 (Phần 1)">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2018/11/magical-1000-vs-100/" data-tooltip="[Magical Java] Tại sao 1000 == 1000 là sai, nhưng 100 == 100 lại đúng?">
               
                   <span class="hide-xs hide-sm text-small icon-mr">Trước</span>
                   <i class="fa fa-angle-right"></i>
@@ -626,19 +542,19 @@ System.out.println(names.map(s -&gt; {
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://tubean.github.io/2018/11/java-stream-part2/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://tubean.github.io/2018/11/adapter-design-patterns/">
               <i class="fa fa-facebook-official"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://tubean.github.io/2018/11/java-stream-part2/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://tubean.github.io/2018/11/adapter-design-patterns/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://tubean.github.io/2018/11/java-stream-part2/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://tubean.github.io/2018/11/adapter-design-patterns/">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -686,7 +602,7 @@ System.out.println(names.map(s -&gt; {
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2018/11/spring-boot-crud-app/" data-tooltip="[Spring Boot] Dựng app CRUD đơn giản bằng Spring Boot &#43; Thymeleaf trên Intelij">
+                <a class="post-action-btn btn btn--disabled">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">Tiếp</span>
@@ -694,7 +610,7 @@ System.out.println(names.map(s -&gt; {
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2018/11/java-stream/" data-tooltip="[Java 8] Stream trong Java 8 (Phần 1)">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2018/11/magical-1000-vs-100/" data-tooltip="[Magical Java] Tại sao 1000 == 1000 là sai, nhưng 100 == 100 lại đúng?">
               
                   <span class="hide-xs hide-sm text-small icon-mr">Trước</span>
                   <i class="fa fa-angle-right"></i>
@@ -712,19 +628,19 @@ System.out.println(names.map(s -&gt; {
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://tubean.github.io/2018/11/java-stream-part2/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://tubean.github.io/2018/11/adapter-design-patterns/">
               <i class="fa fa-facebook-official"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://tubean.github.io/2018/11/java-stream-part2/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://tubean.github.io/2018/11/adapter-design-patterns/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://tubean.github.io/2018/11/java-stream-part2/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://tubean.github.io/2018/11/adapter-design-patterns/">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -754,19 +670,19 @@ System.out.println(names.map(s -&gt; {
   <ul class="share-options">
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ftubean.github.io%2F2018%2F11%2Fjava-stream-part2%2F">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ftubean.github.io%2F2018%2F11%2Fadapter-design-patterns%2F">
           <i class="fa fa-facebook-official"></i><span>Chia sẻ với Facebook</span>
         </a>
       </li>
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Ftubean.github.io%2F2018%2F11%2Fjava-stream-part2%2F">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Ftubean.github.io%2F2018%2F11%2Fadapter-design-patterns%2F">
           <i class="fa fa-twitter"></i><span>Chia sẻ với Twitter</span>
         </a>
       </li>
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Ftubean.github.io%2F2018%2F11%2Fjava-stream-part2%2F">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Ftubean.github.io%2F2018%2F11%2Fadapter-design-patterns%2F">
           <i class="fa fa-google-plus"></i><span>Chia sẻ với Google&#43;</span>
         </a>
       </li>
@@ -1056,9 +972,9 @@ $(document).ready(function() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = 'https:\/\/tubean.github.io\/2018\/11\/java-stream-part2\/';
+          this.page.url = 'https:\/\/tubean.github.io\/2018\/11\/adapter-design-patterns\/';
           
-            this.page.identifier = '\/2018\/11\/java-stream-part2\/'
+            this.page.identifier = '\/2018\/11\/adapter-design-patterns\/'
           
         };
         (function() {
