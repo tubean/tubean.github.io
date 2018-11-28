@@ -7,40 +7,38 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="generator" content="Hugo 0.49 with theme Tranquilpeak 0.4.3-SNAPSHOT">
 <meta name="author" content="Tu Bean">
-<meta name="keywords" content="Spring, Spring Boot, Security, Share">
-<meta name="description" content="Spring Boot được release lần đầu năm 2014 và không có nhiều thay đổi đáng kể cho đến hiện tại. Với mục tiêu tự động cấu hình và giảm thiểu lượng code để có thể start một ứng dụng, Spring Boot đã giúp cho không biết con dân nhà Spring dễ sống và bớt chửi thề đi. Giống như khi dùng bất kì một framework nào để xây dựng ứng dụng, điều bạn cần quan tâm không chỉ là chất lượng code, vượt qua các test case, &hellip; mà còn là khả năng bảo mật của ứng dụng.">
+<meta name="keywords" content="java, poi, excel">
+<meta name="description" content="1- Apache POI là gì? Khi lập trình với bất cứ hệ thống nào thì việc thao tác với các file excel luôn là điều bắt buộc mọi developer phải nắm được. Và để làm việc hiệu quả với excel file trong java thì tôi xin giới thiệu thư viện Apache POI trong bài viết này. POI là viết tắt của Poor Obfuscation Implementation, đó là một thư viện mã nguồn mở của Java, được cung cấp bởi Apache giúp chúng ta làm việc với các tài liệu của Microsoft như Word, Excel, PowerPoint&hellip;">
 
 
-<meta property="og:description" content="Spring Boot được release lần đầu năm 2014 và không có nhiều thay đổi đáng kể cho đến hiện tại. Với mục tiêu tự động cấu hình và giảm thiểu lượng code để có thể start một ứng dụng, Spring Boot đã giúp cho không biết con dân nhà Spring dễ sống và bớt chửi thề đi. Giống như khi dùng bất kì một framework nào để xây dựng ứng dụng, điều bạn cần quan tâm không chỉ là chất lượng code, vượt qua các test case, &hellip; mà còn là khả năng bảo mật của ứng dụng.">
+<meta property="og:description" content="1- Apache POI là gì? Khi lập trình với bất cứ hệ thống nào thì việc thao tác với các file excel luôn là điều bắt buộc mọi developer phải nắm được. Và để làm việc hiệu quả với excel file trong java thì tôi xin giới thiệu thư viện Apache POI trong bài viết này. POI là viết tắt của Poor Obfuscation Implementation, đó là một thư viện mã nguồn mở của Java, được cung cấp bởi Apache giúp chúng ta làm việc với các tài liệu của Microsoft như Word, Excel, PowerPoint&hellip;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[Spring Boot] Secu thập chưởng bảo vệ app Spring Boot của bạn">
-<meta name="twitter:title" content="[Spring Boot] Secu thập chưởng bảo vệ app Spring Boot của bạn">
-<meta property="og:url" content="https://tubean.github.io/2018/11/spring-boot-10-ways-security/">
-<meta property="twitter:url" content="https://tubean.github.io/2018/11/spring-boot-10-ways-security/">
+<meta property="og:title" content="[Java] Thao tác với Excel file bằng Apache POI">
+<meta name="twitter:title" content="[Java] Thao tác với Excel file bằng Apache POI">
+<meta property="og:url" content="https://tubean.github.io/2018/11/excel-file-with-poi/">
+<meta property="twitter:url" content="https://tubean.github.io/2018/11/excel-file-with-poi/">
 <meta property="og:site_name" content="Bean&#39;s blog">
-<meta property="og:description" content="Spring Boot được release lần đầu năm 2014 và không có nhiều thay đổi đáng kể cho đến hiện tại. Với mục tiêu tự động cấu hình và giảm thiểu lượng code để có thể start một ứng dụng, Spring Boot đã giúp cho không biết con dân nhà Spring dễ sống và bớt chửi thề đi. Giống như khi dùng bất kì một framework nào để xây dựng ứng dụng, điều bạn cần quan tâm không chỉ là chất lượng code, vượt qua các test case, &hellip; mà còn là khả năng bảo mật của ứng dụng.">
-<meta name="twitter:description" content="Spring Boot được release lần đầu năm 2014 và không có nhiều thay đổi đáng kể cho đến hiện tại. Với mục tiêu tự động cấu hình và giảm thiểu lượng code để có thể start một ứng dụng, Spring Boot đã giúp cho không biết con dân nhà Spring dễ sống và bớt chửi thề đi. Giống như khi dùng bất kì một framework nào để xây dựng ứng dụng, điều bạn cần quan tâm không chỉ là chất lượng code, vượt qua các test case, &hellip; mà còn là khả năng bảo mật của ứng dụng.">
+<meta property="og:description" content="1- Apache POI là gì? Khi lập trình với bất cứ hệ thống nào thì việc thao tác với các file excel luôn là điều bắt buộc mọi developer phải nắm được. Và để làm việc hiệu quả với excel file trong java thì tôi xin giới thiệu thư viện Apache POI trong bài viết này. POI là viết tắt của Poor Obfuscation Implementation, đó là một thư viện mã nguồn mở của Java, được cung cấp bởi Apache giúp chúng ta làm việc với các tài liệu của Microsoft như Word, Excel, PowerPoint&hellip;">
+<meta name="twitter:description" content="1- Apache POI là gì? Khi lập trình với bất cứ hệ thống nào thì việc thao tác với các file excel luôn là điều bắt buộc mọi developer phải nắm được. Và để làm việc hiệu quả với excel file trong java thì tôi xin giới thiệu thư viện Apache POI trong bài viết này. POI là viết tắt của Poor Obfuscation Implementation, đó là một thư viện mã nguồn mở của Java, được cung cấp bởi Apache giúp chúng ta làm việc với các tài liệu của Microsoft như Word, Excel, PowerPoint&hellip;">
 <meta property="og:locale" content="vi">
 
   
-    <meta property="article:published_time" content="2018-11-06T00:00:00">
+    <meta property="article:published_time" content="2018-11-28T00:00:00">
   
   
-    <meta property="article:modified_time" content="2018-11-06T00:00:00">
+    <meta property="article:modified_time" content="2018-11-28T00:00:00">
   
   
   
     
-      <meta property="article:section" content="Spring Boot">
-    
-      <meta property="article:section" content="Security">
+      <meta property="article:section" content="Java">
     
   
   
     
-      <meta property="article:tag" content="Spring Boot">
+      <meta property="article:tag" content="Java">
     
-      <meta property="article:tag" content="Security">
+      <meta property="article:tag" content="Apache POI">
     
   
 
@@ -53,8 +51,8 @@
 
 
 
-  <meta property="og:image" content="https://assets.simpleviewcms.com/simpleview/image/fetch/c_limit,h_640,q_60,w_800/https://res.cloudinary.com/simpleview/image/upload/crm/howardcounty/spring-boot-icon0_cf21dec4-5056-b3a8-49c015fd3bde6cb5.png">
-  <meta property="twitter:image" content="https://assets.simpleviewcms.com/simpleview/image/fetch/c_limit,h_640,q_60,w_800/https://res.cloudinary.com/simpleview/image/upload/crm/howardcounty/spring-boot-icon0_cf21dec4-5056-b3a8-49c015fd3bde6cb5.png">
+  <meta property="og:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1542691153/java_logo.png">
+  <meta property="twitter:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1542691153/java_logo.png">
 
 
   <meta property="og:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1541273502/Black_flag.svg.png">
@@ -67,14 +65,14 @@
   <meta property="twitter:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/c_scale,w_1836/v1540914499/C360_2016-03-22-17-45-21-487.jpg">
 
 
-    <title>[Spring Boot] Secu thập chưởng bảo vệ app Spring Boot của bạn</title>
+    <title>[Java] Thao tác với Excel file bằng Apache POI</title>
 
     <link rel="icon" href="https://tubean.github.io/favicon/flappybird.png">
     
 
     
 
-    <link rel="canonical" href="https://tubean.github.io/2018/11/spring-boot-10-ways-security/">
+    <link rel="canonical" href="https://tubean.github.io/2018/11/excel-file-with-poi/">
 
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
@@ -263,15 +261,15 @@ if (!doNotTrack) {
       <div class="post-header main-content-wrap text-center">
   
     <h1 class="post-title" itemprop="headline">
-      [Spring Boot] Secu thập chưởng bảo vệ app Spring Boot của bạn
+      [Java] Thao tác với Excel file bằng Apache POI
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2018-11-06T00:00:00Z">
+      <time itemprop="datePublished" datetime="2018-11-28T00:00:00Z">
         
-  tháng 11 6, 2018
+  tháng 11 28, 2018
 
       </time>
     
@@ -280,9 +278,7 @@ if (!doNotTrack) {
   
     <span>mục</span>
     
-      <a class="category-link" href="https://tubean.github.io/categories/spring-boot">Spring Boot</a>, 
-    
-      <a class="category-link" href="https://tubean.github.io/categories/security">Security</a>
+      <a class="category-link" href="https://tubean.github.io/categories/java">Java</a>
     
   
 
@@ -304,152 +300,341 @@ if (!doNotTrack) {
             <div class="main-content-wrap">
               
 
-<p>Spring Boot được release lần đầu năm 2014 và không có nhiều thay đổi đáng kể cho đến hiện tại. Với mục tiêu tự động cấu hình và giảm thiểu lượng code để có thể start một ứng dụng, Spring Boot đã giúp cho không biết con dân nhà Spring dễ sống và bớt chửi thề đi.
-Giống như khi dùng bất kì một framework nào để xây dựng ứng dụng, điều bạn cần quan tâm không chỉ là chất lượng code, vượt qua các test case, &hellip; mà còn là khả năng bảo mật của ứng dụng. Các cụ có câu: &ldquo;Phật cao một thước, ma cao một trượng&rdquo;. Thế nên bạn nào chưa có tư tưởng phát triển ứng dụng mà cần bảo mật thì liệu mà quan tâm đi. Bộ bí kíp này được truyền lại theo <a href="https://developer.okta.com/blog/2018/07/30/10-ways-to-secure-spring-boot">Matt Raible</a> và được việt hoá bởi tôi, nhằm mục đích hướng dẫn các bạn những tuyệt chiêu xây dựng một ứng dụng Spring Boot bảo mật.</p>
+<h1 id="1-apache-poi-là-gì">1- Apache POI là gì?</h1>
 
-<h1 id="chưởng-1-hãy-sử-dụng-https-cho-môi-trường-production">Chưởng 1: Hãy sử dụng HTTPS cho môi trường production</h1>
+<p>Khi lập trình với bất cứ hệ thống nào thì việc thao tác với các file excel luôn là điều bắt buộc mọi developer phải nắm được. Và để làm việc hiệu quả với excel file trong java thì tôi xin giới thiệu thư viện <code>Apache POI</code> trong bài viết này. POI là viết tắt của <strong>Poor Obfuscation Implementation</strong>, đó là một thư viện mã nguồn mở của Java, được cung cấp bởi Apache giúp chúng ta làm việc với các tài liệu của <code>Microsoft</code> như Word, Excel, PowerPoint&hellip;</p>
 
-<p><code>Transport Layer Security (TLS)</code> hay còn được biết đến với cái tên <code>HTTPS</code> hay khái niệm <code>SSL (Secure Sockets Layer)</code>. <code>TLS</code> là một giao thức bảo mật cung cấp một môi trường giao tiếp an toàn trên mạng máy tính, đảm bảo sự riêng tư và tính toàn vẹn giữa các ứng dụng máy tính.</p>
+<h1 id="2-các-thuật-ngữ-trong-apache-poi">2. Các thuật ngữ trong Apache POI</h1>
 
-<p>Để sử dụng được giao thức này, bạn cần mua chứng chỉ TLS, hoặc dùng hàng miễn phí. Chi tiết vụ mua bán này có lẽ mình sẽ viết trong một bài viết khác. Bạn nào rảnh rỗi có thể nghiên cứu thêm ở <a href="https://letsencrypt.org/">đây</a></p>
+<p>Để thao tác với các file Excel thì POI cung cấp cho chúng ta các khái niệm chính sau:</p>
 
-<p>Để bật chế độ HTTPS trong ứng dụng Spring Boot, bạn cần có một class thừa kế <code>WebSecurityConfigurerAdapter</code> và dùng method <code>requiresSecure()</code> như sau:</p>
+<ul>
+<li><code>Workbook</code>:  Đây là khái niệm đại diện cho một bảng tính, hay một file Excel.</li>
+<li><code>Sheet</code>: tương đương với các sheet trong file Excel, một workbook có thể có một hoặc nhiều sheet.</li>
+<li><code>Row</code>: đơn vị hàng trong một bảng tính</li>
+<li><code>Cell</code>: đại diện cho một cột trong bảng tính.
+Như vậy mỗi một ô trong file Excel sẽ được biểu diễn bằng một row và một cell.</li>
+</ul>
 
-<pre><code class="language-java">@Configuration
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+<p>Để làm việc với Excel thì chúng ta không cần quan tâm đến tất cả các class trong thư viện POI mà chỉ cần để ý đến 2 loại sau:</p>
 
- @Override
- protected void configure(HttpSecurity http) throws Exception {
-   http.requiresChannel().requiresSecure();
- }
-}
+<ul>
+<li>Các class có tiếp đầu ngữ là <strong>HSSF (Horrible SpreadSheet Format)</strong> : Các class giúp đọc và ghi file dang Microsoft Excel (XLS - dạng excel cũ). Ví dụ: HSSFWorkbook, HSSFSheet, HSSFCellStyle,&hellip;</li>
+<li>Các class có tiếp đầu ngữ là <strong>XSSF (XML SpereadSheet Format)</strong> : Đọc và ghi định dạng file Open Office XML (XLSX - dạng excel mới).</li>
+</ul>
+
+<p><img src="https://res.cloudinary.com/deop9ytsv/image/upload/v1543420446/apache-poi-classes-and-interfaces.jpg" alt="imag1" /></p>
+
+<h1 id="3-tạo-thử-một-file-excel">3. Tạo thử một file Excel</h1>
+
+<p>Nếu bạn sử dụng Maven thì cần thêm dependency của POI vào file <code>pom.xml</code>:</p>
+
+<pre><code class="language-xml">&lt;!-- Used to work with the older excel file format - `.xls` --&gt;
+&lt;!-- https://mvnrepository.com/artifact/org.apache.poi/poi --&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.apache.poi&lt;/groupId&gt;
+    &lt;artifactId&gt;poi&lt;/artifactId&gt;
+    &lt;version&gt;3.17&lt;/version&gt;
+&lt;/dependency&gt;
+
+&lt;!-- Used to work with the newer excel file format - `.xlsx` --&gt;
+&lt;!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml --&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.apache.poi&lt;/groupId&gt;
+    &lt;artifactId&gt;poi-ooxml&lt;/artifactId&gt;
+    &lt;version&gt;3.17&lt;/version&gt;
+&lt;/dependency&gt;
 </code></pre>
 
-<p>Cách cấu hình này có thể sử dụng trong môi trường &ldquo;độc lập tự do&rdquo;, nơi mà hầu hết chúng ta đều gặp đau thương khi phải tự mình mua và cài đặt một chứng chỉ TLS. Nếu bạn sử dụng <a href="https://www.heroku.com/">Heroku</a>, <a href="https://www.cloudfoundry.org/">Cloud Foundry</a> hay bất kì một nhà cung cấp dịch vụ cloud nào khác, các chứng chỉ TLS sẽ được tự động cung cấp cho người dùng, vì vậy bạn chỉ cần thêm một ít code nữa như dưới đây là đủ.</p>
+<p>Còn <code>Gradle</code> thì thêm vào <code>build.gradle</code>:</p>
 
-<pre><code class="language-java">@Configuration
-public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+<pre><code class="language-bash">compile &quot;org.apache.poi:poi:3.17&quot;	     // For `.xls` files
+compile &quot;org.apache.poi:poi-ooxml:3.17&quot;	 // For `.xlsx` files
+</code></pre>
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.requiresChannel()
-            .requestMatchers(r -&gt; r.getHeader(&quot;X-Forwarded-Proto&quot;) != null)
-            .requiresSecure();
+<p>Trước tiên, ta tạo một class model để có thể ghi các ra các row theo một List data:</p>
+
+<pre><code>public class Employee {  
+    private String name;  
+    private String email;  
+    private Date dateOfBirth;  
+    private double daysOfWork;  
+    private double salaryPerDay;  
+    private Double totalSalary;  
+
+    public Employee(String name, String email, Date dateOfBirth, double daysOfWork, double salaryPerDay, Double totalSalary) {  
+        this.name = name;  
+        this.email = email;  
+        this.dateOfBirth = dateOfBirth;  
+        this.daysOfWork = daysOfWork;  
+        this.salaryPerDay = salaryPerDay;  
+        this.totalSalary = totalSalary;  
+    }
+    // Getter and Setter
+</code></pre>
+
+<p>Tiếp đến chuẩn bị data raw để ghi vào file excel:</p>
+
+<pre><code class="language-java">public class ExcelWriter {  
+    private static String[] columns = {&quot;Name&quot;, &quot;Email&quot;, &quot;Date of birth&quot;, &quot;Days of work&quot;, &quot;Salary Per Day&quot;, &quot;Total Salary&quot;};  
+    private static List&lt;Employee&gt; employees = new ArrayList&lt;&gt;();  
+
+    // Initializing employees data to insert into the excel file  
+  static {  
+        Calendar dateOfBirth = Calendar.getInstance();  
+        dateOfBirth.set(1995, 0, 8); // 0 means January  
+  employees.add(new Employee(&quot;Tubean&quot;, &quot;tubean@github.com&quot;, dateOfBirth.getTime(), 22d, 100d, null));  
+        dateOfBirth.set(1998, 2, 15);  
+        employees.add(new Employee(&quot;Quynh&quot;, &quot;vivichan@gmail.com&quot;, dateOfBirth.getTime(), 21d, 120d, null));  
     }
 }
 </code></pre>
 
-<h1 id="chưởng-2-kiểm-tra-dependencies-bằng-snyk">Chưởng 2: Kiểm tra Dependencies bằng Snyk</h1>
+<p>Sau các bước chuẩn bị data, chúng ta tạo một workbook:</p>
 
-<p>Thông thường khi chúng ta sử dụng các tool quản lý thư viện như Maven, Gradle,&hellip; chúng ta thường thêm các dependencies mà không hề kiểm tra cũng như kiểm soát tính bảo mật của những thư viện này. Vì vậy, những kẻ tà ma ngoại đạo có thể tấn công thông qua các <code>open source</code> này mà nhưng con dân tin người như chúng ta hoàn toàn không hay biết. 😁</p>
+<pre><code class="language-java">// Create a Workbook  
+Workbook workbook = new XSSFWorkbook(); // new HSSFWorkbook() for generating `.xls` file
+</code></pre>
 
-<p><a href="https://snyk.io/">Snyk</a> là một công cụ giúp kiểm tra ứng dụng của chúng ta có sử dụng <code>dependencies</code> nào nguy hại không. Nó sẽ liệt kê hết các nguy cơ, lỗ hổng tồn tại trong những <code>packages</code> mà chúng ta sử dụng lên một <code>dashboard</code>.</p>
+<p>Có workbook rồi chúng ta tạo tiếp một sheet trong đó:</p>
 
-<p><img src="https://developer.okta.com/assets/blog/spring-boot-10-ways-to-secure/snyk-vulnerabilities-9687d386d37830a36649fc93b2e7b3bc946ccdd5e84374c0a95e7b24e84555a3.png" alt="" />
-Ngoài ra nó còn giúp đưa ra các giải pháp ngăn chặn bằng cách tạo tạo một <code>pull request</code> lên source code của bạn. Nó cũng giúp kiểm tra và đảm bảo tất cả các <code>pull request</code> đều không gặp phải các lỗ hổng bảo mật đã biết.</p>
+<pre><code class="language-java">// Create a Sheet  
+Sheet sheet = workbook.createSheet(&quot;Employee&quot;);
+</code></pre>
 
-<p>Thêm nữa là nó cũng có sẵn giao diện người dùng như CLI, vì vậy bạn có thể tích hợp nó với môi trường CI của mình, đảm bảo hệ thống sẽ an toàn ngay từ lúc build.
-Bạn có thể sử dụng <code>Snyk</code> phiên bản free để dành cho các <code>open source</code> của bạn hoặc các dự án riêng với giới hạn thời gian test.</p>
+<p>Có thể thêm một chút màu sắc font bạt cho đẹp mắt:</p>
 
-<h1 id="chưởng-3-sử-dụng-các-bản-lastest-release">Chưởng 3: Sử dụng các bản Lastest Release</h1>
+<pre><code class="language-java">Font headerFont = workbook.createFont();  
+headerFont.setBold(true);  
+headerFont.setFontHeightInPoints((short) 14);  
+headerFont.setColor(IndexedColors.RED.getIndex());  
 
-<p>Có rất nhiều lí do để chúng ta phải thường xuyên cập nhật các <code>dependencies</code> cho ứng dụng của mình. Và lí do bảo mật là một trong những nỗi lo hàng đầu. Các ứng dụng spring boot được generate từ <a href="https://start.spring.io/">https://start.spring.io/</a> luôn sử dụng các version mới nhất cho các package, các dependencies nếu có thể.</p>
+// Create a CellStyle with the font  
+CellStyle headerCellStyle = workbook.createCellStyle();  
+headerCellStyle.setFont(headerFont);
+</code></pre>
 
-<p>Khi bạn phát hiện ra một lỗ hổng bảo mật trong ứng dụng của mình, hoặc là bạn sẽ có 3 lựa chọn : upgrade, tạo bản vá (Patch) hoặc không làm gì cả. Upgrade là an toàn nhất cho ứng dụng, nhưng thường thì nó sẽ gây ra nhiều phiền toán vì các method, thư viện thay đổi khiến chúng ta phải code lại, làm mất thời gian nghiên cứu và code. Tạo bản vá (Patch) có lẽ sẽ khả thi hơn vì chúng ta sẽ chỉ phải vá lại chỗ nào bị lỗ hổng. Cuối cùng, việc bỏ qua không làm gì với các lỗ hổng, dĩ nhiên cũng là một sự lựa chọn vì nó không làm ứng dụng của chúng ta shutdown ngay, tuy nhiên một ngày đẹp trời nào đấy bạn sẽ không muốn bị khách hàng gọi điện liên tục và chửi bới này nọ đâu. 😁</p>
+<p>Sau đó chúng ta tạo row đầu tiên chứa các tiêu đề của các cột:</p>
 
-<h1 id="chưởng-4-ngăn-chặn-csrf">Chưởng 4: Ngăn chặn CSRF</h1>
+<pre><code class="language-java">// Create a Row  
+Row headerRow = sheet.createRow(0);  
 
-<p><a href="https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)">Cross-Site Request Forgery (CSRF)</a> là một hình thức tấn công website phổ biến hiện nay. Spring Security đã support ngăn chặn <code>CSRF</code> một cách mặc định.
-Nếu bạn sử dụng Spring MVC và dùng tag <code>form:form</code> hoặc <code>Thymeleaf</code> và sử dụng annotation <code>@EnableWebSecurity</code> thì  <code>CSRF token</code> sẽ tự động được thêm vào các <code>input field</code> ẩn.
-Nếu bạn sử dụng Javascript framework như Angular hay React thì bạn cần cấu hình <code>CookieCsrfTokenRepository</code> để JavaScript có thể đọc token trong cookie.</p>
+// Create cells  
+for (int i = 0; i &lt; columns.length; i++) {  
+    Cell cell = headerRow.createCell(i);  
+    cell.setCellValue(columns[i]);  
+    cell.setCellStyle(headerCellStyle);  
+}
+</code></pre>
 
-<pre><code class="language-java">@EnableWebSecurity
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+<p>Do trong phần model của chúng ta có loại dữ liệu khác đặc biệt là Date (dateOfBirth) nên chúng ta cần một format cho nó:</p>
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http
-            .csrf()
-                .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+<pre><code class="language-java">// Create Cell Style for formatting Date  
+CellStyle dateCellStyle = workbook.createCellStyle();  
+dateCellStyle.setDataFormat(createHelper.createDataFormat().getFormat(&quot;dd-MM-yyyy&quot;));
+</code></pre>
+
+<p>Tiếp đến là công việc chính, set data vào các ô trong file excel:</p>
+
+<pre><code class="language-java">// Create Other rows and cells with employees data  
+int rowNum = 1;  
+for (Employee employee : employees) {  
+    Row row = sheet.createRow(rowNum++);  
+
+    // Employee's name (Column A)  
+  row.createCell(0)  
+            .setCellValue(employee.getName());  
+
+    // Employee's email (Column B)  
+  row.createCell(1)  
+            .setCellValue(employee.getEmail());  
+
+    // Employee's date of birth (Column C)  
+  Cell dateOfBirth = row.createCell(2);  
+    dateOfBirth.setCellValue(employee.getDateOfBirth());  
+    dateOfBirth.setCellStyle(dateCellStyle);  
+
+    // Employee's days of Work (Column D)  
+  row.createCell(3, CellType.NUMERIC)  
+            .setCellValue(employee.getDaysOfWork());  
+
+    // Employee's salary per day (Column E)  
+  row.createCell(4, CellType.NUMERIC)  
+            .setCellValue(employee.getSalaryPerDay());  
+
+    // Employee's total salary (Column F = D * E)  
+  String formula = &quot;D&quot; + rowNum + &quot; * E&quot; + rowNum;  
+    row.createCell(5, CellType.FORMULA)  
+            .setCellFormula(formula);  
+}
+</code></pre>
+
+<p>Chú ý rằng cột cuối cùng ta dùng công thức để tính tổng lương của mỗi nhân viên nên CellType ở đây sẽ là <code>FORMULA</code>.</p>
+
+<p>Cuối cùng là ghi tất cả ra một file Excel thật và kết thúc việc tạo một file Excel:</p>
+
+<pre><code class="language-java">// Write the output to a file  
+FileOutputStream fileOut = new FileOutputStream(&quot;employee.xlsx&quot;);  
+workbook.write(fileOut);  
+fileOut.close();  
+
+// Closing the workbook  
+workbook.close();
+</code></pre>
+
+<p>Nội dung file <code>employee.xlsx</code> sẽ như sau:
+<img src="https://res.cloudinary.com/deop9ytsv/image/upload/v1543422585/poi_1.jpg" alt="image2" /></p>
+
+<h1 id="4-đọc-một-file-excel-như-thế-nào">4. Đọc một file Excel như thế nào</h1>
+
+<p>Để đọc một file Excel có sẵn, đầu tiên chúng ta cũng tạo một workbook cho file đó:</p>
+
+<pre><code class="language-java">  // Creating a Workbook from an Excel file (.xls or .xlsx)
+  Workbook workbook = WorkbookFactory.create(new File(&quot;./employee.xlsx&quot;);
+</code></pre>
+
+<p>Duyệt các sheet trong một workbook:</p>
+
+<pre><code class="language-java">  Iterator&lt;Sheet&gt; sheetIterator = workbook.sheetIterator();
+  System.out.println(&quot;Retrieving Sheets using Iterator&quot;);
+  while (sheetIterator.hasNext()) {
+    Sheet sheet = sheetIterator.next();
+    System.out.println(&quot;=&gt; &quot; + sheet.getSheetName());
+  }
+</code></pre>
+
+<p>Vì trong file excel ta vừa tạo chỉ có một sheet nên chúng ta sẽ get nó ra như sau:</p>
+
+<pre><code class="language-java">  // Getting the Sheet at index zero
+  Sheet sheet = workbook.getSheetAt(0);
+</code></pre>
+
+<p>Để duyệt các row trong sheet, ta làm như sau:</p>
+
+<pre><code class="language-java">  // Create a DataFormatter to format and get each cell's value as String
+  DataFormatter dataFormatter = new DataFormatter();
+  System.out.println(&quot;\n\nIterating over Rows and Columns using Iterator\n&quot;);
+  Iterator&lt;Row&gt; rowIterator = sheet.rowIterator();
+  while (rowIterator.hasNext()) {
+    Row row = rowIterator.next();
+
+    // Now let's iterate over the columns of the current row
+    Iterator&lt;Cell&gt; cellIterator = row.cellIterator();
+
+    while (cellIterator.hasNext()) {
+      Cell cell = cellIterator.next();
+      String cellValue = dataFormatter.formatCellValue(cell);
+      System.out.print(cellValue + &quot;\t&quot;);
     }
+    System.out.println();
+  }
+</code></pre>
+
+<p>Sau khi duyệt xong nhớ đóng workbook lại:</p>
+
+<pre><code class="language-java">  // Closing the workbook
+  workbook.close();
+</code></pre>
+
+<p>Màn hình console sẽ trông như sau:
+<img src="https://res.cloudinary.com/deop9ytsv/image/upload/v1543423473/poi_2.jpg" alt="img3" /></p>
+
+<p>Từ đây ta có thể nhận thấy đối với kiểu là <code>FORMULA</code> thì khi in ra chúng ta sẽ nhận được công thức của field đó chứ không phải giá trị cuối cùng. Để nhận các giá trị cuối cùng của field thì chúng ta viết thêm hàm sau:</p>
+
+<pre><code class="language-java">private static Object getCellValue(Cell cell, FormulaEvaluator evaluator) {  
+  CellValue cellValue = evaluator.evaluate(cell);  
+  switch (cellValue.getCellTypeEnum()) {  
+    case BOOLEAN:  
+      return cellValue.getBooleanValue();  
+    case NUMERIC:  
+      return cellValue.getNumberValue();  
+    case STRING:  
+      return cellValue.getStringValue();  
+    case BLANK:  
+      return &quot;&quot;;  
+    case ERROR:  
+      return cellValue.getError(cell.getErrorCellValue()).getStringValue();  
+    // CELL_TYPE_FORMULA will never happen  
+    case FORMULA:  
+      default:  
+        return null;  
+  }  
 }
 </code></pre>
 
-<p>Nếu bạn dùng Angular, đoạn code trên là đủ rồi. Còn nếu bạn dùng React, bạn cần lấy <code>XSRF-TOKEN</code> cookie và gửi kèm nó trong header. Mình sẽ viết một bài viết về cách build một Spring Boot app tích hợp React sau, còn nếu muốn bạn có thể tham khảo thêm tại <a href="https://developer.okta.com/blog/2018/07/19/simple-crud-react-and-spring-boot#modify-react-to-handle-csrf-and-be-identity-aware">đây</a>.</p>
+<p>Với một cell có kiểu <code>FORMULA</code> bạn có thể in ra công thức của nó và sử dụng <strong>FormulaEvaluator</strong> để tính toán giá trị của ô cho bởi công thức đó.
+Sau đó sửa lại đoạn duyệt row như sau:</p>
 
-<p>Spring Security sẽ tự động thêm <code>secure flag</code> vào <code>XSRF cookie</code> khi có bất kì request nào đến thông qua giao thức HTTPS. Spring Security không sử dụng flag <code>SameSite=strict</code> cho CSRF cookies, nhưng nó sẽ được dùng khi sử dụng Spring Session hoặc WebFlux session handling.</p>
+<pre><code class="language-java">  // Getting the evaluator  
+  FormulaEvaluator evaluator = workbook.getCreationHelper().createFormulaEvaluator();
 
-<h1 id="chưởng-5-sử-dụng-content-security-policy-để-ngăn-chặn-tấn-công-xss">Chưởng 5: Sử dụng Content Security Policy để ngăn chặn tấn công XSS</h1>
+  System.out.println(&quot;\n\nIterating over Rows and Columns using Iterator\n&quot;);  
+  Iterator&lt;Row&gt; rowIterator = sheet.rowIterator();  
+  while (rowIterator.hasNext()) {  
+    Row row = rowIterator.next();  
 
-<p><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP">Content Security Policy</a> (CSP) là một lớp bảo mật giúp giảm thiểu tấn công <a href="https://www.owasp.org/index.php/Cross-site_Scripting_(XSS)">XSS(cross-site cripting)</a> và tấn công <code>data injection</code>. Để kích hoạt chế độ này, bạn cần cấu hình app để trả về <code>Content-Security-Policy</code> header. Bạn cũng có thể dùng thẻ tag <code>meta http-equiv=&quot;Content-Security-Policty&quot;&gt;</code> trong trang HTML.</p>
-
-<p>Spring security cung cấp một số <a href="https://docs.spring.io/spring-security/site/docs/current/reference/html/web-app-security.html#default-security-headers">thuộc tính bảo mật mặc định</a> trong header:</p>
-
-<pre><code>Cache-Control: no-cache, no-store, max-age=0, must-revalidate
-Pragma: no-cache
-Expires: 0
-X-Content-Type-Options: nosniff
-Strict-Transport-Security: max-age=31536000 ; includeSubDomains
-X-Frame-Options: DENY
-X-XSS-Protection: 1; mode=block
+    // Now let's iterate over the columns of the current row  
+    Iterator&lt;Cell&gt; cellIterator = row.cellIterator();  
+    while (cellIterator.hasNext()) {  
+      Cell cell = cellIterator.next();  
+      System.out.print(getCellValue(cell,evaluator) + &quot;\t&quot;);  
+    }  
+    System.out.println();  
+  }
 </code></pre>
 
-<p>Spring Security không kích hoạt CSP một cách mặc định. Muốn kích hoạt CSP header, bạn cấu hình ứng dụng như sau:</p>
+<p>Kết quả nhận được sẽ như sau:
+<img src="https://res.cloudinary.com/deop9ytsv/image/upload/v1543423813/poi_3.jpg" alt="img4" /></p>
 
-<pre><code class="language-java">@EnableWebSecurity
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+<h1 id="5-chỉnh-sửa-một-file-excel">5. Chỉnh sửa một file Excel</h1>
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.headers()
-            .contentSecurityPolicy(&quot;script-src 'self' https://trustedscripts.example.com; object-src https://trustedplugins.example.com; report-uri /csp-report-endpoint/&quot;);
-    }
+<p>Để sửa một file Excel thì chúng ta cũng làm tương tự đọc một file Excel. Đầu tiên là tạo một workbook cho nó và một sheet tương ứng:</p>
+
+<pre><code class="language-java"> Workbook workbook = WorkbookFactory.create(new File(&quot;./employee.xlsx&quot;);
+// Get Sheet at index 0
+ Sheet sheet = workbook.getSheetAt(0);
+</code></pre>
+
+<p>Xác định vị trí cần update lại và định vị nó. Cần chú ý nếu vị trí cần update chưa được tạo thì cần khởi tạo field đó trước, nếu không chương trình sẽ throw một Exception:</p>
+
+<pre><code class="language-java">// Get Row at index 2  
+Row row = sheet.getRow(2);  
+
+Cell cell;  
+// Create the cell if it doesn't exist  
+if (row.getCell(9) == null) {  
+    cell = row.createCell(9);  
+} else {  
+    cell = row.getCell(9);  
 }
 </code></pre>
 
-<p>Bạn có thể kiểm tra <code>CSP header</code> trên ứng dụng của bạn tại <a href="https://securityheaders.com/">đây</a>.</p>
+<p>Update lại định dạng và giá trị của field đó:</p>
 
-<h1 id="chưởng-6-sử-dụng-openid-connect-cho-authentication">Chưởng 6: Sử dụng OpenID Connect cho Authentication</h1>
-
-<p>OpenID Connect (OIDC) là một OAuth 2.0 extension với mục đích cung cấp thông tin người dùng cho app của mình.
-Dưới đây là diagram về cách OIDC xác thực:
-<img src="https://developer.okta.com/assets/blog/spring-boot-10-ways-to-secure/oidc-for-authentication-2d91f30a19fbb9f9bced6dbbd44b76aa599fcc2c52233f61981399863bb04228.png" alt="" />
-Để tìm hiểu thêm về cách sử dụng OIDC trong ứng dụng Spring Boot, bạn có thể xem thêm <a href="https://developer.okta.com/blog/2017/12/18/spring-security-5-oidc">bài viết này</a>.</p>
-
-<h1 id="chưởng-7-sử-dụng-password-hashing-để-quản-lý-password">Chưởng 7: Sử dụng Password Hashing để quản lý Password</h1>
-
-<p>Việc lưu trữ mật khẩu nhạy cảm dưới dạng <code>plain text</code> là một trong những việc làm tệ nhất mà bạn dành cho ứng dụng yêu quý của mình. May mắn cho bạn là Spring Security có một <a href="https://docs.spring.io/spring-security/site/docs/current/reference/html/servlet-webclient.html#crypto">cryto module</a> giúp bạn mã hoá mật khẩu.
-<code>PasswordEncoder</code> là interface khai báo các method cho việc mã hoá mật khẩu:</p>
-
-<pre><code>public interface PasswordEncoder {
-    String encode(String rawPassword);
-    boolean matches(String rawPassword, String encodedPassword);
-}
+<pre><code class="language-java">// Update the cell's value  
+cell.setCellType(CellType.STRING);  
+cell.setCellValue(&quot;Updated Value&quot;);
 </code></pre>
 
-<p>Có một vài implementations cho việc mã hoá này, phổ biến nhất là <code>BCryptPasswordEncoder</code> và <code>Pbkdf2PasswordEncoder</code>.</p>
+<p>Output ra một file Excel khác và đóng workbook:</p>
 
-<h1 id="chưởng-8-lưu-trữ-các-thông-tin-nhạy-cảm-một-cách-bảo-mật">Chưởng 8: Lưu trữ các thông tin nhạy cảm một cách bảo mật</h1>
+<pre><code class="language-java">// Write the output to the file  
+FileOutputStream fileOut = new FileOutputStream(&quot;modifier-employee.xlsx&quot;);  
+workbook.write(fileOut);  
+fileOut.close();  
 
-<p>Các thông tin nhạy cảm như mật khẩu, token,&hellip; cần được xử lý cẩn thận để tránh bị lộ. Bạn không thể lưu chúng dưới dạng <code>plain text</code> hoặc bất kì một dạng có thể đoán được nếu giữ chúng ở ổ cứng cá nhân. Chúng ta thường không đủ cẩn thận khi lưu trữ các thông tin nhạy cảm. Dĩ nhiên bạn có thể mã hoá chúng giống như mã hoá mật khẩu. Nhưng khi mật khẩu an toàn, bạn lại có thêm một cái khác cần lưu trữ, đó chính là chìa khoá để giải mã. <em>(Thực tế thì chúng ta thường dùng các hàm hash một chiều để mã hoá mật khẩu, tức là không thể dịch ngược lại một khi đã mã hoá. Nhưng trong trường hợp này là các tài liệu nhạy cảm cần đọc được chứ không chỉ đơn giản là để so sánh)</em>.</p>
+// Closing the workbook  
+workbook.close();
+</code></pre>
 
-<p><a href="http://projects.spring.io/spring-vault/">Spring Vault</a> được coi là một giải pháp an toàn giúp chúng ta lưu trữ các thông tin nhạy cảm, cung cấp cách truy cập và cả tự động tạo thông tin đăng nhập cho chúng ta sử dụng.</p>
+<h1 id="sourcode">Sourcode</h1>
 
-<h1 id="chưởng-9-kiểm-tra-ứng-dụng-với-owasp-zap">Chưởng 9: Kiểm tra ứng dụng với OWASP ZAP</h1>
+<p><a href="https://github.com/tubean/apache-poi-tutorial.git">https://github.com/tubean/apache-poi-tutorial.git</a></p>
 
-<p>Công cụ bảo mật <a href="https://www.owasp.org/index.php/OWASP_Zed_Attack_Proxy_Project">OWASP ZAP</a> là một proxy thực hiện việc kiểm tra bằng cách cố gắng xâm nhập ứng dụng tại lúc runtime. Hai phương pháp <code>OWASP ZAP</code> sử dụng để tìm kiếm các lỗ hổng là <code>Spider</code> và <code>Active Scan</code>.</p>
+<h1 id="tham-khảo">Tham khảo</h1>
 
-<p>Công cụ <code>Spider</code> sẽ bắt đầu bằng một chuỗi các URL, nó sẽ truy cập và phân tích cú pháp thông qua các response, xác định các hyperlink và thêm chúng vào một danh sách. Sau đó nó sẽ cố gắng tạo ra một bản đồ URLs dành riêng cho ứng dụng của bạn.</p>
-
-<p>Công cụ <code>Active Scan</code> sẽ tự động kiểm tra và cung cấp cho bạn một báo cáo về những nơi ứng dụng của bạn có thể bị khai thác cũng như chi tiết về các lỗ hổng.</p>
-
-<h1 id="chưởng-10-thành-lập-một-team-bảo-mật-để-review-code">Chưởng 10: Thành lập một team bảo mật để review code.</h1>
-
-<p>Code review là việc làm cần thiết cho bất kì một team phát triển dự án nào. Nếu bạn phải làm việc với những thông tin nhạy cảm, bạn nên xây dựng một team gồm các chuyên gia bảo mật để phân tích và báo cáo các lỗ hổng tiềm năng trong hệ thống. Nhưng nếu công ty hoặc khách hàng của bạn không có budget cho việc đó thì bạn cứ làm hết khả năng của mình là được. 😝</p>
-
-<p>Tải <a href="https://res.cloudinary.com/snyk/image/upload/v1534422834/blog/Spring_Boot_Security_Cheat_Sheet.pdf">Cheat sheet</a></p>
-
-<p>Via: <a href="https://developer.okta.com/blog/2018/07/30/10-ways-to-secure-spring-boot">https://developer.okta.com/blog/2018/07/30/10-ways-to-secure-spring-boot</a></p>
+<p><a href="https://www.callicoder.com/java-write-excel-file-apache-poi/">https://www.callicoder.com/java-write-excel-file-apache-poi/</a>
+<a href="https://www.callicoder.com/java-read-excel-file-apache-poi/">https://www.callicoder.com/java-read-excel-file-apache-poi/</a></p>
 
               
             </div>
@@ -462,9 +647,9 @@ Dưới đây là diagram về cách OIDC xác thực:
                   <div class="post-footer-tags">
                     <span class="text-color-light text-small">THẺ ĐÁNH DẤU</span><br/>
                     
-  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/spring-boot/">Spring Boot</a>
+  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/java/">Java</a>
 
-  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/security/">Security</a>
+  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/apache-poi/">Apache POI</a>
 
                   </div>
                 
@@ -477,7 +662,7 @@ Dưới đây là diagram về cách OIDC xác thực:
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2018/11/java-lambda-expression/" data-tooltip="[Java 8] Lambda Expression trong Java 8">
+                <a class="post-action-btn btn btn--disabled">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">Tiếp</span>
@@ -485,7 +670,7 @@ Dưới đây là diagram về cách OIDC xác thực:
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2018/11/blog-with-hugo/" data-tooltip="[Hugo] Hướng dẫn xây dựng blog cá nhân bằng Hugo &#43; Github">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2018/11/adapter-design-patterns/" data-tooltip="[Design Patterns] Adapter Design Pattern in Java">
               
                   <span class="hide-xs hide-sm text-small icon-mr">Trước</span>
                   <i class="fa fa-angle-right"></i>
@@ -503,19 +688,19 @@ Dưới đây là diagram về cách OIDC xác thực:
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://tubean.github.io/2018/11/spring-boot-10-ways-security/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://tubean.github.io/2018/11/excel-file-with-poi/">
               <i class="fa fa-facebook-official"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://tubean.github.io/2018/11/spring-boot-10-ways-security/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://tubean.github.io/2018/11/excel-file-with-poi/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://tubean.github.io/2018/11/spring-boot-10-ways-security/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://tubean.github.io/2018/11/excel-file-with-poi/">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -563,7 +748,7 @@ Dưới đây là diagram về cách OIDC xác thực:
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2018/11/java-lambda-expression/" data-tooltip="[Java 8] Lambda Expression trong Java 8">
+                <a class="post-action-btn btn btn--disabled">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">Tiếp</span>
@@ -571,7 +756,7 @@ Dưới đây là diagram về cách OIDC xác thực:
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2018/11/blog-with-hugo/" data-tooltip="[Hugo] Hướng dẫn xây dựng blog cá nhân bằng Hugo &#43; Github">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2018/11/adapter-design-patterns/" data-tooltip="[Design Patterns] Adapter Design Pattern in Java">
               
                   <span class="hide-xs hide-sm text-small icon-mr">Trước</span>
                   <i class="fa fa-angle-right"></i>
@@ -589,19 +774,19 @@ Dưới đây là diagram về cách OIDC xác thực:
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://tubean.github.io/2018/11/spring-boot-10-ways-security/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://tubean.github.io/2018/11/excel-file-with-poi/">
               <i class="fa fa-facebook-official"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://tubean.github.io/2018/11/spring-boot-10-ways-security/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://tubean.github.io/2018/11/excel-file-with-poi/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://tubean.github.io/2018/11/spring-boot-10-ways-security/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://tubean.github.io/2018/11/excel-file-with-poi/">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -631,19 +816,19 @@ Dưới đây là diagram về cách OIDC xác thực:
   <ul class="share-options">
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ftubean.github.io%2F2018%2F11%2Fspring-boot-10-ways-security%2F">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ftubean.github.io%2F2018%2F11%2Fexcel-file-with-poi%2F">
           <i class="fa fa-facebook-official"></i><span>Chia sẻ với Facebook</span>
         </a>
       </li>
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Ftubean.github.io%2F2018%2F11%2Fspring-boot-10-ways-security%2F">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Ftubean.github.io%2F2018%2F11%2Fexcel-file-with-poi%2F">
           <i class="fa fa-twitter"></i><span>Chia sẻ với Twitter</span>
         </a>
       </li>
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Ftubean.github.io%2F2018%2F11%2Fspring-boot-10-ways-security%2F">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Ftubean.github.io%2F2018%2F11%2Fexcel-file-with-poi%2F">
           <i class="fa fa-google-plus"></i><span>Chia sẻ với Google&#43;</span>
         </a>
       </li>
@@ -950,9 +1135,9 @@ $(document).ready(function() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = 'https:\/\/tubean.github.io\/2018\/11\/spring-boot-10-ways-security\/';
+          this.page.url = 'https:\/\/tubean.github.io\/2018\/11\/excel-file-with-poi\/';
           
-            this.page.identifier = '\/2018\/11\/spring-boot-10-ways-security\/'
+            this.page.identifier = '\/2018\/11\/excel-file-with-poi\/'
           
         };
         (function() {

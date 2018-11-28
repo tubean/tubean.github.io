@@ -6,10 +6,19 @@
     <description>Recent content in Java on Bean&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>vi</language>
-    <lastBuildDate>Sun, 25 Nov 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 28 Nov 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://tubean.github.io/tags/java/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>[Java] Thao tác với Excel file bằng Apache POI</title>
+      <link>https://tubean.github.io/2018/11/excel-file-with-poi/</link>
+      <pubDate>Wed, 28 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://tubean.github.io/2018/11/excel-file-with-poi/</guid>
+      <description>1- Apache POI là gì? Khi lập trình với bất cứ hệ thống nào thì việc thao tác với các file excel luôn là điều bắt buộc mọi developer phải nắm được. Và để làm việc hiệu quả với excel file trong java thì tôi xin giới thiệu thư viện Apache POI trong bài viết này. POI là viết tắt của Poor Obfuscation Implementation, đó là một thư viện mã nguồn mở của Java, được cung cấp bởi Apache giúp chúng ta làm việc với các tài liệu của Microsoft như Word, Excel, PowerPoint&amp;hellip;</description>
+    </item>
     
     <item>
       <title>[Design Patterns] Adapter Design Pattern in Java</title>
