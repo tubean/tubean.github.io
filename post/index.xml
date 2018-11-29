@@ -6,10 +6,20 @@
     <description>Recent content in Posts on Bean&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>vi</language>
-    <lastBuildDate>Wed, 28 Nov 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 29 Nov 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://tubean.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>[Design Patterns] Facade Design Pattern in Java</title>
+      <link>https://tubean.github.io/2018/11/facade-design-patterns/</link>
+      <pubDate>Thu, 29 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://tubean.github.io/2018/11/facade-design-patterns/</guid>
+      <description>Trong bài viết này, chúng ta cùng xem xét mẫu thiết kế khác, đó là Facade pattern. Trước khi đi vào chi tiết mẫu thiết kế, chúng ta cùng xem xét câu chuyện sau:
+Công ty phần mềm A vận hành một sản phẩm tên là Schedule Server. Đó là một ứng dụng làm rất nhiều việc như gửi mail, sms, đọc và viết file đến địa chỉ đích, gửi và nhận file giữa 2 server.</description>
+    </item>
     
     <item>
       <title>[Java] Thao tác với Excel file bằng Apache POI</title>
@@ -104,16 +114,6 @@ Integer a = 1000, b = 1000; System.out.println(a == b);//1 Integer c = 100, d = 
       <guid>https://tubean.github.io/2018/10/hello/</guid>
       <description>&lt;p&gt;Để chào mừng bài post đầu tiên, một phút quốc ca bắt đầu!
 &lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://tubean.github.io/1/01/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://tubean.github.io/1/01/</guid>
-      <description>﻿ title: &amp;ldquo;[Design Patterns] Facade Design Pattern in Java&amp;rdquo; slug: facade-design-patterns date: 2018-11-29 categories: - Java - Design Patterns tags: - Java - Design Pattern - Facade keywords: - java - design - pattern - facade autoThumbnailImage: true thumbnailImagePosition: &amp;ldquo;left&amp;rdquo; thumbnailImage: https://res.cloudinary.com/deop9ytsv/image/upload/v1543156961/design-pattern-logo.jpg coverImage: https://res.cloudinary.com/deop9ytsv/image/upload/v1541273502/Black_flag.svg.png
-metaAlignment: center Trong bài viết này, chúng ta cùng xem xét mẫu thiết kế khác, đó là Facade pattern. Trước khi đi vào chi tiết mẫu thiết kế, chúng ta cùng xem xét câu chuyện sau:</description>
     </item>
     
   </channel>
