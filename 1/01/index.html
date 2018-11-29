@@ -8,19 +8,29 @@
 <meta name="generator" content="Hugo 0.49 with theme Tranquilpeak 0.4.3-SNAPSHOT">
 <meta name="author" content="Tu Bean">
 <meta name="keywords" content="">
-<meta name="description" content="Bean&#39;s blog">
+<meta name="description" content="﻿ title: &ldquo;[Design Patterns] Facade Design Pattern in Java&rdquo; slug: facade-design-patterns date: 2018-11-29 categories: - Java - Design Patterns tags: - Java - Design Pattern - Facade keywords: - java - design - pattern - facade autoThumbnailImage: true thumbnailImagePosition: &ldquo;left&rdquo; thumbnailImage: https://res.cloudinary.com/deop9ytsv/image/upload/v1543156961/design-pattern-logo.jpg coverImage: https://res.cloudinary.com/deop9ytsv/image/upload/v1541273502/Black_flag.svg.png
+metaAlignment: center Trong bài viết này, chúng ta cùng xem xét mẫu thiết kế khác, đó là Facade pattern. Trước khi đi vào chi tiết mẫu thiết kế, chúng ta cùng xem xét câu chuyện sau:">
 
 
-<meta property="og:description" content="Bean&#39;s blog">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Spring Boot">
-<meta name="twitter:title" content="Spring Boot">
-<meta property="og:url" content="https://tubean.github.io/tags/spring-boot/">
-<meta property="twitter:url" content="https://tubean.github.io/tags/spring-boot/">
+<meta property="og:description" content="﻿ title: &ldquo;[Design Patterns] Facade Design Pattern in Java&rdquo; slug: facade-design-patterns date: 2018-11-29 categories: - Java - Design Patterns tags: - Java - Design Pattern - Facade keywords: - java - design - pattern - facade autoThumbnailImage: true thumbnailImagePosition: &ldquo;left&rdquo; thumbnailImage: https://res.cloudinary.com/deop9ytsv/image/upload/v1543156961/design-pattern-logo.jpg coverImage: https://res.cloudinary.com/deop9ytsv/image/upload/v1541273502/Black_flag.svg.png
+metaAlignment: center Trong bài viết này, chúng ta cùng xem xét mẫu thiết kế khác, đó là Facade pattern. Trước khi đi vào chi tiết mẫu thiết kế, chúng ta cùng xem xét câu chuyện sau:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Bean&#39;s blog">
+<meta name="twitter:title" content="Bean&#39;s blog">
+<meta property="og:url" content="https://tubean.github.io/1/01/">
+<meta property="twitter:url" content="https://tubean.github.io/1/01/">
 <meta property="og:site_name" content="Bean&#39;s blog">
-<meta property="og:description" content="Bean&#39;s blog">
-<meta name="twitter:description" content="Bean&#39;s blog">
+<meta property="og:description" content="﻿ title: &ldquo;[Design Patterns] Facade Design Pattern in Java&rdquo; slug: facade-design-patterns date: 2018-11-29 categories: - Java - Design Patterns tags: - Java - Design Pattern - Facade keywords: - java - design - pattern - facade autoThumbnailImage: true thumbnailImagePosition: &ldquo;left&rdquo; thumbnailImage: https://res.cloudinary.com/deop9ytsv/image/upload/v1543156961/design-pattern-logo.jpg coverImage: https://res.cloudinary.com/deop9ytsv/image/upload/v1541273502/Black_flag.svg.png
+metaAlignment: center Trong bài viết này, chúng ta cùng xem xét mẫu thiết kế khác, đó là Facade pattern. Trước khi đi vào chi tiết mẫu thiết kế, chúng ta cùng xem xét câu chuyện sau:">
+<meta name="twitter:description" content="﻿ title: &ldquo;[Design Patterns] Facade Design Pattern in Java&rdquo; slug: facade-design-patterns date: 2018-11-29 categories: - Java - Design Patterns tags: - Java - Design Pattern - Facade keywords: - java - design - pattern - facade autoThumbnailImage: true thumbnailImagePosition: &ldquo;left&rdquo; thumbnailImage: https://res.cloudinary.com/deop9ytsv/image/upload/v1543156961/design-pattern-logo.jpg coverImage: https://res.cloudinary.com/deop9ytsv/image/upload/v1541273502/Black_flag.svg.png
+metaAlignment: center Trong bài viết này, chúng ta cùng xem xét mẫu thiết kế khác, đó là Facade pattern. Trước khi đi vào chi tiết mẫu thiết kế, chúng ta cùng xem xét câu chuyện sau:">
 <meta property="og:locale" content="vi">
+
+  
+  
+  
+  
+  
 
 
 <meta name="twitter:card" content="summary">
@@ -39,16 +49,14 @@
   <meta property="twitter:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/c_scale,w_1836/v1540914499/C360_2016-03-22-17-45-21-487.jpg">
 
 
-    <title>Spring Boot</title>
+    <title>Bean&#39;s blog</title>
 
     <link rel="icon" href="https://tubean.github.io/favicon/flappybird.png">
     
-      <link rel="alternate" type="application/rss+xml" title="RSS" href="https://tubean.github.io/tags/spring-boot/index.xml">
-    
 
     
 
-    <link rel="canonical" href="https://tubean.github.io/tags/spring-boot/">
+    <link rel="canonical" href="https://tubean.github.io/1/01/">
 
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
@@ -89,7 +97,7 @@ if (!doNotTrack) {
 
   <body>
     <div id="blog">
-      <header id="header" data-behavior="2">
+      <header id="header" data-behavior="5">
   <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
   <div class="header-title">
     <a class="header-title-link" href="https://tubean.github.io/">Bean&#39;s blog</a>
@@ -109,7 +117,7 @@ if (!doNotTrack) {
   
 </header>
 
-      <nav id="sidebar" data-behavior="2">
+      <nav id="sidebar" data-behavior="5">
   <div class="sidebar-container">
     
       <div class="sidebar-profile">
@@ -228,144 +236,234 @@ if (!doNotTrack) {
 </nav>
 
       
-        
 
-      
-      <div id="main" data-behavior="2"
+      <div id="main" data-behavior="5"
         class="
                hasCoverMetaIn
                ">
-        
-          <section class="postShorten-group main-content-wrap">
-            
-            
-              
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
   
-    
-  
-
-
-  
-
-<article class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="https://tubean.github.io/2018/11/spring-boot-crud-app/">
-          [Spring Boot] Dựng app CRUD đơn giản bằng Spring Boot &#43; Thymeleaf trên Intelij
-        </a>
-      </h1>
+    <h1 class="post-title" itemprop="headline">
       
+    </h1>
+  
+  
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2018-11-17T00:00:00Z">
+      <time itemprop="datePublished" datetime="0001-01-01T00:00:00Z">
         
-  tháng 11 17, 2018
+  tháng 1 1, 1
 
       </time>
     
     
-  
-  
-    <span>mục</span>
-    
-      <a class="category-link" href="https://tubean.github.io/categories/spring">Spring</a>, 
-    
-      <a class="category-link" href="https://tubean.github.io/categories/tutorial">Tutorial</a>, 
-    
-      <a class="category-link" href="https://tubean.github.io/categories/springboot">SpringBoot</a>
-    
-  
-
   </div>
 
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              
+
+<h2 id="toc_0">﻿</h2>
+
+<p>title: &ldquo;[Design Patterns] Facade Design Pattern in Java&rdquo;
+slug: facade-design-patterns
+date: 2018-11-29
+categories:
+- Java
+- Design Patterns
+tags:
+- Java
+- Design Pattern
+- Facade
+keywords:
+- java
+- design
+- pattern
+- facade
+autoThumbnailImage: true
+thumbnailImagePosition: &ldquo;left&rdquo;
+thumbnailImage: <a href="https://res.cloudinary.com/deop9ytsv/image/upload/v1543156961/design-pattern-logo.jpg">https://res.cloudinary.com/deop9ytsv/image/upload/v1543156961/design-pattern-logo.jpg</a>
+coverImage: <a href="https://res.cloudinary.com/deop9ytsv/image/upload/v1541273502/Black_flag.svg.png">https://res.cloudinary.com/deop9ytsv/image/upload/v1541273502/Black_flag.svg.png</a></p>
+
+<h2 id="metaalignment-center">metaAlignment: center</h2>
+
+<p>Trong bài viết này, chúng ta cùng xem xét mẫu thiết kế khác, đó là <code>Facade pattern</code>. Trước khi đi vào chi tiết mẫu thiết kế, chúng ta cùng xem xét câu chuyện sau:</p>
+
+<p>Công ty phần mềm A vận hành một sản phẩm tên là <strong>Schedule Server</strong>. Đó là một ứng dụng làm rất nhiều việc như gửi mail, sms, đọc và viết file đến địa chỉ đích, gửi và nhận file giữa 2 server. Ứng dụng được các developers sử dụng để quản lý các loại công việc đó và có thể tập trung hơn vào nghiệp vụ của mình. Server sẽ thực thi mỗi công việc tại thời điểm được chỉ định. Là một developer, bạn chỉ cần code các nghiệp vụ liên quan và cung cấp các API để thực hiện nghiệp vụ mà khách hàng muốn.
+Mọi thứ đều ổn cho đến khi khách hàng phàn nàn rằng việc bắt đầu và kết thúc của một tiến trình là phức tạp và mất thời gian. Họ muốn làm điều đó nhanh gọn hơn. Do đó chúng ta cần cung cấp một giải pháp để start và stop server. Vấn đề ở đây là lỗi thiết kế ban đầu đã khiến cho các interface trở nên rất phức tạp. Và dù muốn dù không thì chúng ta cũng không thể đập đi xây lại từ đầu. <code>Facade pattern</code> sẽ giúp chúng ta giải quyết vấn đề này.</p>
+
+<h1 id="1-mẫu-facade-là-gì">1. Mẫu Facade là gì?</h1>
+
+<p>Mục đích của mẫu facade làm khiên cho các interface phức tạp trở nên dễ sử dụng hơn bằng cách tạo ra một lớp Facade. Lớp này sẽ định nghĩa một <em>higher-level interface</em> giúp cho các hệ thống con dễ sử dụng hơn. Điều này giống như khi bạn gọi điện tổng đài chăm sóc khách hàng thì sẽ có một em xinh tươi giúp chúng ta giao tiếp với tất cả dịch vụ mà chúng ta cần.
+Facade không đóng gói các interface hoặc các class con, mà nó chỉ tạo ra thêm một cách mới để đơn giản hóa một nghiệp vụ nào đó. Các API khác vẫn được expose và khách hàng có thể sử dụng chúng một cách trực tiếp không cần thông qua Facade. Ngoài ra, Facade còn làm cho sự liên kết giữa phía client và các hệ thống con trở nên lỏng lẻo hơn, tuân thủ principle <code>Least Knowledge</code>, khiến chương trình trở nên linh hoạt hơn: giả sử một ngày nào đó, công ty bạn quyết định thêm một vài function vào để khởi tạo và kết thúc tiến trình thì phía client chỉ cần quan tâm đến Facade, không cần quan tâm đến sự thay đổi bên dưới nó.
+Cần chú ý là Facade tương tự <a href="https://tubean.github.io/2018/11/adapter-design-patterns/">Adapter</a> đều wrap nhều class với nhau. Tuy nhiên Facade được sử dụng để tạo ra một interface mới dễ sử dụng hơn từ một loạt các interface phức tạp, trong khi Adapter sẽ convert từ một interface sang một interface được yêu cầu.</p>
+
+<p><img src="https://res.cloudinary.com/deop9ytsv/image/upload/v1543506804/facade_1.jpg" alt="img1" /></p>
+
+<h1 id="2-cách-giải-quyết">2. Cách giải quyết</h1>
+
+<p>Vấn đề gặp phải là phía client sử dụng Schedule Server sẽ phải làm những việc phức tạp khi start và stop server :</p>
+
+<pre><code class="language-java">ScheduleServer scheduleServer = new ScheduleServer();
+</code></pre>
+
+<p>Để start server, phía clients cần làm tất cả các việc sau:</p>
+
+<pre><code class="language-java">scheduleServer.startBooting();  
+scheduleServer.readSystemConfigFile();  
+scheduleServer.init();  
+scheduleServer.initializeContext();  
+scheduleServer.initializeListeners();  
+scheduleServer.createSystemObjects();  
+
+System.out.println(&quot;Start working......&quot;);  
+System.out.println(&quot;After work done.........&quot;);
+</code></pre>
+
+<p>Còn để stop server, client cần gọi các method sau một cách tuần tự:</p>
+
+<pre><code class="language-java">scheduleServer.releaseProcesses();  
+scheduleServer.destory();  
+scheduleServer.destroySystemObjects();  
+scheduleServer.destoryListeners();  
+scheduleServer.destoryContext();  
+scheduleServer.shutdown();
+</code></pre>
+
+<p>Để giải quyết vấn đề này, chúng ta tạo một lớp facade để wrap đối tượng server này. Lớp facade này sẽ cung cấp các phương thức đơn giản hơn cho phía client:</p>
+
+<pre><code class="language-java">class ScheduleServerFacade {  
+    private final ScheduleServer scheduleServer;  
+
+    ScheduleServerFacade(ScheduleServer scheduleServer) {  
+        this.scheduleServer = scheduleServer;  
+    }  
+
+    void startServer() {  
+
+        scheduleServer.startBooting();  
+        scheduleServer.readSystemConfigFile();  
+        scheduleServer.init();  
+        scheduleServer.initializeContext();  
+        scheduleServer.initializeListeners();  
+        scheduleServer.createSystemObjects();  
+    }  
+
+    void stopServer() {  
+
+        scheduleServer.releaseProcesses();  
+        scheduleServer.destory();  
+        scheduleServer.destroySystemObjects();  
+        scheduleServer.destoryListeners();  
+        scheduleServer.destoryContext();  
+        scheduleServer.shutdown();  
+    }  
+}
+</code></pre>
+
+<p>Khi này thì khách hàng muốn start hay stop server thì chỉ cần gọi đến 2 phương thức <code>startServer()</code> và <code>stopServer()</code>, quá tiện :😄:</p>
+
+<h1 id="4-dùng-facade-khi-nào">4. Dùng Facade khi nào?</h1>
+
+<p>Chúng ta sẽ sử dụng Facade trong các trường hợp sau:
+-   Cần cung cấp một interface đơn giản cho một hệ thống con phức tạp:  Các hệ thống con thường trở nên phức tạp hơn theo thời gian. Trong hầu hết các mô hình thì các lớp con thường sẽ trở nên nhỏ hơn và dễ custom hơn. Nhưng điều này cũng làm cho khách hàng trở nên bối rối mỗi lần chúng ta thay đổi version. Facade cung cấp một chế độ xem đủ tốt và đơn giản cho hầu hết những khách hàng không muốn đi sâu vào custom hệ thống.
+-   Có nhiều phụ thuộc giữa phía client và các lớp implementation: Một Facade sẽ giúp tách biệt hệ thống con từ khách hàng và các hệ thống con khác, do đó thúc đẩy sự độc lập của hệ thống con và tính di động của chúng.
+-   Muốn che giấu tính phức tạp của hệ thống con: Sử dụng Facade sẽ giúp xác định các <em>entry point</em> của mỗi tầng hệ thống.</p>
+
+<h1 id="5-source-code">5. Source code</h1>
+
+<p><a href="https://github.com/tubean/design-pattern/">https://github.com/tubean/design-pattern/</a></p>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2018/10/hello/" data-tooltip="Hello">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">Tiếp</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">Trước</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
       
-        Để remind kiến thức cũng như tổng kết khi mới bắt đầu học một công nghệ mới, mình thường tạo một app đơn giản có đủ các thao tác thêm, xóa, sửa (CRUD). Bài viết này là một tutorial dạng cơ bản nhất khi học về Spring, sử dụng các công nghệ sau:
- Spring Boot: để khởi tạo và cấu hình ứng dụng một cách nhanh chóng. Spring MVC: để xây dựng app.
-      
-      <p>
-        <a href="https://tubean.github.io/2018/11/spring-boot-crud-app/" class="postShorten-excerpt_link link">Đọc tiếp...</a>
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
         
-      </p>
-    </div>
-  </div>
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://tubean.github.io/1/01/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://tubean.github.io/1/01/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://tubean.github.io/1/01/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
   
-    <a href="https://tubean.github.io/2018/11/spring-boot-crud-app/">
-      <div class="postShorten-thumbnailimg">
-        <img alt="" itemprop="image" src="https://res.cloudinary.com/deop9ytsv/image/upload/v1542422606/spring-boot-icon0_cf21dec4-5056-b3a8-49c015fd3bde6cb5.png"/>
-      </div>
-    </a>
-  
-</article>
+</div>
 
             
               
-  
-    
-  
-
-
-  
-
-<article class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="https://tubean.github.io/2018/11/spring-boot-10-ways-security/">
-          [Spring Boot] Secu thập chưởng bảo vệ app Spring Boot của bạn
-        </a>
-      </h1>
-      
-  <div class="postShorten-meta post-meta">
-    
-      <time itemprop="datePublished" datetime="2018-11-06T00:00:00Z">
-        
-  tháng 11 6, 2018
-
-      </time>
-    
-    
-  
-  
-    <span>mục</span>
-    
-      <a class="category-link" href="https://tubean.github.io/categories/spring-boot">Spring Boot</a>, 
-    
-      <a class="category-link" href="https://tubean.github.io/categories/security">Security</a>
-    
-  
-
-  </div>
-
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      
-        Spring Boot được release lần đầu năm 2014 và không có nhiều thay đổi đáng kể cho đến hiện tại. Với mục tiêu tự động cấu hình và giảm thiểu lượng code để có thể start một ứng dụng, Spring Boot đã giúp cho không biết con dân nhà Spring dễ sống và bớt chửi thề đi. Giống như khi dùng bất kì một framework nào để xây dựng ứng dụng, điều bạn cần quan tâm không chỉ là chất lượng code, vượt qua các test case, &hellip; mà còn là khả năng bảo mật của ứng dụng.
-      
-      <p>
-        <a href="https://tubean.github.io/2018/11/spring-boot-10-ways-security/" class="postShorten-excerpt_link link">Đọc tiếp...</a>
-        
-      </p>
-    </div>
-  </div>
-  
-    <a href="https://tubean.github.io/2018/11/spring-boot-10-ways-security/">
-      <div class="postShorten-thumbnailimg">
-        <img alt="" itemprop="image" src="https://assets.simpleviewcms.com/simpleview/image/fetch/c_limit,h_640,q_60,w_800/https://res.cloudinary.com/simpleview/image/upload/crm/howardcounty/spring-boot-icon0_cf21dec4-5056-b3a8-49c015fd3bde6cb5.png"/>
-      </div>
-    </a>
-  
-</article>
-
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
             
-            
-
-          </section>
-        
+          </div>
+        </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
     &copy; 2018 <a href="https://bitbucket.org/tubean/">Do Anh Tu</a>. All Rights Reserved
@@ -373,6 +471,102 @@ if (!doNotTrack) {
 </footer>
 
       </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2018/10/hello/" data-tooltip="Hello">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">Tiếp</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">Trước</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://tubean.github.io/1/01/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://tubean.github.io/1/01/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://tubean.github.io/1/01/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ftubean.github.io%2F1%2F01%2F">
+          <i class="fa fa-facebook-official"></i><span>Chia sẻ với Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Ftubean.github.io%2F1%2F01%2F">
+          <i class="fa fa-twitter"></i><span>Chia sẻ với Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Ftubean.github.io%2F1%2F01%2F">
+          <i class="fa fa-google-plus"></i><span>Chia sẻ với Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
     </div>
     
     <div id="about">
@@ -667,6 +861,32 @@ $(document).ready(function() {
 });
 </script>
 
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'https:\/\/tubean.github.io\/1\/01\/';
+          
+            this.page.identifier = '\/1\/01\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'beans-blog';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
 
 
 
