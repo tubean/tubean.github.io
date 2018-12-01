@@ -7,42 +7,46 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="generator" content="Hugo 0.49 with theme Tranquilpeak 0.4.3-SNAPSHOT">
 <meta name="author" content="Tu Bean">
-<meta name="keywords" content="Java, Java 8, Lambda, Expression, Functional Interface">
-<meta name="description" content="1. Lambda expresstion là gì? Lambda expression là một feature mới và nổi bật nhất của java 8 giúp số lượng code được giảm và là bước đầu khiến Java bước vào thế giới functional programming. Một lamba expression là một function được tạo mà không thuộc bất kì một class nào. Nó là một hàm không tên (unamed function) với các tham số (parameters) và phần body chứa khối lệnh được tách biệt với các tham số bằng dấu -&gt;.">
+<meta name="keywords" content="java, test, testcase, junit">
+<meta name="description" content="Phiên bản hiện tại của JUnit là JUnit 5 và nó bao gồm các component khác nhau:
+ JUnit Platform: layer nền tảng cho phép những testing framework có thể chạy trên máy ảo JVM. JUnit Jupiter: đây chính là phiên bản JUnit 5 và được chạy trên JUnit Platform. JUnit Vintage: kế thừa từ TestEngine và cho phép chạy các phiên bản cũ hơn của JUnit.  1. Cài đặt bằng Gradle buildscript { repositories { mavenCentral() // The following is only necessary if you want to use SNAPSHOT releases.">
 
 
-<meta property="og:description" content="1. Lambda expresstion là gì? Lambda expression là một feature mới và nổi bật nhất của java 8 giúp số lượng code được giảm và là bước đầu khiến Java bước vào thế giới functional programming. Một lamba expression là một function được tạo mà không thuộc bất kì một class nào. Nó là một hàm không tên (unamed function) với các tham số (parameters) và phần body chứa khối lệnh được tách biệt với các tham số bằng dấu -&gt;.">
+<meta property="og:description" content="Phiên bản hiện tại của JUnit là JUnit 5 và nó bao gồm các component khác nhau:
+ JUnit Platform: layer nền tảng cho phép những testing framework có thể chạy trên máy ảo JVM. JUnit Jupiter: đây chính là phiên bản JUnit 5 và được chạy trên JUnit Platform. JUnit Vintage: kế thừa từ TestEngine và cho phép chạy các phiên bản cũ hơn của JUnit.  1. Cài đặt bằng Gradle buildscript { repositories { mavenCentral() // The following is only necessary if you want to use SNAPSHOT releases.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[Java 8] Lambda Expression trong Java 8">
-<meta name="twitter:title" content="[Java 8] Lambda Expression trong Java 8">
-<meta property="og:url" content="https://tubean.github.io/2018/11/java-lambda-expression/">
-<meta property="twitter:url" content="https://tubean.github.io/2018/11/java-lambda-expression/">
+<meta property="og:title" content="[Java] Unit Test với JUnit 5x">
+<meta name="twitter:title" content="[Java] Unit Test với JUnit 5x">
+<meta property="og:url" content="https://tubean.github.io/2018/12/junix-5x/">
+<meta property="twitter:url" content="https://tubean.github.io/2018/12/junix-5x/">
 <meta property="og:site_name" content="Bean&#39;s blog">
-<meta property="og:description" content="1. Lambda expresstion là gì? Lambda expression là một feature mới và nổi bật nhất của java 8 giúp số lượng code được giảm và là bước đầu khiến Java bước vào thế giới functional programming. Một lamba expression là một function được tạo mà không thuộc bất kì một class nào. Nó là một hàm không tên (unamed function) với các tham số (parameters) và phần body chứa khối lệnh được tách biệt với các tham số bằng dấu -&gt;.">
-<meta name="twitter:description" content="1. Lambda expresstion là gì? Lambda expression là một feature mới và nổi bật nhất của java 8 giúp số lượng code được giảm và là bước đầu khiến Java bước vào thế giới functional programming. Một lamba expression là một function được tạo mà không thuộc bất kì một class nào. Nó là một hàm không tên (unamed function) với các tham số (parameters) và phần body chứa khối lệnh được tách biệt với các tham số bằng dấu -&gt;.">
+<meta property="og:description" content="Phiên bản hiện tại của JUnit là JUnit 5 và nó bao gồm các component khác nhau:
+ JUnit Platform: layer nền tảng cho phép những testing framework có thể chạy trên máy ảo JVM. JUnit Jupiter: đây chính là phiên bản JUnit 5 và được chạy trên JUnit Platform. JUnit Vintage: kế thừa từ TestEngine và cho phép chạy các phiên bản cũ hơn của JUnit.  1. Cài đặt bằng Gradle buildscript { repositories { mavenCentral() // The following is only necessary if you want to use SNAPSHOT releases.">
+<meta name="twitter:description" content="Phiên bản hiện tại của JUnit là JUnit 5 và nó bao gồm các component khác nhau:
+ JUnit Platform: layer nền tảng cho phép những testing framework có thể chạy trên máy ảo JVM. JUnit Jupiter: đây chính là phiên bản JUnit 5 và được chạy trên JUnit Platform. JUnit Vintage: kế thừa từ TestEngine và cho phép chạy các phiên bản cũ hơn của JUnit.  1. Cài đặt bằng Gradle buildscript { repositories { mavenCentral() // The following is only necessary if you want to use SNAPSHOT releases.">
 <meta property="og:locale" content="vi">
 
   
-    <meta property="article:published_time" content="2018-11-07T00:00:00">
+    <meta property="article:published_time" content="2018-12-01T00:00:00">
   
   
-    <meta property="article:modified_time" content="2018-11-07T00:00:00">
+    <meta property="article:modified_time" content="2018-12-01T00:00:00">
   
   
   
     
       <meta property="article:section" content="Java">
     
-      <meta property="article:section" content="Lambda expression">
+      <meta property="article:section" content="Testing">
     
   
   
     
       <meta property="article:tag" content="Java">
     
-      <meta property="article:tag" content="Java 8">
+      <meta property="article:tag" content="Test">
     
-      <meta property="article:tag" content="Lambda expression">
+      <meta property="article:tag" content="JUnit">
     
   
 
@@ -55,8 +59,8 @@
 
 
 
-  <meta property="og:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1541576734/eer0Pfq.png">
-  <meta property="twitter:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1541576734/eer0Pfq.png">
+  <meta property="og:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1543633941/junit.jpg">
+  <meta property="twitter:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1543633941/junit.jpg">
 
 
   <meta property="og:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1541273502/Black_flag.svg.png">
@@ -69,14 +73,14 @@
   <meta property="twitter:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/c_scale,w_1836/v1540914499/C360_2016-03-22-17-45-21-487.jpg">
 
 
-    <title>[Java 8] Lambda Expression trong Java 8</title>
+    <title>[Java] Unit Test với JUnit 5x</title>
 
     <link rel="icon" href="https://tubean.github.io/favicon/flappybird.png">
     
 
     
 
-    <link rel="canonical" href="https://tubean.github.io/2018/11/java-lambda-expression/">
+    <link rel="canonical" href="https://tubean.github.io/2018/12/junix-5x/">
 
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
@@ -265,15 +269,15 @@ if (!doNotTrack) {
       <div class="post-header main-content-wrap text-center">
   
     <h1 class="post-title" itemprop="headline">
-      [Java 8] Lambda Expression trong Java 8
+      [Java] Unit Test với JUnit 5x
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2018-11-07T00:00:00Z">
+      <time itemprop="datePublished" datetime="2018-12-01T00:00:00Z">
         
-  tháng 11 7, 2018
+  tháng 12 1, 2018
 
       </time>
     
@@ -284,7 +288,7 @@ if (!doNotTrack) {
     
       <a class="category-link" href="https://tubean.github.io/categories/java">Java</a>, 
     
-      <a class="category-link" href="https://tubean.github.io/categories/lambda-expression">Lambda expression</a>
+      <a class="category-link" href="https://tubean.github.io/categories/testing">Testing</a>
     
   
 
@@ -306,507 +310,493 @@ if (!doNotTrack) {
             <div class="main-content-wrap">
               
 
-<h1 id="1-lambda-expresstion-là-gì">1. Lambda expresstion là gì?</h1>
-
-<p><code>Lambda expression</code> là một feature mới và nổi bật nhất của java 8 giúp số lượng code được giảm và là bước đầu khiến Java bước vào thế giới <code>functional programming</code>. Một lamba expression là một function được tạo mà không thuộc bất kì một class nào. Nó là một hàm không tên (unamed function) với các tham số (parameters) và phần body chứa khối lệnh được tách biệt với các tham số bằng dấu <code>-&gt;</code>. Ví dụ:</p>
-
-<pre><code>
-(int x) -&gt; x + 1 // Có một tham số kiểu int và trả về giá trị tham số tăng lên 1
----
-(int x, int y) // Có 2 tham số kiểu int và trả về tổng của chúng
----
-(String msg) -&gt; {System.out.printl(msg);} // Có một tham số kiểu String và in ra console
----
-msg -&gt; System.out.println(msg) // Có một tham số không cần xác định kiểu và in ra console
----
-() -&gt; &quot;Hi&quot; // Không có tham số và trả về một chuỗi
----
-(int x, int y) -&gt; {
-    int max = x &gt; y ? x:y;
-    return max;
-} // 2 tham số và trả về số lớn hơn.
-
-</code></pre>
-
-<p>Lambda expression thường được sử dụng để implement những <code>event listeners/callback</code> đơn giản hoặc trong <code>functional programming</code> cùng với <code>Java Streams API</code>.</p>
-
-<h1 id="2-functional-interface-là-gì">2. Functional interface là gì?</h1>
-
-<p>Một interface chỉ chứa duy nhất một method trừu tượng được gọi là <code>function interface</code>. Nó cũng có thể được gọi là <code>Single Abstract Interface</code>(SAM). Functional interface sử dụng annotation <code>@FunctionalInterface</code> để khai báo. Tuy nhiên việc này là không bắt buộc, nó chỉ đảm bảo cho quá trình complile, giúp chương trình báo lỗi khi có từ 2 method trừu tượng trở lên.</p>
-
-<p>Để sử dụng biểu thức Lambda thì đầu tiên cần phải có một <em>functional interface</em> chứa một phương thức cần overide lại trong biểu thức lambda. Ví dụ interface <code>Runnable</code> là một <em>functional interface</em>:</p>
-
-<pre><code class="language-java">
-    @FunctionalInterface
-    public interface Runnable {
-        public abstract void run();
-    }
-
-</code></pre>
-
-<p>Trước java 8 thì có vài cách để implement method trong một interface:</p>
+<p>Phiên bản hiện tại của JUnit là JUnit 5 và nó bao gồm các component khác nhau:</p>
 
 <ul>
-<li>Cách 1: Tạo một class mới:</li>
+<li><code>JUnit Platform</code>: layer nền tảng cho phép những testing framework có thể chạy trên máy ảo JVM.</li>
+<li><code>JUnit Jupiter</code>: đây chính là phiên bản JUnit 5 và được chạy trên JUnit Platform.</li>
+<li><code>JUnit Vintage</code>: kế thừa từ TestEngine và cho phép chạy các phiên bản cũ hơn của JUnit.</li>
 </ul>
 
-<pre><code class="language-java">
-    public class MyRunnable implements Runnable {
-        @Override
-        public void run() {
-            System.out.println(&quot;I have implemented Runnable!&quot;);
-        }
+<h1 id="1-cài-đặt-bằng-gradle">1. Cài đặt bằng Gradle</h1>
 
-        public static void main(String args[]) {
-            MyRunnable runnable = new MyRunnable();
-            runnable.run();
-        }
+<pre><code>buildscript {
+    repositories {
+        mavenCentral()
+        // The following is only necessary if you want to use SNAPSHOT releases.
+        // maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
     }
+    dependencies {
+        classpath 'org.junit.platform:junit-platform-gradle-plugin:1.0.0'
+    }
+}
 
+repositories {
+    mavenCentral()
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.junit.platform.gradle.plugin'
+
+dependencies {
+    testImplementation(&quot;org.junit.jupiter:junit-jupiter-api:5.0.0&quot;)
+    testRuntime(&quot;org.junit.jupiter:junit-jupiter-engine:5.0.0&quot;)
+    // to run JUnit 3/4 tests:
+    testImplementation(&quot;junit:junit:4.12&quot;)
+    testRuntime(&quot;org.junit.vintage:junit-vintage-engine:4.12.0&quot;)
+}
 </code></pre>
+
+<p>Sau khi cài đặt thì chúng ta có thể thực thi JUnit 5 thông qua lệnh terminal:</p>
+
+<pre><code>gradle junitPlatformTest
+</code></pre>
+
+<h1 id="2-cài-đặt-bằng-maven">2. Cài đặt bằng Maven</h1>
+
+<p>Một ví dụ best practice để cài đặt JUnit 5 bằng Maven:</p>
+
+<pre><code>&lt;build&gt;
+    &lt;plugins&gt;
+        &lt;plugin&gt;
+            &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;
+            &lt;version&gt;3.1&lt;/version&gt;
+            &lt;configuration&gt;
+                &lt;source&gt;${java.version}&lt;/source&gt;
+                &lt;target&gt;${java.version}&lt;/target&gt;
+            &lt;/configuration&gt;
+        &lt;/plugin&gt;
+        &lt;plugin&gt;
+            &lt;artifactId&gt;maven-surefire-plugin&lt;/artifactId&gt;
+            &lt;version&gt;2.19.1&lt;/version&gt;
+            &lt;configuration&gt;
+                &lt;includes&gt;
+                    &lt;include&gt;**/Test*.java&lt;/include&gt;
+                    &lt;include&gt;**/*Test.java&lt;/include&gt;
+                    &lt;include&gt;**/*Tests.java&lt;/include&gt;
+                    &lt;include&gt;**/*TestCase.java&lt;/include&gt;
+                &lt;/includes&gt;
+                &lt;properties&gt;
+                    &lt;!-- &lt;includeTags&gt;fast&lt;/includeTags&gt; --&gt;
+                    &lt;excludeTags&gt;slow&lt;/excludeTags&gt;
+                &lt;/properties&gt;
+            &lt;/configuration&gt;
+            &lt;dependencies&gt;
+                &lt;dependency&gt;
+                    &lt;groupId&gt;org.junit.platform&lt;/groupId&gt;
+                    &lt;artifactId&gt;junit-platform-surefire-provider&lt;/artifactId&gt;
+                    &lt;version&gt;${junit.platform.version}&lt;/version&gt;
+                &lt;/dependency&gt;
+                &lt;dependency&gt;
+                    &lt;groupId&gt;org.junit.jupiter&lt;/groupId&gt;
+                    &lt;artifactId&gt;junit-jupiter-engine&lt;/artifactId&gt;
+                    &lt;version&gt;${junit.jupiter.version}&lt;/version&gt;
+                &lt;/dependency&gt;
+                &lt;dependency&gt;
+                    &lt;groupId&gt;org.junit.vintage&lt;/groupId&gt;
+                    &lt;artifactId&gt;junit-vintage-engine&lt;/artifactId&gt;
+                    &lt;version&gt;${junit.vintage.version}&lt;/version&gt;
+                &lt;/dependency&gt;
+            &lt;/dependencies&gt;
+        &lt;/plugin&gt;
+    &lt;/plugins&gt;
+&lt;/build&gt;
+</code></pre>
+
+<p>và sau đó chúng ta thêm các dependency:</p>
+
+<pre><code>&lt;dependencies&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.junit.jupiter&lt;/groupId&gt;
+        &lt;artifactId&gt;junit-jupiter-api&lt;/artifactId&gt;
+        &lt;version&gt;${junit.jupiter.version}&lt;/version&gt;
+        &lt;scope&gt;test&lt;/scope&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;junit&lt;/groupId&gt;
+        &lt;artifactId&gt;junit&lt;/artifactId&gt;
+        &lt;version&gt;${junit.version}&lt;/version&gt;
+        &lt;scope&gt;test&lt;/scope&gt;
+    &lt;/dependency&gt;
+&lt;/dependencies&gt;
+</code></pre>
+
+<h1 id="3-một-số-annotation-phổ-biến">3. Một số annotation phổ biến</h1>
+
+<p>Bảng dưới đây sẽ tổng hợp một số annotation quan trọng trong Junit 5:</p>
+
+<table>
+<thead>
+<tr>
+<th>import org.junit.jupiter.api.*</th>
+<th>import package này để sử dụng các annotation dưới đây</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><strong>@Test</strong></td>
+<td>định nghĩa một method là test method</td>
+</tr>
+
+<tr>
+<td><strong>@RepeatedTest(n)</strong></td>
+<td>Lặp lại việc kiểm thử n lần</td>
+</tr>
+
+<tr>
+<td><strong>@TestFactory</strong></td>
+<td>Đánh dấu method là một Factory cho dynamic test.</td>
+</tr>
+
+<tr>
+<td><strong>@BeforeEach</strong></td>
+<td>Thực thi trước khi test. Cái này thường được đánh dấu những method cho việc chuẩn bị môi trường</td>
+</tr>
+
+<tr>
+<td><strong>@AfterEach</strong></td>
+<td>Thực thi sau khi test. Thường được đánh dấu những method có nhiệm vụ dọn dẹp môi trường</td>
+</tr>
+
+<tr>
+<td><strong>@BeforeAll</strong></td>
+<td>Thực hiện một lần duy nhất và là method chạy đầu tiên chạy một class test.</td>
+</tr>
+
+<tr>
+<td><strong>@AfterAll</strong></td>
+<td>Thực hiện một lần duy nhất và là method cuối cùng chạy trong một class test.</td>
+</tr>
+
+<tr>
+<td><strong>@Neste</strong></td>
+<td>Cho phép bạn lồng các class test để thực hiện theo thứ tự.</td>
+</tr>
+
+<tr>
+<td><strong>@Tag(&ldquo;{tagName}&rdquo;)</strong></td>
+<td>Việc kiểm thử trong JUnit 5 có thể được lọc bởi tag. Ví dụ như bạn chỉ muốn chạy các test case được đánh dấu là &ldquo;run&rdquo; thì sẽ đặt annotation @Tag(&ldquo;run&rdquo;).</td>
+</tr>
+
+<tr>
+<td><strong>@ExtendWith</strong></td>
+<td>Cho phép bạn đăng ký một lớp Extension để tích hợp với một hoặc nhiều điểm mở rộng.</td>
+</tr>
+
+<tr>
+<td><strong>@Disabled</strong> hoặc <strong>@Disabled(&ldquo;Why disabled&rdquo;)</strong></td>
+<td>Đánh dấu những method test nào có thể bỏ qua không cần run.</td>
+</tr>
+
+<tr>
+<td><strong>DisplayName(&ldquo;{name}&rdquo;)</strong></td>
+<td>giúp hiển thị tên các method khi chạy một cách dễ nhìn và dễ đọc hơn.</td>
+</tr>
+</tbody>
+</table>
+
+<h1 id="4-disabling-test">4. Disabling test</h1>
+
+<p>Annotation <code>Disabled</code> cho phép bỏ qua phương thức test đó. Ngoài ra bạn có thể sử dụng: <code>Assumptions.assumeFalse</code> hoặc <code>Assumptions.assumeTrue</code> để định nghĩa một điều kiện cho việc bỏ qua kiểm thử.</p>
 
 <ul>
-<li>Cách 2: Tạo một class Annonymous:</li>
+<li><code>Assumptions.assumeFalse</code> đánh dấu đoạn test là không hợp lệ nếu điều kiện của nó được đánh giá là <em>true</em>.</li>
+<li><code>Assumptions.assumeTrue</code> ngược lại, đánh dấu đoạn test là không hợp lệ nếu điều kiện của nó là <em>false</em>.</li>
 </ul>
 
-<pre><code class="language-java">
-    Runnable runnable = new Runnable() {
-        @Override
-        public void run() {
-            System.out.println(&quot;I have implemented Runnable!&quot;);
-        }
-    };
-    runnable.run();
+<p>Ví dụ nếu bạn không muốn chạy test trên môi trường Linux:</p>
 
+<pre><code class="language-java">Assumptions.assumeFalse(System.getProperty(&quot;os.name&quot;).contains(&quot;Linux&quot;));
 </code></pre>
 
-<p>Còn nếu chúng ta sử dụng biểu thức lambda thì chỉ cần code đơn giản như sau:</p>
+<h1 id="5-test-suites">5. Test Suites</h1>
 
-<pre><code class="language-java">
-    Runnable runnable = () -&gt; System.out.println(&quot;I have implemented Runnable!&quot;);
-    runnable.run();
+<p>Để chạy nhiều đoạn test với nhau, chúng ta sẽ dùng <em>test suites</em>. JUnit 5 cung cấp 2 annotation:</p>
 
+<ul>
+<li><code>@SelectPackages</code>: dùng để chỉ định tên của package sử dụng cho test suite.</li>
+<li><code>@SelectClasses</code>: dùng để chỉ định những lớp sử dụng cho test suite. Chúng có thể nằm ở những package khác nhau.</li>
+</ul>
+
+<pre><code class="language-java">@RunWith(JUnitPlatform.class)
+@SelectPackages(&quot;io.github.tubean.example&quot;)
+public class AllTests {}
+
+@RunWith(JUnitPlatform.class)
+@SelectClasses({AssertionTest.class, AssumptionTest.class, ExceptionTest.class})
+public class AllTests {}
 </code></pre>
 
-<h1 id="3-funtional-interface-api-trong-java-8">3. Funtional Interface API trong Java 8</h1>
+<h1 id="6-expecting-exception">6. Expecting Exception</h1>
 
-<p>Java 8 xây dựng sẵn một số functional interface được sử dụng trong các biểu thức lambda:</p>
+<p>Những ngoại lệ sẽ được xử lý bởi <code>org.junit.jupiter.api.Assertions.expectThrows()</code>. Bạn có thể định nghĩa các Exception class và chỉ định cách để throw một Exception:</p>
 
-<h4 id="3-1-java-util-function-consumer">3.1 java.util.function.Consumer</h4>
+<pre><code class="language-java">import static org.junit.jupiter.api.Assertions.expectThrows;
 
-<pre><code class="language-java">
-    package java.util.function;
-
-    import java.util.Objects;
-
-    @FunctionalInterface
-    public  interface Consumer&lt;T&gt; {
-        // Phương thức chấp nhận một tham số đầu vào
-        // và không trả về gì cả.
-        void  accept(T t);
-    }
-
+@Test
+void exceptionTesting() {
+    // set up user
+    Throwable exception = expectThrows(IllegalArgumentException.class, () -&gt; user.setAge(&quot;23&quot;));
+    assertEquals(&quot;Age must be an Integer.&quot;, exception.getMessage());
+}
 </code></pre>
 
-<p><strong>Sử dụng khi:</strong> Consumer thường được dùng với list, stream để xử lý các phần tử bên trong.</p>
+<p>Điều này cho phép bạn phần nào xác định được đoạn code nào nên được throw exception. Ngoài phạm vi đoạn code đó thì chương trình sẽ vẫn được coi là thất bại nếu có một exception khác.</p>
 
-<p>Ví dụ đoạn code sau in ra tất cả các giá trị của 1 list:</p>
+<h1 id="7-grouped-assertion">7. Grouped assertion</h1>
 
-<pre><code class="language-java">
-    List&lt;String&gt; list = Arrays.asList(&quot;tu&quot;, &quot;bean&quot;, &quot;tubean.github.io&quot;);
+<pre><code class="language-java">@Test
+void groupedAssertions() {
+    Address address = new Address();
+    // In a grouped assertion all assertions are executed, even after a failure.
+    // The error messages get grouped together.
+    assertAll(&quot;address name&quot;,
+        () -&gt; assertEquals(&quot;Tu&quot;, address.getFirstName()),
+        () -&gt; assertEquals(&quot;Bean&quot;, address.getLastName())
+    );
+}
+    =&gt; org.opentest4j.MultipleFailuresError: address name (2 failures)
+    expected: &lt;Tu&gt; but was: &lt;null&gt;
+    expected: &lt;Bean&gt; but was: &lt;null&gt;
+</code></pre>
 
-    // Sử dụng List.forEach(Consumer) để in ra giá trị của các phần tử trong list
-    list.forEach(new Consumer&lt;String&gt;()  {
-        @Override
-        public  void  accept(String t)  {
-            System.out.println(t);
-        }
+<h1 id="8-timeout-test">8. Timeout test</h1>
+
+<p>Nếu bạn muốn chắc chắn việc kiểm thử là thất bại nếu không hoàn thành trong một thời gian cho trước thì phương thức <code>assertTimeout()</code> sẽ hữu dụng với bạn.</p>
+
+<pre><code class="language-java">import static org.junit.jupiter.api.Assertions.assertTimeout;
+import static java.time.Duration.ofSeconds;
+import static java.time.Duration.ofMinutes;
+
+@Test
+void timeoutNotExceeded() {
+    assertTimeout(ofMinutes(1), () -&gt; service.doBackup());
+}
+
+// if you have to check a return value
+@Test
+void timeoutNotExceededWithResult() {
+    String actualResult = assertTimeout(ofSeconds(1), () -&gt; {
+        return restService.request(request);
     });
-    System.out.println(&quot;----------------&quot;);
-
-    // Sử dụng List.forEach(Consumer) với cú pháp lambda expression:
-    list.forEach(t -&gt; System.out.println(t));
-
+    assertEquals(200, request.getStatus());
+}
+=&gt; org.opentest4j.AssertionFailedError: execution exceeded timeout of 1000 ms by 212 ms
 </code></pre>
 
-<h4 id="3-2-java-util-function-predicate">3.2 java.util.function.Predicate</h4>
+<p>Nếu bạn muốn kiểm tra việc hủy bỏ sau khi khoảng thời gian chờ kết thúc, bạn có thể sử dụng phương thức <code>assertTimeoutPreemptively()</code>.</p>
 
-<pre><code class="language-java">
-    package java.util.function;
-    import java.util.Objects;
-
-    @FunctionalInterface
-    public  interface Predicate&lt;T&gt; {
-        // Kiểm tra một tham số đầu vào và trả về true hoặc false.
-        boolean  test(T t);
-    }
-
-</code></pre>
-
-<p>** Sử dụng khi: ** Kiểm tra từng phần tử  lúc xoá, lọc,&hellip; dùng với list, stream&hellip;
-Ví dụ:</p>
-
-<pre><code class="language-java">
-    List&lt;Integer&gt; list = new ArrayList&lt;&gt;();
-    list.add(-1);
-    list.add(1);
-    list.add(0);
-    list.add(-2);
-    list.add(3);
-
-    // lệnh removeIf sẽ thực hiện duyệt từng phần tử,
-    // nếu method test của Predicate trả về true thì sẽ remove phần tử đó khỏi list
-    list.removeIf(new Predicate&lt;Integer&gt;()  {
-        @Override
-        public  boolean  test(Integer t)  {
-            return t &lt; 0;
-        }
+<pre><code class="language-java">@Test
+void timeoutNotExceededWithResult() {
+    String actualResult = assertTimeoutPreemptively(ofSeconds(1), () -&gt; {
+        return restService.request(request);
     });
-    list.forEach(t -&gt; System.out.println(t));
-    System.out.println(&quot;-----------------------------&quot;);
-
-    // Sử dụng Predicate với cú pháp Lambda Expression
-    // loại bỏ các phần tử lớn hơn 1
-    list.removeIf(t -&gt; t &gt; 1);
-    list.forEach(t -&gt; System.out.println(t));
-
+    assertEquals(200, request.getStatus());
+}
+=&gt; org.opentest4j.AssertionFailedError: execution timed out after 1000 ms
 </code></pre>
 
-<h4 id="3-3-java-util-function-function">3.3 java.util.function.Function</h4>
+<h1 id="9-running-the-same-test-repeatedly-on-a-data-set">9. Running the same test repeatedly on a data set</h1>
 
-<pre><code class="language-java">
-    package java.util.function;
+<p>Thỉnh thoảng chúng ta muốn chạy cùng một đoạn test trên một tập dữ liệu. Thông thường thì chúng ta sẽ truyền tập dữ liệu dưới dạng một Collection và xử lý theo vòng lặp một cách tuần tự, một lần thất bại sẽ kéo theo cả đoạn code được đánh giá là thất bại. Tuy nhiên JUnit 5 đã cung cấp thêm cho chúng ta nhiều cách để làm điều này.</p>
 
-    import java.util.Objects;
+<h2 id="9-1-using-dynamic-test">9.1 Using Dynamic Test</h2>
 
-    @FunctionalInterface
-    public  interface Function&lt;T, R&gt; {
+<p>JUnit cung cấp khả năng xác định các dynamic test. Chúng ta có thể sử dụng để viết lại ví dụ của mình. Các phương thức dynamic được đánh dấu với <code>@TestFactory</code> và có thể trả về một Interable, một Collection hoặc một Stream Dynamic Test. JUnit sau đó sẽ chạy từng dynamic test khi đoạn test được thực thi. Các phương thức được đánh dấu anotation <code>@BeforeEach</code> và  <code>@AfterEach</code> sẽ không được gọi trong dynamic test.</p>
 
-        // Method này nhận đầu vào là 1 tham số và trả về một giá trị.
-        R apply(T t);
+<pre><code class="language-java">  class DynamicTestsDemo {
 
+    // This will result in a JUnitException!
+    @TestFactory
+    List&lt;String&gt; dynamicTestsWithInvalidReturnType() {
+      return Arrays.asList(&quot;Hello&quot;);
     }
 
-</code></pre>
-
-<p>** Sử dụng khi: ** Function thường được dùng với Stream khi muốn thay đổi giá trị cho từng phần tử trong stream.
-Ví dụ:</p>
-
-<pre><code class="language-java">
-    List&lt;String&gt; list = Arrays.asList(&quot;tubean&quot;, &quot;JAVA&quot;, &quot;demo&quot;, &quot;Function&quot;);
-    Stream&lt;String&gt; stream = list.stream();
-
-    // chuyển tất cả các phần tử của stream thành chữ in hoa
-    stream.map(new Function&lt;String, String&gt;()  {
-        @Override
-        public  String  apply(String t)  {
-            return t.toUpperCase();
-        }
-    }).forEach(t -&gt; System.out.println(t));
-    System.out.println(&quot;---------------&quot;);
-    // Function với cú pháp Lambda Expression
-    // chuyển tất cả các phần tử của stream thành chữ thường
-
-    stream = list.stream();// lưu ý là stream ko thể dùng lại nên phải khởi tạo lại
-    stream.map(t -&gt; t.toLowerCase()).forEach(t -&gt; System.out.println(t))
-
-</code></pre>
-
-<p>Một số Function interface tương tự:</p>
-
-<ul>
-<li>java.util.function.IntFunction<R>: dữ liệu chuyển về kiểu Integer</li>
-<li>java.util.function.DoubleFunction<R>: dữ liệu chuyển về kiểu Double</li>
-<li>java.util.function.LongFunction<R>: dữ liệu chuyển về kiểu Long</li>
-</ul>
-
-<h4 id="3-4-java-util-function-supplier">3.4 java.util.function.Supplier</h4>
-
-<pre><code class="language-java">
-    package java.util.function;
-
-    @FunctionalInterface
-    public  interface Supplier&lt;T&gt; {
-
-        // method này không có tham số nhưng trả về một kết quả.
-        T get();
-
+    @TestFactory
+    Collection&lt;DynamicTest&gt; dynamicTestsFromCollection() {
+      return Arrays.asList(
+      dynamicTest(&quot;1st dynamic test&quot;, () -&gt; assertTrue(true)),
+      dynamicTest(&quot;2nd dynamic test&quot;, () -&gt; assertEquals(4, 2 * 2))
+      );
     }
 
-</code></pre>
-
-<p>Ví dụ:</p>
-
-<pre><code class="language-java">
-    Random random = new  Random();
-    Stream&lt;Integer&gt; stream = Stream.generate(new Supplier&lt;Integer&gt;()  {
-        @Override
-        public Integer get()  {
-            return random.nextInt(10);
-        }
-    }).limit(5);
-
-    stream.forEach(t -&gt; System.out.print(t +&quot; &quot;));
-    System.out.println(&quot;\n--------------------&quot;);
-
-    // Sử dụng Supplier với cú pháp Lambda Expression:
-    stream = Stream.generate(() -&gt; random.nextInt(10)).limit(5);
-    stream.forEach(t -&gt; System.out.print(t +&quot; &quot;));
-
-</code></pre>
-
-<h1 id="4-interface-có-default-và-static-method">4. Interface có default và static method</h1>
-
-<p>Từ phiên bản java 8 thì các <code>Interface</code> còn có thể có <code>default methods</code> và <code>static method</code>. Cả 2 loại method này đều được định nghĩa implementation ngay trong interface. Điều đó có nghĩa là, một lambda expression có thể implement một interface với nhiều hơn một method. Hay nói cách khác, nếu một interface có chứa cả <em>default method</em> và <em>static method</em> thì nó vẫn được coi là một <strong>functional interface</strong>, miễn là nó chỉ có duy nhất một <em>abtract method</em>.
-Ví dụ:</p>
-
-<pre><code class="language-java">
-    import java.io.IOException;
-    import java.io.OutputStream;
-
-    public interface MyInterface {
-
-        void printIt(String text);
-
-        default public void printUtf8To(String text, OutputStream outputStream){
-            try {
-                outputStream.write(text.getBytes(&quot;UTF-8&quot;));
-            } catch (IOException e) {
-                throw new RuntimeException(&quot;Error writing String as UTF-8 to OutputStream&quot;, e);
-            }
-        }
-
-        static void printItToSystemOut(String text){
-            System.out.println(text);
-        }
+    @TestFactory
+    Iterable&lt;DynamicTest&gt; dynamicTestsFromIterable() {
+      return Arrays.asList(
+      dynamicTest(&quot;3rd dynamic test&quot;, () -&gt; assertTrue(true)),
+      dynamicTest(&quot;4th dynamic test&quot;, () -&gt; assertEquals(4, 2 * 2))
+      );
     }
 
-</code></pre>
-
-<p>và lambda sẽ trông như sau:</p>
-
-<pre><code class="language-java">
-    MyInterface myInterface = (String text) -&gt; {
-        System.out.print(text);
-    };
-
-</code></pre>
-
-<h1 id="5-lambda-expression-và-anonymous-interface-implementations">5. Lambda Expression và Anonymous Interface Implementations</h1>
-
-<p>Ngay cả khi <em>lambda expression</em> trông có vẻ giống <em>anonymous interface implementations (AII)</em> thì chúng cũng có vài điều khác biệt. Trong đó, điểm khác biệt lớn nhất chính là một AII có thể có các biến local trong khi đó một lambda expression thì không có. Cùng xem ví dụ dưới đây:</p>
-
-<pre><code class="language-java">
-    public interface MyEventConsumer {
-        // interface MyEventConsumner có một abtract method 1 parameter
-        public void consume(Object event);
+    @TestFactory
+    Iterator&lt;DynamicTest&gt; dynamicTestsFromIterator() {
+      return Arrays.asList(
+      dynamicTest(&quot;5th dynamic test&quot;, () -&gt; assertTrue(true)),
+      dynamicTest(&quot;6th dynamic test&quot;, () -&gt; assertEquals(4, 2 * 2))
+      ).iterator();
     }
 
+    @TestFactory
+    Stream&lt;DynamicTest&gt; dynamicTestsFromStream() {
+      return Stream.of(&quot;A&quot;, &quot;B&quot;, &quot;C&quot;)
+    .map(str -&gt; dynamicTest(&quot;test&quot; + str, () -&gt; { /* ... */ }));
+  }
+
+  @TestFactory
+  Stream&lt;DynamicTest&gt; dynamicTestsFromIntStream() {
+     // Generates tests for the first 10 even integers.
+     return IntStream.iterate(0, n -&gt; n + 2).limit(10)
+     .mapToObj(n -&gt; dynamicTest(&quot;test&quot; + n, () -&gt; assertTrue(n % 2 == 0)));
+   }
+
+   @TestFactory
+   Stream&lt;DynamicTest&gt; generateRandomNumberOfTests() {
+     // Generates random positive integers between 0 and 100 until
+     // a number evenly divisible by 7 is encountered.
+     Iterator&lt;Integer&gt; inputGenerator = new Iterator&lt;Integer&gt;() {
+       Random random = new Random();
+       int current;
+
+       @Override
+       public boolean hasNext() {
+         current = random.nextInt(100);
+         return current % 7 != 0;
+       }
+
+       @Override
+       public Integer next() {
+         return current;
+       }
+     };
+
+     // Generates display names like: input:5, input:37, input:85, etc.
+     Function&lt;Integer, String&gt; displayNameGenerator = (input) -&gt; &quot;input:&quot; + input;
+     // Executes tests based on the current input value.
+     ThrowingConsumer&lt;Integer&gt; testExecutor = (input) -&gt; assertTrue(input % 7 != 0);
+     // Returns a stream of dynamic tests.
+     return DynamicTest.stream(inputGenerator, displayNameGenerator, testExecutor);
+   }
+
+   @TestFactory
+   Stream&lt;DynamicNode&gt; dynamicTestsWithContainers() {
+     return Stream.of(&quot;A&quot;, &quot;B&quot;, &quot;C&quot;)
+     .map(input -&gt; dynamicContainer(&quot;Container &quot; + input, Stream.of(
+     dynamicTest(&quot;not null&quot;, () -&gt; assertNotNull(input)),
+     dynamicContainer(&quot;properties&quot;, Stream.of(
+     dynamicTest(&quot;length &gt; 0&quot;, () -&gt; assertTrue(input.length() &gt; 0)),
+     dynamicTest(&quot;not empty&quot;, () -&gt; assertFalse(input.isEmpty()))
+     ))
+     )));
+   }
+}
 </code></pre>
 
-<p>Interface <code>MyEventConsumer</code> được implement từ một AII như sau:</p>
+<h2 id="9-2-using-parameterized-test">9.2 Using Parameterized Test</h2>
 
-<pre><code class="language-java">
-    MyEventConsumer consumer = new MyEventConsumer() {
-        public void consume(Object event){
-            System.out.println(event.toString() + &quot; consumed&quot;);
-        }
-    };
+<pre><code>import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
-</code></pre>
+public class DynamicTestCreationTest {
 
-<p>AII <code>MyeventConsumer</code> có thể có khai báo thêm biến local của riêng nó như sau:</p>
-
-<pre><code class="language-java">
-    MyEventConsumer myEventConsumer = new MyEventConsumer() {
-        private int eventCount = 0; // biến khai báo trong AII, không thể khai báo như này nếu dùng lambda
-        public void consume(Object event) {
-            System.out.println(event.toString() + &quot; consumed &quot; + this.eventCount++ + &quot; times.&quot;);
-        }
-    };
-
-</code></pre>
-
-<h1 id="6-variable-capture">6: Variable Capture</h1>
-
-<p>Tuy rằng không thể khai báo biến bên trong biểu thức lambda, nhưng nó vẫn cho phép các biến được khai báo bên ngoài được sử dụng bình thường trong phần body. Lambda có thể <em>capture</em> được các loại biến như sau:
-1. Local Variable Capture</p>
-
-<pre><code class="language-java">
-    // Chúng ta có một interface MyFactory
-    public interface MyFactory {
-        public String create(char[] chars);
+    public static int[][] data() {
+        return new int[][] { { 1 , 2, 2 }, { 5, 3, 15 }, { 121, 4, 484 } };
     }
 
-    // Lambda như này
-    MyFactory myFactory = (chars) -&gt; {
-        return new String(chars);
-    };
+    @ParameterizedTest
+    @MethodSource(names = &quot;data&quot;)
+    void testWithStringParameter(int[] data) {
+        MyClass tester = new MyClass();
+        int m1 = data[0];
+        int m2 = data[1];
+        int expected = data[2];
+        assertEquals(expected, tester.multiply(m1, m2));
+    }
 
-    // Capture local variable
-    String myString = &quot;Test&quot;;
-    MyFactory myFactory = (chars) -&gt; {
-        return myString + &quot;:&quot; + new String(chars);
-    };
-
-</code></pre>
-
-<ol>
-<li>Instance Variable Capture</li>
-</ol>
-
-<pre><code class="language-java">
-    public class EventConsumerImpl {
-
-        private String name = &quot;MyConsumer&quot;;
-
-        public void attach(MyEventProducer eventProducer){
-            eventProducer.listen(e -&gt; {
-                System.out.println(this.name);
-            });
+    // class to be tested
+    class MyClass {
+        public int multiply(int i, int j) {
+            return i * j;
         }
     }
-
+}
 </code></pre>
 
-<ol>
-<li>Static Variable Capture</li>
-</ol>
+<p>Trong ví dụ trên chúng ta sử dụng annotation <code>@MethodSource</code> để định nghĩa tên của function sẽ tạo ra data source. Function này phải là static và trả về một Collection, Interator, Stream hoặc một Array.</p>
 
-<pre><code class="language-java">
-    public class EventConsumerImpl {
-        private static String someStaticVar = &quot;Some text&quot;;
+<h1 id="10-bảng-so-sánh-annotation-giữa-junit-4-và-5">10. Bảng so sánh annotation giữa JUnit 4 và 5</h1>
 
-        public void attach(MyEventProducer eventProducer){
-            eventProducer.listen(e -&gt; {
-                System.out.println(someStaticVar);
-            });
-        }
-    }
+<table>
+<thead>
+<tr>
+<th>JUnit 5</th>
+<th>JUnit 4</th>
+<th>Mô tả</th>
+</tr>
+</thead>
 
-</code></pre>
+<tbody>
+<tr>
+<td><strong>import org.junit.jupiter.api.</strong></td>
+<td>*import org.junit.**</td>
+<td>&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;- Câu lệnh import package cần để sử dụng các annotation sau:</td>
+</tr>
 
-<h1 id="7-sử-dụng-các-phương-thức-tham-chiếu-method-referencees-là-lambda">7. Sử dụng các phương thức tham chiếu (Method Referencees) là Lambda</h1>
+<tr>
+<td><strong>@Test</strong></td>
+<td><strong>@Test</strong></td>
+<td>Định nghĩa một test method</td>
+</tr>
 
-<p>Giả sử chúng ta có một interface <code>MyPrinter</code> với  một method trừu tượng truyền vào một parameter s:</p>
+<tr>
+<td><strong>@BeforeEach</strong></td>
+<td><strong>@Before</strong></td>
+<td>Thực thi trước mỗi đoạn test. Nó được sử dụng để tạo môi trường test như là đọc các input. khởi tạo class</td>
+</tr>
 
-<pre><code class="language-java">
-    public interface MyPrinter{
-        public void print(String s);
-    }
+<tr>
+<td><strong>@AfterEach</strong></td>
+<td><strong>@After</strong></td>
+<td>Thực thi sau mỗi đoạn test, nhiệm vụ dọn dẹp môi trường như xóa các data tạm, restore về mặc định giúp tiết kiệm bộ nhớ.</td>
+</tr>
 
-</code></pre>
+<tr>
+<td><strong>@BeforeAll</strong></td>
+<td><strong>@BeforeClass</strong></td>
+<td>Thực hiện một lần duy nhất trước khi bắt đầu test trong một class.</td>
+</tr>
 
-<p>Thông thường chúng ta sẽ dùng lambda như sau:</p>
+<tr>
+<td><strong>@AfterAll</strong></td>
+<td><strong>@AfterClass</strong></td>
+<td>Thực hiện một lần duy nhất sau tất cả các method khác trong một class.</td>
+</tr>
 
-<pre><code class="language-java">
-    MyPrinter myPrinter = (s) -&gt; { System.out.println(s); };
+<tr>
+<td><strong>Disabled</strong> hoặc <strong>Disabled(&ldquo;Why disabled&rdquo;)</strong></td>
+<td><strong>@Ignore</strong> hoặc <strong>@Ignore(&ldquo;Why disabled&rdquo;)</strong></td>
+<td>Đánh dấu đoạn test được bỏ qua.</td>
+</tr>
 
-</code></pre>
+<tr>
+<td>Không sử dụng, được thay bởi <strong>org.junit.jupiter.api .Assertions.expectThrows()</strong></td>
+<td><strong>@Test(expected = Exception.class)</strong></td>
+<td>Thất bại nếu method đó không throw ra đúng exception mong muốn.</td>
+</tr>
 
-<p>Tuy nhiên, do biểu thức lambda chỉ có một câu lệnh, nên dấu <code>{}</code> có thể bỏ qua. Ta rút gọn lại thành:</p>
+<tr>
+<td>Không sử dụng, được thay bằng <strong>AssertTimeout .assertTimeout()</strong> và <strong>AssertTimeout .assertTimeoutPreemptively()</strong></td>
+<td><strong>@Test(timeout=100)</strong></td>
+<td>Thất bại nếu phương thức thực thi lâu hơn 100 miliseconds.</td>
+</tr>
+</tbody>
+</table>
 
-<pre><code class="language-java">
-    MyPrinter myPrinter = s -&gt; System.out.println(s);
+<h1 id="tham-khảo">Tham khảo</h1>
 
-</code></pre>
-
-<p>Bởi vì tham số truyền vào là <code>s</code> và được sử dụng để làm tham số trong biểu thức lambda luôn nên java cho phép chúng ta rút gọn lại nữa như sau:</p>
-
-<pre><code class="language-java">
-    MyPrinter myPrinter = System.out::println;
-
-</code></pre>
-
-<p>Dấu <code>::</code> cho <em>Java compiler</em> biết đây là một <em>method reference</em>.</p>
-
-<p>Chúng ta có các loại <em>method reference</em> sau:</p>
-
-<ul>
-<li>Static method references</li>
-</ul>
-
-<pre><code class="language-java">
-    // khai báo interface
-    public interface Finder {
-        public int find(String s1, String s2);
-    }
-
-    // khai báo class MyClass có một phương thức static có cùng signature với Interface
-    public class MyClass{
-        public static int doFind(String s1, String s2){
-            return s1.lastIndexOf(s2);
-        }
-    }
-
-    // biểu thức lambda như sau:
-    Finder finder = MyClass::doFind;
-
-</code></pre>
-
-<ul>
-<li>Parameter Method Reference</li>
-</ul>
-
-<pre><code class="language-java">    public interface Finder {
-        public int find(String s1, String s2);
-    }
-
-    // Biểu thức lambda
-    Finder finder = String::indexOf;
-    // Dòng code trên có thể được viết dễ hiểu hơn như sau:
-    Finder finder = (s1, s2) -&gt; s1.indexOf(s2);
-
-</code></pre>
-
-<ul>
-<li>Instance Method References</li>
-</ul>
-
-<pre><code class="language-java">
-    // Interface
-    public interface Deserializer {
-        public int deserialize(String v1);
-    }
-    // Class StringConverter nào đó có method converToInt cùng signature với method trong interface
-    public class StringConverter {
-        public int convertToInt(String v1){
-            return Integer.valueOf(v1);
-        }
-    }
-    // Tạo một instance của class StringConverter
-    StringConverter stringConverter = new StringConverter();
-    // Biểu thức lambda implement interface
-    Deserializer des = stringConverter::convertToInt;
-
-</code></pre>
-
-<ul>
-<li>Constructor References</li>
-</ul>
-
-<pre><code class="language-java">
-    // Interface
-    public interface Factory {
-        public String create(char[] val);
-    }
-
-    // Thay vì viết như này:
-    Factory factory = chars -&gt; new String(chars);
-    // Ta viết như này:
-    Factory factory = String::new;
-
-</code></pre>
-
-<p><em>Tham khảo</em> :</p>
-
-<ul>
-<li><p><a href="http://tutorials.jenkov.com/java/lambda-expressions.html">http://tutorials.jenkov.com/java/lambda-expressions.html</a></p></li>
-
-<li><p><a href="https://viblo.asia/p/gioi-thieu-lambda-expression-trong-java-8-EyORkbklGqB">https://viblo.asia/p/gioi-thieu-lambda-expression-trong-java-8-EyORkbklGqB</a></p></li>
-
-<li><p><a href="https://stackjava.com/java8/functional-interface-la-gi-functional-interface-trong-java-8.html">https://stackjava.com/java8/functional-interface-la-gi-functional-interface-trong-java-8.html</a></p></li>
-</ul>
+<p><a href="http://www.vogella.com/tutorials/JUnit/article.html">http://www.vogella.com/tutorials/JUnit/article.html</a></p>
 
               
             </div>
@@ -821,9 +811,9 @@ Ví dụ:</p>
                     
   <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/java/">Java</a>
 
-  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/java-8/">Java 8</a>
+  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/test/">Test</a>
 
-  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/lambda-expression/">Lambda expression</a>
+  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/junit/">JUnit</a>
 
                   </div>
                 
@@ -836,7 +826,7 @@ Ví dụ:</p>
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2018/11/java-stream/" data-tooltip="[Java 8] Stream trong Java 8 (Phần 1)">
+                <a class="post-action-btn btn btn--disabled">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">Tiếp</span>
@@ -844,7 +834,7 @@ Ví dụ:</p>
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2018/11/spring-boot-10-ways-security/" data-tooltip="[Spring Boot] Secu thập chưởng bảo vệ app Spring Boot của bạn">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2018/11/junix-4x/" data-tooltip="[Java] Unit Test với JUnit 4x">
               
                   <span class="hide-xs hide-sm text-small icon-mr">Trước</span>
                   <i class="fa fa-angle-right"></i>
@@ -862,19 +852,19 @@ Ví dụ:</p>
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://tubean.github.io/2018/11/java-lambda-expression/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://tubean.github.io/2018/12/junix-5x/">
               <i class="fa fa-facebook-official"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://tubean.github.io/2018/11/java-lambda-expression/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://tubean.github.io/2018/12/junix-5x/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://tubean.github.io/2018/11/java-lambda-expression/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://tubean.github.io/2018/12/junix-5x/">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -922,7 +912,7 @@ Ví dụ:</p>
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2018/11/java-stream/" data-tooltip="[Java 8] Stream trong Java 8 (Phần 1)">
+                <a class="post-action-btn btn btn--disabled">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">Tiếp</span>
@@ -930,7 +920,7 @@ Ví dụ:</p>
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2018/11/spring-boot-10-ways-security/" data-tooltip="[Spring Boot] Secu thập chưởng bảo vệ app Spring Boot của bạn">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2018/11/junix-4x/" data-tooltip="[Java] Unit Test với JUnit 4x">
               
                   <span class="hide-xs hide-sm text-small icon-mr">Trước</span>
                   <i class="fa fa-angle-right"></i>
@@ -948,19 +938,19 @@ Ví dụ:</p>
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://tubean.github.io/2018/11/java-lambda-expression/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://tubean.github.io/2018/12/junix-5x/">
               <i class="fa fa-facebook-official"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://tubean.github.io/2018/11/java-lambda-expression/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://tubean.github.io/2018/12/junix-5x/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://tubean.github.io/2018/11/java-lambda-expression/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://tubean.github.io/2018/12/junix-5x/">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -990,19 +980,19 @@ Ví dụ:</p>
   <ul class="share-options">
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ftubean.github.io%2F2018%2F11%2Fjava-lambda-expression%2F">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ftubean.github.io%2F2018%2F12%2Fjunix-5x%2F">
           <i class="fa fa-facebook-official"></i><span>Chia sẻ với Facebook</span>
         </a>
       </li>
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Ftubean.github.io%2F2018%2F11%2Fjava-lambda-expression%2F">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Ftubean.github.io%2F2018%2F12%2Fjunix-5x%2F">
           <i class="fa fa-twitter"></i><span>Chia sẻ với Twitter</span>
         </a>
       </li>
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Ftubean.github.io%2F2018%2F11%2Fjava-lambda-expression%2F">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Ftubean.github.io%2F2018%2F12%2Fjunix-5x%2F">
           <i class="fa fa-google-plus"></i><span>Chia sẻ với Google&#43;</span>
         </a>
       </li>
@@ -1312,9 +1302,9 @@ $(document).ready(function() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = 'https:\/\/tubean.github.io\/2018\/11\/java-lambda-expression\/';
+          this.page.url = 'https:\/\/tubean.github.io\/2018\/12\/junix-5x\/';
           
-            this.page.identifier = '\/2018\/11\/java-lambda-expression\/'
+            this.page.identifier = '\/2018\/12\/junix-5x\/'
           
         };
         (function() {
