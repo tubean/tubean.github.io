@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.49 with theme Tranquilpeak 0.4.3-SNAPSHOT">
+<meta name="author" content="Tu Bean">
+<meta name="keywords" content="java, test, testcase, junit">
+<meta name="description" content="Trong bài viết này chúng ta cùng tìm hiểu về test và unit test bằng JUnit 4.x.
+1. Một số thuật ngữ trong kiểm thử (testing) 1.1 Code under test Những đoạn code được kiểm thử thường gọi code under test. Nếu bạn đang kiểm thử một ứng dụng nào đó thì nó được gọi là application under test.
+1.2 Test fixture Đây là các điều kiện để có thể bắt đầu kiểm thử.">
+
+
+<meta property="og:description" content="Trong bài viết này chúng ta cùng tìm hiểu về test và unit test bằng JUnit 4.x.
+1. Một số thuật ngữ trong kiểm thử (testing) 1.1 Code under test Những đoạn code được kiểm thử thường gọi code under test. Nếu bạn đang kiểm thử một ứng dụng nào đó thì nó được gọi là application under test.
+1.2 Test fixture Đây là các điều kiện để có thể bắt đầu kiểm thử.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Java] Unit Test với JUnit 4x">
+<meta name="twitter:title" content="[Java] Unit Test với JUnit 4x">
+<meta property="og:url" content="https://tubean.github.io/2018/11/junix-4x/">
+<meta property="twitter:url" content="https://tubean.github.io/2018/11/junix-4x/">
+<meta property="og:site_name" content="Bean&#39;s blog">
+<meta property="og:description" content="Trong bài viết này chúng ta cùng tìm hiểu về test và unit test bằng JUnit 4.x.
+1. Một số thuật ngữ trong kiểm thử (testing) 1.1 Code under test Những đoạn code được kiểm thử thường gọi code under test. Nếu bạn đang kiểm thử một ứng dụng nào đó thì nó được gọi là application under test.
+1.2 Test fixture Đây là các điều kiện để có thể bắt đầu kiểm thử.">
+<meta name="twitter:description" content="Trong bài viết này chúng ta cùng tìm hiểu về test và unit test bằng JUnit 4.x.
+1. Một số thuật ngữ trong kiểm thử (testing) 1.1 Code under test Những đoạn code được kiểm thử thường gọi code under test. Nếu bạn đang kiểm thử một ứng dụng nào đó thì nó được gọi là application under test.
+1.2 Test fixture Đây là các điều kiện để có thể bắt đầu kiểm thử.">
+<meta property="og:locale" content="vi">
+
+  
+    <meta property="article:published_time" content="2018-11-30T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2018-11-30T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="Java">
+    
+      <meta property="article:section" content="Testing">
+    
+  
+  
+    
+      <meta property="article:tag" content="Java">
+    
+      <meta property="article:tag" content="Test">
+    
+      <meta property="article:tag" content="JUnit">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1543633941/junit.jpg">
+  <meta property="twitter:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1543633941/junit.jpg">
+
+
+  <meta property="og:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1541273502/Black_flag.svg.png">
+  <meta property="twitter:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1541273502/Black_flag.svg.png">
+
+
+
+
+  <meta property="og:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/c_scale,w_1836/v1540914499/C360_2016-03-22-17-45-21-487.jpg">
+  <meta property="twitter:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/c_scale,w_1836/v1540914499/C360_2016-03-22-17-45-21-487.jpg">
+
+
+    <title>[Java] Unit Test với JUnit 4x</title>
+
+    <link rel="icon" href="https://tubean.github.io/favicon/flappybird.png">
+    
+
+    
+
+    <link rel="canonical" href="https://tubean.github.io/2018/11/junix-4x/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://tubean.github.io/css/style-nnm2spxvve8onlujjlegkkytaehyadd4ksxc1hyzzq9a2wvtrgbljqyulomn.min.css" />
+    
+    
+      
+        <link rel="stylesheet"  crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" integrity="sha384-TEMocfGvRuD1rIAacqrknm5BQZ7W7uWitoih+jMNFXQIbNl16bO8OZmylH/Vi/Ei">
+      
+    
+      
+        <link rel="stylesheet"  href="https://tubean.github.io/css/main.css">
+      
+    
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-128433621-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://tubean.github.io/">Bean&#39;s blog</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://tubean.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://res.cloudinary.com/deop9ytsv/image/upload/c_scale,w_1836/v1540914499/C360_2016-03-22-17-45-21-487.jpg" alt="Ảnh đại diện" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://tubean.github.io/#about">
+          <img class="sidebar-profile-picture" src="https://res.cloudinary.com/deop9ytsv/image/upload/c_scale,w_1836/v1540914499/C360_2016-03-22-17-45-21-487.jpg" alt="Ảnh đại diện" />
+        </a>
+        <h4 class="sidebar-profile-name">Tu Bean</h4>
+        
+          <h5 class="sidebar-profile-bio">Coding, writing and sharing</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tubean.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Trang chủ</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tubean.github.io/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">Danh mục</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tubean.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Thẻ thông tin</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tubean.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Lưu trữ</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tubean.github.io/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">Thông tin</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://bitbucket.org/tubean/" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bitbucket-square"></i>
+      
+      <span class="sidebar-button-desc">Bitbucket</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://ask.fm/zeref_bean" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">Github</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.instagram.com/zeref_bean/" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-instagram"></i>
+      
+      <span class="sidebar-button-desc">Instagram</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.linkedin.com/in/tubean/" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-linkedin"></i>
+      
+      <span class="sidebar-button-desc">LinkedIn</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+  <div class="post-header-cover
+              text-center
+              "
+       style="background-image:url('https://res.cloudinary.com/deop9ytsv/image/upload/v1541273502/Black_flag.svg.png')"
+       data-behavior="5">
+    
+      <div class="post-header main-content-wrap text-center">
+  
+    <h1 class="post-title" itemprop="headline">
+      [Java] Unit Test với JUnit 4x
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2018-11-30T00:00:00Z">
+        
+  tháng 11 30, 2018
+
+      </time>
+    
+    
+  
+  
+    <span>mục</span>
+    
+      <a class="category-link" href="https://tubean.github.io/categories/java">Java</a>, 
+    
+      <a class="category-link" href="https://tubean.github.io/categories/testing">Testing</a>
+    
+  
+
+  </div>
+
+</div>
+    
+  </div>
+
+
+      <div id="main" data-behavior="5"
+        class="hasCover
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              
+
+<p>Trong bài viết này chúng ta cùng tìm hiểu về test và <em>unit test</em> bằng JUnit 4.x.</p>
+
+<h1 id="1-một-số-thuật-ngữ-trong-kiểm-thử-testing">1. Một số thuật ngữ trong kiểm thử (testing)</h1>
+
+<h2 id="1-1-code-under-test">1.1 Code under test</h2>
+
+<p>Những đoạn code được kiểm thử thường gọi <strong>code under test</strong>. Nếu bạn đang kiểm thử một ứng dụng nào đó thì nó được gọi là <strong>application under test</strong>.</p>
+
+<h2 id="1-2-test-fixture">1.2 Test fixture</h2>
+
+<p>Đây là các điều kiện để có thể bắt đầu kiểm thử. Ví dụ như là một đoạn String cố định được sử dụng để làm input cho một method nào đó. Chúng ta chỉ có thể kiểm thử nếu đoạn test đó có đầy đủ các thông số truyền vào.</p>
+
+<h2 id="1-3-unit-test-và-unit-testing">1.3 Unit test và unit testing</h2>
+
+<p>Một <em>unit test</em> là một đoạn code nhỏ được viết bởi developer nhằm mục đích kiểm tra một hàm hay chức năng riêng biệt nào đó có kết quả đúng như kì vọng hay không. Tỉ lệ các đoạn code được kiểm tra bằng <em>unit test</em> được gọi là <em>test coverage</em>.
+Phạm vi kiểm tra của một unit test thường là một method hoặc một class. Những method hay class có phụ thuộc lẫn nhau nên được tách biệt ra khi viết unit test. Vì vậy, unit test không phù hợp để kiểm thử những interface phức tạp hoặc một component. Chúng ta nên sử dụng <em>integration test</em> cho những phạm vi lớn và phức tạp này.</p>
+
+<h2 id="1-4-integration-test">1.4 Integration test</h2>
+
+<p>Một kiểm thử tích hợp (integration test) có nhiệm vụ kiểm tra hoạt động của một component hoặc một tập hợp các component. Loại kiểm thử này còn được biết đến với cái tên <code>funtional test</code>.</p>
+
+<p>Integration test sẽ kiểm tra toàn bộ hệ thống có làm việc như mong muốn không, do đó chúng giúp làm giảm các công việc kiểm thử thủ công.</p>
+
+<h2 id="1-5-performance-test">1.5 Performance test</h2>
+
+<p>Kiểm thử hiệu năng được sử dụng để đánh giá các thành phần trong phần mềm được dùng đi dùng lại nhiều lần. Mục đích là để kiểm tra khả năng chịu tải cao, tốc độ tải trong điều kiện nhiều request.</p>
+
+<h2 id="1-6-behavior-và-state-testing">1.6 Behavior và state testing</h2>
+
+<p>Một đoạn test được gọi là <code>behavior test</code> nếu nó kiểm tra các phương thức với các parameter truyền vào là chính xác và không quan tâm đến kết quả trả về là gì.
+Một đoạn test được gọi là  <code>state testing</code> nếu nó validate kết quả trả về.</p>
+
+<h2 id="1-7-testing-framework">1.7 Testing framework</h2>
+
+<p>Trong java thì chúng ta có một vài framework hỗ trợ việc kiểm thử. Tiêu biểu nhất là JUnit và TestNG. Trong bài viết này chúng ta sẽ tìm hiểu về JUnit 4.x.</p>
+
+<h2 id="1-8-những-đoạn-test-nên-đặt-ở-đâu">1.8 Những đoạn test nên đặt ở đâu?</h2>
+
+<p>Thông thường thì các đoạn <em>unit test</em> sẽ được tạo trong một folder hoặc một package riêng, tránh lẫn lộn với những đoạn code chính. Theo chuẩn build project của Maven và Gradle thì</p>
+
+<ul>
+<li><code>src/main/java</code> là nơi chứa Java class</li>
+<li><code>src/test/java</code> là nơi chứa test class.</li>
+</ul>
+
+<h1 id="2-các-tính-năng-chính-của-junit">2. Các tính năng chính của Junit</h1>
+
+<ul>
+<li>Cung cấp Annotation để xác định việc xác thực phương thức.</li>
+<li>Cung cấp Asertion cho kết quả mong muốn.</li>
+<li>Cung cấp các Runner cho việc chạy thử.</li>
+<li>Giúp viết code nhanh hơn mà chất lượng ngày càng tăng.</li>
+</ul>
+
+<h1 id="3-các-annotation-thường-dùng">3. Các annotation thường dùng</h1>
+
+<p>Dưới đây là những annotation thường được sử dụng nhất để viết test trong JUnit 4.</p>
+
+<ul>
+<li><code>@Test</code> - Đánh dấu một method là một method dùng để kiểm thử.</li>
+<li><code>@Before</code>  và <code>@After</code> : đánh dấu vị trí bắt đầu và kết thúc của một method test trong một class.</li>
+<li><code>@BeforeClass</code> và <code>AfterClass</code>: Đánh dấu method chạy đầu tiên và cuối cùng trong một class test.</li>
+<li><code>@Ignore</code> hoặc <code>@Ignore(&quot;Why disabled&quot;)</code>: đánh dấu đoạn test nên được <em>disabled</em>. Nó được sử dụng khi các đoạn code chính đã được thay đổi nhưng các test case chưa được cập nhật hoặc điều chỉnh hoặc thời gian thực thi quá lâu nếu phải bao gồm cả nó. Tốt nhất là nên kèm theo giải thích tại sao lại disabled khi sử dụng annotation này.</li>
+<li><code>@Test(timeout=100)</code>: Đoạn test sẽ được đánh là thất bại nếu thời gian thực thi lớn hơn 100 miliseconds.</li>
+</ul>
+
+<p>Ví dụ:</p>
+
+<pre><code>public class SampleTest {
+
+        @BeforeClass
+        public static void setUpBeforeClass() throws Exception {
+
+
+            //Method annotated with `@BeforeClass` will execute once before any of the test methods
+            //in this class.
+
+            //This method could be used to set up any test fixtures that are computationally expensive
+            //and shared by several test methods. e.g. establishing database connections
+
+            //Sometimes several tests need to share computationally expensive setup
+            //(like logging into a database). While this can compromise the independence of tests,
+            //sometimes it is a necessary optimization.
+            //From http://junit.sourceforge.net/javadoc/org/junit/BeforeClass.html
+
+        }
+
+        @AfterClass
+        public static void tearDownAfterClass() throws Exception {
+
+            //Method annotated with `@AfterClass` will execute once after all of the test
+            //methods are executed in this class.
+
+            //If you allocate expensive external resources in a BeforeClass method you need
+            //to release them after all the tests in the class have run. Annotating
+            //a public static void method with @AfterClass causes that method to be
+            //run after all the tests in the class have been run. All @AfterClass methods
+            //are guaranteed to run even if a BeforeClass method throws an exception.
+            //From http://junit.sourceforge.net/javadoc/org/junit/AfterClass.html
+        }
+
+        @Before
+        public void setUp() throws Exception {
+             //Method annotated with `@Before` will execute before each test method
+             //in this class is executed.
+
+             //If you find that several tests need similar objects created before they
+             //can run this method could be used to do set up those objects (aka test-fixtures).
+        }
+
+        @After
+        public void tearDown() throws Exception {
+
+             //Method annotated with `@After` will execute after each test method
+             //in this class is executed.
+
+             //If you allocate external resources in a Before method you must
+             //release them in this method.
+        }
+
+        @Test
+        public void test1() {
+
+           //A public void method annotated with @Test will be executed as a test case.
+        }
+
+        @Test
+        public void test2() {
+
+            //Another test cases
+        }
+
+    }
+</code></pre>
+
+<p>Khi chạy đoạn code trên thì thứ tự thực thi sẽ là:</p>
+
+<ol>
+<li>Method được đánh dấu <code>@BeforeClass</code>.</li>
+<li>Method được đánh dấu <code>@Before</code>.</li>
+<li>Method kiểm thử đầu tiên được đánh dấu <code>@Test</code> (ở đây là <code>test1()</code>).</li>
+<li>Method được đánh dấu <code>@After</code>.</li>
+<li>Method được đánh dấu <code>@Before</code>.</li>
+<li>Method kiểm thử thứ hai được đánh dấu <code>@Test</code> ( ở đây là <code>test2()</code>).</li>
+<li>Method được đánh dấu <code>@After</code>.</li>
+<li>Method được đánh dấu <code>@AfterClass</code>.</li>
+</ol>
+
+<p># 4. Assertions
+ Khi muốn xác nhận một kết quả trả về có đúng như mong muốn không, chúng ta có danh sách Junit assertion cũ như sau:</p>
+
+<ul>
+<li>org.junit.Assert.assertArrayEquals</li>
+<li>org.junit.Assert.assertEquals</li>
+<li>org.junit.Assert.assertFalse</li>
+<li>org.junit.Assert.assertNotNull</li>
+<li>org.junit.Assert.assertNotSame</li>
+<li>org.junit.Assert.assertNull</li>
+<li>org.junit.Assert.assertSame</li>
+<li>org.junit.Assert.assertTrue</li>
+</ul>
+
+<p>Từ phiên bản JUnit4, chúng ta có thêm một method <code>org.junit.Assert.assertThat</code> cho phép sử dụng các <code>matcher</code> để xác nhận tốt hơn:</p>
+
+<ul>
+<li>Dễ đọc hơn
+
+<ul>
+<li><code>assertThat(actual, is(equalTo(expected)));</code>  dễ đọc hơn  <code>assertEquals(expected, actual);</code></li>
+<li><code>assertThat(actual, is(not(equalTo(expected))));</code>  tốt hơn<code>assertFalse(expected.equals(actual));</code></li>
+</ul></li>
+
+<li><p>Thông báo lỗi tốt hơn</p>
+
+<ul>
+<li><p><code>java.lang.AssertionError: Expected: is &quot;hello&quot; but: was &quot;hello world&quot;</code>  tốt hơn</p>
+
+<p><code>org.junit.ComparisonFailure: expected:&lt;hello[]&gt; but was:&lt;hello[ world]&gt;</code></p></li>
+</ul></li>
+
+<li><p>Linh hoạt hơn</p>
+
+<ul>
+<li><p>Có thể sử dụng nhiều điều kiện để assert bằng cách dùng các matcher như <code>anyOf</code>  hay <code>allOf</code>.</p>
+
+<p>vd:  <code>assertThat(&quot;hello world&quot;, anyOf(is(&quot;hello world&quot;), containsString(&quot;hello&quot;)));</code>  Trong trường hợp này thì test sẽ pass nếu trong đoạn String &ldquo;hello world&rdquo; có chứa đoạn String &ldquo;hello&rdquo;.
+Các đoạn matchers khác có thể tham khảo thêm trong bảng <a href="http://hamcrest.org/JavaHamcrest/javadoc/1.3/org/hamcrest/CoreMatchers.html">hamcrest docs</a>.
+Ví dụ một vài cách sử dụng matcher:</p></li>
+</ul></li>
+</ul>
+
+<pre><code class="language-java">@Test
+public void testAssetThatExamples() {
+
+    // 'theString' should contain 'S' and 'r'
+    assertThat(&quot;theString&quot;, both(containsString(&quot;S&quot;)).and(containsString(&quot;r&quot;)));
+
+    List&lt;String&gt; items = Arrays.asList(&quot;John&quot;, &quot;James&quot;, &quot;Julia&quot;, &quot;Jim&quot;);
+
+    // items list should have James and Jim
+    assertThat(items, hasItems(&quot;James&quot;, &quot;Jim&quot;));
+
+    // Every item in the list should have the character 'J'
+    assertThat(items, everyItem(containsString(&quot;J&quot;)));
+
+    // check all of the matchers
+    assertThat(&quot;Once&quot;, allOf(equalTo(&quot;Once&quot;), startsWith(&quot;O&quot;)));
+
+    // negation of all of the matchers
+    assertThat(&quot;Once&quot;, not(allOf(equalTo(&quot;test&quot;), containsString(&quot;test&quot;))));
+}
+</code></pre>
+
+<h1 id="5-exception-testing">5. Exception testing</h1>
+
+<p>Nếu phương thức bạn cần kiểm thử có throw các exceptions thì chúng ta cũng có vài cách để kiểm tra xem nó có throw đúng như trong điều kiện mong muốn không. Ví dụ như chúng ta tạo một phương thức để đọc file và nó sẽ trả về một exception với message &ldquo;The file ${file_name} does not exit!&rdquo; trong trường hợp không tìm thấy file đó.</p>
+
+<ol>
+<li>Sử dụng parameter <code>expected</code>:</li>
+</ol>
+
+<pre><code class="language-java">@Test(expected = FileNotFoundException.class)
+    public void testReadFile() throws IOException {
+        FileReader reader = new FileReader(&quot;test.txt&quot;);
+        reader.read();
+        reader.close();
+    }
+</code></pre>
+
+<ol>
+<li>Sử dụng <code>try</code> <code>catch</code>:</li>
+</ol>
+
+<pre><code class="language-java">@Test
+    public void testReadFile2() {
+        try {
+            FileReader reader = new FileReader(&quot;test.txt&quot;);
+            reader.read();
+            reader.close();
+            fail(&quot;Expected an IOException to be thrown&quot;);
+        } catch (IOException e) {
+            assertThat(e.getMessage(), is(&quot;test.txt (No such file or directory)&quot;));
+        }
+
+    }
+</code></pre>
+
+<ol>
+<li>Sử dụng <code>@Rule</code> <code>ExpectedException</code>:</li>
+</ol>
+
+<pre><code class="language-java">@Rule
+    public ExpectedException thrown = ExpectedException.none();
+
+    @Test
+    public void testReadFile3() throws IOException {
+
+        thrown.expect(IOException.class);
+        thrown.expectMessage(startsWith(&quot;test.txt (No such file or directory)&quot;));
+        FileReader reader = new FileReader(&quot;test.txt&quot;);
+        reader.read();
+        reader.close();
+    }
+</code></pre>
+
+<h1 id="6-parameterize-tests">6. Parameterize tests</h1>
+
+<p>Thông thường chúng ta cần kiểm tra một method đơn với nhiều loại data test khác nhau hoặc nhiều input khác nhau. Trong trường hợp này chúng ta có <code>Parameterized</code> để thực hiện kiểm thử một cách dễ dàng và dễ đọc.</p>
+
+<pre><code>@RunWith(Parameterized.class)
+public class GreetingTest {
+
+    @Parameters
+    public static Collection&lt;Object[]&gt; data() {
+        return Arrays.asList(new Object[][] {
+                 { &quot;hello world&quot;, 10 }, { &quot;helloworld&quot;, 10 }, { &quot;hello&quot;, 5 }
+                 //The first item in the array is the input, and second is the expected outcome.
+           });
+    }
+
+    private String input;
+    private int expected;
+
+    //This constructor must be provided for the parameterized tests to work.
+    public GreetingTest(String input, int expected) {
+        this.input = input;
+        this.expected = expected;
+    }
+
+    @Test
+    public void test() {
+
+        Greeting greeting = new Greeting();
+        assertThat(greeting.getTotalCharactersWithoutSpaces(input), is(expected));
+    }
+
+}
+</code></pre>
+
+<p>Trong ví dụ trên thì phương thức <code>getTotalCharactersWithoutSpaces</code> đã đếm số lượng các kí tự trong một chuỗi (không tính dấu space). Chúng ta có các trường hợp khác nhau với những input là những chuỗi String khác nhau. Nếu không sử dụng <code>Parameterized</code>, chúng ta sẽ phải lặp lại một đoạn test đến 3 lần, mỗi lần dành cho một đoạn String.
+Để tìm hiểu thêm về Parameterized, các bạn có thể xem thêm tại <a href="https://github.com/junit-team/junit4/wiki/Parameterized-tests">đây</a>.</p>
+
+<h1 id="tham-khảo">Tham khảo:</h1>
+
+<p><a href="https://javacodehouse.com/blog/junit-tutorial/">https://javacodehouse.com/blog/junit-tutorial/</a></p>
+
+<p><a href="http://www.vogella.com/tutorials/JUnit/article.html">http://www.vogella.com/tutorials/JUnit/article.html</a></p>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">THẺ ĐÁNH DẤU</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/java/">Java</a>
+
+  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/test/">Test</a>
+
+  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/junit/">JUnit</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">Tiếp</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2018/11/facade-design-patterns/" data-tooltip="[Design Patterns] Facade Design Pattern in Java">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">Trước</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://tubean.github.io/2018/11/junix-4x/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://tubean.github.io/2018/11/junix-4x/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://tubean.github.io/2018/11/junix-4x/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2018 <a href="https://bitbucket.org/tubean/">Do Anh Tu</a>. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">Tiếp</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2018/11/facade-design-patterns/" data-tooltip="[Design Patterns] Facade Design Pattern in Java">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">Trước</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://tubean.github.io/2018/11/junix-4x/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://tubean.github.io/2018/11/junix-4x/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://tubean.github.io/2018/11/junix-4x/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ftubean.github.io%2F2018%2F11%2Fjunix-4x%2F">
+          <i class="fa fa-facebook-official"></i><span>Chia sẻ với Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Ftubean.github.io%2F2018%2F11%2Fjunix-4x%2F">
+          <i class="fa fa-twitter"></i><span>Chia sẻ với Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Ftubean.github.io%2F2018%2F11%2Fjunix-4x%2F">
+          <i class="fa fa-google-plus"></i><span>Chia sẻ với Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://res.cloudinary.com/deop9ytsv/image/upload/c_scale,w_1836/v1540914499/C360_2016-03-22-17-45-21-487.jpg" alt="Ảnh đại diện" />
+    
+    <h4 id="about-card-name">Tu Bean</h4>
+    
+      <div id="about-card-bio">Coding, writing and sharing</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Web developer
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        Viet Nam
+      </div>
+    
+  </div>
+</div>
+
+    <div id="algolia-search-modal" class="modal-container">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="close-button"><i class="fa fa-close"></i></span>
+      <a href="https://algolia.com" target="_blank" rel="noopener" class="searchby-algolia text-color-light link-unstyled">
+        <span class="searchby-algolia-text text-color-light text-small">by</span>
+        <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+      </a>
+      <i class="search-icon fa fa-search"></i>
+      <form id="algolia-search-form">
+        <input type="text" id="algolia-search-input" name="search"
+          class="form-control input--large search-input" placeholder="Tìm kiếm" />
+      </form>
+    </div>
+    <div class="modal-body">
+      <div class="no-result text-color-light text-center">không tìm thấy kết quả</div>
+      <div class="results">
+        
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/11/junix-4x/">
+                <h3 class="media-heading">[Java] Unit Test với JUnit 4x</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Trong bài viết này chúng ta cùng tìm hiểu về test và unit test bằng JUnit 4.x.
+1. Một số thuật ngữ trong kiểm thử (testing) 1.1 Code under test Những đoạn code được kiểm thử thường gọi code under test. Nếu bạn đang kiểm thử một ứng dụng nào đó thì nó được gọi là application under test.
+1.2 Test fixture Đây là các điều kiện để có thể bắt đầu kiểm thử.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/11/facade-design-patterns/">
+                <h3 class="media-heading">[Design Patterns] Facade Design Pattern in Java</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Trong bài viết này, chúng ta cùng xem xét mẫu thiết kế khác, đó là Facade pattern. Trước khi đi vào chi tiết mẫu thiết kế, chúng ta cùng xem xét câu chuyện sau:
+Công ty phần mềm A vận hành một sản phẩm tên là Schedule Server. Đó là một ứng dụng làm rất nhiều việc như gửi mail, sms, đọc và viết file đến địa chỉ đích, gửi và nhận file giữa 2 server.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/11/excel-file-with-poi/">
+                <h3 class="media-heading">[Java] Thao tác với Excel file bằng Apache POI</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">1- Apache POI là gì? Khi lập trình với bất cứ hệ thống nào thì việc thao tác với các file excel luôn là điều bắt buộc mọi developer phải nắm được. Và để làm việc hiệu quả với excel file trong java thì tôi xin giới thiệu thư viện Apache POI trong bài viết này. POI là viết tắt của Poor Obfuscation Implementation, đó là một thư viện mã nguồn mở của Java, được cung cấp bởi Apache giúp chúng ta làm việc với các tài liệu của Microsoft như Word, Excel, PowerPoint&hellip;</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/11/adapter-design-patterns/">
+                <h3 class="media-heading">[Design Patterns] Adapter Design Pattern in Java</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Chuyện kể rằng bạn Bean là một developer và đang phát triển một website e-commerce. Trang web này cho phép người dùng mua và thanh toán online bằng cách dùng một cổng thanh toán của bên thứ 3. Mọi thứ đều nhẹ nhàng như cân đường hộp sữa, cho đến một ngày mưa gió bão bùng&hellip; Vào cái ngày định mệnh ấy, PM của bạn Bean thông báo rằng sắp tới website sẽ thay đổi cổng thanh toán và bạn Bean sẽ phải chuẩn bị cho thay đổi này.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/11/magical-1000-vs-100/">
+                <h3 class="media-heading">[Magical Java] Tại sao 1000 == 1000 là sai, nhưng 100 == 100 lại đúng?</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Cùng xem đoạn code sau và dự đoán kết quá:
+Integer a = 1000, b = 1000; System.out.println(a == b);//1 Integer c = 100, d = 100; System.out.println(c == d);//2  Nếu các bạn đưa ra đáp án là false, false thì xin chúc mừng, các bạn nắm lý thuyết rất tốt. Ở đây chúng ta đang so sánh 2 object với nhau, và khi dùng toán tử &ldquo;==&rdquo; thì kết quả sẽ trả về false nếu 2 tham chiếu không cùng trỏ đến cùng một đối tượng.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/11/spring-boot-crud-app/">
+                <h3 class="media-heading">[Spring Boot] Dựng app CRUD đơn giản bằng Spring Boot &#43; Thymeleaf trên Intelij</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Để remind kiến thức cũng như tổng kết khi mới bắt đầu học một công nghệ mới, mình thường tạo một app đơn giản có đủ các thao tác thêm, xóa, sửa (CRUD). Bài viết này là một tutorial dạng cơ bản nhất khi học về Spring, sử dụng các công nghệ sau:
+ Spring Boot: để khởi tạo và cấu hình ứng dụng một cách nhanh chóng. Spring MVC: để xây dựng app.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/11/java-stream-part2/">
+                <h3 class="media-heading">[Java 8] Stream trong Java 8 (Phần 2)</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Tiếp theo bài viết trước, bài viết này sẽ đi vào tìm hiểu cách sử dụng Stream trong Java.
+1. Tạo một stream Có nhiều cách tạo một stream instance từ các source khác nhau. Mỗi khi được tạo thì instance sẽ không làm thay đổi source cũ, vì vậy chúng ta có thể thoải mái tạo nhiều instance stream khác nhau từ một source.
+ Stream rỗng (Empty stream)  Khi muốn tạo một stream rỗng, ta dùng method empty():</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/11/java-stream/">
+                <h3 class="media-heading">[Java 8] Stream trong Java 8 (Phần 1)</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Lambda expression kể từ trở thành một phần của Java thì đã làm thay đổi đáng kể thói quen sử dụng các Collection như chúng ta đã từng dùng ở các phiên bản trước Java 8. Mặc dù có thể xây dựng lại một bộ API Collections thay thế, nhưng nó sẽ ảnh hưởng rất lớn đến toàn bộ hệ sinh thái Java. Vì vậy mà những nhà phát triển Java đã có một chiến lược tốt hơn, đó là thêm các phương thức mở rộng vào các interface có sẵn (như là Collection, List, Iterable,&hellip;) cùng các lớp abstraction như Stream để thực hiện các phép toán tổng hợp trên tập dữ liệu, cung cấp thêm cho các lớp hiện có các phương thức để có thể làm việc với Stream mà không ảnh hưởng với các cách làm việc cũ.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/11/java-lambda-expression/">
+                <h3 class="media-heading">[Java 8] Lambda Expression trong Java 8</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">1. Lambda expresstion là gì? Lambda expression là một feature mới và nổi bật nhất của java 8 giúp số lượng code được giảm và là bước đầu khiến Java bước vào thế giới functional programming. Một lamba expression là một function được tạo mà không thuộc bất kì một class nào. Nó là một hàm không tên (unamed function) với các tham số (parameters) và phần body chứa khối lệnh được tách biệt với các tham số bằng dấu -&gt;.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/11/spring-boot-10-ways-security/">
+                <h3 class="media-heading">[Spring Boot] Secu thập chưởng bảo vệ app Spring Boot của bạn</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Spring Boot được release lần đầu năm 2014 và không có nhiều thay đổi đáng kể cho đến hiện tại. Với mục tiêu tự động cấu hình và giảm thiểu lượng code để có thể start một ứng dụng, Spring Boot đã giúp cho không biết con dân nhà Spring dễ sống và bớt chửi thề đi. Giống như khi dùng bất kì một framework nào để xây dựng ứng dụng, điều bạn cần quan tâm không chỉ là chất lượng code, vượt qua các test case, &hellip; mà còn là khả năng bảo mật của ứng dụng.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+      </div>
+    </div>
+    <div class="modal-footer">
+      <p class="results-count text-medium"
+         data-message-zero="không tìm thấy kết quả"
+         data-message-one="tìm thấy 1 kết quả "
+         data-message-other="tìm thấy {n} kết quả">
+         12 posts found
+      </p>
+    </div>
+  </div>
+</div>
+    
+  
+    
+    <div id="cover" style="background-image:url('https://tubean.github.io/images/cover-v1.2.0.jpg');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://tubean.github.io/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+
+
+  
+    <script crossorigin="anonymous" integrity="sha384-jmxIlussZWB7qCuB+PgKG1uLjjxbVVIayPJwi6cG6Zb4YKq0JIw+OMnkkEC7kYCq" src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js"></script>
+  
+
+  
+    <script crossorigin="anonymous" integrity="sha384-IiI65aU9ZYub2MY9zhtKd1H2ps7xxf+eb2YFG9lX6uRqpXCvBTOidPRCXCrQ++Uc" src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/contrib/auto-render.min.js"></script>
+  
+
+  
+    <script src="https://tubean.github.io/js/main.js"></script>
+  
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'https:\/\/tubean.github.io\/2018\/11\/junix-4x\/';
+          
+            this.page.identifier = '\/2018\/11\/junix-4x\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'beans-blog';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+

@@ -6,10 +6,21 @@
     <description>Recent content in Java on Bean&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>vi</language>
-    <lastBuildDate>Thu, 29 Nov 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 30 Nov 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://tubean.github.io/tags/java/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>[Java] Unit Test với JUnit 4x</title>
+      <link>https://tubean.github.io/2018/11/junix-4x/</link>
+      <pubDate>Fri, 30 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://tubean.github.io/2018/11/junix-4x/</guid>
+      <description>Trong bài viết này chúng ta cùng tìm hiểu về test và unit test bằng JUnit 4.x.
+1. Một số thuật ngữ trong kiểm thử (testing) 1.1 Code under test Những đoạn code được kiểm thử thường gọi code under test. Nếu bạn đang kiểm thử một ứng dụng nào đó thì nó được gọi là application under test.
+1.2 Test fixture Đây là các điều kiện để có thể bắt đầu kiểm thử.</description>
+    </item>
     
     <item>
       <title>[Design Patterns] Facade Design Pattern in Java</title>

@@ -40,7 +40,7 @@
     <item>
       <title>Java</title>
       <link>https://tubean.github.io/categories/java/</link>
-      <pubDate>Thu, 29 Nov 2018 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 30 Nov 2018 00:00:00 +0000</pubDate>
       
       <guid>https://tubean.github.io/categories/java/</guid>
       <description></description>
@@ -106,6 +106,15 @@
       <pubDate>Sat, 17 Nov 2018 00:00:00 +0000</pubDate>
       
       <guid>https://tubean.github.io/categories/springboot/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Testing</title>
+      <link>https://tubean.github.io/categories/testing/</link>
+      <pubDate>Fri, 30 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://tubean.github.io/categories/testing/</guid>
       <description></description>
     </item>
     
