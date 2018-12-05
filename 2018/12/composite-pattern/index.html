@@ -7,20 +7,40 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="generator" content="Hugo 0.49 with theme Tranquilpeak 0.4.3-SNAPSHOT">
 <meta name="author" content="Tu Bean">
-<meta name="keywords" content="">
-<meta name="description" content="Bean&#39;s blog">
+<meta name="keywords" content="design, pattern, java, composite">
+<meta name="description" content="Trong bài viết này, chúng ta sẽ đi tìm hiểu về một mẫu thiết kế khá thú vị, đó là Composite pattern. Trong tiếng anh thì từ composite có nghĩa là làm một hỗn hợp, tức là một thứ gì đó được tạo từ rất nhiều thành phần hỗn tạp. Đây là một mẫu thiết kế thuộc nhóm cấu trúc. Một đối tượng composite được tạo thành từ một hay nhiều đối tượng tương tự nhau (hoặc có một số chức năng tương tự nhau).">
 
 
-<meta property="og:description" content="Bean&#39;s blog">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Java 8">
-<meta name="twitter:title" content="Java 8">
-<meta property="og:url" content="https://tubean.github.io/tags/java-8/">
-<meta property="twitter:url" content="https://tubean.github.io/tags/java-8/">
+<meta property="og:description" content="Trong bài viết này, chúng ta sẽ đi tìm hiểu về một mẫu thiết kế khá thú vị, đó là Composite pattern. Trong tiếng anh thì từ composite có nghĩa là làm một hỗn hợp, tức là một thứ gì đó được tạo từ rất nhiều thành phần hỗn tạp. Đây là một mẫu thiết kế thuộc nhóm cấu trúc. Một đối tượng composite được tạo thành từ một hay nhiều đối tượng tương tự nhau (hoặc có một số chức năng tương tự nhau).">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Design Pattern] Composite Design Pattern">
+<meta name="twitter:title" content="[Design Pattern] Composite Design Pattern">
+<meta property="og:url" content="https://tubean.github.io/2018/12/composite-pattern/">
+<meta property="twitter:url" content="https://tubean.github.io/2018/12/composite-pattern/">
 <meta property="og:site_name" content="Bean&#39;s blog">
-<meta property="og:description" content="Bean&#39;s blog">
-<meta name="twitter:description" content="Bean&#39;s blog">
+<meta property="og:description" content="Trong bài viết này, chúng ta sẽ đi tìm hiểu về một mẫu thiết kế khá thú vị, đó là Composite pattern. Trong tiếng anh thì từ composite có nghĩa là làm một hỗn hợp, tức là một thứ gì đó được tạo từ rất nhiều thành phần hỗn tạp. Đây là một mẫu thiết kế thuộc nhóm cấu trúc. Một đối tượng composite được tạo thành từ một hay nhiều đối tượng tương tự nhau (hoặc có một số chức năng tương tự nhau).">
+<meta name="twitter:description" content="Trong bài viết này, chúng ta sẽ đi tìm hiểu về một mẫu thiết kế khá thú vị, đó là Composite pattern. Trong tiếng anh thì từ composite có nghĩa là làm một hỗn hợp, tức là một thứ gì đó được tạo từ rất nhiều thành phần hỗn tạp. Đây là một mẫu thiết kế thuộc nhóm cấu trúc. Một đối tượng composite được tạo thành từ một hay nhiều đối tượng tương tự nhau (hoặc có một số chức năng tương tự nhau).">
 <meta property="og:locale" content="vi">
+
+  
+    <meta property="article:published_time" content="2018-12-05T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2018-12-05T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="design pattern">
+    
+  
+  
+    
+      <meta property="article:tag" content="design pattern">
+    
+      <meta property="article:tag" content="composite">
+    
+  
 
 
 <meta name="twitter:card" content="summary">
@@ -31,6 +51,12 @@
 
 
 
+  <meta property="og:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1543156961/design-pattern-logo.jpg">
+  <meta property="twitter:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1543156961/design-pattern-logo.jpg">
+
+
+  <meta property="og:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1541273502/Black_flag.svg.png">
+  <meta property="twitter:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1541273502/Black_flag.svg.png">
 
 
 
@@ -39,16 +65,14 @@
   <meta property="twitter:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/c_scale,w_1836/v1540914499/C360_2016-03-22-17-45-21-487.jpg">
 
 
-    <title>Java 8</title>
+    <title>[Design Pattern] Composite Design Pattern</title>
 
     <link rel="icon" href="https://tubean.github.io/favicon/flappybird.png">
     
-      <link rel="alternate" type="application/rss+xml" title="RSS" href="https://tubean.github.io/tags/java-8/index.xml">
-    
 
     
 
-    <link rel="canonical" href="https://tubean.github.io/tags/java-8/">
+    <link rel="canonical" href="https://tubean.github.io/2018/12/composite-pattern/">
 
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
@@ -89,7 +113,7 @@ if (!doNotTrack) {
 
   <body>
     <div id="blog">
-      <header id="header" data-behavior="2">
+      <header id="header" data-behavior="5">
   <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
   <div class="header-title">
     <a class="header-title-link" href="https://tubean.github.io/">Bean&#39;s blog</a>
@@ -109,7 +133,7 @@ if (!doNotTrack) {
   
 </header>
 
-      <nav id="sidebar" data-behavior="2">
+      <nav id="sidebar" data-behavior="5">
   <div class="sidebar-container">
     
       <div class="sidebar-profile">
@@ -228,199 +252,388 @@ if (!doNotTrack) {
 </nav>
 
       
+  <div class="post-header-cover
+              text-center
+              "
+       style="background-image:url('https://res.cloudinary.com/deop9ytsv/image/upload/v1541273502/Black_flag.svg.png')"
+       data-behavior="5">
+    
+      <div class="post-header main-content-wrap text-center">
+  
+    <h1 class="post-title" itemprop="headline">
+      [Design Pattern] Composite Design Pattern
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2018-12-05T00:00:00Z">
         
+  tháng 12 5, 2018
 
-      
-      <div id="main" data-behavior="2"
-        class="
+      </time>
+    
+    
+  
+  
+    <span>mục</span>
+    
+      <a class="category-link" href="https://tubean.github.io/categories/design-pattern">design pattern</a>
+    
+  
+
+  </div>
+
+</div>
+    
+  </div>
+
+
+      <div id="main" data-behavior="5"
+        class="hasCover
                hasCoverMetaIn
                ">
-        
-          <section class="postShorten-group main-content-wrap">
-            
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              
+
+<p>Trong bài viết này, chúng ta sẽ đi tìm hiểu về một mẫu thiết kế khá thú vị, đó là <code>Composite pattern</code>. Trong tiếng anh thì từ <code>composite</code> có nghĩa là làm một hỗn hợp, tức là một thứ gì đó được tạo từ rất nhiều thành phần hỗn tạp.
+Đây là một mẫu thiết kế thuộc nhóm cấu trúc. Một đối tượng <em>composite</em> được tạo thành từ một hay nhiều đối tượng tương tự nhau (hoặc có một số chức năng tương tự nhau). Ý tưởng là có thể thao tác trên một nhóm đối tượng theo cách thao tác trên một đối tượng duy nhất và các đối tượng của nhóm phải có các thao tác chung. (method chung).
+Điều này tương tự như việc bạn có một cấu trúc dạng cây được tạo thành từ nhiều nhánh khác nhau, mỗi nhánh lại có thể được tạo từ nhiều nhánh khác, tất cả đều giống nhau về mặt cấu trúc và tạo nên một thứ hỗn độn. Trong thực tế thì chúng ta gặp nhiều bài toán cần dùng đến cấu trúc như vậy như hệ thống các thư mục, file, hệ thống các thẻ tag trong html, xml,&hellip;</p>
+
+<h1 id="1-composite-pattern-là-gì">1. Composite Pattern là gì?</h1>
+
+<p>Nếu bạn quen thuộc với cấu trúc dữ liệu dạng tree, bạn sẽ biết một tree sẽ có <code>parents</code> và <code>children</code>. Một parent có thể có nhiều <code>children</code>, nhưng một <code>chid</code> chỉ có một <code>parent</code>. Trong mẫu thiết kế Composite, những element có children được gọi là <code>Nodes</code>, những element không có children được gọi là <code>Leafs</code>.</p>
+
+<p>Một mẫu thiết kế Composite sẽ có 4 thành phần:
+- Component
+- Leaf
+- Composite
+- Client</p>
+
+<p>Hình dưới đây mô tả cấu trúc thường thấy của một đối Composite:
+<img src="https://res.cloudinary.com/deop9ytsv/image/upload/v1544023400/composite-1.jpg" alt="image1" /></p>
+
+<h1 id="2-sơ-đồ-mẫu-composite-uml">2. Sơ đồ mẫu Composite UML</h1>
+
+<p><img src="https://res.cloudinary.com/deop9ytsv/image/upload/v1544023400/composite-2.jpg" alt="img-2" />
+Trong biểu đồ trên thì:</p>
+
+<ul>
+<li>Component (thành phần):
+
+<ul>
+<li>Khai báo interface hoặc abtract chung cho các thành phần đối tượng.</li>
+<li>Chứa các method thao tác chung của các thành phần đối tượng.</li>
+</ul></li>
+<li>Leaf (Lá):
+
+<ul>
+<li>Biểu diễn các đối tượng lá trong thành phần đối tượng.</li>
+</ul></li>
+<li>Composite (hỗn hợp):
+
+<ul>
+<li>Định nghĩa một thao tác cho các thành phần có thành phần con.</li>
+<li>Lưu trữ các thành con.</li>
+<li>Thực thi sự quản lý các thành phần con của Component.</li>
+</ul></li>
+<li>Client:
+
+<ul>
+<li>Điều khiển các đối tượng trong Composite thông qua các method trong Component.</li>
+</ul></li>
+</ul>
+
+<h1 id="3-ví-dụ">3. Ví dụ</h1>
+
+<p>Một file html là một cấu trúc phân cấp, bắt đầu từ thẻ tag  <code>&lt;html&gt;</code> và sau đó gồm nhiều các thẻ tag khác có thể là parent hoặc child tag.
+Trong ví dụ này chúng ta sẽ sử dụng lớp component như là một lớp trừu tượng, trong đó bao gồm các method quan trọng được dùng trong các composite và leaf.</p>
+
+<pre><code class="language-java">public abstract class HtmlTag {  
+    public abstract String getTagName();  
+  
+    public abstract void setStartTag(String tag);  
+  
+    public abstract void setEndTag(String tag);  
+  
+    public void setTagBody(String tagBody) {  
+        throw new UnsupportedOperationException(&quot;Current operation is not support for this object&quot;);  
+    }  
+  
+    public void addChildTag(HtmlTag htmlTag) {  
+        throw new UnsupportedOperationException(&quot;Current operation is not support for this object&quot;);  
+    }  
+  
+    public void removeChildTag(HtmlTag htmlTag) {  
+        throw new UnsupportedOperationException(&quot;Current operation is not support for this object&quot;);  
+    }  
+  
+    public List&lt;HtmlTag&gt; getChildren() {  
+        throw new UnsupportedOperationException(&quot;Current operation is not support for this object&quot;);  
+    }  
+  
+    public abstract void generateHtml();  
+}
+</code></pre>
+
+<p>Trong lớp <code>HtmlTag</code> thì các method được định nghĩa đều sẽ được dùng bởi các lớp composite và leaf. Có một vài method nên được sử dụng cụ thể trong cả từng class con, vì vậy nên chúng ta sẽ giữ nó ở dạng abtract trong lớp cha. Ví dụ như <em>getTagName()</em>.
+Một số method chỉ hữu dụng trong composite nhưng lại không mấy có tác dụng trong leaf như <em>removeChildTag()</em>. Chúng ta sẽ để chúng ở dạng default và cung cấp một loại Exception cho những object không sử dụng chúng.</p>
+
+<p>Bây giờ chúng ta sẽ tạo một Composite class như sau:</p>
+
+<pre><code class="language-java">public class HtmlParentElement extends HtmlTag {  
+    private String tagName;  
+    private String startTag;  
+    private String endTag;  
+    private List&lt;HtmlTag&gt; childrenTag;  
+  
+    public HtmlParentElement(String tagName) {  
+        this.tagName = tagName;  
+        this.startTag = &quot;&quot;;  
+        this.endTag = &quot;&quot;;  
+        this.childrenTag = new ArrayList&lt;&gt;();  
+    }  
+  
+    @Override  
+  public String getTagName() {  
+        return tagName;  
+    }  
+  
+    @Override  
+  public void setStartTag(String tag) {  
+        this.startTag = tag;  
+    }  
+  
+    @Override  
+  public void setEndTag(String tag) {  
+        this.endTag = tag;  
+    }  
+  
+    @Override  
+  public void addChildTag(HtmlTag htmlTag) {  
+        childrenTag.add(htmlTag);  
+    }  
+  
+    @Override  
+  public void removeChildTag(HtmlTag htmlTag) {  
+        childrenTag.remove(htmlTag);  
+    }  
+  
+    @Override  
+  public List&lt;HtmlTag&gt; getChildren() {  
+        return childrenTag;  
+    }  
+  
+    @Override  
+  public void generateHtml() {  
+        System.out.println(startTag);  
+        for (HtmlTag tag : childrenTag) {  
+            tag.generateHtml();  
+        }  
+        System.out.println(endTag);  
+  
+    }  
+  
+}
+</code></pre>
+
+<p><code>HtmlParentElement</code> là lớp composite và nó cần implement các method như <em>addChildTag</em>, removeChildTag_, <em>getChildren</em>.</p>
+
+<pre><code class="language-java">public class HtmlElement extends HtmlTag {  
+    private String tagName;  
+    private String startTag;  
+    private String endTag;  
+    private String tagBody;  
+  
+    public HtmlElement(String tagName) {  
+        this.tagName = tagName;  
+        this.tagBody = &quot;&quot;;  
+        this.startTag = &quot;&quot;;  
+        this.endTag = &quot;&quot;;  
+    }  
+  
+    @Override  
+  public String getTagName() {  
+        return tagName;  
+    }  
+  
+    @Override  
+  public void setStartTag(String tag) {  
+        this.startTag = tag;  
+    }  
+  
+    @Override  
+  public void setEndTag(String tag) {  
+        this.endTag = tag;  
+    }  
+  
+    @Override  
+  public void setTagBody(String tagBody) {  
+        this.tagBody = tagBody;  
+    }  
+  
+    @Override  
+  public void generateHtml() {  
+        System.out.println(startTag + &quot;&quot; + tagBody + &quot;&quot; + endTag);  
+    }  
+}
+</code></pre>
+
+<p><code>HtmlElement</code> là lớp leaf và nó có nhiệm vụ chính là implement các opearation method. Trong ví dụ này là <em>generateHtml</em>.</p>
+
+<p>Cuối cùng là chạy test:</p>
+
+<pre><code class="language-java">public class TestCompositePattern {  
+    public static void main(String[] args) {  
+        HtmlTag parentTag = new HtmlParentElement(&quot;&lt;html&gt;&quot;);  
+        parentTag.setStartTag(&quot;&lt;html&gt;&quot;);  
+        parentTag.setEndTag(&quot;&lt;/html&gt;&quot;);  
+  
+        HtmlTag p1 = new HtmlParentElement(&quot;&lt;body&gt;&quot;);  
+        p1.setStartTag(&quot;&lt;body&gt;&quot;);  
+        p1.setEndTag(&quot;&lt;/body&gt;&quot;);  
+  
+        parentTag.addChildTag(p1);  
+  
+        HtmlTag child1 = new HtmlElement(&quot;&lt;p&gt;&quot;);  
+        child1.setStartTag(&quot;&lt;p&gt;&quot;);  
+        child1.setEndTag(&quot;&lt;/p&gt;&quot;);  
+        child1.setTagBody(&quot;Testing html tag library&quot;);  
+        p1.addChildTag(child1);  
+  
+        child1 = new HtmlElement(&quot;&lt;p&gt;&quot;);  
+        child1.setStartTag(&quot;&lt;p&gt;&quot;);  
+        child1.setEndTag(&quot;&lt;/p&gt;&quot;);  
+        child1.setTagBody(&quot;Paragraph 2&quot;);  
+        p1.addChildTag(child1);  
+  
+        parentTag.generateHtml();  
+  
+    }
+</code></pre>
+
+<p>Kết quả của đoạn test trên sẽ là:</p>
+
+<pre><code>&lt;html&gt;
+&lt;body&gt;
+&lt;p&gt;Testing html tag library&lt;/p&gt;
+&lt;p&gt;Paragraph 2&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<h1 id="4-khi-nào-dùng-composite-pattern">4. Khi nào dùng Composite Pattern</h1>
+
+<ul>
+<li>Khi bạn muốn tạo ra các đối tượng trong các cấu trúc cây để biểu diễn hệ thống phân lớp.</li>
+<li>Khi bạn muốn client có thể bỏ qua sự khác nhau giữa các thành phần cấu tạo object và bản thân object. Các client tác động đến từng đối tượng và các thành phần của đối tượng một cách thống nhất.</li>
+</ul>
+
+<h1 id="5-source-code">5. Source code</h1>
+
+<p><a href="https://github.com/tubean/design-pattern/">https://github.com/tubean/design-pattern/</a></p>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
             
               
-  
-    
-  
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">THẺ ĐÁNH DẤU</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/design-pattern/">design pattern</a>
 
+  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/composite/">composite</a>
 
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
   
-
-<article class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="https://tubean.github.io/2018/11/java-stream-part2/">
-          [Java 8] Stream trong Java 8 (Phần 2)
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">Tiếp</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2018/12/junix-5x/" data-tooltip="[Java] Unit Test với JUnit 5x">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">Trước</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://tubean.github.io/2018/12/composite-pattern/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://tubean.github.io/2018/12/composite-pattern/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://tubean.github.io/2018/12/composite-pattern/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
         </a>
-      </h1>
-      
-  <div class="postShorten-meta post-meta">
-    
-      <time itemprop="datePublished" datetime="2018-11-12T00:00:00Z">
-        
-  tháng 11 12, 2018
-
-      </time>
-    
-    
+      </li>
+    </ul>
   
-  
-    <span>mục</span>
-    
-      <a class="category-link" href="https://tubean.github.io/categories/java">Java</a>
-    
-  
-
-  </div>
-
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      
-        Tiếp theo bài viết trước, bài viết này sẽ đi vào tìm hiểu cách sử dụng Stream trong Java.
-1. Tạo một stream Có nhiều cách tạo một stream instance từ các source khác nhau. Mỗi khi được tạo thì instance sẽ không làm thay đổi source cũ, vì vậy chúng ta có thể thoải mái tạo nhiều instance stream khác nhau từ một source.
- Stream rỗng (Empty stream)  Khi muốn tạo một stream rỗng, ta dùng method empty():
-      
-      <p>
-        <a href="https://tubean.github.io/2018/11/java-stream-part2/" class="postShorten-excerpt_link link">Đọc tiếp...</a>
-        
-      </p>
-    </div>
-  </div>
-  
-    <a href="https://tubean.github.io/2018/11/java-stream-part2/">
-      <div class="postShorten-thumbnailimg">
-        <img alt="" itemprop="image" src="https://res.cloudinary.com/deop9ytsv/image/upload/v1541576734/eer0Pfq.png"/>
-      </div>
-    </a>
-  
-</article>
+</div>
 
             
               
-  
-    
-  
-
-
-  
-
-<article class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="https://tubean.github.io/2018/11/java-stream/">
-          [Java 8] Stream trong Java 8 (Phần 1)
-        </a>
-      </h1>
-      
-  <div class="postShorten-meta post-meta">
-    
-      <time itemprop="datePublished" datetime="2018-11-08T00:00:00Z">
-        
-  tháng 11 8, 2018
-
-      </time>
-    
-    
-  
-  
-    <span>mục</span>
-    
-      <a class="category-link" href="https://tubean.github.io/categories/java">Java</a>
-    
-  
-
-  </div>
-
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      
-        Lambda expression kể từ trở thành một phần của Java thì đã làm thay đổi đáng kể thói quen sử dụng các Collection như chúng ta đã từng dùng ở các phiên bản trước Java 8. Mặc dù có thể xây dựng lại một bộ API Collections thay thế, nhưng nó sẽ ảnh hưởng rất lớn đến toàn bộ hệ sinh thái Java. Vì vậy mà những nhà phát triển Java đã có một chiến lược tốt hơn, đó là thêm các phương thức mở rộng vào các interface có sẵn (như là Collection, List, Iterable,&hellip;) cùng các lớp abstraction như Stream để thực hiện các phép toán tổng hợp trên tập dữ liệu, cung cấp thêm cho các lớp hiện có các phương thức để có thể làm việc với Stream mà không ảnh hưởng với các cách làm việc cũ.
-      
-      <p>
-        <a href="https://tubean.github.io/2018/11/java-stream/" class="postShorten-excerpt_link link">Đọc tiếp...</a>
-        
-      </p>
-    </div>
-  </div>
-  
-    <a href="https://tubean.github.io/2018/11/java-stream/">
-      <div class="postShorten-thumbnailimg">
-        <img alt="" itemprop="image" src="https://res.cloudinary.com/deop9ytsv/image/upload/v1541576734/eer0Pfq.png"/>
-      </div>
-    </a>
-  
-</article>
-
-            
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
               
-  
-    
-  
-
-
-  
-
-<article class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="https://tubean.github.io/2018/11/java-lambda-expression/">
-          [Java 8] Lambda Expression trong Java 8
-        </a>
-      </h1>
-      
-  <div class="postShorten-meta post-meta">
-    
-      <time itemprop="datePublished" datetime="2018-11-07T00:00:00Z">
-        
-  tháng 11 7, 2018
-
-      </time>
-    
-    
-  
-  
-    <span>mục</span>
-    
-      <a class="category-link" href="https://tubean.github.io/categories/java">Java</a>, 
-    
-      <a class="category-link" href="https://tubean.github.io/categories/lambda-expression">Lambda expression</a>
-    
-  
-
-  </div>
-
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      
-        1. Lambda expresstion là gì? Lambda expression là một feature mới và nổi bật nhất của java 8 giúp số lượng code được giảm và là bước đầu khiến Java bước vào thế giới functional programming. Một lamba expression là một function được tạo mà không thuộc bất kì một class nào. Nó là một hàm không tên (unamed function) với các tham số (parameters) và phần body chứa khối lệnh được tách biệt với các tham số bằng dấu -&gt;.
-      
-      <p>
-        <a href="https://tubean.github.io/2018/11/java-lambda-expression/" class="postShorten-excerpt_link link">Đọc tiếp...</a>
-        
-      </p>
-    </div>
-  </div>
-  
-    <a href="https://tubean.github.io/2018/11/java-lambda-expression/">
-      <div class="postShorten-thumbnailimg">
-        <img alt="" itemprop="image" src="https://res.cloudinary.com/deop9ytsv/image/upload/v1541576734/eer0Pfq.png"/>
-      </div>
-    </a>
-  
-</article>
-
             
-            
-
-          </section>
-        
+          </div>
+        </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
     &copy; 2018 <a href="https://bitbucket.org/tubean/">Do Anh Tu</a>. All Rights Reserved
@@ -428,6 +641,102 @@ if (!doNotTrack) {
 </footer>
 
       </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">Tiếp</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2018/12/junix-5x/" data-tooltip="[Java] Unit Test với JUnit 5x">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">Trước</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://tubean.github.io/2018/12/composite-pattern/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://tubean.github.io/2018/12/composite-pattern/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://tubean.github.io/2018/12/composite-pattern/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ftubean.github.io%2F2018%2F12%2Fcomposite-pattern%2F">
+          <i class="fa fa-facebook-official"></i><span>Chia sẻ với Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Ftubean.github.io%2F2018%2F12%2Fcomposite-pattern%2F">
+          <i class="fa fa-twitter"></i><span>Chia sẻ với Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Ftubean.github.io%2F2018%2F12%2Fcomposite-pattern%2F">
+          <i class="fa fa-google-plus"></i><span>Chia sẻ với Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
     </div>
     
     <div id="about">
@@ -725,6 +1034,32 @@ $(document).ready(function() {
 });
 </script>
 
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'https:\/\/tubean.github.io\/2018\/12\/composite-pattern\/';
+          
+            this.page.identifier = '\/2018\/12\/composite-pattern\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'beans-blog';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
 
 
 

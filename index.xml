@@ -6,10 +6,19 @@
     <description>Recent content on Bean&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>vi</language>
-    <lastBuildDate>Sat, 01 Dec 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 05 Dec 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://tubean.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>[Design Pattern] Composite Design Pattern</title>
+      <link>https://tubean.github.io/2018/12/composite-pattern/</link>
+      <pubDate>Wed, 05 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://tubean.github.io/2018/12/composite-pattern/</guid>
+      <description>Trong bài viết này, chúng ta sẽ đi tìm hiểu về một mẫu thiết kế khá thú vị, đó là Composite pattern. Trong tiếng anh thì từ composite có nghĩa là làm một hỗn hợp, tức là một thứ gì đó được tạo từ rất nhiều thành phần hỗn tạp. Đây là một mẫu thiết kế thuộc nhóm cấu trúc. Một đối tượng composite được tạo thành từ một hay nhiều đối tượng tương tự nhau (hoặc có một số chức năng tương tự nhau).</description>
+    </item>
     
     <item>
       <title>[Java] Unit Test với JUnit 5x</title>
