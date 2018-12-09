@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.49 with theme Tranquilpeak 0.4.3-SNAPSHOT">
+<meta name="author" content="Tu Bean">
+<meta name="keywords" content="Java, functional, programming">
+<meta name="description" content="1. Functional Programming là gì? Functional Programming hay lập trình chức năng là kiểu lập trình mà function được chọn làm đơn vị thao tác cơ bản. Functional programming tập trung vào sử dụng tính năng của các hàm và tránh sử dụng các biến cũng như thay đổi giá trị của chúng. Nó hơi ngược với procedure programming như chúng ta vẫn thường sử dụng (OOP tập trung vào chi tiết hoạt động của chương trình và thường sử dụng các biến và thay đổi trạng thái của chương trình).">
+
+
+<meta property="og:description" content="1. Functional Programming là gì? Functional Programming hay lập trình chức năng là kiểu lập trình mà function được chọn làm đơn vị thao tác cơ bản. Functional programming tập trung vào sử dụng tính năng của các hàm và tránh sử dụng các biến cũng như thay đổi giá trị của chúng. Nó hơi ngược với procedure programming như chúng ta vẫn thường sử dụng (OOP tập trung vào chi tiết hoạt động của chương trình và thường sử dụng các biến và thay đổi trạng thái của chương trình).">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Functional Programming]  Functional Programing trong Java">
+<meta name="twitter:title" content="[Functional Programming]  Functional Programing trong Java">
+<meta property="og:url" content="https://tubean.github.io/2018/12/java-functional-programming/">
+<meta property="twitter:url" content="https://tubean.github.io/2018/12/java-functional-programming/">
+<meta property="og:site_name" content="Bean&#39;s blog">
+<meta property="og:description" content="1. Functional Programming là gì? Functional Programming hay lập trình chức năng là kiểu lập trình mà function được chọn làm đơn vị thao tác cơ bản. Functional programming tập trung vào sử dụng tính năng của các hàm và tránh sử dụng các biến cũng như thay đổi giá trị của chúng. Nó hơi ngược với procedure programming như chúng ta vẫn thường sử dụng (OOP tập trung vào chi tiết hoạt động của chương trình và thường sử dụng các biến và thay đổi trạng thái của chương trình).">
+<meta name="twitter:description" content="1. Functional Programming là gì? Functional Programming hay lập trình chức năng là kiểu lập trình mà function được chọn làm đơn vị thao tác cơ bản. Functional programming tập trung vào sử dụng tính năng của các hàm và tránh sử dụng các biến cũng như thay đổi giá trị của chúng. Nó hơi ngược với procedure programming như chúng ta vẫn thường sử dụng (OOP tập trung vào chi tiết hoạt động của chương trình và thường sử dụng các biến và thay đổi trạng thái của chương trình).">
+<meta property="og:locale" content="vi">
+
+  
+    <meta property="article:published_time" content="2018-12-09T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2018-12-09T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="Java">
+    
+      <meta property="article:section" content="Functional Programming">
+    
+  
+  
+    
+      <meta property="article:tag" content="Java">
+    
+      <meta property="article:tag" content="Functional">
+    
+      <meta property="article:tag" content="Programming">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1542691153/java_logo.png">
+  <meta property="twitter:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1542691153/java_logo.png">
+
+
+  <meta property="og:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1541273502/Black_flag.svg.png">
+  <meta property="twitter:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1541273502/Black_flag.svg.png">
+
+
+
+
+  <meta property="og:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/c_scale,w_1836/v1540914499/C360_2016-03-22-17-45-21-487.jpg">
+  <meta property="twitter:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/c_scale,w_1836/v1540914499/C360_2016-03-22-17-45-21-487.jpg">
+
+
+    <title>[Functional Programming]  Functional Programing trong Java</title>
+
+    <link rel="icon" href="https://tubean.github.io/favicon/flappybird.png">
+    
+
+    
+
+    <link rel="canonical" href="https://tubean.github.io/2018/12/java-functional-programming/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://tubean.github.io/css/style-nnm2spxvve8onlujjlegkkytaehyadd4ksxc1hyzzq9a2wvtrgbljqyulomn.min.css" />
+    
+    
+      
+        <link rel="stylesheet"  crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" integrity="sha384-TEMocfGvRuD1rIAacqrknm5BQZ7W7uWitoih+jMNFXQIbNl16bO8OZmylH/Vi/Ei">
+      
+    
+      
+        <link rel="stylesheet"  href="https://tubean.github.io/css/main.css">
+      
+    
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-128433621-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://tubean.github.io/">Bean&#39;s blog</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://tubean.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://res.cloudinary.com/deop9ytsv/image/upload/c_scale,w_1836/v1540914499/C360_2016-03-22-17-45-21-487.jpg" alt="Ảnh đại diện" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://tubean.github.io/#about">
+          <img class="sidebar-profile-picture" src="https://res.cloudinary.com/deop9ytsv/image/upload/c_scale,w_1836/v1540914499/C360_2016-03-22-17-45-21-487.jpg" alt="Ảnh đại diện" />
+        </a>
+        <h4 class="sidebar-profile-name">Tu Bean</h4>
+        
+          <h5 class="sidebar-profile-bio">Coding, writing and sharing</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tubean.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Trang chủ</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tubean.github.io/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">Danh mục</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tubean.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Thẻ thông tin</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tubean.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Lưu trữ</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tubean.github.io/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">Thông tin</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://bitbucket.org/tubean/" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bitbucket-square"></i>
+      
+      <span class="sidebar-button-desc">Bitbucket</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/tubean" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">Github</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.instagram.com/zeref_bean/" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-instagram"></i>
+      
+      <span class="sidebar-button-desc">Instagram</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.linkedin.com/in/tubean/" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-linkedin"></i>
+      
+      <span class="sidebar-button-desc">LinkedIn</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+  <div class="post-header-cover
+              text-center
+              "
+       style="background-image:url('https://res.cloudinary.com/deop9ytsv/image/upload/v1541273502/Black_flag.svg.png')"
+       data-behavior="5">
+    
+      <div class="post-header main-content-wrap text-center">
+  
+    <h1 class="post-title" itemprop="headline">
+      [Functional Programming]  Functional Programing trong Java
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2018-12-09T00:00:00Z">
+        
+  tháng 12 9, 2018
+
+      </time>
+    
+    
+  
+  
+    <span>mục</span>
+    
+      <a class="category-link" href="https://tubean.github.io/categories/java">Java</a>, 
+    
+      <a class="category-link" href="https://tubean.github.io/categories/functional-programming">Functional Programming</a>
+    
+  
+
+  </div>
+
+</div>
+    
+  </div>
+
+
+      <div id="main" data-behavior="5"
+        class="hasCover
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              
+
+<h1 id="1-functional-programming-là-gì">1. Functional Programming là gì?</h1>
+
+<p><code>Functional Programming</code> hay lập trình chức năng là kiểu lập trình mà function được chọn làm đơn vị thao tác cơ bản. Functional programming tập trung vào sử dụng tính năng của các hàm và tránh sử dụng các biến cũng như thay đổi giá trị của chúng. Nó hơi ngược với <code>procedure programming</code> như chúng ta vẫn thường sử dụng (OOP tập trung vào chi tiết hoạt động của chương trình và thường sử dụng các biến và thay đổi trạng thái của chương trình). Nó cũng không bắt buộc chương trình phải chạy các hàm theo một thứ tự xác định và chúng ta có thể thay đổi trật tự của các hàm mà không ảnh hưởng tới chương trình.</p>
+
+<p>Trong java, function programming được Oracle cố gắng đưa vào từ java 8, tuy nhiên nó cũng không hoàn toàn đầy đủ các khía cạnh của kiểu lập trình này. Trong bài viết này, chúng ta sẽ tìm hiểu các kiến thức cơ bản về functional programming và những phần nào có thể có trong Java.</p>
+
+<h1 id="2-các-khái-niệm-cơ-bản">2. Các khái niệm cơ bản</h1>
+
+<p><code>Functional Programming</code> có các khái niệm quan trọng sau:</p>
+
+<ul>
+<li>Các function được coi như các object, đơn vị thao tác cơ bản.</li>
+<li>Các function có tính purity.</li>
+<li>Higher order functions.</li>
+</ul>
+
+<p>Lập trình chức năng cơ bản có các quy tắc sau:</p>
+
+<ul>
+<li>Không trạng thái (no state).</li>
+<li>Không có hiệu ứng phụ (no side effect).</li>
+<li>Các biến là cố định. (Immutable variables).</li>
+<li>Ưu tiên đệ quy để thay thế vòng lặp.</li>
+</ul>
+
+<p>Các khái niệm và quy tắc này sẽ được giải thích trong bài viết.
+Ngay cả khi bạn không tuân theo các quy tắc này mọi lúc mọi nơi thì bạn vẫn có thể có những lợi ích từ các ý tưởng lập trình chức năng trong các ứng dụng của mình. Việc học cả 2 loại lập trình sẽ giúp bạn giải quyết các vấn đề khi lập trình một cách thông minh và hiệu quả hơn.</p>
+
+<h2 id="2-1-đơn-vị-function">2.1 Đơn vị Function</h2>
+
+<p>Trong Functional Programming nói một cách lý tưởng thì nó chỉ có function, function và function. Nói không với các lệnh gán (assignment statements), nói không với các biến toàn cục (global variables), không lưu giữ trạng thái toàn cục (global state). Chúng ta tạo nên chương trình bằng cách phối hợp các function lại với nhau, biến hóa chúng theo mọi cách có thể nghĩ ra. Đó gọi là không gian <code>first-class functions</code>, nơi các function được coi như <code>first-class-citizens</code>.</p>
+
+<p>Trong java thì điều đó đồng nghĩa với việc bạn có thể tạo các instance cho một function, có một biến reference đến instance đó giống như String, Map hay bất kì object nào. Function cũng có thể được truyền như một parameter vào một function khác.
+Tuy nhiên thì các methods trong Java không hẳn là những function như vậy. Khái niệm gần nhất với function chúng ta có trong Java chính là <a href="https://tubean.github.io/2018/11/java-lambda-expression/">Java Lambda Expressions</a>.</p>
+
+<h2 id="2-2-function-thuần-khiết-pure-functions">2.2 Function thuần khiết (Pure Functions)</h2>
+
+<p>Một function được coi là thuần khiết nếu:</p>
+
+<ul>
+<li>Phần thực thi của function không tạo ra hiệu ứng phụ (no side effect).</li>
+<li>Phần trả về của function chỉ phụ thuộc vào các parameter truyền vào.
+Ví dụ:</li>
+</ul>
+
+<pre><code class="language-java">public class ObjectWithPureFunction{
+
+    public int sum(int a, int b) {
+        return a + b;
+    }
+}
+</code></pre>
+
+<p>Trong ví dụ trên thì hàm <code>sum()</code> có giá trị trả về chỉ phụ thuộc vào 2 parameter truyền vào là <code>a</code> và <code>b</code>. Hàm <code>sum()</code> cũng không có hiệu ứng phụ, có nghĩa là nó không thay đổi bất kì giá trị hay trạng thái của các parameter được truyền vào.
+Một ví dụ khác về function không thuần khiết:</p>
+
+<pre><code class="language-java">public class ObjectWithNonPureFunction{
+    private int value = 0;
+
+    public int add(int nextValue) {
+        this.value += nextValue;
+        return this.value;
+    }
+}
+</code></pre>
+
+<p>Trong ví dụ trên thì kết quả trả về phụ thuộc vào một biến khác ngoài parameter và hàm này cũng làm thay đổi state của biến <code>value</code>, vì thế nó cũng có hiệu ứng phụ.</p>
+
+<h2 id="2-3-higher-order-functions">2.3 Higher Order Functions</h2>
+
+<p>Một function được coi là <code>higher order function</code> nếu nó thỏa mãn một trong các điều kiện sau:</p>
+
+<ul>
+<li>Function đó có một hoặc nhiều function khác làm parameter.</li>
+<li>Function đó trả về kết quả là một function.</li>
+</ul>
+
+<p>Trong Java, <code>Higher Order Function</code> có thể thấy được qua việc một function nhận một hay nhiều biểu thức lambda làm parameter và trả về một biểu thức lambda khác. Ví dụ như:</p>
+
+<pre><code class="language-java">public class HigherOrderFunctionClass {
+
+    public &lt;T&gt; IFactory&lt;T&gt; createFactory(IProducer&lt;T&gt; producer, IConfigurator&lt;T&gt; configurator) {
+        return () -&gt; {
+           T instance = producer.produce();
+           configurator.configure(instance);
+           return instance;
+        }
+    }
+}
+</code></pre>
+
+<p>Trong ví dụ trên thì method <code>createFactory</code> có kết quả trả về là một biểu thức lambda. Do đó nó thỏa mãn điều kiện của một <code>higher order function</code>. Ngoài ra thì method này cũng nhận 2 instance làm parameter và cả 2 instance đều là implementation của các interface <code>IProducer</code> và <code>IConfigurator</code>. Hãy tưởng tượng các interface đó như sau:</p>
+
+<pre><code class="language-java">public interface IFactory&lt;T&gt; {
+   T create();
+}
+</code></pre>
+
+<pre><code class="language-java">public interface IProducer&lt;T&gt; {
+   T produce();
+}
+</code></pre>
+
+<pre><code class="language-java">public interface IConfigurator&lt;T&gt; {
+   void configure(T t);
+}
+</code></pre>
+
+<p>Chúng ta có thể nhận thấy các interface này đều là các <code>functional interface</code>. Do đó chúng có thể được implement từ các biểu thức lambda và đó cũng là điều kiện để method <code>createFactory()</code> trở thành một <code>higher order function</code>.</p>
+
+<h2 id="2-4-không-trạng-thái-no-state">2.4 Không trạng thái ( No state)</h2>
+
+<p>Như đã nhắc ở trên thì một nguyên tắc của functional programming là không có trạng thái. Điều đó có nghĩa là một function có thể có các biến local để lưu giữ các trạng thái nội tại của function, nhưng nó sẽ không thể tham chiếu đến bất kỳ một biến nào khác của class hay object chứa function đó.
+Ví dụ một function không sử dụng trạng thái ngoại lai (external state) nào:</p>
+
+<pre><code class="language-java">public class Calculator {
+    public int sum(int a, int b) {
+       return a + b;
+    }
+}
+</code></pre>
+
+<p>Ngược lại, ví dụ dưới đây cho thấy một function sử dụng trạng thái ngoại lai:</p>
+
+<pre><code class="language-java">public class Calculator {
+    private int initVal = 5;
+    public int sum(int a) {
+       return initVal + a;
+    }
+}
+</code></pre>
+
+<h2 id="2-5-không-hiệu-ứng-phụ-no-side-effects">2.5 Không hiệu ứng phụ (No side effects)</h2>
+
+<p>Một nguyên tắc của FP là nó các function không có hiệu ứng phụ. Điều đó nghĩa là một function không thể thay đổi bất kỳ trạng thái của bất cứ thứ gì ngoài phạm vi của function. Thay đổi các state ngoài phạm vi function được gọi là <code>side effect</code>.</p>
+
+<h2 id="2-6-biến-không-thể-thay-đổi-immutable-variables">2.6 Biến không thể thay đổi (Immutable variables)</h2>
+
+<p>Nguyên tắc thứ ba của FP là các biến trong function đều không được thay đổi. Điều đó có nghĩa nó nên là các <code>constant</code>. Nguyên tắc này sẽ giúp tránh các hiệu ứng phụ dễ dàng hơn.</p>
+
+<h2 id="2-7-ưu-tiên-đệ-quy">2.7 Ưu tiên đệ quy</h2>
+
+<p>Nguyên tắc thứ tư của FP là các function sẽ ưu tiên sử dụng đệ quy để thay thế các phép tính loop, hạn chế for, for-each, while, do-while,&hellip; Một cách khác để sử dụng loop chính là <code>API Java Streams</code>. API này được lấy cảm hứng từ FP.</p>
+
+<h2 id="2-8-funtional-interfaces">2.8 Funtional Interfaces</h2>
+
+<p>Một functional interface trong Java là một function chỉ có một method trừu tượng. Ví dụ:</p>
+
+<pre><code class="language-java">public interface MyInterface {
+    public void run();
+}
+</code></pre>
+
+<p>Ngoài ra trong interface có thể các method khác như <code>default method</code>, <code>static method</code> thì nó vẫn được coi là functional interface nếu chỉ có duy nhất một abtract method:</p>
+
+<pre><code class="language-java">public interface MyInterface2 {
+    public void run();
+
+    public default void doIt() {
+        System.out.println(&quot;doing it&quot;);
+    }
+
+    public static void doItStatically() {
+        System.out.println(&quot;doing it statically&quot;);
+    }
+}
+</code></pre>
+
+<h1 id="nguồn">Nguồn:</h1>
+
+<p><a href="http://tutorials.jenkov.com/java-functional-programming/index.html">http://tutorials.jenkov.com/java-functional-programming/index.html</a></p>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">THẺ ĐÁNH DẤU</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/java/">Java</a>
+
+  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/functional/">Functional</a>
+
+  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/programming/">Programming</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2018/12/singleton-pattern/" data-tooltip="[Design Pattern] Singleton Design Pattern">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">Tiếp</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2018/12/composite-pattern/" data-tooltip="[Design Pattern] Composite Design Pattern">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">Trước</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://tubean.github.io/2018/12/java-functional-programming/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://tubean.github.io/2018/12/java-functional-programming/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://tubean.github.io/2018/12/java-functional-programming/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2018 <a href="https://bitbucket.org/tubean/">Do Anh Tu</a>. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2018/12/singleton-pattern/" data-tooltip="[Design Pattern] Singleton Design Pattern">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">Tiếp</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2018/12/composite-pattern/" data-tooltip="[Design Pattern] Composite Design Pattern">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">Trước</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://tubean.github.io/2018/12/java-functional-programming/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://tubean.github.io/2018/12/java-functional-programming/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://tubean.github.io/2018/12/java-functional-programming/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ftubean.github.io%2F2018%2F12%2Fjava-functional-programming%2F">
+          <i class="fa fa-facebook-official"></i><span>Chia sẻ với Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Ftubean.github.io%2F2018%2F12%2Fjava-functional-programming%2F">
+          <i class="fa fa-twitter"></i><span>Chia sẻ với Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Ftubean.github.io%2F2018%2F12%2Fjava-functional-programming%2F">
+          <i class="fa fa-google-plus"></i><span>Chia sẻ với Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://res.cloudinary.com/deop9ytsv/image/upload/c_scale,w_1836/v1540914499/C360_2016-03-22-17-45-21-487.jpg" alt="Ảnh đại diện" />
+    
+    <h4 id="about-card-name">Tu Bean</h4>
+    
+      <div id="about-card-bio">Coding, writing and sharing</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Web developer
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        Viet Nam
+      </div>
+    
+  </div>
+</div>
+
+    <div id="algolia-search-modal" class="modal-container">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="close-button"><i class="fa fa-close"></i></span>
+      <a href="https://algolia.com" target="_blank" rel="noopener" class="searchby-algolia text-color-light link-unstyled">
+        <span class="searchby-algolia-text text-color-light text-small">by</span>
+        <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+      </a>
+      <i class="search-icon fa fa-search"></i>
+      <form id="algolia-search-form">
+        <input type="text" id="algolia-search-input" name="search"
+          class="form-control input--large search-input" placeholder="Tìm kiếm" />
+      </form>
+    </div>
+    <div class="modal-body">
+      <div class="no-result text-color-light text-center">không tìm thấy kết quả</div>
+      <div class="results">
+        
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/12/singleton-pattern/">
+                <h3 class="media-heading">[Design Pattern] Singleton Design Pattern</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">1. Singleton là gì? Đã khi nào bạn viết một class mà chỉ muốn nó chỉ có duy nhất một instance? Trong lập trình, chúng ta sẽ đôi lần thấy rằng một số class chỉ nên có duy nhất một instance, vì nếu có nhiều hơn một, chúng ta sẽ gặp phải một vài vấn đề như hành vi chương trình không chính xác, lãng phí tài nguyên hay kết quả không nhất quán.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/12/java-functional-programming/">
+                <h3 class="media-heading">[Functional Programming]  Functional Programing trong Java</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">1. Functional Programming là gì? Functional Programming hay lập trình chức năng là kiểu lập trình mà function được chọn làm đơn vị thao tác cơ bản. Functional programming tập trung vào sử dụng tính năng của các hàm và tránh sử dụng các biến cũng như thay đổi giá trị của chúng. Nó hơi ngược với procedure programming như chúng ta vẫn thường sử dụng (OOP tập trung vào chi tiết hoạt động của chương trình và thường sử dụng các biến và thay đổi trạng thái của chương trình).</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/12/composite-pattern/">
+                <h3 class="media-heading">[Design Pattern] Composite Design Pattern</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Trong bài viết này, chúng ta sẽ đi tìm hiểu về một mẫu thiết kế khá thú vị, đó là Composite pattern. Trong tiếng anh thì từ composite có nghĩa là làm một hỗn hợp, tức là một thứ gì đó được tạo từ rất nhiều thành phần hỗn tạp. Đây là một mẫu thiết kế thuộc nhóm cấu trúc. Một đối tượng composite được tạo thành từ một hay nhiều đối tượng tương tự nhau (hoặc có một số chức năng tương tự nhau).</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/12/junix-5x/">
+                <h3 class="media-heading">[Java] Unit Test với JUnit 5x</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Phiên bản hiện tại của JUnit là JUnit 5 và nó bao gồm các component khác nhau:
+ JUnit Platform: layer nền tảng cho phép những testing framework có thể chạy trên máy ảo JVM. JUnit Jupiter: đây chính là phiên bản JUnit 5 và được chạy trên JUnit Platform. JUnit Vintage: kế thừa từ TestEngine và cho phép chạy các phiên bản cũ hơn của JUnit.  1. Cài đặt bằng Gradle buildscript { repositories { mavenCentral() // The following is only necessary if you want to use SNAPSHOT releases.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/11/junix-4x/">
+                <h3 class="media-heading">[Java] Unit Test với JUnit 4x</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Trong bài viết này chúng ta cùng tìm hiểu về test và unit test bằng JUnit 4.x.
+1. Một số thuật ngữ trong kiểm thử (testing) 1.1 Code under test Những đoạn code được kiểm thử thường gọi code under test. Nếu bạn đang kiểm thử một ứng dụng nào đó thì nó được gọi là application under test.
+1.2 Test fixture Đây là các điều kiện để có thể bắt đầu kiểm thử.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/11/facade-design-patterns/">
+                <h3 class="media-heading">[Design Patterns] Facade Design Pattern in Java</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Trong bài viết này, chúng ta cùng xem xét mẫu thiết kế khác, đó là Facade pattern. Trước khi đi vào chi tiết mẫu thiết kế, chúng ta cùng xem xét câu chuyện sau:
+Công ty phần mềm A vận hành một sản phẩm tên là Schedule Server. Đó là một ứng dụng làm rất nhiều việc như gửi mail, sms, đọc và viết file đến địa chỉ đích, gửi và nhận file giữa 2 server.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/11/excel-file-with-poi/">
+                <h3 class="media-heading">[Java] Thao tác với Excel file bằng Apache POI</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">1- Apache POI là gì? Khi lập trình với bất cứ hệ thống nào thì việc thao tác với các file excel luôn là điều bắt buộc mọi developer phải nắm được. Và để làm việc hiệu quả với excel file trong java thì tôi xin giới thiệu thư viện Apache POI trong bài viết này. POI là viết tắt của Poor Obfuscation Implementation, đó là một thư viện mã nguồn mở của Java, được cung cấp bởi Apache giúp chúng ta làm việc với các tài liệu của Microsoft như Word, Excel, PowerPoint&hellip;</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/11/adapter-design-patterns/">
+                <h3 class="media-heading">[Design Patterns] Adapter Design Pattern in Java</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Chuyện kể rằng bạn Bean là một developer và đang phát triển một website e-commerce. Trang web này cho phép người dùng mua và thanh toán online bằng cách dùng một cổng thanh toán của bên thứ 3. Mọi thứ đều nhẹ nhàng như cân đường hộp sữa, cho đến một ngày mưa gió bão bùng&hellip; Vào cái ngày định mệnh ấy, PM của bạn Bean thông báo rằng sắp tới website sẽ thay đổi cổng thanh toán và bạn Bean sẽ phải chuẩn bị cho thay đổi này.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/11/magical-1000-vs-100/">
+                <h3 class="media-heading">[Magical Java] Tại sao 1000 == 1000 là sai, nhưng 100 == 100 lại đúng?</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Cùng xem đoạn code sau và dự đoán kết quá:
+Integer a = 1000, b = 1000; System.out.println(a == b);//1 Integer c = 100, d = 100; System.out.println(c == d);//2  Nếu các bạn đưa ra đáp án là false, false thì xin chúc mừng, các bạn nắm lý thuyết rất tốt. Ở đây chúng ta đang so sánh 2 object với nhau, và khi dùng toán tử &ldquo;==&rdquo; thì kết quả sẽ trả về false nếu 2 tham chiếu không cùng trỏ đến cùng một đối tượng.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/11/spring-boot-crud-app/">
+                <h3 class="media-heading">[Spring Boot] Dựng app CRUD đơn giản bằng Spring Boot &#43; Thymeleaf trên Intelij</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Để remind kiến thức cũng như tổng kết khi mới bắt đầu học một công nghệ mới, mình thường tạo một app đơn giản có đủ các thao tác thêm, xóa, sửa (CRUD). Bài viết này là một tutorial dạng cơ bản nhất khi học về Spring, sử dụng các công nghệ sau:
+ Spring Boot: để khởi tạo và cấu hình ứng dụng một cách nhanh chóng. Spring MVC: để xây dựng app.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+      </div>
+    </div>
+    <div class="modal-footer">
+      <p class="results-count text-medium"
+         data-message-zero="không tìm thấy kết quả"
+         data-message-one="tìm thấy 1 kết quả "
+         data-message-other="tìm thấy {n} kết quả">
+         16 posts found
+      </p>
+    </div>
+  </div>
+</div>
+    
+  
+    
+    <div id="cover" style="background-image:url('https://tubean.github.io/images/cover-v1.2.0.jpg');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://tubean.github.io/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+
+
+  
+    <script crossorigin="anonymous" integrity="sha384-jmxIlussZWB7qCuB+PgKG1uLjjxbVVIayPJwi6cG6Zb4YKq0JIw+OMnkkEC7kYCq" src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js"></script>
+  
+
+  
+    <script crossorigin="anonymous" integrity="sha384-IiI65aU9ZYub2MY9zhtKd1H2ps7xxf+eb2YFG9lX6uRqpXCvBTOidPRCXCrQ++Uc" src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/contrib/auto-render.min.js"></script>
+  
+
+  
+    <script src="https://tubean.github.io/js/main.js"></script>
+  
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'https:\/\/tubean.github.io\/2018\/12\/java-functional-programming\/';
+          
+            this.page.identifier = '\/2018\/12\/java-functional-programming\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'beans-blog';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+

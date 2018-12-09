@@ -29,6 +29,15 @@
     </item>
     
     <item>
+      <title>Functional Programming</title>
+      <link>https://tubean.github.io/categories/functional-programming/</link>
+      <pubDate>Sun, 09 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://tubean.github.io/categories/functional-programming/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Hello World</title>
       <link>https://tubean.github.io/categories/hello-world/</link>
       <pubDate>Wed, 31 Oct 2018 00:00:00 +0000</pubDate>
@@ -49,7 +58,7 @@
     <item>
       <title>Java</title>
       <link>https://tubean.github.io/categories/java/</link>
-      <pubDate>Sat, 01 Dec 2018 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 09 Dec 2018 00:00:00 +0000</pubDate>
       
       <guid>https://tubean.github.io/categories/java/</guid>
       <description></description>
