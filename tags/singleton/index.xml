@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Singleton on Bean&#39;s blog</title>
+    <link>https://tubean.github.io/tags/singleton/</link>
+    <description>Recent content in Singleton on Bean&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>vi</language>
+    <lastBuildDate>Sun, 09 Dec 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://tubean.github.io/tags/singleton/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>[Design Pattern] Singleton Design Pattern</title>
+      <link>https://tubean.github.io/2018/12/singleton-pattern/</link>
+      <pubDate>Sun, 09 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://tubean.github.io/2018/12/singleton-pattern/</guid>
+      <description>1. Singleton là gì? Đã khi nào bạn viết một class mà chỉ muốn nó chỉ có duy nhất một instance? Trong lập trình, chúng ta sẽ đôi lần thấy rằng một số class chỉ nên có duy nhất một instance, vì nếu có nhiều hơn một, chúng ta sẽ gặp phải một vài vấn đề như hành vi chương trình không chính xác, lãng phí tài nguyên hay kết quả không nhất quán.</description>
+    </item>
+    
+  </channel>
+</rss>

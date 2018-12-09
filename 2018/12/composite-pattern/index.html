@@ -301,18 +301,22 @@ if (!doNotTrack) {
               
 
 <p>Trong bài viết này, chúng ta sẽ đi tìm hiểu về một mẫu thiết kế khá thú vị, đó là <code>Composite pattern</code>. Trong tiếng anh thì từ <code>composite</code> có nghĩa là làm một hỗn hợp, tức là một thứ gì đó được tạo từ rất nhiều thành phần hỗn tạp.
-Đây là một mẫu thiết kế thuộc nhóm cấu trúc. Một đối tượng <em>composite</em> được tạo thành từ một hay nhiều đối tượng tương tự nhau (hoặc có một số chức năng tương tự nhau). Ý tưởng là có thể thao tác trên một nhóm đối tượng theo cách thao tác trên một đối tượng duy nhất và các đối tượng của nhóm phải có các thao tác chung. (method chung).
-Điều này tương tự như việc bạn có một cấu trúc dạng cây được tạo thành từ nhiều nhánh khác nhau, mỗi nhánh lại có thể được tạo từ nhiều nhánh khác, tất cả đều giống nhau về mặt cấu trúc và tạo nên một thứ hỗn độn. Trong thực tế thì chúng ta gặp nhiều bài toán cần dùng đến cấu trúc như vậy như hệ thống các thư mục, file, hệ thống các thẻ tag trong html, xml,&hellip;</p>
+Đây là một mẫu thiết kế thuộc nhóm cấu trúc. Một đối tượng <em>composite</em> được tạo thành từ một hay nhiều đối tượng tương tự nhau (hoặc có một số chức năng tương tự nhau). Ý tưởng là có thể thao tác trên một nhóm đối tượng theo cách thao tác trên một đối tượng duy nhất và các đối tượng của nhóm phải có các thao tác chung. (method chung).</p>
+
+<p>Điều này tương tự như việc bạn có một cấu trúc dạng cây được tạo thành từ nhiều nhánh khác nhau, mỗi nhánh lại có thể được tạo từ nhiều nhánh khác, tất cả đều giống nhau về mặt cấu trúc và tạo nên một thứ hỗn độn. Trong thực tế thì chúng ta gặp nhiều bài toán cần dùng đến cấu trúc như vậy như hệ thống các thư mục, file, hệ thống các thẻ tag trong html, xml,&hellip;</p>
 
 <h1 id="1-composite-pattern-là-gì">1. Composite Pattern là gì?</h1>
 
 <p>Nếu bạn quen thuộc với cấu trúc dữ liệu dạng tree, bạn sẽ biết một tree sẽ có <code>parents</code> và <code>children</code>. Một parent có thể có nhiều <code>children</code>, nhưng một <code>chid</code> chỉ có một <code>parent</code>. Trong mẫu thiết kế Composite, những element có children được gọi là <code>Nodes</code>, những element không có children được gọi là <code>Leafs</code>.</p>
 
-<p>Một mẫu thiết kế Composite sẽ có 4 thành phần:
-- Component
-- Leaf
-- Composite
-- Client</p>
+<p>Một mẫu thiết kế Composite sẽ có 4 thành phần:</p>
+
+<ul>
+<li>Component</li>
+<li>Leaf</li>
+<li>Composite</li>
+<li>Client</li>
+</ul>
 
 <p>Hình dưới đây mô tả cấu trúc thường thấy của một đối Composite:
 <img src="https://res.cloudinary.com/deop9ytsv/image/upload/v1544023400/composite-1.jpg" alt="image1" /></p>
@@ -355,27 +359,27 @@ Trong ví dụ này chúng ta sẽ sử dụng lớp component như là một l�
 
 <pre><code class="language-java">public abstract class HtmlTag {  
     public abstract String getTagName();  
-  
+
     public abstract void setStartTag(String tag);  
-  
+
     public abstract void setEndTag(String tag);  
-  
+
     public void setTagBody(String tagBody) {  
         throw new UnsupportedOperationException(&quot;Current operation is not support for this object&quot;);  
     }  
-  
+
     public void addChildTag(HtmlTag htmlTag) {  
         throw new UnsupportedOperationException(&quot;Current operation is not support for this object&quot;);  
     }  
-  
+
     public void removeChildTag(HtmlTag htmlTag) {  
         throw new UnsupportedOperationException(&quot;Current operation is not support for this object&quot;);  
     }  
-  
+
     public List&lt;HtmlTag&gt; getChildren() {  
         throw new UnsupportedOperationException(&quot;Current operation is not support for this object&quot;);  
     }  
-  
+
     public abstract void generateHtml();  
 }
 </code></pre>
@@ -390,44 +394,44 @@ Một số method chỉ hữu dụng trong composite nhưng lại không mấy c
     private String startTag;  
     private String endTag;  
     private List&lt;HtmlTag&gt; childrenTag;  
-  
+
     public HtmlParentElement(String tagName) {  
         this.tagName = tagName;  
         this.startTag = &quot;&quot;;  
         this.endTag = &quot;&quot;;  
         this.childrenTag = new ArrayList&lt;&gt;();  
     }  
-  
+
     @Override  
   public String getTagName() {  
         return tagName;  
     }  
-  
+
     @Override  
   public void setStartTag(String tag) {  
         this.startTag = tag;  
     }  
-  
+
     @Override  
   public void setEndTag(String tag) {  
         this.endTag = tag;  
     }  
-  
+
     @Override  
   public void addChildTag(HtmlTag htmlTag) {  
         childrenTag.add(htmlTag);  
     }  
-  
+
     @Override  
   public void removeChildTag(HtmlTag htmlTag) {  
         childrenTag.remove(htmlTag);  
     }  
-  
+
     @Override  
   public List&lt;HtmlTag&gt; getChildren() {  
         return childrenTag;  
     }  
-  
+
     @Override  
   public void generateHtml() {  
         System.out.println(startTag);  
@@ -435,9 +439,9 @@ Một số method chỉ hữu dụng trong composite nhưng lại không mấy c
             tag.generateHtml();  
         }  
         System.out.println(endTag);  
-  
+
     }  
-  
+
 }
 </code></pre>
 
@@ -448,34 +452,34 @@ Một số method chỉ hữu dụng trong composite nhưng lại không mấy c
     private String startTag;  
     private String endTag;  
     private String tagBody;  
-  
+
     public HtmlElement(String tagName) {  
         this.tagName = tagName;  
         this.tagBody = &quot;&quot;;  
         this.startTag = &quot;&quot;;  
         this.endTag = &quot;&quot;;  
     }  
-  
+
     @Override  
   public String getTagName() {  
         return tagName;  
     }  
-  
+
     @Override  
   public void setStartTag(String tag) {  
         this.startTag = tag;  
     }  
-  
+
     @Override  
   public void setEndTag(String tag) {  
         this.endTag = tag;  
     }  
-  
+
     @Override  
   public void setTagBody(String tagBody) {  
         this.tagBody = tagBody;  
     }  
-  
+
     @Override  
   public void generateHtml() {  
         System.out.println(startTag + &quot;&quot; + tagBody + &quot;&quot; + endTag);  
@@ -492,27 +496,27 @@ Một số method chỉ hữu dụng trong composite nhưng lại không mấy c
         HtmlTag parentTag = new HtmlParentElement(&quot;&lt;html&gt;&quot;);  
         parentTag.setStartTag(&quot;&lt;html&gt;&quot;);  
         parentTag.setEndTag(&quot;&lt;/html&gt;&quot;);  
-  
+
         HtmlTag p1 = new HtmlParentElement(&quot;&lt;body&gt;&quot;);  
         p1.setStartTag(&quot;&lt;body&gt;&quot;);  
         p1.setEndTag(&quot;&lt;/body&gt;&quot;);  
-  
+
         parentTag.addChildTag(p1);  
-  
+
         HtmlTag child1 = new HtmlElement(&quot;&lt;p&gt;&quot;);  
         child1.setStartTag(&quot;&lt;p&gt;&quot;);  
         child1.setEndTag(&quot;&lt;/p&gt;&quot;);  
         child1.setTagBody(&quot;Testing html tag library&quot;);  
         p1.addChildTag(child1);  
-  
+
         child1 = new HtmlElement(&quot;&lt;p&gt;&quot;);  
         child1.setStartTag(&quot;&lt;p&gt;&quot;);  
         child1.setEndTag(&quot;&lt;/p&gt;&quot;);  
         child1.setTagBody(&quot;Paragraph 2&quot;);  
         p1.addChildTag(child1);  
-  
+
         parentTag.generateHtml();  
-  
+
     }
 </code></pre>
 
@@ -563,7 +567,7 @@ Một số method chỉ hữu dụng trong composite nhưng lại không mấy c
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--disabled">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2018/12/singleton-pattern/" data-tooltip="[Design Pattern] Singleton Design Pattern">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">Tiếp</span>
@@ -649,7 +653,7 @@ Một số method chỉ hữu dụng trong composite nhưng lại không mấy c
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--disabled">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2018/12/singleton-pattern/" data-tooltip="[Design Pattern] Singleton Design Pattern">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">Tiếp</span>
@@ -786,6 +790,23 @@ Một số method chỉ hữu dụng trong composite nhưng lại không mấy c
       <div class="no-result text-color-light text-center">không tìm thấy kết quả</div>
       <div class="results">
         
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/12/singleton-pattern/">
+                <h3 class="media-heading">[Design Pattern] Singleton Design Pattern</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">1. Singleton là gì? Đã khi nào bạn viết một class mà chỉ muốn nó chỉ có duy nhất một instance? Trong lập trình, chúng ta sẽ đôi lần thấy rằng một số class chỉ nên có duy nhất một instance, vì nếu có nhiều hơn một, chúng ta sẽ gặp phải một vài vấn đề như hành vi chương trình không chính xác, lãng phí tài nguyên hay kết quả không nhất quán.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
         
           <div class="media">
             
@@ -948,23 +969,6 @@ Integer a = 1000, b = 1000; System.out.println(a == b);//1 Integer c = 100, d = 
             <hr>
           </div>
         
-          <div class="media">
-            
-            <div class="media-body">
-              <a class="link-unstyled" href="https://tubean.github.io/2018/11/java-stream/">
-                <h3 class="media-heading">[Java 8] Stream trong Java 8 (Phần 1)</h3>
-              </a>
-              <span class="media-meta">
-                <span class="media-date text-small">
-                  Nov 11, 2018
-                </span>
-              </span>
-              <div class="media-content hide-xs font-merryweather">Lambda expression kể từ trở thành một phần của Java thì đã làm thay đổi đáng kể thói quen sử dụng các Collection như chúng ta đã từng dùng ở các phiên bản trước Java 8. Mặc dù có thể xây dựng lại một bộ API Collections thay thế, nhưng nó sẽ ảnh hưởng rất lớn đến toàn bộ hệ sinh thái Java. Vì vậy mà những nhà phát triển Java đã có một chiến lược tốt hơn, đó là thêm các phương thức mở rộng vào các interface có sẵn (như là Collection, List, Iterable,&hellip;) cùng các lớp abstraction như Stream để thực hiện các phép toán tổng hợp trên tập dữ liệu, cung cấp thêm cho các lớp hiện có các phương thức để có thể làm việc với Stream mà không ảnh hưởng với các cách làm việc cũ.</div>
-            </div>
-            <div style="clear:both;"></div>
-            <hr>
-          </div>
-        
       </div>
     </div>
     <div class="modal-footer">
@@ -972,7 +976,7 @@ Integer a = 1000, b = 1000; System.out.println(a == b);//1 Integer c = 100, d = 
          data-message-zero="không tìm thấy kết quả"
          data-message-one="tìm thấy 1 kết quả "
          data-message-other="tìm thấy {n} kết quả">
-         14 posts found
+         15 posts found
       </p>
     </div>
   </div>
