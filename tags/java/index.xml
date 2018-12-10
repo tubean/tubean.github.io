@@ -6,10 +6,30 @@
     <description>Recent content in Java on Bean&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>vi</language>
-    <lastBuildDate>Sun, 09 Dec 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 10 Dec 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://tubean.github.io/tags/java/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>[Functional Programming]  Java Functional Composition</title>
+      <link>https://tubean.github.io/2018/12/java-functional-composition/</link>
+      <pubDate>Mon, 10 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://tubean.github.io/2018/12/java-functional-composition/</guid>
+      <description>Function composition là một khái niệm về việc nhiều function có thể lồng nhau để làm param của một function khác. Bạn có thể tự compose nhiều function (dùng Lambda Expression) vào trong một function của riêng bạn, nhưng Java cũng cung cấp những cách compose riêng giúp bạn làm việc đó dễ hơn. Trong bài viết này chúng ta cùng tìm hiểu làm thế nào để compose các function bằng các feature có sẵn của Java.</description>
+    </item>
+    
+    <item>
+      <title>[Functional Programming] Java Higher Order Functions</title>
+      <link>https://tubean.github.io/2018/12/java-higher-order-function/</link>
+      <pubDate>Mon, 10 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://tubean.github.io/2018/12/java-higher-order-function/</guid>
+      <description>Một higher order function là một function nhận một function (method) khác làm parameter, hoặc nó có kết quả trả về là một function. Bài viết này sẽ giới thiệu một vài ví dụ về higher order function.
+1. Sorting Collections Ví dụ đầu tiên về higher order function là method Collections.sort() nhận một Comparator như một tham số:
+List&amp;lt;String&amp;gt; list = new ArrayList&amp;lt;&amp;gt;(); list.add(&amp;quot;One&amp;quot;); list.add(&amp;quot;Abc&amp;quot;); list.add(&amp;quot;BCD&amp;quot;); Collections.sort(list, (String a, String b) -&amp;gt; { return a.</description>
+    </item>
     
     <item>
       <title>[Functional Programming]  Functional Programing trong Java</title>

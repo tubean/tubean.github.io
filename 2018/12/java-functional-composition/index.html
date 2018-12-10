@@ -7,20 +7,46 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="generator" content="Hugo 0.49 with theme Tranquilpeak 0.4.3-SNAPSHOT">
 <meta name="author" content="Tu Bean">
-<meta name="keywords" content="">
-<meta name="description" content="Bean&#39;s blog">
+<meta name="keywords" content="Java, functional, programming, composition">
+<meta name="description" content="Function composition là một khái niệm về việc nhiều function có thể lồng nhau để làm param của một function khác. Bạn có thể tự compose nhiều function (dùng Lambda Expression) vào trong một function của riêng bạn, nhưng Java cũng cung cấp những cách compose riêng giúp bạn làm việc đó dễ hơn. Trong bài viết này chúng ta cùng tìm hiểu làm thế nào để compose các function bằng các feature có sẵn của Java.">
 
 
-<meta property="og:description" content="Bean&#39;s blog">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Functional Programming">
-<meta name="twitter:title" content="Functional Programming">
-<meta property="og:url" content="https://tubean.github.io/categories/functional-programming/">
-<meta property="twitter:url" content="https://tubean.github.io/categories/functional-programming/">
+<meta property="og:description" content="Function composition là một khái niệm về việc nhiều function có thể lồng nhau để làm param của một function khác. Bạn có thể tự compose nhiều function (dùng Lambda Expression) vào trong một function của riêng bạn, nhưng Java cũng cung cấp những cách compose riêng giúp bạn làm việc đó dễ hơn. Trong bài viết này chúng ta cùng tìm hiểu làm thế nào để compose các function bằng các feature có sẵn của Java.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Functional Programming]  Java Functional Composition">
+<meta name="twitter:title" content="[Functional Programming]  Java Functional Composition">
+<meta property="og:url" content="https://tubean.github.io/2018/12/java-functional-composition/">
+<meta property="twitter:url" content="https://tubean.github.io/2018/12/java-functional-composition/">
 <meta property="og:site_name" content="Bean&#39;s blog">
-<meta property="og:description" content="Bean&#39;s blog">
-<meta name="twitter:description" content="Bean&#39;s blog">
+<meta property="og:description" content="Function composition là một khái niệm về việc nhiều function có thể lồng nhau để làm param của một function khác. Bạn có thể tự compose nhiều function (dùng Lambda Expression) vào trong một function của riêng bạn, nhưng Java cũng cung cấp những cách compose riêng giúp bạn làm việc đó dễ hơn. Trong bài viết này chúng ta cùng tìm hiểu làm thế nào để compose các function bằng các feature có sẵn của Java.">
+<meta name="twitter:description" content="Function composition là một khái niệm về việc nhiều function có thể lồng nhau để làm param của một function khác. Bạn có thể tự compose nhiều function (dùng Lambda Expression) vào trong một function của riêng bạn, nhưng Java cũng cung cấp những cách compose riêng giúp bạn làm việc đó dễ hơn. Trong bài viết này chúng ta cùng tìm hiểu làm thế nào để compose các function bằng các feature có sẵn của Java.">
 <meta property="og:locale" content="vi">
+
+  
+    <meta property="article:published_time" content="2018-12-10T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2018-12-10T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="Java">
+    
+      <meta property="article:section" content="Functional Programming">
+    
+  
+  
+    
+      <meta property="article:tag" content="Java">
+    
+      <meta property="article:tag" content="Functional">
+    
+      <meta property="article:tag" content="Programming">
+    
+      <meta property="article:tag" content="Composition">
+    
+  
 
 
 <meta name="twitter:card" content="summary">
@@ -31,6 +57,12 @@
 
 
 
+  <meta property="og:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1542691153/java_logo.png">
+  <meta property="twitter:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1542691153/java_logo.png">
+
+
+  <meta property="og:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1541273502/Black_flag.svg.png">
+  <meta property="twitter:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1541273502/Black_flag.svg.png">
 
 
 
@@ -39,16 +71,14 @@
   <meta property="twitter:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/c_scale,w_1836/v1540914499/C360_2016-03-22-17-45-21-487.jpg">
 
 
-    <title>Functional Programming</title>
+    <title>[Functional Programming]  Java Functional Composition</title>
 
     <link rel="icon" href="https://tubean.github.io/favicon/flappybird.png">
     
-      <link rel="alternate" type="application/rss+xml" title="RSS" href="https://tubean.github.io/categories/functional-programming/index.xml">
-    
 
     
 
-    <link rel="canonical" href="https://tubean.github.io/categories/functional-programming/">
+    <link rel="canonical" href="https://tubean.github.io/2018/12/java-functional-composition/">
 
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
@@ -89,7 +119,7 @@ if (!doNotTrack) {
 
   <body>
     <div id="blog">
-      <header id="header" data-behavior="2">
+      <header id="header" data-behavior="5">
   <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
   <div class="header-title">
     <a class="header-title-link" href="https://tubean.github.io/">Bean&#39;s blog</a>
@@ -109,7 +139,7 @@ if (!doNotTrack) {
   
 </header>
 
-      <nav id="sidebar" data-behavior="2">
+      <nav id="sidebar" data-behavior="5">
   <div class="sidebar-container">
     
       <div class="sidebar-profile">
@@ -228,203 +258,253 @@ if (!doNotTrack) {
 </nav>
 
       
+  <div class="post-header-cover
+              text-center
+              "
+       style="background-image:url('https://res.cloudinary.com/deop9ytsv/image/upload/v1541273502/Black_flag.svg.png')"
+       data-behavior="5">
+    
+      <div class="post-header main-content-wrap text-center">
+  
+    <h1 class="post-title" itemprop="headline">
+      [Functional Programming]  Java Functional Composition
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2018-12-10T00:00:00Z">
         
+  tháng 12 10, 2018
 
-      
-      <div id="main" data-behavior="2"
-        class="
+      </time>
+    
+    
+  
+  
+    <span>mục</span>
+    
+      <a class="category-link" href="https://tubean.github.io/categories/java">Java</a>, 
+    
+      <a class="category-link" href="https://tubean.github.io/categories/functional-programming">Functional Programming</a>
+    
+  
+
+  </div>
+
+</div>
+    
+  </div>
+
+
+      <div id="main" data-behavior="5"
+        class="hasCover
                hasCoverMetaIn
                ">
-        
-          <section class="postShorten-group main-content-wrap">
-            
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              
+
+<p><code>Function composition</code> là một khái niệm về việc nhiều function có thể lồng nhau để làm param của một function khác. Bạn có thể tự compose nhiều function (dùng Lambda Expression) vào trong một function của riêng bạn, nhưng Java cũng cung cấp những cách compose riêng giúp bạn làm việc đó dễ hơn. Trong bài viết này chúng ta cùng tìm hiểu làm thế nào để compose các function bằng các feature có sẵn của Java.</p>
+
+<h1 id="1-ví-dụ-về-java-functional-composition">1. Ví dụ về Java Functional Composition</h1>
+
+<p>Để bắt đầu, hãy xem một ví dụ nhỏ về Java Functional Compostion:</p>
+
+<pre><code class="language-java">Predicate&lt;String&gt; startsWithA = (text) -&gt; text.startsWith(&quot;A&quot;);
+Predicate&lt;String&gt; endsWithX   = (text) -&gt; text.endsWith(&quot;x&quot;);
+
+Predicate&lt;String&gt; startsWithAAndEndsWithX =
+        (text) -&gt; startsWithA.test(text) &amp;&amp; endsWithX.test(text);
+
+String  input  = &quot;A hardworking person must relax&quot;;
+boolean result = startsWithAAndEndsWithX.test(input);
+System.out.println(result);
+</code></pre>
+
+<p>Trên đây là ví dụ về một function được compose từ hai implementation của interface <code>Predicate</code>. Predicate đầu tiên trả về <code>true</code> nếu như parameter truyền vào bắt đầu bằng chữ <code>A</code>. Predicate thứ hai sẽ trả về <code>true</code> nếu parameter truyền vào kết thúc bằng chữ <code>x</code>. Chú ý rằng, một interface Predicate còn có một method chưa được implement là <code>test()</code> trả về giá trị boolean. Đây chính là method mà các biểu thức lambda implement.</p>
+
+<p>Sau khi  tạo ra 2 function cơ bản, một Predicate thứ ba được compose và gọi đến method <code>test()</code> của hai function đầu tiên. Function thứ ba này sẽ trả về <code>true</code> nếu cả hai function đầu trả về <code>true</code>, và nó sẽ trả về <code>false</code> trong các trường hợp còn lại.</p>
+
+<h1 id="2-java-functional-composition-support">2. Java Functional Composition Support</h1>
+
+<p>Ví dụ ở phần đầu đã chỉ cho các bạn thấy làm thế nào để compose một function mới từ hai function khác. Có một vài <code>Functional Interface</code> trong Java cũng đã support sẵn các <code>functional composition</code> thông qua các method <code>default</code> và <code>static</code>.</p>
+
+<h2 id="2-1-predicate-composition">2.1 Predicate Composition</h2>
+
+<p>Interface <code>Predicate</code> chứa một vài method giúp bạn compose một instance Predicate mới từ những instance Predicate khác. Chúng là những method sau:</p>
+
+<ul>
+<li>and()</li>
+</ul>
+
+<p>Đây là một method <code>default</code>. Method này được sử dụng để hợp hai Predicate function khác như trong ví dụ ở phần đầu.</p>
+
+<ul>
+<li>or()</li>
+</ul>
+
+<p>Method <code>or()</code> cũng được sử dụng tương tự như <code>and()</code>, tuy nhiên thì nó sẽ có kết quả trả về là <code>false</code> khi và chỉ khi cả 2 function được hợp lại đều trả về <code>false</code>.</p>
+
+<pre><code class="language-java">Predicate&lt;String&gt; startsWithA = (text) -&gt; text.startsWith(&quot;A&quot;);
+Predicate&lt;String&gt; endsWithX   = (text) -&gt; text.endsWith(&quot;x&quot;);
+
+Predicate&lt;String&gt; composed = startsWithA.or(endsWithX);
+
+String input = &quot;A hardworking person must relax sometimes&quot;;
+boolean result = composed.test(input);
+System.out.println(result);
+</code></pre>
+
+<p>Kết quả của đoạn code trên sẽ trả về <code>true</code> vì function con đầu tiên trả về true.</p>
+
+<h2 id="2-2-function-composition">2.2 Function Composition</h2>
+
+<p>Interface <code>Function</code> cũng có một vài method được sử dụng để compose một Function mới từ những cái có sẵn.</p>
+
+<ul>
+<li>compose()</li>
+</ul>
+
+<pre><code class="language-java">Function&lt;Integer, Integer&gt; multiply = (value) -&gt; value * 2;
+Function&lt;Integer, Integer&gt; add      = (value) -&gt; value + 3;
+
+Function&lt;Integer, Integer&gt; addThenMultiply = multiply.compose(add);
+
+Integer result1 = addThenMultiply.apply(3);
+System.out.println(result1);
+</code></pre>
+
+<p>Cách compose này khiến chúng ta tư duy theo kiểu các hàm toán học, khi mà muốn tính f(g(x)) thì chúng ta phải tính g(x) trước rồi mới tính đến hàm ở ngoài là f(g(x)).
+Ta có instance <code>multiply</code> và instance <code>add</code>, kết quả khi <code>add</code> compose với <code>multiply</code> là một instance Function <code>addThenMultiply</code>. Ở đây, chúng ta thực hiện phép cộng trước nên instance <code>add</code> được tính trước và trở thành paramter cho method compose của instance <code>multiply</code>.</p>
+
+<p>Trong ví dụ trên, kết quả sẽ trả về (3+3) * 2 = 12.</p>
+
+<ul>
+<li>andThen()</li>
+</ul>
+
+<pre><code class="language-java">Function&lt;Integer, Integer&gt; multiply = (value) -&gt; value * 2;
+Function&lt;Integer, Integer&gt; add      = (value) -&gt; value + 3;
+
+Function&lt;Integer, Integer&gt; multiplyThenAdd = multiply.andThen(add);
+
+Integer result2 = multiplyThenAdd.apply(3);
+System.out.println(result2);
+</code></pre>
+
+<p>Method <code>andThen()</code> hoạt động hơi ngược lại so với method <code>compose()</code>. Nó có vẻ thuận với tư duy tự nhiên từ trái sang phải hơn, khi mà bạn muốn dùng phép nhân trước thì sẽ để nó đứng trước, sau đó phép cộng sẽ được thêm vào như một parameter.</p>
+
+<p>Kết quả của đoạn code trên là 3 * 2 + 3 = 9.</p>
+
+<h1 id="nguồn">Nguồn</h1>
+
+<p><a href="http://tutorials.jenkov.com/java-functional-programming/functional-composition.html">http://tutorials.jenkov.com/java-functional-programming/functional-composition.html</a></p>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
             
               
-  
-    
-  
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">THẺ ĐÁNH DẤU</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/java/">Java</a>
 
+  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/functional/">Functional</a>
 
+  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/programming/">Programming</a>
+
+  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/composition/">Composition</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
   
-
-<article class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="https://tubean.github.io/2018/12/java-functional-composition/">
-          [Functional Programming]  Java Functional Composition
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">Tiếp</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2018/12/java-higher-order-function/" data-tooltip="[Functional Programming] Java Higher Order Functions">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">Trước</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://tubean.github.io/2018/12/java-functional-composition/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://tubean.github.io/2018/12/java-functional-composition/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://tubean.github.io/2018/12/java-functional-composition/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
         </a>
-      </h1>
-      
-  <div class="postShorten-meta post-meta">
-    
-      <time itemprop="datePublished" datetime="2018-12-10T00:00:00Z">
-        
-  tháng 12 10, 2018
-
-      </time>
-    
-    
+      </li>
+    </ul>
   
-  
-    <span>mục</span>
-    
-      <a class="category-link" href="https://tubean.github.io/categories/java">Java</a>, 
-    
-      <a class="category-link" href="https://tubean.github.io/categories/functional-programming">Functional Programming</a>
-    
-  
-
-  </div>
-
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      
-        Function composition là một khái niệm về việc nhiều function có thể lồng nhau để làm param của một function khác. Bạn có thể tự compose nhiều function (dùng Lambda Expression) vào trong một function của riêng bạn, nhưng Java cũng cung cấp những cách compose riêng giúp bạn làm việc đó dễ hơn. Trong bài viết này chúng ta cùng tìm hiểu làm thế nào để compose các function bằng các feature có sẵn của Java.
-      
-      <p>
-        <a href="https://tubean.github.io/2018/12/java-functional-composition/" class="postShorten-excerpt_link link">Đọc tiếp...</a>
-        
-      </p>
-    </div>
-  </div>
-  
-    <a href="https://tubean.github.io/2018/12/java-functional-composition/">
-      <div class="postShorten-thumbnailimg">
-        <img alt="" itemprop="image" src="https://res.cloudinary.com/deop9ytsv/image/upload/v1542691153/java_logo.png"/>
-      </div>
-    </a>
-  
-</article>
+</div>
 
             
               
-  
-    
-  
-
-
-  
-
-<article class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="https://tubean.github.io/2018/12/java-higher-order-function/">
-          [Functional Programming] Java Higher Order Functions
-        </a>
-      </h1>
-      
-  <div class="postShorten-meta post-meta">
-    
-      <time itemprop="datePublished" datetime="2018-12-10T00:00:00Z">
-        
-  tháng 12 10, 2018
-
-      </time>
-    
-    
-  
-  
-    <span>mục</span>
-    
-      <a class="category-link" href="https://tubean.github.io/categories/java">Java</a>, 
-    
-      <a class="category-link" href="https://tubean.github.io/categories/functional-programming">Functional Programming</a>
-    
-  
-
-  </div>
-
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      
-        Một higher order function là một function nhận một function (method) khác làm parameter, hoặc nó có kết quả trả về là một function. Bài viết này sẽ giới thiệu một vài ví dụ về higher order function.
-1. Sorting Collections Ví dụ đầu tiên về higher order function là method Collections.sort() nhận một Comparator như một tham số:
-List&lt;String&gt; list = new ArrayList&lt;&gt;(); list.add(&quot;One&quot;); list.add(&quot;Abc&quot;); list.add(&quot;BCD&quot;); Collections.sort(list, (String a, String b) -&gt; { return a.
-      
-      <p>
-        <a href="https://tubean.github.io/2018/12/java-higher-order-function/" class="postShorten-excerpt_link link">Đọc tiếp...</a>
-        
-      </p>
-    </div>
-  </div>
-  
-    <a href="https://tubean.github.io/2018/12/java-higher-order-function/">
-      <div class="postShorten-thumbnailimg">
-        <img alt="" itemprop="image" src="https://res.cloudinary.com/deop9ytsv/image/upload/v1542691153/java_logo.png"/>
-      </div>
-    </a>
-  
-</article>
-
-            
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
               
-  
-    
-  
-
-
-  
-
-<article class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="https://tubean.github.io/2018/12/java-functional-programming/">
-          [Functional Programming]  Functional Programing trong Java
-        </a>
-      </h1>
-      
-  <div class="postShorten-meta post-meta">
-    
-      <time itemprop="datePublished" datetime="2018-12-09T00:00:00Z">
-        
-  tháng 12 9, 2018
-
-      </time>
-    
-    
-  
-  
-    <span>mục</span>
-    
-      <a class="category-link" href="https://tubean.github.io/categories/java">Java</a>, 
-    
-      <a class="category-link" href="https://tubean.github.io/categories/functional-programming">Functional Programming</a>
-    
-  
-
-  </div>
-
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      
-        1. Functional Programming là gì? Functional Programming hay lập trình chức năng là kiểu lập trình mà function được chọn làm đơn vị thao tác cơ bản. Functional programming tập trung vào sử dụng tính năng của các hàm và tránh sử dụng các biến cũng như thay đổi giá trị của chúng. Nó hơi ngược với procedure programming như chúng ta vẫn thường sử dụng (OOP tập trung vào chi tiết hoạt động của chương trình và thường sử dụng các biến và thay đổi trạng thái của chương trình).
-      
-      <p>
-        <a href="https://tubean.github.io/2018/12/java-functional-programming/" class="postShorten-excerpt_link link">Đọc tiếp...</a>
-        
-      </p>
-    </div>
-  </div>
-  
-    <a href="https://tubean.github.io/2018/12/java-functional-programming/">
-      <div class="postShorten-thumbnailimg">
-        <img alt="" itemprop="image" src="https://res.cloudinary.com/deop9ytsv/image/upload/v1542691153/java_logo.png"/>
-      </div>
-    </a>
-  
-</article>
-
             
-            
-
-          </section>
-        
+          </div>
+        </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
     &copy; 2018 <a href="https://bitbucket.org/tubean/">Do Anh Tu</a>. All Rights Reserved
@@ -432,6 +512,102 @@ List&lt;String&gt; list = new ArrayList&lt;&gt;(); list.add(&quot;One&quot;); li
 </footer>
 
       </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">Tiếp</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2018/12/java-higher-order-function/" data-tooltip="[Functional Programming] Java Higher Order Functions">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">Trước</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://tubean.github.io/2018/12/java-functional-composition/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://tubean.github.io/2018/12/java-functional-composition/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://tubean.github.io/2018/12/java-functional-composition/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ftubean.github.io%2F2018%2F12%2Fjava-functional-composition%2F">
+          <i class="fa fa-facebook-official"></i><span>Chia sẻ với Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Ftubean.github.io%2F2018%2F12%2Fjava-functional-composition%2F">
+          <i class="fa fa-twitter"></i><span>Chia sẻ với Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Ftubean.github.io%2F2018%2F12%2Fjava-functional-composition%2F">
+          <i class="fa fa-google-plus"></i><span>Chia sẻ với Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
     </div>
     
     <div id="about">
@@ -727,6 +903,32 @@ $(document).ready(function() {
 });
 </script>
 
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'https:\/\/tubean.github.io\/2018\/12\/java-functional-composition\/';
+          
+            this.page.identifier = '\/2018\/12\/java-functional-composition\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'beans-blog';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
 
 
 

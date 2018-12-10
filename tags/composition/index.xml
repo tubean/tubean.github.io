@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Composition on Bean&#39;s blog</title>
+    <link>https://tubean.github.io/tags/composition/</link>
+    <description>Recent content in Composition on Bean&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>vi</language>
+    <lastBuildDate>Mon, 10 Dec 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://tubean.github.io/tags/composition/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>[Functional Programming]  Java Functional Composition</title>
+      <link>https://tubean.github.io/2018/12/java-functional-composition/</link>
+      <pubDate>Mon, 10 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://tubean.github.io/2018/12/java-functional-composition/</guid>
+      <description>Function composition là một khái niệm về việc nhiều function có thể lồng nhau để làm param của một function khác. Bạn có thể tự compose nhiều function (dùng Lambda Expression) vào trong một function của riêng bạn, nhưng Java cũng cung cấp những cách compose riêng giúp bạn làm việc đó dễ hơn. Trong bài viết này chúng ta cùng tìm hiểu làm thế nào để compose các function bằng các feature có sẵn của Java.</description>
+    </item>
+    
+  </channel>
+</rss>
