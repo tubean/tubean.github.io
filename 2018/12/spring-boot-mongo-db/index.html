@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.49 with theme Tranquilpeak 0.4.3-SNAPSHOT">
+<meta name="author" content="Tu Bean">
+<meta name="keywords" content="Spring, Hướng dẫn, Spring Boot, MongoDB, Crud app, NoSQL">
+<meta name="description" content="MongoDB hiện đang là cơ sở dữ liệu NoSQL phổ biến nhất. Bài viết này là một hướng dẫn nhỏ về cách sử dụng Spring Boot kết hợp với MongoDB để tạo một app dạng CRUD.
+Các tool sử dụng:  Java Spring Boot Maven MongoDB Postman  1. Tạo database Trước khi bắt đầu xây dựng app, chúng ta cần chuẩn bị một instance của MongoDB để truy xuất tới nó.">
+
+
+<meta property="og:description" content="MongoDB hiện đang là cơ sở dữ liệu NoSQL phổ biến nhất. Bài viết này là một hướng dẫn nhỏ về cách sử dụng Spring Boot kết hợp với MongoDB để tạo một app dạng CRUD.
+Các tool sử dụng:  Java Spring Boot Maven MongoDB Postman  1. Tạo database Trước khi bắt đầu xây dựng app, chúng ta cần chuẩn bị một instance của MongoDB để truy xuất tới nó.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Spring Boot] Dựng app CRUD đơn giản bằng Spring Boot &#43; MongoDB trên Intelij">
+<meta name="twitter:title" content="[Spring Boot] Dựng app CRUD đơn giản bằng Spring Boot &#43; MongoDB trên Intelij">
+<meta property="og:url" content="https://tubean.github.io/2018/12/spring-boot-mongo-db/">
+<meta property="twitter:url" content="https://tubean.github.io/2018/12/spring-boot-mongo-db/">
+<meta property="og:site_name" content="Bean&#39;s blog">
+<meta property="og:description" content="MongoDB hiện đang là cơ sở dữ liệu NoSQL phổ biến nhất. Bài viết này là một hướng dẫn nhỏ về cách sử dụng Spring Boot kết hợp với MongoDB để tạo một app dạng CRUD.
+Các tool sử dụng:  Java Spring Boot Maven MongoDB Postman  1. Tạo database Trước khi bắt đầu xây dựng app, chúng ta cần chuẩn bị một instance của MongoDB để truy xuất tới nó.">
+<meta name="twitter:description" content="MongoDB hiện đang là cơ sở dữ liệu NoSQL phổ biến nhất. Bài viết này là một hướng dẫn nhỏ về cách sử dụng Spring Boot kết hợp với MongoDB để tạo một app dạng CRUD.
+Các tool sử dụng:  Java Spring Boot Maven MongoDB Postman  1. Tạo database Trước khi bắt đầu xây dựng app, chúng ta cần chuẩn bị một instance của MongoDB để truy xuất tới nó.">
+<meta property="og:locale" content="vi">
+
+  
+    <meta property="article:published_time" content="2018-12-13T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2018-12-13T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="Spring">
+    
+      <meta property="article:section" content="Tutorial">
+    
+      <meta property="article:section" content="SpringBoot">
+    
+      <meta property="article:section" content="MongoDB">
+    
+  
+  
+    
+      <meta property="article:tag" content="Spring Boot">
+    
+      <meta property="article:tag" content="Tutorial">
+    
+      <meta property="article:tag" content="MongoDB">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1542422606/spring-boot-icon0_cf21dec4-5056-b3a8-49c015fd3bde6cb5.png">
+  <meta property="twitter:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1542422606/spring-boot-icon0_cf21dec4-5056-b3a8-49c015fd3bde6cb5.png">
+
+
+  <meta property="og:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1541273502/Black_flag.svg.png">
+  <meta property="twitter:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1541273502/Black_flag.svg.png">
+
+
+
+
+  <meta property="og:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/c_scale,w_1836/v1540914499/C360_2016-03-22-17-45-21-487.jpg">
+  <meta property="twitter:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/c_scale,w_1836/v1540914499/C360_2016-03-22-17-45-21-487.jpg">
+
+
+    <title>[Spring Boot] Dựng app CRUD đơn giản bằng Spring Boot &#43; MongoDB trên Intelij</title>
+
+    <link rel="icon" href="https://tubean.github.io/favicon/flappybird.png">
+    
+
+    
+
+    <link rel="canonical" href="https://tubean.github.io/2018/12/spring-boot-mongo-db/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://tubean.github.io/css/style-nnm2spxvve8onlujjlegkkytaehyadd4ksxc1hyzzq9a2wvtrgbljqyulomn.min.css" />
+    
+    
+      
+        <link rel="stylesheet"  crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" integrity="sha384-TEMocfGvRuD1rIAacqrknm5BQZ7W7uWitoih+jMNFXQIbNl16bO8OZmylH/Vi/Ei">
+      
+    
+      
+        <link rel="stylesheet"  href="https://tubean.github.io/css/main.css">
+      
+    
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-128433621-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://tubean.github.io/">Bean&#39;s blog</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://tubean.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://res.cloudinary.com/deop9ytsv/image/upload/c_scale,w_1836/v1540914499/C360_2016-03-22-17-45-21-487.jpg" alt="Ảnh đại diện" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://tubean.github.io/#about">
+          <img class="sidebar-profile-picture" src="https://res.cloudinary.com/deop9ytsv/image/upload/c_scale,w_1836/v1540914499/C360_2016-03-22-17-45-21-487.jpg" alt="Ảnh đại diện" />
+        </a>
+        <h4 class="sidebar-profile-name">Tu Bean</h4>
+        
+          <h5 class="sidebar-profile-bio">Coding, writing and sharing</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tubean.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Trang chủ</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tubean.github.io/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">Danh mục</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tubean.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Thẻ thông tin</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tubean.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Lưu trữ</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tubean.github.io/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">Thông tin</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://bitbucket.org/tubean/" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bitbucket-square"></i>
+      
+      <span class="sidebar-button-desc">Bitbucket</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/tubean" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">Github</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.instagram.com/zeref_bean/" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-instagram"></i>
+      
+      <span class="sidebar-button-desc">Instagram</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.linkedin.com/in/tubean/" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-linkedin"></i>
+      
+      <span class="sidebar-button-desc">LinkedIn</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+  <div class="post-header-cover
+              text-center
+              "
+       style="background-image:url('https://res.cloudinary.com/deop9ytsv/image/upload/v1541273502/Black_flag.svg.png')"
+       data-behavior="5">
+    
+      <div class="post-header main-content-wrap text-center">
+  
+    <h1 class="post-title" itemprop="headline">
+      [Spring Boot] Dựng app CRUD đơn giản bằng Spring Boot &#43; MongoDB trên Intelij
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2018-12-13T00:00:00Z">
+        
+  tháng 12 13, 2018
+
+      </time>
+    
+    
+  
+  
+    <span>mục</span>
+    
+      <a class="category-link" href="https://tubean.github.io/categories/spring">Spring</a>, 
+    
+      <a class="category-link" href="https://tubean.github.io/categories/tutorial">Tutorial</a>, 
+    
+      <a class="category-link" href="https://tubean.github.io/categories/springboot">SpringBoot</a>, 
+    
+      <a class="category-link" href="https://tubean.github.io/categories/mongodb">MongoDB</a>
+    
+  
+
+  </div>
+
+</div>
+    
+  </div>
+
+
+      <div id="main" data-behavior="5"
+        class="hasCover
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              
+
+<p>MongoDB hiện đang là cơ sở dữ liệu NoSQL phổ biến nhất. Bài viết này là một hướng dẫn nhỏ về cách sử dụng Spring Boot kết hợp với MongoDB để tạo một app dạng CRUD.</p>
+
+<h1 id="các-tool-sử-dụng">Các tool sử dụng:</h1>
+
+<ol>
+<li>Java</li>
+<li>Spring Boot</li>
+<li>Maven</li>
+<li>MongoDB</li>
+<li>Postman</li>
+</ol>
+
+<h1 id="1-tạo-database">1. Tạo database</h1>
+
+<p>Trước khi bắt đầu xây dựng app, chúng ta cần chuẩn bị một instance của MongoDB để truy xuất tới nó. Cách cài đặt MongoDB các bạn có thể tìm kiếm trên mạng. Tôi sẽ giả sử các bạn cài đặt xong MongoDB và bắt đầu tạo một database <code>spring_mongo</code> như sau:</p>
+
+<pre><code>use spring_mongo;
+</code></pre>
+
+<p>Sau khi tạo xong database, chúng ta tạo một collection (tương đương với các bảng) và dữ liệu cho nó:</p>
+
+<pre><code>// Tạo collection
+db.createCollection(“contact”);
+
+// Insert data
+db.contact.insertMany([
+{
+&quot;name&quot;:&quot;Tu Bean&quot;,
+ &quot;age&quot;:&quot;24&quot;,
+ &quot;email&quot;:&quot;tubean@github.io&quot;
+ },
+{
+&quot;name&quot;: &quot;Vi Quynh&quot;,
+ &quot;age&quot;:&quot;21&quot;,
+ &quot;email&quot;:&quot;viquynh@gmail.com&quot;
+ }
+ ]);
+</code></pre>
+
+<p>Trong collection trên, chúng ta sẽ lưu trữ data dưới dạng JSON và có các key là <code>name</code>, <code>age</code>, <code>email</code>. Nếu sử dụng truy vấn <code>db.contact.find({});</code> thì MongoDB sẽ tự động tạo cho mỗi field một <code>_id</code> duy nhất để dễ tìm kiếm và thao tác.</p>
+
+<p>Chúng ta sẽ tạo thêm một <code>user</code> để có thể truy cập vào database này:</p>
+
+<pre><code>db.createUser(  
+  {  
+    user: &quot;tubean&quot;,  
+    pwd: &quot;tubean&quot;,  
+    roles: [ { role: &quot;readWrite&quot;, db: &quot;contact&quot; } ]  
+  }  
+)
+</code></pre>
+
+<h1 id="2-tạo-project-spring-boot-từ-intelij">2. Tạo project Spring Boot từ Intelij</h1>
+
+<p>Đầu tiên chúng ta khởi động intellij, chọn new project -&gt; Spring Initializr
+<img src="https://res.cloudinary.com/deop9ytsv/image/upload/v1542364170/Screen_Shot_2018-11-16_at_11.22.22_AM.png" alt="khởi tạo dự án" /></p>
+
+<ul>
+<li>Chọn Next, điền các thông tin <code>Group</code>, <code>Artifact</code>, <code>Name</code>, <code>Description</code></li>
+</ul>
+
+<p><img src="https://res.cloudinary.com/deop9ytsv/image/upload/v1544716944/mg_1.jpg" alt="thông tin cơ bản" /></p>
+
+<ul>
+<li>Chọn tiếp các <code>dependencies</code> cần thiết: <code>Web</code>, <code>MôngDB</code>:</li>
+</ul>
+
+<p><img src="https://res.cloudinary.com/deop9ytsv/image/upload/v1544716943/mg_2.jpg" alt="dependencies" /></p>
+
+<ul>
+<li>Đặt tên project và finish bước khởi tạo.</li>
+</ul>
+
+<h1 id="3-cấu-trúc-dự-án">3. Cấu trúc dự án</h1>
+
+<p>Cây thư mục dự án như sau:</p>
+
+<p><img src="https://res.cloudinary.com/deop9ytsv/image/upload/v1544717091/mg_3.jpg" alt="structure" />
+File <code>pom.xml</code> có các dependencies như sau:</p>
+
+<pre><code class="language-xml">&lt;dependency&gt;  
+   &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;  
+   &lt;artifactId&gt;spring-boot-starter-data-mongodb&lt;/artifactId&gt;  
+&lt;/dependency&gt;  
+&lt;dependency&gt;  
+   &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;  
+   &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;  
+&lt;/dependency&gt;
+</code></pre>
+
+<h1 id="4-tạo-model">4. Tạo Model</h1>
+
+<p>Trước tiên chúng ta cần tạo một model để lưu trữ cấu trúc của document &ldquo;contact&rdquo; trong collection, tương tự như entity khi sử dụng cơ sở dữ liệu dạng sql.</p>
+
+<pre><code class="language-java">public class Contact {  
+    @Id  
+  private ObjectId _id;  
+
+    private String name;  
+    private Integer age;  
+    private String email;  
+
+    public Contact() {  
+    }  
+
+    public Contact(ObjectId _id, String name, Integer age, String email) {  
+        this._id = _id;  
+        this.name = name;  
+        this.age = age;  
+        this.email = email;  
+    }  
+
+    public String get_id() {  
+        return _id.toHexString();  
+    }  
+
+    public void set_id(ObjectId _id) {  
+        this._id = _id;  
+    }  
+
+    public String getName() {  
+        return name;  
+    }  
+
+    public void setName(String name) {  
+        this.name = name;  
+    }  
+
+    public Integer getAge() {  
+        return age;  
+    }  
+
+    public void setAge(Integer age) {  
+        this.age = age;  
+    }  
+
+    public String getEmail() {  
+        return email;  
+    }  
+
+    public void setEmail(String email) {  
+        this.email = email;  
+    }  
+
+    @Override  
+  public String toString() {  
+        return &quot;{&quot; +  
+                &quot;\&quot;name\&quot;:&quot; + &quot;\&quot;&quot; + name + &quot;\&quot;&quot; +  
+                &quot;, \&quot;age\&quot;:&quot; +  + age +  
+                &quot;, \&quot;email\&quot;:\&quot;&quot; + email + '\&quot;' +  
+                '}';  
+    }  
+}
+</code></pre>
+
+<p>Trong class trên chúng ta hãy chú ý đến field <code>_id</code>. Annotation <code>@Id</code> sẽ báo cho Spring biết rằng field <code>_id</code> được sử dụng làm khóa chính. Phương thức get của field này nên được modify để trả về dạng String cho phù hợp với JSON.</p>
+
+<h1 id="5-tạo-repository">5. Tạo repository</h1>
+
+<p>Sau khi chúng ta có model để định danh cấu trúc dữ liệu được lưu trữ trong database, chúng ta cần tạo ra một lớp với nhiệm vụ kết nối giữa model và MongoDB. Trong app đơn giản này chúng ta sẽ tạo một interface <code>ContactRepository</code> như sau:</p>
+
+<pre><code class="language-java">public interface ContactRepository extends MongoRepository&lt;Contact, String&gt; {  
+    Contact findBy_id(ObjectId _id);  
+}
+</code></pre>
+
+<p>Interface này được extends từ <code>MongoRepository</code> với 2 param lần lượt là kiểu của model và kiểu của khóa chính. Do trong MongoRepository đã có sẵn các method <code>getAll</code>,<code>save</code> hay <code>delete</code> nên chúng ta chỉ cần viết thêm một method <code>findBy_id</code> để get data theo id.</p>
+
+<h1 id="6-config-thông-tin-kết-nối-database">6. Config thông tin kết nối database</h1>
+
+<p>Để config thông tin kết nối database, chúng ta sẽ dùng file <code>application.properties</code> trong <code>resources</code> và mô tả như sau:</p>
+
+<pre><code>spring.data.mongodb.host=localhost //[host]  
+spring.data.mongodb.port=27017//[port]  
+spring.data.mongodb.authentication-database=spring_mongo //[authentication_database]  
+spring.data.mongodb.username=tubean //[username]  
+spring.data.mongodb.password=tubean //[password]  
+spring.data.mongodb.database=spring_mongo
+</code></pre>
+
+<h1 id="7-tạo-controller">7. Tạo controller</h1>
+
+<p>App của chúng ta bây giờ đã có thể connect đến database, và chúng ta cần tạo các <code>endpoint</code> để truy vấn đến data trong đó. Để khai báo một class là controller, chúng ta dùng annotation <code>@RestController</code> và nhớ xác định đường dẫn path đến nó qua <code>@RequestMapping</code>:</p>
+
+<pre><code class="language-java">@RestController  
+@RequestMapping(&quot;/contact&quot;)  
+public class ContactController {
+@Autowired  
+private ContactRepository contactRepository;
+}
+</code></pre>
+
+<p>Đừng quên để thao tác với database chúng ta cần tạo một instance cho <code>ContactRepository</code> qua annotation <code>Autowired</code>.</p>
+
+<p>Method đầu tiên chúng ta cần tạo sẽ là <code>GET</code>:</p>
+
+<pre><code class="language-java">@RequestMapping(value = &quot;/&quot;, method = RequestMethod.GET)  
+public List&lt;Contact&gt; getAllContacts() {  
+    return contactRepository.findAll();  
+}  
+
+@RequestMapping(value = &quot;/{id}&quot;, method = RequestMethod.GET)  
+public Contact getContactById(@PathVariable(&quot;id&quot;) ObjectId id) {  
+    return contactRepository.findBy_id(id);  
+}
+</code></pre>
+
+<p>Chúng ta có thể get tất cả dữ liệu thông qua endpoint <code>/contact/</code> hoặc lấy dữ liệu theo id qua endpoint <code>/contact/{id}</code>.</p>
+
+<p>Tiếp theo là thêm mới và cập nhật, 2 method <code>POST</code> và <code>PUT</code> sẽ có sự khác biệt là khi chúng ta tạo mới một field, chúng ta không cần đến <code>_id</code> của nó, nhưng để sửa một field thì lại cần <code>_id</code> để xác định. Do đó endpoint cho <code>POST</code> sẽ là <code>/contact/</code> với RequestMethod là POST, còn endpoint cho <code>PUT</code> sẽ là <code>/contact/{id}</code> với RequestMethod là PUT.</p>
+
+<pre><code class="language-java">@RequestMapping(value = &quot;/{id}&quot;, method = RequestMethod.PUT)  
+public void modifyContactById(@PathVariable(&quot;id&quot;) ObjectId id, @Valid @RequestBody Contact contact) {  
+    contact.set_id(id);  
+    contactRepository.save(contact);  
+}  
+
+@RequestMapping(value = &quot;/&quot;, method = RequestMethod.POST)  
+public Contact createContact(@Valid @RequestBody Contact contact) {  
+    contact.set_id(ObjectId.get());  
+    contactRepository.save(contact);  
+    return contact;  
+}
+</code></pre>
+
+<p>Cuối cùng khi chúng ta muốn xóa một field nào đó trong database, chúng ta sử dụng method <code>DELETE</code>:</p>
+
+<pre><code class="language-java">@RequestMapping(value = &quot;/{id}&quot;, method = RequestMethod.DELETE)  
+public void deleteContact(@PathVariable ObjectId id) {  
+    contactRepository.delete(contactRepository.findBy_id(id));  
+}
+</code></pre>
+
+<h1 id="8-testing-các-api">8. Testing các API</h1>
+
+<p>Sau khi execute class main, ứng dụng của chúng ta sẽ chạy ở localhost với cổng mặc định 8080.</p>
+
+<p>Để lấy tất cả dữ liệu, chúng ta sẽ dùng POSTMAN gửi một request HTTP/GET như sau:</p>
+
+<pre><code>http://localhost:8080/contact/
+</code></pre>
+
+<p>Kết quả trả về sẽ như sau:
+<img src="https://res.cloudinary.com/deop9ytsv/image/upload/v1544719409/mg_4.jpg" alt="mg_get" /></p>
+
+<p>Các method còn lại có thể kiểm tra như sau:</p>
+
+<p><strong>GET (by id):</strong>
+<a href="http://localhost:8080/contact/5c1136692ae696f25358b92d">http://localhost:8080/contact/5c1136692ae696f25358b92d</a>
+Kết quả trả về:</p>
+
+<pre><code>{
+    &quot;_id&quot;: &quot;5c1136692ae696f25358b92d&quot;,
+    &quot;name&quot;: &quot;Tu Bean&quot;,
+    &quot;age&quot;: 24,
+    &quot;email&quot;: &quot;tubean@github.io&quot;
+}
+</code></pre>
+
+<p><strong>POST:</strong>
+<a href="http://localhost:8080/contact/">http://localhost:8080/contact/</a> với body như sau:</p>
+
+<pre><code>{
+
+    &quot;name&quot;: &quot;Bean Bean&quot;,
+    &quot;age&quot;: 2,
+    &quot;email&quot;: &quot;bean@github.io&quot;
+}
+</code></pre>
+
+<p>Kết quả trả về:</p>
+
+<pre><code>{
+    &quot;_id&quot;: &quot;5c128d84815f101660860fc5&quot;,
+    &quot;name&quot;: &quot;Bean Bean&quot;,
+    &quot;age&quot;: 2,
+    &quot;email&quot;: &quot;bean@github.io&quot;
+}
+</code></pre>
+
+<p><strong>PUT:</strong>
+<a href="http://localhost:8080/contact/5c128d84815f101660860fc5">http://localhost:8080/contact/5c128d84815f101660860fc5</a> với body như sau:</p>
+
+<pre><code>{
+   &quot;name&quot;: &quot;Bean Bean&quot;,
+    &quot;age&quot;: 25,
+    &quot;email&quot;: &quot;vibean@github.io&quot;
+}
+</code></pre>
+
+<p>Kết quả trả về có status 200.</p>
+
+<p><strong>DELETE:</strong>
+Tương tự <strong>PUT</strong>, chỉ thay đổi method request.</p>
+
+<h1 id="source-code">Source code</h1>
+
+<p><a href="https://github.com/tubean/spring-mongodb">https://github.com/tubean/spring-mongodb</a></p>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">THẺ ĐÁNH DẤU</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/spring-boot/">Spring Boot</a>
+
+  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/tutorial/">Tutorial</a>
+
+  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/mongodb/">MongoDB</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">Tiếp</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2018/12/web-service-s%E1%BB%B1-kh%C3%A1c-nhau-gi%E1%BB%AFa-soap-v%C3%A0-restful-web-service-trong-java/" data-tooltip="[Web Service] Sự khác nhau giữa SOAP và RESTful Web Service trong Java">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">Trước</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://tubean.github.io/2018/12/spring-boot-mongo-db/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://tubean.github.io/2018/12/spring-boot-mongo-db/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://tubean.github.io/2018/12/spring-boot-mongo-db/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2018 <a href="https://bitbucket.org/tubean/">Do Anh Tu</a>. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">Tiếp</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2018/12/web-service-s%E1%BB%B1-kh%C3%A1c-nhau-gi%E1%BB%AFa-soap-v%C3%A0-restful-web-service-trong-java/" data-tooltip="[Web Service] Sự khác nhau giữa SOAP và RESTful Web Service trong Java">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">Trước</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://tubean.github.io/2018/12/spring-boot-mongo-db/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://tubean.github.io/2018/12/spring-boot-mongo-db/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://tubean.github.io/2018/12/spring-boot-mongo-db/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ftubean.github.io%2F2018%2F12%2Fspring-boot-mongo-db%2F">
+          <i class="fa fa-facebook-official"></i><span>Chia sẻ với Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Ftubean.github.io%2F2018%2F12%2Fspring-boot-mongo-db%2F">
+          <i class="fa fa-twitter"></i><span>Chia sẻ với Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Ftubean.github.io%2F2018%2F12%2Fspring-boot-mongo-db%2F">
+          <i class="fa fa-google-plus"></i><span>Chia sẻ với Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://res.cloudinary.com/deop9ytsv/image/upload/c_scale,w_1836/v1540914499/C360_2016-03-22-17-45-21-487.jpg" alt="Ảnh đại diện" />
+    
+    <h4 id="about-card-name">Tu Bean</h4>
+    
+      <div id="about-card-bio">Coding, writing and sharing</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Web developer
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        Viet Nam
+      </div>
+    
+  </div>
+</div>
+
+    <div id="algolia-search-modal" class="modal-container">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="close-button"><i class="fa fa-close"></i></span>
+      <a href="https://algolia.com" target="_blank" rel="noopener" class="searchby-algolia text-color-light link-unstyled">
+        <span class="searchby-algolia-text text-color-light text-small">by</span>
+        <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+      </a>
+      <i class="search-icon fa fa-search"></i>
+      <form id="algolia-search-form">
+        <input type="text" id="algolia-search-input" name="search"
+          class="form-control input--large search-input" placeholder="Tìm kiếm" />
+      </form>
+    </div>
+    <div class="modal-body">
+      <div class="no-result text-color-light text-center">không tìm thấy kết quả</div>
+      <div class="results">
+        
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/12/spring-boot-mongo-db/">
+                <h3 class="media-heading">[Spring Boot] Dựng app CRUD đơn giản bằng Spring Boot &#43; MongoDB trên Intelij</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">MongoDB hiện đang là cơ sở dữ liệu NoSQL phổ biến nhất. Bài viết này là một hướng dẫn nhỏ về cách sử dụng Spring Boot kết hợp với MongoDB để tạo một app dạng CRUD.
+Các tool sử dụng:  Java Spring Boot Maven MongoDB Postman  1. Tạo database Trước khi bắt đầu xây dựng app, chúng ta cần chuẩn bị một instance của MongoDB để truy xuất tới nó.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/12/web-service-s%E1%BB%B1-kh%C3%A1c-nhau-gi%E1%BB%AFa-soap-v%C3%A0-restful-web-service-trong-java/">
+                <h3 class="media-heading">[Web Service] Sự khác nhau giữa SOAP và RESTful Web Service trong Java</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Cả 2 loại SOAP và RESTful đều cho phép phía client gửi request đến server để query, nhưng chúng được thực hiện bằng những cách khác nhau. Sự khác nhau chính giữa SOAP và REST là cách mà client giao tiếp server thông qua SOAP sẽ bị hạn chế bởi nhiều quy tắc và format được thiết kế chính xác, trong khi với REST cho phép việc giao tiếp thông qua giao thức HTTP và ít các quy tắc rườm rà hơn.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/12/java-functional-composition/">
+                <h3 class="media-heading">[Functional Programming]  Java Functional Composition</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Function composition là một khái niệm về việc nhiều function có thể lồng nhau để làm param của một function khác. Bạn có thể tự compose nhiều function (dùng Lambda Expression) vào trong một function của riêng bạn, nhưng Java cũng cung cấp những cách compose riêng giúp bạn làm việc đó dễ hơn. Trong bài viết này chúng ta cùng tìm hiểu làm thế nào để compose các function bằng các feature có sẵn của Java.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/12/java-higher-order-function/">
+                <h3 class="media-heading">[Functional Programming] Java Higher Order Functions</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Một higher order function là một function nhận một function (method) khác làm parameter, hoặc nó có kết quả trả về là một function. Bài viết này sẽ giới thiệu một vài ví dụ về higher order function.
+1. Sorting Collections Ví dụ đầu tiên về higher order function là method Collections.sort() nhận một Comparator như một tham số:
+List&lt;String&gt; list = new ArrayList&lt;&gt;(); list.add(&quot;One&quot;); list.add(&quot;Abc&quot;); list.add(&quot;BCD&quot;); Collections.sort(list, (String a, String b) -&gt; { return a.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/12/singleton-pattern/">
+                <h3 class="media-heading">[Design Pattern] Singleton Design Pattern</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">1. Singleton là gì? Đã khi nào bạn viết một class mà chỉ muốn nó chỉ có duy nhất một instance? Trong lập trình, chúng ta sẽ đôi lần thấy rằng một số class chỉ nên có duy nhất một instance, vì nếu có nhiều hơn một, chúng ta sẽ gặp phải một vài vấn đề như hành vi chương trình không chính xác, lãng phí tài nguyên hay kết quả không nhất quán.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/12/java-functional-programming/">
+                <h3 class="media-heading">[Functional Programming]  Functional Programing trong Java</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">1. Functional Programming là gì? Functional Programming hay lập trình chức năng là kiểu lập trình mà function được chọn làm đơn vị thao tác cơ bản. Functional programming tập trung vào sử dụng tính năng của các hàm và tránh sử dụng các biến cũng như thay đổi giá trị của chúng. Nó hơi ngược với procedure programming như chúng ta vẫn thường sử dụng (OOP tập trung vào chi tiết hoạt động của chương trình và thường sử dụng các biến và thay đổi trạng thái của chương trình).</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/12/composite-pattern/">
+                <h3 class="media-heading">[Design Pattern] Composite Design Pattern</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Trong bài viết này, chúng ta sẽ đi tìm hiểu về một mẫu thiết kế khá thú vị, đó là Composite pattern. Trong tiếng anh thì từ composite có nghĩa là làm một hỗn hợp, tức là một thứ gì đó được tạo từ rất nhiều thành phần hỗn tạp. Đây là một mẫu thiết kế thuộc nhóm cấu trúc. Một đối tượng composite được tạo thành từ một hay nhiều đối tượng tương tự nhau (hoặc có một số chức năng tương tự nhau).</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/12/junix-5x/">
+                <h3 class="media-heading">[Java] Unit Test với JUnit 5x</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Phiên bản hiện tại của JUnit là JUnit 5 và nó bao gồm các component khác nhau:
+ JUnit Platform: layer nền tảng cho phép những testing framework có thể chạy trên máy ảo JVM. JUnit Jupiter: đây chính là phiên bản JUnit 5 và được chạy trên JUnit Platform. JUnit Vintage: kế thừa từ TestEngine và cho phép chạy các phiên bản cũ hơn của JUnit.  1. Cài đặt bằng Gradle buildscript { repositories { mavenCentral() // The following is only necessary if you want to use SNAPSHOT releases.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/11/junix-4x/">
+                <h3 class="media-heading">[Java] Unit Test với JUnit 4x</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Trong bài viết này chúng ta cùng tìm hiểu về test và unit test bằng JUnit 4.x.
+1. Một số thuật ngữ trong kiểm thử (testing) 1.1 Code under test Những đoạn code được kiểm thử thường gọi code under test. Nếu bạn đang kiểm thử một ứng dụng nào đó thì nó được gọi là application under test.
+1.2 Test fixture Đây là các điều kiện để có thể bắt đầu kiểm thử.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/11/facade-design-patterns/">
+                <h3 class="media-heading">[Design Patterns] Facade Design Pattern in Java</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Trong bài viết này, chúng ta cùng xem xét mẫu thiết kế khác, đó là Facade pattern. Trước khi đi vào chi tiết mẫu thiết kế, chúng ta cùng xem xét câu chuyện sau:
+Công ty phần mềm A vận hành một sản phẩm tên là Schedule Server. Đó là một ứng dụng làm rất nhiều việc như gửi mail, sms, đọc và viết file đến địa chỉ đích, gửi và nhận file giữa 2 server.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+      </div>
+    </div>
+    <div class="modal-footer">
+      <p class="results-count text-medium"
+         data-message-zero="không tìm thấy kết quả"
+         data-message-one="tìm thấy 1 kết quả "
+         data-message-other="tìm thấy {n} kết quả">
+         20 posts found
+      </p>
+    </div>
+  </div>
+</div>
+    
+  
+    
+    <div id="cover" style="background-image:url('https://tubean.github.io/images/cover-v1.2.0.jpg');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://tubean.github.io/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+
+
+  
+    <script crossorigin="anonymous" integrity="sha384-jmxIlussZWB7qCuB+PgKG1uLjjxbVVIayPJwi6cG6Zb4YKq0JIw+OMnkkEC7kYCq" src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js"></script>
+  
+
+  
+    <script crossorigin="anonymous" integrity="sha384-IiI65aU9ZYub2MY9zhtKd1H2ps7xxf+eb2YFG9lX6uRqpXCvBTOidPRCXCrQ++Uc" src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/contrib/auto-render.min.js"></script>
+  
+
+  
+    <script src="https://tubean.github.io/js/main.js"></script>
+  
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'https:\/\/tubean.github.io\/2018\/12\/spring-boot-mongo-db\/';
+          
+            this.page.identifier = '\/2018\/12\/spring-boot-mongo-db\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'beans-blog';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+

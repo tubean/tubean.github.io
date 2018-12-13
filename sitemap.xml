@@ -3,6 +3,16 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://tubean.github.io/2018/12/spring-boot-mongo-db/</loc>
+    <lastmod>2018-12-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://tubean.github.io/2018/12/web-service-s%E1%BB%B1-kh%C3%A1c-nhau-gi%E1%BB%AFa-soap-v%C3%A0-restful-web-service-trong-java/</loc>
+    <lastmod>2018-12-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://tubean.github.io/2018/12/java-functional-composition/</loc>
     <lastmod>2018-12-10T00:00:00+00:00</lastmod>
   </url>
@@ -111,7 +121,7 @@
   
   <url>
     <loc>https://tubean.github.io/</loc>
-    <lastmod>2018-12-10T00:00:00+00:00</lastmod>
+    <lastmod>2018-12-13T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -139,13 +149,13 @@
   </url>
   
   <url>
-    <loc>https://tubean.github.io/tags/design-pattern/</loc>
+    <loc>https://tubean.github.io/categories/design-pattern/</loc>
     <lastmod>2018-12-09T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://tubean.github.io/categories/design-pattern/</loc>
+    <loc>https://tubean.github.io/tags/design-pattern/</loc>
     <lastmod>2018-12-09T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -193,26 +203,26 @@
   </url>
   
   <url>
-    <loc>https://tubean.github.io/tags/hugo/</loc>
-    <lastmod>2018-11-04T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://tubean.github.io/categories/hugo/</loc>
     <lastmod>2018-11-04T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://tubean.github.io/tags/java/</loc>
-    <lastmod>2018-12-10T00:00:00+00:00</lastmod>
+    <loc>https://tubean.github.io/tags/hugo/</loc>
+    <lastmod>2018-11-04T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://tubean.github.io/categories/java/</loc>
-    <lastmod>2018-12-10T00:00:00+00:00</lastmod>
+    <lastmod>2018-12-13T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://tubean.github.io/tags/java/</loc>
+    <lastmod>2018-12-13T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -229,13 +239,13 @@
   </url>
   
   <url>
-    <loc>https://tubean.github.io/tags/lambda-expression/</loc>
+    <loc>https://tubean.github.io/categories/lambda-expression/</loc>
     <lastmod>2018-11-07T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://tubean.github.io/categories/lambda-expression/</loc>
+    <loc>https://tubean.github.io/tags/lambda-expression/</loc>
     <lastmod>2018-11-07T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -247,8 +257,20 @@
   </url>
   
   <url>
+    <loc>https://tubean.github.io/categories/mongodb/</loc>
+    <lastmod>2018-12-13T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://tubean.github.io/tags/mongodb/</loc>
+    <lastmod>2018-12-13T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://tubean.github.io/post/</loc>
-    <lastmod>2018-12-10T00:00:00+00:00</lastmod>
+    <lastmod>2018-12-13T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -259,13 +281,19 @@
   </url>
   
   <url>
-    <loc>https://tubean.github.io/tags/security/</loc>
-    <lastmod>2018-11-06T00:00:00+00:00</lastmod>
+    <loc>https://tubean.github.io/tags/restful/</loc>
+    <lastmod>2018-12-13T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://tubean.github.io/categories/security/</loc>
+    <lastmod>2018-11-06T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://tubean.github.io/tags/security/</loc>
     <lastmod>2018-11-06T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -283,14 +311,14 @@
   </url>
   
   <url>
-    <loc>https://tubean.github.io/categories/spring/</loc>
-    <lastmod>2018-11-17T00:00:00+00:00</lastmod>
+    <loc>https://tubean.github.io/tags/soap/</loc>
+    <lastmod>2018-12-13T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://tubean.github.io/tags/spring-boot/</loc>
-    <lastmod>2018-11-17T00:00:00+00:00</lastmod>
+    <loc>https://tubean.github.io/categories/spring/</loc>
+    <lastmod>2018-12-13T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -301,8 +329,14 @@
   </url>
   
   <url>
+    <loc>https://tubean.github.io/tags/spring-boot/</loc>
+    <lastmod>2018-12-13T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://tubean.github.io/categories/springboot/</loc>
-    <lastmod>2018-11-17T00:00:00+00:00</lastmod>
+    <lastmod>2018-12-13T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -337,14 +371,26 @@
   </url>
   
   <url>
-    <loc>https://tubean.github.io/tags/tutorial/</loc>
-    <lastmod>2018-11-20T00:00:00+00:00</lastmod>
+    <loc>https://tubean.github.io/categories/tutorial/</loc>
+    <lastmod>2018-12-13T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://tubean.github.io/categories/tutorial/</loc>
-    <lastmod>2018-11-17T00:00:00+00:00</lastmod>
+    <loc>https://tubean.github.io/tags/tutorial/</loc>
+    <lastmod>2018-12-13T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://tubean.github.io/categories/web-service/</loc>
+    <lastmod>2018-12-13T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://tubean.github.io/tags/web-service/</loc>
+    <lastmod>2018-12-13T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
