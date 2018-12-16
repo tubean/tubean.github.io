@@ -7,42 +7,38 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="generator" content="Hugo 0.49 with theme Tranquilpeak 0.4.3-SNAPSHOT">
 <meta name="author" content="Tu Bean">
-<meta name="keywords" content="">
-<meta name="description" content="Để chào mừng bài post đầu tiên, một phút quốc ca bắt đầu!
-">
+<meta name="keywords" content="design, pattern, java, prototype">
+<meta name="description" content="Trong lập trình hướng đối tượng, khi chúng ta muốn tạo thêm một đối tượng thì thường sử dụng từ khóa new. Tuy nhiên đối với cách tạo đối tượng này thì những thuộc tính ban đầu sẽ thường là trống, trừ khi được khởi tạo giá trị default hoặc khởi tạo ngay trong contructor. Vậy nếu chúng ta muốn tạo mới một đối tượng từ một đối tượng cũ, mang tất cả thuộc tính và giá trị đang có của đối tượng cũ như một bản clone thì làm thế nào?">
 
 
-<meta property="og:description" content="Để chào mừng bài post đầu tiên, một phút quốc ca bắt đầu!
-">
+<meta property="og:description" content="Trong lập trình hướng đối tượng, khi chúng ta muốn tạo thêm một đối tượng thì thường sử dụng từ khóa new. Tuy nhiên đối với cách tạo đối tượng này thì những thuộc tính ban đầu sẽ thường là trống, trừ khi được khởi tạo giá trị default hoặc khởi tạo ngay trong contructor. Vậy nếu chúng ta muốn tạo mới một đối tượng từ một đối tượng cũ, mang tất cả thuộc tính và giá trị đang có của đối tượng cũ như một bản clone thì làm thế nào?">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello">
-<meta name="twitter:title" content="Hello">
-<meta property="og:url" content="https://tubean.github.io/2018/10/hello/">
-<meta property="twitter:url" content="https://tubean.github.io/2018/10/hello/">
+<meta property="og:title" content="[Design Pattern] Protorype Design Pattern">
+<meta name="twitter:title" content="[Design Pattern] Protorype Design Pattern">
+<meta property="og:url" content="https://tubean.github.io/2018/12/prototype-pattern/">
+<meta property="twitter:url" content="https://tubean.github.io/2018/12/prototype-pattern/">
 <meta property="og:site_name" content="Bean&#39;s blog">
-<meta property="og:description" content="Để chào mừng bài post đầu tiên, một phút quốc ca bắt đầu!
-">
-<meta name="twitter:description" content="Để chào mừng bài post đầu tiên, một phút quốc ca bắt đầu!
-">
+<meta property="og:description" content="Trong lập trình hướng đối tượng, khi chúng ta muốn tạo thêm một đối tượng thì thường sử dụng từ khóa new. Tuy nhiên đối với cách tạo đối tượng này thì những thuộc tính ban đầu sẽ thường là trống, trừ khi được khởi tạo giá trị default hoặc khởi tạo ngay trong contructor. Vậy nếu chúng ta muốn tạo mới một đối tượng từ một đối tượng cũ, mang tất cả thuộc tính và giá trị đang có của đối tượng cũ như một bản clone thì làm thế nào?">
+<meta name="twitter:description" content="Trong lập trình hướng đối tượng, khi chúng ta muốn tạo thêm một đối tượng thì thường sử dụng từ khóa new. Tuy nhiên đối với cách tạo đối tượng này thì những thuộc tính ban đầu sẽ thường là trống, trừ khi được khởi tạo giá trị default hoặc khởi tạo ngay trong contructor. Vậy nếu chúng ta muốn tạo mới một đối tượng từ một đối tượng cũ, mang tất cả thuộc tính và giá trị đang có của đối tượng cũ như một bản clone thì làm thế nào?">
 <meta property="og:locale" content="vi">
 
   
-    <meta property="article:published_time" content="2018-10-31T00:00:00">
+    <meta property="article:published_time" content="2018-12-15T00:00:00">
   
   
-    <meta property="article:modified_time" content="2018-10-31T00:00:00">
+    <meta property="article:modified_time" content="2018-12-15T00:00:00">
   
-  
-  
-    
-      <meta property="article:section" content="Hello World">
-    
   
   
     
-      <meta property="article:tag" content="Hello">
+      <meta property="article:section" content="design pattern">
     
-      <meta property="article:tag" content="youtube">
+  
+  
+    
+      <meta property="article:tag" content="design pattern">
+    
+      <meta property="article:tag" content="prototype">
     
   
 
@@ -55,9 +51,12 @@
 
 
 
-  <meta property="og:image" content="//www.bienphong.com.vn/images/media/es1k_21a_w550.jpg">
-  <meta property="twitter:image" content="//www.bienphong.com.vn/images/media/es1k_21a_w550.jpg">
+  <meta property="og:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1543156961/design-pattern-logo.jpg">
+  <meta property="twitter:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1543156961/design-pattern-logo.jpg">
 
+
+  <meta property="og:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1541273502/Black_flag.svg.png">
+  <meta property="twitter:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1541273502/Black_flag.svg.png">
 
 
 
@@ -66,14 +65,14 @@
   <meta property="twitter:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/c_scale,w_1836/v1540914499/C360_2016-03-22-17-45-21-487.jpg">
 
 
-    <title>Hello</title>
+    <title>[Design Pattern] Protorype Design Pattern</title>
 
     <link rel="icon" href="https://tubean.github.io/favicon/flappybird.png">
     
 
     
 
-    <link rel="canonical" href="https://tubean.github.io/2018/10/hello/">
+    <link rel="canonical" href="https://tubean.github.io/2018/12/prototype-pattern/">
 
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
@@ -253,26 +252,24 @@ if (!doNotTrack) {
 </nav>
 
       
-
-      <div id="main" data-behavior="5"
-        class="
-               hasCoverMetaIn
-               ">
-        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
-          
-          
-            <div class="post-header main-content-wrap text-left">
+  <div class="post-header-cover
+              text-center
+              "
+       style="background-image:url('https://res.cloudinary.com/deop9ytsv/image/upload/v1541273502/Black_flag.svg.png')"
+       data-behavior="5">
+    
+      <div class="post-header main-content-wrap text-center">
   
     <h1 class="post-title" itemprop="headline">
-      Hello
+      [Design Pattern] Protorype Design Pattern
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2018-10-31T00:00:00Z">
+      <time itemprop="datePublished" datetime="2018-12-15T00:00:00Z">
         
-  tháng 10 31, 2018
+  tháng 12 15, 2018
 
       </time>
     
@@ -281,25 +278,231 @@ if (!doNotTrack) {
   
     <span>mục</span>
     
-      <a class="category-link" href="https://tubean.github.io/categories/hello-world">Hello World</a>
+      <a class="category-link" href="https://tubean.github.io/categories/design-pattern">design pattern</a>
     
   
 
   </div>
 
 </div>
+    
+  </div>
+
+
+      <div id="main" data-behavior="5"
+        class="hasCover
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <p>Để chào mừng bài post đầu tiên, một phút quốc ca bắt đầu!
-</p>
+              
 
-<p><strong>Youtube</strong></p>
+<p>Trong lập trình hướng đối tượng, khi chúng ta muốn tạo thêm một đối tượng thì thường sử dụng từ khóa <code>new</code>. Tuy nhiên đối với cách tạo đối tượng này thì những thuộc tính ban đầu sẽ thường là trống, trừ khi được khởi tạo giá trị default hoặc khởi tạo ngay trong contructor. Vậy nếu chúng ta muốn tạo mới một đối tượng từ một đối tượng cũ, mang tất cả thuộc tính và giá trị đang có của đối tượng cũ như một bản clone thì làm thế nào?</p>
 
+<p>Thực ra chúng ta vẫn có thể dùng từ khóa <code>new</code>, sau đó gán các giá trị thuộc tính của đối tượng cũ sang đối tượng mới, nhưng như thế thì việc tạo đối tượng mới quá tốn kém và hiệu suất thấp.</p>
 
-<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-  <iframe src="//www.youtube.com/embed/dLY5TsY0dTY" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
-</div>
+<h1 id="1-nêu-vấn-đề">1. Nêu vấn đề</h1>
+
+<p>Một ví dụ thực tế là app của chúng ta yêu cầu quyền truy cập đối với từng loại user. Ví dụ đối với chức năng in ra báo cáo, một số user sẽ có quyền truy cập và tạo ra báo cáo mới, một số khác chỉ có quyền đọc những báo cáo đã được in ra. Chúng ta không thể chia sẻ quyền truy cập vào class in ra báo cáo cho tất cả các user, vì có thể trong lúc chạy runtime, admin có thể cấp quyền cho một số user cùng level được phép truy cập, còn các user khác mặc dù cùng level nhưng chưa được cấp quyền tạo mới thì vẫn chỉ được phép đọc báo cáo. Lúc này, mỗi một user sẽ chỉ nên có một quyền truy cập riêng tương ứng.</p>
+
+<p>Và đó là lý do mà Prototype xuất hiện như một mẫu thiết kế dành riêng cho việc clone object. Chúng ta sẽ tạo một đối tượng liên quan đến quyền truy cập cho tất cả user cùng level tại một thời điểm, sau đó khi cần cấp thêm quyền thì sẽ cung cấp một cách clone từ quyền truy cập của một đối tượng có level cao hơn.</p>
+
+<h1 id="2-prototype-pattern-là-gì">2. Prototype Pattern là gì?</h1>
+
+<p><code>Prototype pattern</code> được sử dụng để tạo ra một khuôn mẫu instance và có thể tạo nhiều instance mới từ khuôn mẫu này. Trong Java, chúng ta có vài cách để tạo ra mới đối tượng. Một trong số đó là sử dụng interface <code>Cloneable</code>. Java cung cấp phương thức <code>clone()</code> là một phương thức trừu tượng trong lớp <code>Object</code>. Bạn cần implement interface <code>Cloneable</code> và override phương thức <code>clone</code> theo cách bạn muốn.
+<img src="https://res.cloudinary.com/deop9ytsv/image/upload/v1544934985/pro_1.jpg" alt="img1" />
+Trong UML trên thì:</p>
+
+<ul>
+<li><code>Prototype</code>: Khai báo interface có phương thức clone.</li>
+<li><code>ConcretePrototype</code>: Implement một opretation dành cho việc clone.</li>
+<li><code>Clinet</code>: Tạo mới một object bằng cách dùng một loại khuôn mẫu để clone.</li>
+</ul>
+
+<h1 id="3-giải-pháp">3. Giải pháp</h1>
+
+<p>Chúng ta cùng xem giải pháp cho vấn đề ban đầu:</p>
+
+<ul>
+<li>Tạo interface dành cho việc clone, extend từ interface <code>Cloneable</code>:</li>
+</ul>
+
+<pre><code class="language-java">public interface Prototype extends Cloneable {  
+
+    public AccessControl clone() throws CloneNotSupportedException;  
+
+}
+</code></pre>
+
+<ul>
+<li>Tạo class implement interface trên:</li>
+</ul>
+
+<pre><code class="language-java">public class AccessControl implements Prototype {  
+    private final String controlLevel;  
+    private String access;  
+
+    public AccessControl(String controlLevel, String access) {  
+        this.controlLevel = controlLevel;  
+        this.access = access;  
+    }  
+
+    @Override  
+  public AccessControl clone() {  
+        try {  
+            return (AccessControl) super.clone();  
+        } catch (CloneNotSupportedException e) {  
+            e.printStackTrace();  
+        }  
+        return null;  
+    }  
+
+    public String getControlLevel() {  
+        return controlLevel;  
+    }  
+
+    public String getAccess() {  
+        return access;  
+    }  
+
+    public void setAccess(String access) {  
+        this.access = access;  
+    }  
+}
+</code></pre>
+
+<p>Lớp <code>AccessControl</code> trên implemet interface <code>Prototype</code> và override phương thức <code>clone</code>. Phương thức này sẽ gọi đến <code>super.clone()</code>, tức là phương thức <code>clone</code> của lớp <code>Object</code>. (<strong>Mọi class đều là class con của Object</strong>).
+Trong lớp <code>AccessControl</code> cũng bao gồm 2 properties là <code>controlLevel</code> được sử dụng để định nghĩa level truy cập của đối tượng chứa nó, level này phụ thuộc vào user sẽ dùng nó, ví dụ USER, ADMIN, MANAGER,.. Property còn lại là <code>access</code>, chứa cách truy cập cho từng user. Để đơn giản, chúng ta sử dụng String cho property này. Trong thực tế thì nó nên được sử dụng Map để chứa các cặp key-value cách truy cập cho từng loại user.</p>
+
+<ul>
+<li>Tạo class User có property <code>level</code> và tham chiếu của <code>AccessControl</code>.</li>
+</ul>
+
+<pre><code class="language-java">public class User {  
+    private String userName;  
+    private String level;  
+    private AccessControl accessControl;  
+
+    public User(String userName, String level, AccessControl accessControl) {  
+        this.userName = userName;  
+        this.level = level;  
+        this.accessControl = accessControl;  
+    }  
+
+    public String getUserName() {  
+        return userName;  
+    }  
+
+    public void setUserName(String userName) {  
+        this.userName = userName;  
+    }  
+
+    public String getLevel() {  
+        return level;  
+    }  
+
+    public void setLevel(String level) {  
+        this.level = level;  
+    }  
+
+    public AccessControl getAccessControl() {  
+        return accessControl;  
+    }  
+
+    public void setAccessControl(AccessControl accessControl) {  
+        this.accessControl = accessControl;  
+    }  
+
+    @Override  
+  public String toString() {  
+        return &quot;Name: &quot; + userName + &quot;, Level: &quot; + level + &quot;, Access Control Level:&quot; + accessControl.getControlLevel() + &quot;, Access: &quot; + accessControl.getAccess();  
+    }  
+}
+</code></pre>
+
+<ul>
+<li>Tạo class <code>AccessControlProvider</code> để tạo và lưu trữ các instance <code>AccessControl</code> trong điều kiện nó được cấp quyền thêm.</li>
+</ul>
+
+<pre><code class="language-java">public class AccessControlProvider {  
+    private static Map&lt;String, AccessControl&gt; map = new HashMap&lt;String, AccessControl&gt;();  
+
+    static {  
+
+        System.out.println(&quot;Fetching data from external resources and creating access control objects...&quot;);  
+        map.put(&quot;USER&quot;, new AccessControl(&quot;USER&quot;, &quot;DO_WORK&quot;));  
+        map.put(&quot;ADMIN&quot;, new AccessControl(&quot;ADMIN&quot;, &quot;ADD/REMOVE USERS&quot;));  
+        map.put(&quot;MANAGER&quot;, new AccessControl(&quot;MANAGER&quot;, &quot;GENERATE/READ REPORTS&quot;));  
+        map.put(&quot;VP&quot;, new AccessControl(&quot;VP&quot;, &quot;MODIFY REPORTS&quot;));  
+    }  
+
+    public static AccessControl getAccessControlObject(String controlLevel) {  
+        AccessControl ac = null;  
+        ac = map.get(controlLevel);  
+        if (ac != null) {  
+            return ac.clone();  
+        }  
+        return null;  
+    }  
+}
+</code></pre>
+
+<ul>
+<li>Cuối cùng là test kết quả:</li>
+</ul>
+
+<pre><code class="language-java">public class TestPrototypePattern {  
+    public static void main(String[] args) {  
+        AccessControl userAccessControl = AccessControlProvider.getAccessControlObject(&quot;USER&quot;);  
+        User user = new User(&quot;User A&quot;, &quot;USER Level&quot;, userAccessControl);  
+
+        System.out.println(&quot;************************************&quot;);  
+        System.out.println(user);  
+
+        userAccessControl = AccessControlProvider.getAccessControlObject(&quot;USER&quot;);  
+        user = new User(&quot;User B&quot;, &quot;USER Level&quot;, userAccessControl);  
+        System.out.println(&quot;Changing access control of: &quot; + user.getUserName());  
+        user.getAccessControl().setAccess(&quot;READ REPORTS&quot;);  
+        System.out.println(user);  
+
+        System.out.println(&quot;************************************&quot;);  
+
+        AccessControl managerAccessControl = AccessControlProvider.getAccessControlObject(&quot;MANAGER&quot;);  
+        user = new User(&quot;User C&quot;, &quot;MANAGER Level&quot;, managerAccessControl);  
+        System.out.println(user);  
+    }  
+}
+</code></pre>
+
+<p>Trong đoạn test thì chúng ta tạo một đối tượng <code>AccessControl</code> có level là User và được gán cho đối tượng A, có quyền truy cập là <code>DO_WORK</code>. Sau đó có hai đối tượng B nhưng chúng ta cần đổi quyền truy cập là <code>READ REPORT</code> cho B.
+Kết quả của đoạn test trên:</p>
+
+<pre><code>Fetching data from external resources and creating access control objects...
+************************************
+Name: User A, Level: USER Level, Access Control Level:USER, Access: DO_WORK
+Changing access control of: User B
+Name: User B, Level: USER Level, Access Control Level:USER, Access: READ REPORTS
+************************************
+Name: User C, Level: MANAGER Level, Access Control Level:MANAGER, Access: GENERATE/READ REPORTS
+</code></pre>
+
+<h1 id="4-khi-nào-dùng">4. Khi nào dùng</h1>
+
+<p>Chúng ta dùng <code>Prototype pattern</code> khi :</p>
+
+<ul>
+<li>muốn tạo đối tượng run-time</li>
+<li>chúng ta muốn truyền đối tượng vào một hàm nào đó để xử lý thì thay vì truyền đối tượng gốc dễ bị ảnh hưởng dữ liệu thì chúng ta truyền một clone của nó.</li>
+<li>khi chi phí để tạo đối tượng mới bằng từ khóa <code>new</code> là quá lớn.</li>
+</ul>
+
+<h1 id="5-source-code">5. Source code</h1>
+
+<p><a href="https://github.com/tubean/design-pattern/">https://github.com/tubean/design-pattern/</a></p>
+
               
             </div>
           </div>
@@ -311,9 +514,9 @@ if (!doNotTrack) {
                   <div class="post-footer-tags">
                     <span class="text-color-light text-small">THẺ ĐÁNH DẤU</span><br/>
                     
-  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/hello/">Hello</a>
+  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/design-pattern/">design pattern</a>
 
-  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/youtube/">youtube</a>
+  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/prototype/">prototype</a>
 
                   </div>
                 
@@ -326,7 +529,7 @@ if (!doNotTrack) {
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2018/11/blog-with-hugo/" data-tooltip="[Hugo] Hướng dẫn xây dựng blog cá nhân bằng Hugo &#43; Github">
+                <a class="post-action-btn btn btn--disabled">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">Tiếp</span>
@@ -334,7 +537,7 @@ if (!doNotTrack) {
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--disabled">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2018/12/spring-boot-mongo-db/" data-tooltip="[Spring Boot] Dựng app CRUD đơn giản bằng Spring Boot &#43; MongoDB trên Intelij">
               
                   <span class="hide-xs hide-sm text-small icon-mr">Trước</span>
                   <i class="fa fa-angle-right"></i>
@@ -352,19 +555,19 @@ if (!doNotTrack) {
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://tubean.github.io/2018/10/hello/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://tubean.github.io/2018/12/prototype-pattern/">
               <i class="fa fa-facebook-official"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://tubean.github.io/2018/10/hello/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://tubean.github.io/2018/12/prototype-pattern/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://tubean.github.io/2018/10/hello/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://tubean.github.io/2018/12/prototype-pattern/">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -412,7 +615,7 @@ if (!doNotTrack) {
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2018/11/blog-with-hugo/" data-tooltip="[Hugo] Hướng dẫn xây dựng blog cá nhân bằng Hugo &#43; Github">
+                <a class="post-action-btn btn btn--disabled">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">Tiếp</span>
@@ -420,7 +623,7 @@ if (!doNotTrack) {
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--disabled">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2018/12/spring-boot-mongo-db/" data-tooltip="[Spring Boot] Dựng app CRUD đơn giản bằng Spring Boot &#43; MongoDB trên Intelij">
               
                   <span class="hide-xs hide-sm text-small icon-mr">Trước</span>
                   <i class="fa fa-angle-right"></i>
@@ -438,19 +641,19 @@ if (!doNotTrack) {
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://tubean.github.io/2018/10/hello/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://tubean.github.io/2018/12/prototype-pattern/">
               <i class="fa fa-facebook-official"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://tubean.github.io/2018/10/hello/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://tubean.github.io/2018/12/prototype-pattern/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://tubean.github.io/2018/10/hello/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://tubean.github.io/2018/12/prototype-pattern/">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -480,19 +683,19 @@ if (!doNotTrack) {
   <ul class="share-options">
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ftubean.github.io%2F2018%2F10%2Fhello%2F">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ftubean.github.io%2F2018%2F12%2Fprototype-pattern%2F">
           <i class="fa fa-facebook-official"></i><span>Chia sẻ với Facebook</span>
         </a>
       </li>
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Ftubean.github.io%2F2018%2F10%2Fhello%2F">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Ftubean.github.io%2F2018%2F12%2Fprototype-pattern%2F">
           <i class="fa fa-twitter"></i><span>Chia sẻ với Twitter</span>
         </a>
       </li>
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Ftubean.github.io%2F2018%2F10%2Fhello%2F">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Ftubean.github.io%2F2018%2F12%2Fprototype-pattern%2F">
           <i class="fa fa-google-plus"></i><span>Chia sẻ với Google&#43;</span>
         </a>
       </li>
@@ -800,9 +1003,9 @@ $(document).ready(function() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = 'https:\/\/tubean.github.io\/2018\/10\/hello\/';
+          this.page.url = 'https:\/\/tubean.github.io\/2018\/12\/prototype-pattern\/';
           
-            this.page.identifier = '\/2018\/10\/hello\/'
+            this.page.identifier = '\/2018\/12\/prototype-pattern\/'
           
         };
         (function() {
