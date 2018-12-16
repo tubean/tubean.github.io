@@ -31,7 +31,9 @@
   
   
     
-      <meta property="article:section" content="design pattern">
+      <meta property="article:section" content="Java">
+    
+      <meta property="article:section" content="Design Patterns">
     
   
   
@@ -278,7 +280,9 @@ if (!doNotTrack) {
   
     <span>mục</span>
     
-      <a class="category-link" href="https://tubean.github.io/categories/design-pattern">design pattern</a>
+      <a class="category-link" href="https://tubean.github.io/categories/java">Java</a>, 
+    
+      <a class="category-link" href="https://tubean.github.io/categories/design-patterns">Design Patterns</a>
     
   
 
@@ -341,7 +345,7 @@ if (!doNotTrack) {
 <p>Nhược điểm của cách làm này chính là instance static luôn được tạo bất kể bạn có dùng nó hay không. Vì vậy nếu trong trường hợp không có request đến thì nó sẽ làm lãng phí tài nguyên bộ nhớ. Để khắc phục thì chúng ta sẽ chỉ tạo instace trong lần request đầu tiên và những lần sau sẽ trả về đúng instance đó:</p>
 
 <pre><code class="language-java">public class SingletonLazy {  
-  
+
     private static SingletonLazy sc = null;  
    private SingletonLazy(){}  
    public static SingletonLazy getInstance(){  
@@ -356,9 +360,9 @@ if (!doNotTrack) {
 <p>Với cách trên thì khi chưa có request nào dùng đến method <code>getInstance()</code> thì sc luôn là null. Nó chỉ được tạo trong lần đầu request và những lần gọi sau luôn trả về cùng instance trước đó. Tuy vậy java là ngôn ngữ cho phép xử lý đa luồng. Điều đó có nghĩa là nếu cùng lúc có 2 request đến thì sẽ có thể xảy ra trường hợp tạo ra 2 instance. Để tránh điều này thì chúng ta sẽ sử dụng từ khóa <code>synchronized</code> cho method <code>getInstance()</code>:</p>
 
 <pre><code class="language-java">public class SingletonLazyMultithreaded {  
-  
+
    private static SingletonLazyMultithreaded sc = null;  
-  
+
     private SingletonLazyMultithreaded(){}  
    public static synchronized SingletonLazyMultithreaded getInstance(){  
       if(sc==null){  
@@ -374,9 +378,9 @@ if (!doNotTrack) {
 <p>Nhưng nếu bạn vẫn muốn sử dụng từ khóa <code>synchronized</code> thì bạn nên sử dụng nó theo một best practice là <code>double-checked-locking</code>:</p>
 
 <pre><code class="language-java">public class SingletonLazyDoubleCheck {  
-  
+
    private volatile static SingletonLazyDoubleCheck sc = null;  
-  
+
     private SingletonLazyDoubleCheck(){}  
    public static SingletonLazyDoubleCheck getInstance(){  
       if(sc==null){  
@@ -405,7 +409,7 @@ if (!doNotTrack) {
 <p>Ví dụ dưới đây sẽ đảm bảo hơn cho một class chỉ có duy nhất một instance:</p>
 
 <pre><code class="language-java">public class Singleton implements Serializable {  
-  
+
     private static final long serialVersionUID = -1093810940935189395L;  
     private static Singleton sc = new Singleton();  
     private Singleton(){  
@@ -416,26 +420,26 @@ if (!doNotTrack) {
     public static Singleton getInstance(){  
         return sc;  
     }  
-  
+
     private Object readResolve() throws ObjectStreamException {  
         return sc;  
     }  
-  
+
     private Object writeReplace() throws ObjectStreamException{  
         return sc;  
     }  
-  
+
     public Object clone() throws CloneNotSupportedException{  
         throw new CloneNotSupportedException(&quot;Singleton, cannot be clonned&quot;);  
     }  
-  
+
     private static Class getClass(String classname) throws ClassNotFoundException {  
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();  
         if(classLoader == null)  
             classLoader = Singleton.class.getClassLoader();  
         return (classLoader.loadClass(classname));  
     }  
-  
+
 }
 </code></pre>
 
@@ -453,7 +457,7 @@ if (!doNotTrack) {
 <p>Các giải pháp trên đều có thể sử dụng tùy từng trường hợp, nhưng có một cách đơn giản và dễ hơn để tạo một singleton class. Từ JDK 1.5, bạn có thể tạo singleton class bằng enum. Các Enum là những đối tượng tồn tại duy nhất trong project và bạn không thể thay đổi giá trị của chúng một khi chúng đã được tạo.</p>
 
 <pre><code class="language-java">public class SingletoneEnum {  
-  
+
    public enum SingleEnum{  
         SINGLETON_ENUM;  
    }  

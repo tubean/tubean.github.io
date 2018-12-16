@@ -6,10 +6,37 @@
     <description>Recent content in Design Patterns on Bean&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>vi</language>
-    <lastBuildDate>Thu, 29 Nov 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 15 Dec 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://tubean.github.io/categories/design-patterns/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>[Design Pattern] Prototype Design Pattern</title>
+      <link>https://tubean.github.io/2018/12/prototype-pattern/</link>
+      <pubDate>Sat, 15 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://tubean.github.io/2018/12/prototype-pattern/</guid>
+      <description>Trong lập trình hướng đối tượng, khi chúng ta muốn tạo thêm một đối tượng thì thường sử dụng từ khóa new. Tuy nhiên đối với cách tạo đối tượng này thì những thuộc tính ban đầu sẽ thường là trống, trừ khi được khởi tạo giá trị default hoặc khởi tạo ngay trong contructor. Vậy nếu chúng ta muốn tạo mới một đối tượng từ một đối tượng cũ, mang tất cả thuộc tính và giá trị đang có của đối tượng cũ như một bản clone thì làm thế nào?</description>
+    </item>
+    
+    <item>
+      <title>[Design Pattern] Singleton Design Pattern</title>
+      <link>https://tubean.github.io/2018/12/singleton-pattern/</link>
+      <pubDate>Sun, 09 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://tubean.github.io/2018/12/singleton-pattern/</guid>
+      <description>1. Singleton là gì? Đã khi nào bạn viết một class mà chỉ muốn nó chỉ có duy nhất một instance? Trong lập trình, chúng ta sẽ đôi lần thấy rằng một số class chỉ nên có duy nhất một instance, vì nếu có nhiều hơn một, chúng ta sẽ gặp phải một vài vấn đề như hành vi chương trình không chính xác, lãng phí tài nguyên hay kết quả không nhất quán.</description>
+    </item>
+    
+    <item>
+      <title>[Design Pattern] Composite Design Pattern</title>
+      <link>https://tubean.github.io/2018/12/composite-pattern/</link>
+      <pubDate>Wed, 05 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://tubean.github.io/2018/12/composite-pattern/</guid>
+      <description>Trong bài viết này, chúng ta sẽ đi tìm hiểu về một mẫu thiết kế khá thú vị, đó là Composite pattern. Trong tiếng anh thì từ composite có nghĩa là làm một hỗn hợp, tức là một thứ gì đó được tạo từ rất nhiều thành phần hỗn tạp. Đây là một mẫu thiết kế thuộc nhóm cấu trúc. Một đối tượng composite được tạo thành từ một hay nhiều đối tượng tương tự nhau (hoặc có một số chức năng tương tự nhau).</description>
+    </item>
     
     <item>
       <title>[Design Patterns] Facade Design Pattern in Java</title>
