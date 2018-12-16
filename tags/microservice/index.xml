@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Microservice on Bean&#39;s blog</title>
+    <link>https://tubean.github.io/tags/microservice/</link>
+    <description>Recent content in Microservice on Bean&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>vi</language>
+    <lastBuildDate>Sun, 16 Dec 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://tubean.github.io/tags/microservice/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>[Web architecture] Kiến trúc monolithic và microservice</title>
+      <link>https://tubean.github.io/2018/12/monolithic-vs-microservice/</link>
+      <pubDate>Sun, 16 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://tubean.github.io/2018/12/monolithic-vs-microservice/</guid>
+      <description>Trong lập trình web hiện nay, hai loại kiến trúc web mà chúng ta thường áp dụng cho ứng dụng của mình là kiến trúc một khối (Monolithic architecture) và kiến trúc microservice (Microservice architecture). Trong bài viết này, chúng ta sẽ tìm hiểu về hai loại kiến trúc này để biết ưu nhược điểm cũng như khi nào sử dụng chúng.
+1. Kiến trúc một khối (Monolithic web architecture) Kiến trúc một khối là mẫu thiết kế được dùng nhiều nhất trong giới lập trình web hiện nay bởi tính đơn giản của nó khi phát triển và khi deploy.</description>
+    </item>
+    
+  </channel>
+</rss>

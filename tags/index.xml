@@ -147,11 +147,29 @@
     </item>
     
     <item>
+      <title>Microservice</title>
+      <link>https://tubean.github.io/tags/microservice/</link>
+      <pubDate>Sun, 16 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://tubean.github.io/tags/microservice/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Mongodb</title>
       <link>https://tubean.github.io/tags/mongodb/</link>
       <pubDate>Thu, 13 Dec 2018 00:00:00 +0000</pubDate>
       
       <guid>https://tubean.github.io/tags/mongodb/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Monolithic</title>
+      <link>https://tubean.github.io/tags/monolithic/</link>
+      <pubDate>Sun, 16 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://tubean.github.io/tags/monolithic/</guid>
       <description></description>
     </item>
     
@@ -251,6 +269,15 @@
       <pubDate>Thu, 13 Dec 2018 00:00:00 +0000</pubDate>
       
       <guid>https://tubean.github.io/tags/tutorial/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Web Architecture</title>
+      <link>https://tubean.github.io/tags/web-architecture/</link>
+      <pubDate>Sun, 16 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://tubean.github.io/tags/web-architecture/</guid>
       <description></description>
     </item>
     

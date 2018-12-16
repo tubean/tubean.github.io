@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.49 with theme Tranquilpeak 0.4.3-SNAPSHOT">
+<meta name="author" content="Tu Bean">
+<meta name="keywords" content="web architecture, monolithic, microservice, compare, advantage, disadvantage">
+<meta name="description" content="Trong lập trình web hiện nay, hai loại kiến trúc web mà chúng ta thường áp dụng cho ứng dụng của mình là kiến trúc một khối (Monolithic architecture) và kiến trúc microservice (Microservice architecture). Trong bài viết này, chúng ta sẽ tìm hiểu về hai loại kiến trúc này để biết ưu nhược điểm cũng như khi nào sử dụng chúng.
+1. Kiến trúc một khối (Monolithic web architecture) Kiến trúc một khối là mẫu thiết kế được dùng nhiều nhất trong giới lập trình web hiện nay bởi tính đơn giản của nó khi phát triển và khi deploy.">
+
+
+<meta property="og:description" content="Trong lập trình web hiện nay, hai loại kiến trúc web mà chúng ta thường áp dụng cho ứng dụng của mình là kiến trúc một khối (Monolithic architecture) và kiến trúc microservice (Microservice architecture). Trong bài viết này, chúng ta sẽ tìm hiểu về hai loại kiến trúc này để biết ưu nhược điểm cũng như khi nào sử dụng chúng.
+1. Kiến trúc một khối (Monolithic web architecture) Kiến trúc một khối là mẫu thiết kế được dùng nhiều nhất trong giới lập trình web hiện nay bởi tính đơn giản của nó khi phát triển và khi deploy.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Web architecture] Kiến trúc monolithic và microservice">
+<meta name="twitter:title" content="[Web architecture] Kiến trúc monolithic và microservice">
+<meta property="og:url" content="https://tubean.github.io/2018/12/monolithic-vs-microservice/">
+<meta property="twitter:url" content="https://tubean.github.io/2018/12/monolithic-vs-microservice/">
+<meta property="og:site_name" content="Bean&#39;s blog">
+<meta property="og:description" content="Trong lập trình web hiện nay, hai loại kiến trúc web mà chúng ta thường áp dụng cho ứng dụng của mình là kiến trúc một khối (Monolithic architecture) và kiến trúc microservice (Microservice architecture). Trong bài viết này, chúng ta sẽ tìm hiểu về hai loại kiến trúc này để biết ưu nhược điểm cũng như khi nào sử dụng chúng.
+1. Kiến trúc một khối (Monolithic web architecture) Kiến trúc một khối là mẫu thiết kế được dùng nhiều nhất trong giới lập trình web hiện nay bởi tính đơn giản của nó khi phát triển và khi deploy.">
+<meta name="twitter:description" content="Trong lập trình web hiện nay, hai loại kiến trúc web mà chúng ta thường áp dụng cho ứng dụng của mình là kiến trúc một khối (Monolithic architecture) và kiến trúc microservice (Microservice architecture). Trong bài viết này, chúng ta sẽ tìm hiểu về hai loại kiến trúc này để biết ưu nhược điểm cũng như khi nào sử dụng chúng.
+1. Kiến trúc một khối (Monolithic web architecture) Kiến trúc một khối là mẫu thiết kế được dùng nhiều nhất trong giới lập trình web hiện nay bởi tính đơn giản của nó khi phát triển và khi deploy.">
+<meta property="og:locale" content="vi">
+
+  
+    <meta property="article:published_time" content="2018-12-16T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2018-12-16T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="web architecture">
+    
+  
+  
+    
+      <meta property="article:tag" content="web architecture">
+    
+      <meta property="article:tag" content="monolithic">
+    
+      <meta property="article:tag" content="microservice">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1544957029/Icon_WebArchitect.png">
+  <meta property="twitter:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1544957029/Icon_WebArchitect.png">
+
+
+  <meta property="og:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1541273502/Black_flag.svg.png">
+  <meta property="twitter:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1541273502/Black_flag.svg.png">
+
+
+
+
+  <meta property="og:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/c_scale,w_1836/v1540914499/C360_2016-03-22-17-45-21-487.jpg">
+  <meta property="twitter:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/c_scale,w_1836/v1540914499/C360_2016-03-22-17-45-21-487.jpg">
+
+
+    <title>[Web architecture] Kiến trúc monolithic và microservice</title>
+
+    <link rel="icon" href="https://tubean.github.io/favicon/flappybird.png">
+    
+
+    
+
+    <link rel="canonical" href="https://tubean.github.io/2018/12/monolithic-vs-microservice/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://tubean.github.io/css/style-nnm2spxvve8onlujjlegkkytaehyadd4ksxc1hyzzq9a2wvtrgbljqyulomn.min.css" />
+    
+    
+      
+        <link rel="stylesheet"  crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" integrity="sha384-TEMocfGvRuD1rIAacqrknm5BQZ7W7uWitoih+jMNFXQIbNl16bO8OZmylH/Vi/Ei">
+      
+    
+      
+        <link rel="stylesheet"  href="https://tubean.github.io/css/main.css">
+      
+    
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-128433621-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://tubean.github.io/">Bean&#39;s blog</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://tubean.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://res.cloudinary.com/deop9ytsv/image/upload/c_scale,w_1836/v1540914499/C360_2016-03-22-17-45-21-487.jpg" alt="Ảnh đại diện" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://tubean.github.io/#about">
+          <img class="sidebar-profile-picture" src="https://res.cloudinary.com/deop9ytsv/image/upload/c_scale,w_1836/v1540914499/C360_2016-03-22-17-45-21-487.jpg" alt="Ảnh đại diện" />
+        </a>
+        <h4 class="sidebar-profile-name">Tu Bean</h4>
+        
+          <h5 class="sidebar-profile-bio">Coding, writing and sharing</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tubean.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Trang chủ</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tubean.github.io/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">Danh mục</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tubean.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Thẻ thông tin</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tubean.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Lưu trữ</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tubean.github.io/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">Thông tin</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://bitbucket.org/tubean/" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bitbucket-square"></i>
+      
+      <span class="sidebar-button-desc">Bitbucket</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/tubean" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">Github</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.instagram.com/zeref_bean/" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-instagram"></i>
+      
+      <span class="sidebar-button-desc">Instagram</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.linkedin.com/in/tubean/" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-linkedin"></i>
+      
+      <span class="sidebar-button-desc">LinkedIn</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+  <div class="post-header-cover
+              text-center
+              "
+       style="background-image:url('https://res.cloudinary.com/deop9ytsv/image/upload/v1541273502/Black_flag.svg.png')"
+       data-behavior="5">
+    
+      <div class="post-header main-content-wrap text-center">
+  
+    <h1 class="post-title" itemprop="headline">
+      [Web architecture] Kiến trúc monolithic và microservice
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2018-12-16T00:00:00Z">
+        
+  tháng 12 16, 2018
+
+      </time>
+    
+    
+  
+  
+    <span>mục</span>
+    
+      <a class="category-link" href="https://tubean.github.io/categories/web-architecture">web architecture</a>
+    
+  
+
+  </div>
+
+</div>
+    
+  </div>
+
+
+      <div id="main" data-behavior="5"
+        class="hasCover
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              
+
+<p>Trong lập trình web hiện nay, hai loại kiến trúc web mà chúng ta thường áp dụng cho ứng dụng của mình là kiến trúc một khối (Monolithic architecture) và kiến trúc microservice (Microservice architecture). Trong bài viết này, chúng ta sẽ tìm hiểu về hai loại kiến trúc này để biết ưu nhược điểm cũng như khi nào sử dụng chúng.</p>
+
+<h1 id="1-kiến-trúc-một-khối-monolithic-web-architecture">1. Kiến trúc một khối (Monolithic web architecture)</h1>
+
+<p>Kiến trúc một khối là mẫu thiết kế được dùng nhiều nhất trong giới lập trình web hiện nay bởi tính đơn giản của nó khi phát triển và khi deploy. Mặc dù mỗi ứng dụng sẽ được triển khai theo những cách khác nhau, nhưng nhìn chung thì khi ứng dụng được lập trình theo kiến trúc một khối, kết quả thường đạt được như sau:</p>
+
+<ul>
+<li>Nó có thể hỗ trợ nhiều loại client như browser hay các app native trên cả desktop và mobile.</li>
+<li>Nó có thể expose API cho bên thứ ba.</li>
+<li>Nó có thể tích hợp với các ứng dụng khác thông qua REST/SOAP web service hoặc các message queue.</li>
+<li>Nó có thể xử lý các request dạng HTTP, thực hiện logic nghiệp vụ, truy cập cơ sở dữ liệu và có thể trao đổi dữ liệu với các hệ thống khác.</li>
+<li>Nó có thể chạy trên các container như Tomcat, JBoss,..</li>
+<li>Nó có thể scale theo chiều ngang (vertical scalability) bằng cách tăng sức mạnh của phần cứng hoặc scale theo chiều dọc (horizontal scalability) bằng cách load balancers.</li>
+</ul>
+
+<blockquote>
+<p>So sánh giữa REST và SOAP web service tại <a href="https://tubean.github.io/2018/12/web-service-s%E1%BB%B1-kh%C3%A1c-nhau-gi%E1%BB%AFa-soap-v%C3%A0-restful-web-service-trong-java/">đây</a>.</p>
+</blockquote>
+
+<p>Một ví dụ phổ biến về kiến trúc một khối có thể được mô tả như sau:</p>
+
+<blockquote>
+<p>Hãy tưởng tượng một hệ thống đặt phòng khách sạn trực tuyến nhận đơn đặt hàng trực tuyến từ khách hàng, xác minh phòng trống, xác minh tùy chọn thanh toán, đặt phòng và thông báo cho khách sạn. Ứng dụng này bao gồm một số layer và component bao gồm ứng dụng phía client, xây dựng giao diện người dùng phong phú và một số thành phần phụ trợ khác chịu trách nhiệm quản lý các đặt phòng, xác minh thanh toán, thông báo cho khách hàng / khách sạn, v.v.
+Ứng dụng sẽ được đóng gói và deploy bằng một file <strong>Web Application Archive (WAR)</strong> duy nhất và được chạy trên một container như Tomcat và có thể scale bằng load balancer. Hãy xem diagram dưới đây:</p>
+</blockquote>
+
+<p><img src="https://res.cloudinary.com/deop9ytsv/image/upload/v1544949567/web_1.jpg" alt="img_1" /></p>
+
+<h2 id="những-ưu-điểm-của-kiến-trúc-một-khối">Những ưu điểm của kiến trúc một khối</h2>
+
+<h4 id="ưu-điểm">Ưu điểm:</h4>
+
+<ul>
+<li>Dễ phát triển vì các stack công nghệ thống nhất ở tất cả các layer.</li>
+<li>Dễ test do  toàn bộ project được đóng gói trong một package nên dễ dàng chạy test integrantion và test end-to-end.</li>
+<li>Deploy đơn giản và nhanh chóng nếu bạn chỉ có một package để bận tâm.</li>
+<li>Dễ scale vì chúng ta có thể có nhiều instance cho load banlancer.</li>
+<li>Yêu cầu team size nhỏ cho việc maintain app.</li>
+<li>Team member có thể chia sẻ ít nhiều về skill.</li>
+<li>Tech stack đơn giản và đa số là dễ học.</li>
+<li>Phát triển ban đầu nhanh hơn do đó có thể đem sale hoặc marketing nhanh hơn.</li>
+<li>Yêu cầu cơ sở hạ tầng đơn giản. Thậm chí một container đơn giản cũng đủ để chạy ứng dụng.</li>
+</ul>
+
+<h4 id="nhược-điểm">Nhược điểm:</h4>
+
+<ul>
+<li>Các component được liên kết chặt chẽ với nhau dẫn đến side effect không mong muốn như khi thay đổi một component ảnh hưởng đến một component khác.</li>
+<li>Theo thời gian thì project trở nên phức tạp và lớn dần. Các tính năng mới sẽ mất nhiều thời gian hơn để phát triển và tái cấu trúc các tính năng hiện có sẽ nhiều khó khăn hơn.</li>
+<li>Toàn bộ ứng dụng cần được triển khai lại cho bất kỳ thay đổi nào.</li>
+<li>Không hề dễ để hiểu project do các module liên quan chặt chẽ lẫn nhau. Một issue nhỏ cũng có thể làm chết toàn bộ ứng dụng.</li>
+<li>Áp dụng công nghệ mới khó khăn vì toàn bộ ứng dụng phải thay đổi. Do đó nhiều ứng dụng một khối thường phụ thuộc một công nghệ cũ và lỗi thời.</li>
+<li>Các service quan trọng không thể scale riêng dẫn đến lãng phí tài nguyên vì toàn bộ ứng dụng phải scale theo.</li>
+<li>Các ứng dụng một khối lớn sẽ có thời gian khởi động lâu và tốn tài nguyên CPU cũng như bộ nhớ.</li>
+<li>Các team tham gia vào dự án phải phụ thuộc lẫn nhau và tất khó để mở rộng quy mô team.</li>
+</ul>
+
+<h1 id="2-kiến-trúc-microservice-mocroservice-architecture">2. Kiến trúc microservice (Mocroservice architecture)</h1>
+
+<p>Đây là loại kiến trúc đang dần trở nên phổ biến trong những năm gần đây nhờ khả năng mudule hóa và khả năng mở rộng. Kiến trúc microservice có thể cung cấp hầu hết các tính năng của một ứng dụng một khối. Ngoài ra, nó cung cấp nhiều tính năng và linh hoạt hơn, do đó nó là sự lựa chọn ưu việt cho ứng dụng phức tạp. Không giống như kiến trúc một khối, khá khó để khái quát hóa kiến trúc microservice vì nó có thể thay đổi nhiều tùy thuộc vào trường hợp sử dụng và triển khai. Nhưng nhìn chung thì chúng cũng có một số đặc điểm như sau:</p>
+
+<ul>
+<li>Các component trong kiến trúc microservice liên kết khá lỏng lẻo (loose coupling). Các component có thể được phát triển, test, deploy và scale độc lập mà không ảnh hưởng đến các component khác.</li>
+<li>Các component không cần phải được phát triển cùng một stack công nghệ. Điều này có nghĩa là một component có thể chọn stack công nghệ và ngôn ngữ lập trình của riêng nó.</li>
+<li>Chúng thường sử dụng các tính năng nâng cao như truy tìm dịch vụ (service discovery), circuit breaking, cân bằng tải (load balance),&hellip;</li>
+<li>Các component chủ yếu là nhẹ và chúng làm theo chức năng riêng biệt. Ví dụ dịch vụ xác thực sẽ chỉ quan tâm xác thực người dùng vào hệ thống.</li>
+<li>Thường có một thiết lập giám sát (monitor) và xử lý sự cố.</li>
+</ul>
+
+<p>Một ví dụ phổ biến về kiến trúc microservice có thể được mô tả như sau:</p>
+
+<blockquote>
+<p>Chúng ta hãy tưởng tượng một hệ thống thương mại điện tử trực tuyến khổng lồ, nơi khách hàng có thể xem các danh mục hàng hóa, đánh dấu mục yêu thích, thêm các mặt hàng vào giỏ hàng, thực hiện và theo dõi đơn đặt hàng, v.v. Hệ thống có quản lý hàng tồn kho, quản lý khách hàng, nhiều phương thức thanh toán, quản lý đơn hàng, v.v. Ứng dụng này bao gồm một số module và component bao gồm UI gateway, xây dựng giao diện người dùng đẹp, xử lý xác thực người dùng, cân bằng tải, và một số ứng dụng khác chịu trách nhiệm quản lý kho, xác minh thanh toán và quản lý đơn hàng. Nó cũng có giám sát hiệu suất và tự động chuyển đổi dự phòng cho các service.
+Ứng dụng được deploy bằng nhiều file WAR trên các Docker container và được host trên một dịch vụ cloud. Hãy xem diagram dưới đây:</p>
+</blockquote>
+
+<p><img src="https://res.cloudinary.com/deop9ytsv/image/upload/v1544949567/web_2.jpg" alt="img_2" /></p>
+
+<h2 id="những-ưu-điểm-của-kiến-trúc-microservice">Những ưu điểm của kiến trúc microservice</h2>
+
+<h4 id="ưu-điểm-1">Ưu điểm:</h4>
+
+<ul>
+<li>Các component có kết nối lỏng lẻo dẫn đến dễ cách ly, dễ test và khởi động nhanh.</li>
+<li>Vòng đời phát triển nhanh hơn. Tính năng mới được phát triển nhanh hơn và tính năng cũ được cấu trúc lại dễ hơn.</li>
+<li>Các service có thể deploy độc lập nên ứng dụng dễ đọc, dễ tạo các bản vá hơn.</li>
+<li>Những issue, ví dụ liên quan đến memry leak một trong các service, bị cô lập và có thể không làm sập ứng dụng.</li>
+<li>Việc áp dụng các công nghệ mới dễ hơn. Các component có thể được nâng cấp độc lập với nhau.</li>
+<li>Các mô hình scale phức tạp và hiệu quả hơn có thể được thiết lập. Các service quan trọng có thể scale hiệu quả hơn. Các component riêng sẽ khởi động nhanh hơn và cải thiện thời gian khởi động của cả hệ thống.</li>
+<li>Các team tham gia sẽ ít phụ thuộc lẫn nhau. Kiến trúc này rất thích hợp cho các đội Agile.</li>
+</ul>
+
+<h4 id="nhược-điểm-1">Nhược điểm:</h4>
+
+<ul>
+<li>Phức tạp hơn về mặt tổng thể vì các component khác nhau có các stack công nghệ khác nhau nên buộc team phải tập trung đầu tư thời gian để theo kịp công nghệ.</li>
+<li>Khó thực hiện test end-to-end và integration test vì có nhiều stack công nghệ khác nhau.</li>
+<li>Deploy toàn bộ ứng dụng phức tạp hơn vì có nhiều container và nền tảng ảo hóa liên quan.</li>
+<li>Ứng dụng được scale hiệu quả hơn nhưng thiết lập nâng cấp sẽ phức tạp hơn vì nó sẽ yêu cầu nâng cao nhiều tính năng như truy tìm dịch vụ (service discovery), định tuyến DNS,&hellip;</li>
+<li>Yêu cầu một team-size lớn để maintain ứng dụng vì có nhiều component và công nghệ khác nhau.</li>
+<li>Các thành viên trong team chia sẻ các skill khác nhau dựa trên component họ làm nên sẽ tạo ra sự khó khăn khi thay thế và chia sẻ kiến thức.</li>
+<li>Stack công nghệ phức tạp và khó để học hơn.</li>
+<li>Thời gian phát triển ban đầu là chậm nên thời gian để có thể làm marketing lâu hơn.</li>
+<li>Yêu cầu cơ sở hạ tầng phức tạp. Thông thường sẽ yêu cầu nhiều container (Docker) và nhiều máy JVM để chạy.</li>
+</ul>
+
+<h1 id="3-khi-nào-sử-dụng">3. Khi nào sử dụng</h1>
+
+<h2 id="3-1-kiến-trúc-một-khối">3.1 Kiến trúc một khối</h2>
+
+<p>Chúng ta thường sử dụng kiến trúc một khối khi:</p>
+
+<ul>
+<li>Phạm vi ứng dụng là nhỏ và được xác định rõ. Bạn chắc chắn ứng dụng sẽ không phát triển mạnh về các tính năng. Ví dụ: blog, web mua sắm trực tuyến đơn giản, ứng dụng CRUD đơn giản&hellip;</li>
+<li>Team-size nhỏ, thường ít hơn 8 người.</li>
+<li>Mặt bằng kỹ năng của các thành viên trong team thường không cao.</li>
+<li>Thời gian để có thể marketing là quan trọng.</li>
+<li>Bạn không muốn mất thời gian cho cơ sở hạ tầng, monitoring,&hellip;</li>
+<li>Khi người dùng thường nhỏ và ít nên bạn không mong đợi họ sẽ mở rộng. Ví dụ các ứng dụng doanh nghiệp nhắm đến mục tiêu là một nhóm người cụ thể&hellip;</li>
+</ul>
+
+<h2 id="3-2-kiến-trúc-microservice">3.2 Kiến trúc microservice</h2>
+
+<p>Chúng ta thường sử dụng kiến trúc microservice khi:</p>
+
+<ul>
+<li>Ứng dụng có phạm vi lớn và bạn xác định các tính năng sẽ được phát triển rất mạnh theo thời gian. Ví du: cửa hàng thương mại điện tử trực tuyến, dịch vụ truyền thông xã hội, dịch vụ truyền phát video với số lượng người dùng lơn, dịch vụ cung cấp API,&hellip;</li>
+<li>Team-size lơn, có đủ thành viên để phát triển các component riêng lẻ một cách hiệu quả.</li>
+<li>Mặt bằng kỹ năng của team tốt và các thành viên tự tin về các mẫu thiết kế microservice nâng cao.</li>
+<li>Thời gian để đem đi marketing không quan trọng. Kiến trúc microservice sẽ mất nhiều thời gian hơn để hoạt động được.</li>
+<li>Bạn sẵn sàng chi nhiều hơn cho cơ sở hạ tầng, giám sát,&hellip; để nâng cao chất lượng sản phẩm.</li>
+<li>Tiềm năng về người dùng lớn và bạn kỳ vọng số lượng người dùng sẽ phát triển. Ví dụ một phương tiện truyền thoong xã hội nhắm mục tiêu là người dùng trên toàn thế giới.</li>
+</ul>
+
+<h1 id="tham-khảo">Tham khảo:</h1>
+
+<p><a href="https://articles.microservices.com/monolithic-vs-microservices-architecture-5c4848858f59">https://articles.microservices.com/monolithic-vs-microservices-architecture-5c4848858f59</a></p>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">THẺ ĐÁNH DẤU</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/web-architecture/">web architecture</a>
+
+  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/monolithic/">monolithic</a>
+
+  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/microservice/">microservice</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">Tiếp</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2018/12/prototype-pattern/" data-tooltip="[Design Pattern] Protorype Design Pattern">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">Trước</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://tubean.github.io/2018/12/monolithic-vs-microservice/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://tubean.github.io/2018/12/monolithic-vs-microservice/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://tubean.github.io/2018/12/monolithic-vs-microservice/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2018 <a href="https://bitbucket.org/tubean/">Do Anh Tu</a>. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">Tiếp</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2018/12/prototype-pattern/" data-tooltip="[Design Pattern] Protorype Design Pattern">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">Trước</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://tubean.github.io/2018/12/monolithic-vs-microservice/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://tubean.github.io/2018/12/monolithic-vs-microservice/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://tubean.github.io/2018/12/monolithic-vs-microservice/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ftubean.github.io%2F2018%2F12%2Fmonolithic-vs-microservice%2F">
+          <i class="fa fa-facebook-official"></i><span>Chia sẻ với Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Ftubean.github.io%2F2018%2F12%2Fmonolithic-vs-microservice%2F">
+          <i class="fa fa-twitter"></i><span>Chia sẻ với Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Ftubean.github.io%2F2018%2F12%2Fmonolithic-vs-microservice%2F">
+          <i class="fa fa-google-plus"></i><span>Chia sẻ với Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://res.cloudinary.com/deop9ytsv/image/upload/c_scale,w_1836/v1540914499/C360_2016-03-22-17-45-21-487.jpg" alt="Ảnh đại diện" />
+    
+    <h4 id="about-card-name">Tu Bean</h4>
+    
+      <div id="about-card-bio">Coding, writing and sharing</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Web developer
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        Viet Nam
+      </div>
+    
+  </div>
+</div>
+
+    <div id="algolia-search-modal" class="modal-container">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="close-button"><i class="fa fa-close"></i></span>
+      <a href="https://algolia.com" target="_blank" rel="noopener" class="searchby-algolia text-color-light link-unstyled">
+        <span class="searchby-algolia-text text-color-light text-small">by</span>
+        <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+      </a>
+      <i class="search-icon fa fa-search"></i>
+      <form id="algolia-search-form">
+        <input type="text" id="algolia-search-input" name="search"
+          class="form-control input--large search-input" placeholder="Tìm kiếm" />
+      </form>
+    </div>
+    <div class="modal-body">
+      <div class="no-result text-color-light text-center">không tìm thấy kết quả</div>
+      <div class="results">
+        
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/12/monolithic-vs-microservice/">
+                <h3 class="media-heading">[Web architecture] Kiến trúc monolithic và microservice</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Trong lập trình web hiện nay, hai loại kiến trúc web mà chúng ta thường áp dụng cho ứng dụng của mình là kiến trúc một khối (Monolithic architecture) và kiến trúc microservice (Microservice architecture). Trong bài viết này, chúng ta sẽ tìm hiểu về hai loại kiến trúc này để biết ưu nhược điểm cũng như khi nào sử dụng chúng.
+1. Kiến trúc một khối (Monolithic web architecture) Kiến trúc một khối là mẫu thiết kế được dùng nhiều nhất trong giới lập trình web hiện nay bởi tính đơn giản của nó khi phát triển và khi deploy.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/12/prototype-pattern/">
+                <h3 class="media-heading">[Design Pattern] Protorype Design Pattern</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Trong lập trình hướng đối tượng, khi chúng ta muốn tạo thêm một đối tượng thì thường sử dụng từ khóa new. Tuy nhiên đối với cách tạo đối tượng này thì những thuộc tính ban đầu sẽ thường là trống, trừ khi được khởi tạo giá trị default hoặc khởi tạo ngay trong contructor. Vậy nếu chúng ta muốn tạo mới một đối tượng từ một đối tượng cũ, mang tất cả thuộc tính và giá trị đang có của đối tượng cũ như một bản clone thì làm thế nào?</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/12/spring-boot-mongo-db/">
+                <h3 class="media-heading">[Spring Boot] Dựng app CRUD đơn giản bằng Spring Boot &#43; MongoDB trên Intelij</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">MongoDB hiện đang là cơ sở dữ liệu NoSQL phổ biến nhất. Bài viết này là một hướng dẫn nhỏ về cách sử dụng Spring Boot kết hợp với MongoDB để tạo một app dạng CRUD.
+Các tool sử dụng:  Java Spring Boot Maven MongoDB Postman  1. Tạo database Trước khi bắt đầu xây dựng app, chúng ta cần chuẩn bị một instance của MongoDB để truy xuất tới nó.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/12/web-service-s%E1%BB%B1-kh%C3%A1c-nhau-gi%E1%BB%AFa-soap-v%C3%A0-restful-web-service-trong-java/">
+                <h3 class="media-heading">[Web Service] Sự khác nhau giữa SOAP và RESTful Web Service trong Java</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Cả 2 loại SOAP và RESTful đều cho phép phía client gửi request đến server để query, nhưng chúng được thực hiện bằng những cách khác nhau. Sự khác nhau chính giữa SOAP và REST là cách mà client giao tiếp server thông qua SOAP sẽ bị hạn chế bởi nhiều quy tắc và format được thiết kế chính xác, trong khi với REST cho phép việc giao tiếp thông qua giao thức HTTP và ít các quy tắc rườm rà hơn.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/12/java-functional-composition/">
+                <h3 class="media-heading">[Functional Programming]  Java Functional Composition</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Function composition là một khái niệm về việc nhiều function có thể lồng nhau để làm param của một function khác. Bạn có thể tự compose nhiều function (dùng Lambda Expression) vào trong một function của riêng bạn, nhưng Java cũng cung cấp những cách compose riêng giúp bạn làm việc đó dễ hơn. Trong bài viết này chúng ta cùng tìm hiểu làm thế nào để compose các function bằng các feature có sẵn của Java.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/12/java-higher-order-function/">
+                <h3 class="media-heading">[Functional Programming] Java Higher Order Functions</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Một higher order function là một function nhận một function (method) khác làm parameter, hoặc nó có kết quả trả về là một function. Bài viết này sẽ giới thiệu một vài ví dụ về higher order function.
+1. Sorting Collections Ví dụ đầu tiên về higher order function là method Collections.sort() nhận một Comparator như một tham số:
+List&lt;String&gt; list = new ArrayList&lt;&gt;(); list.add(&quot;One&quot;); list.add(&quot;Abc&quot;); list.add(&quot;BCD&quot;); Collections.sort(list, (String a, String b) -&gt; { return a.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/12/singleton-pattern/">
+                <h3 class="media-heading">[Design Pattern] Singleton Design Pattern</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">1. Singleton là gì? Đã khi nào bạn viết một class mà chỉ muốn nó chỉ có duy nhất một instance? Trong lập trình, chúng ta sẽ đôi lần thấy rằng một số class chỉ nên có duy nhất một instance, vì nếu có nhiều hơn một, chúng ta sẽ gặp phải một vài vấn đề như hành vi chương trình không chính xác, lãng phí tài nguyên hay kết quả không nhất quán.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/12/java-functional-programming/">
+                <h3 class="media-heading">[Functional Programming]  Functional Programing trong Java</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">1. Functional Programming là gì? Functional Programming hay lập trình chức năng là kiểu lập trình mà function được chọn làm đơn vị thao tác cơ bản. Functional programming tập trung vào sử dụng tính năng của các hàm và tránh sử dụng các biến cũng như thay đổi giá trị của chúng. Nó hơi ngược với procedure programming như chúng ta vẫn thường sử dụng (OOP tập trung vào chi tiết hoạt động của chương trình và thường sử dụng các biến và thay đổi trạng thái của chương trình).</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/12/composite-pattern/">
+                <h3 class="media-heading">[Design Pattern] Composite Design Pattern</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Trong bài viết này, chúng ta sẽ đi tìm hiểu về một mẫu thiết kế khá thú vị, đó là Composite pattern. Trong tiếng anh thì từ composite có nghĩa là làm một hỗn hợp, tức là một thứ gì đó được tạo từ rất nhiều thành phần hỗn tạp. Đây là một mẫu thiết kế thuộc nhóm cấu trúc. Một đối tượng composite được tạo thành từ một hay nhiều đối tượng tương tự nhau (hoặc có một số chức năng tương tự nhau).</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/12/junix-5x/">
+                <h3 class="media-heading">[Java] Unit Test với JUnit 5x</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Phiên bản hiện tại của JUnit là JUnit 5 và nó bao gồm các component khác nhau:
+ JUnit Platform: layer nền tảng cho phép những testing framework có thể chạy trên máy ảo JVM. JUnit Jupiter: đây chính là phiên bản JUnit 5 và được chạy trên JUnit Platform. JUnit Vintage: kế thừa từ TestEngine và cho phép chạy các phiên bản cũ hơn của JUnit.  1. Cài đặt bằng Gradle buildscript { repositories { mavenCentral() // The following is only necessary if you want to use SNAPSHOT releases.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+      </div>
+    </div>
+    <div class="modal-footer">
+      <p class="results-count text-medium"
+         data-message-zero="không tìm thấy kết quả"
+         data-message-one="tìm thấy 1 kết quả "
+         data-message-other="tìm thấy {n} kết quả">
+         22 posts found
+      </p>
+    </div>
+  </div>
+</div>
+    
+  
+    
+    <div id="cover" style="background-image:url('https://tubean.github.io/images/cover-v1.2.0.jpg');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://tubean.github.io/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+
+
+  
+    <script crossorigin="anonymous" integrity="sha384-jmxIlussZWB7qCuB+PgKG1uLjjxbVVIayPJwi6cG6Zb4YKq0JIw+OMnkkEC7kYCq" src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js"></script>
+  
+
+  
+    <script crossorigin="anonymous" integrity="sha384-IiI65aU9ZYub2MY9zhtKd1H2ps7xxf+eb2YFG9lX6uRqpXCvBTOidPRCXCrQ++Uc" src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/contrib/auto-render.min.js"></script>
+  
+
+  
+    <script src="https://tubean.github.io/js/main.js"></script>
+  
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'https:\/\/tubean.github.io\/2018\/12\/monolithic-vs-microservice\/';
+          
+            this.page.identifier = '\/2018\/12\/monolithic-vs-microservice\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'beans-blog';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+
