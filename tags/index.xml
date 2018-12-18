@@ -66,6 +66,15 @@
     </item>
     
     <item>
+      <title>Eureka</title>
+      <link>https://tubean.github.io/tags/eureka/</link>
+      <pubDate>Tue, 18 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://tubean.github.io/tags/eureka/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Facade</title>
       <link>https://tubean.github.io/tags/facade/</link>
       <pubDate>Thu, 29 Nov 2018 00:00:00 +0000</pubDate>
@@ -149,7 +158,7 @@
     <item>
       <title>Microservice</title>
       <link>https://tubean.github.io/tags/microservice/</link>
-      <pubDate>Sun, 16 Dec 2018 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 18 Dec 2018 00:00:00 +0000</pubDate>
       
       <guid>https://tubean.github.io/tags/microservice/</guid>
       <description></description>
@@ -230,7 +239,7 @@
     <item>
       <title>Spring Boot</title>
       <link>https://tubean.github.io/tags/spring-boot/</link>
-      <pubDate>Thu, 13 Dec 2018 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 18 Dec 2018 00:00:00 +0000</pubDate>
       
       <guid>https://tubean.github.io/tags/spring-boot/</guid>
       <description></description>
@@ -275,7 +284,7 @@
     <item>
       <title>Web Architecture</title>
       <link>https://tubean.github.io/tags/web-architecture/</link>
-      <pubDate>Sun, 16 Dec 2018 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 18 Dec 2018 00:00:00 +0000</pubDate>
       
       <guid>https://tubean.github.io/tags/web-architecture/</guid>
       <description></description>
@@ -296,6 +305,15 @@
       <pubDate>Wed, 31 Oct 2018 00:00:00 +0000</pubDate>
       
       <guid>https://tubean.github.io/tags/youtube/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Zuul</title>
+      <link>https://tubean.github.io/tags/zuul/</link>
+      <pubDate>Tue, 18 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://tubean.github.io/tags/zuul/</guid>
       <description></description>
     </item>
     

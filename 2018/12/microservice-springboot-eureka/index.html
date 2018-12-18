@@ -1,0 +1,1399 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.49 with theme Tranquilpeak 0.4.3-SNAPSHOT">
+<meta name="author" content="Tu Bean">
+<meta name="keywords" content="web architecture, spring boot, eureka, zuul, microservice, tutorial, intelij">
+<meta name="description" content="Microservices là một giải pháp cho phép chia một hệ thống lớn thành một vài các component độc lập về phát triển, test và deploy.
+Spring Cloud là một dự án con trong họ nhà Spring, được sử dụng để phát triển các ứng dụng phân tán. Một ứng dụng được gọi là phần tán (Distributed application) khi các phần của nó có thể được phát triển trên các ngôn ngữ khác nhau và được triển khai trên các máy chủ khác nhau.">
+
+
+<meta property="og:description" content="Microservices là một giải pháp cho phép chia một hệ thống lớn thành một vài các component độc lập về phát triển, test và deploy.
+Spring Cloud là một dự án con trong họ nhà Spring, được sử dụng để phát triển các ứng dụng phân tán. Một ứng dụng được gọi là phần tán (Distributed application) khi các phần của nó có thể được phát triển trên các ngôn ngữ khác nhau và được triển khai trên các máy chủ khác nhau.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Microservice] Dựng Microservice web bằng Spring Boot và Eureka [Phần 1]">
+<meta name="twitter:title" content="[Microservice] Dựng Microservice web bằng Spring Boot và Eureka [Phần 1]">
+<meta property="og:url" content="https://tubean.github.io/2018/12/microservice-springboot-eureka/">
+<meta property="twitter:url" content="https://tubean.github.io/2018/12/microservice-springboot-eureka/">
+<meta property="og:site_name" content="Bean&#39;s blog">
+<meta property="og:description" content="Microservices là một giải pháp cho phép chia một hệ thống lớn thành một vài các component độc lập về phát triển, test và deploy.
+Spring Cloud là một dự án con trong họ nhà Spring, được sử dụng để phát triển các ứng dụng phân tán. Một ứng dụng được gọi là phần tán (Distributed application) khi các phần của nó có thể được phát triển trên các ngôn ngữ khác nhau và được triển khai trên các máy chủ khác nhau.">
+<meta name="twitter:description" content="Microservices là một giải pháp cho phép chia một hệ thống lớn thành một vài các component độc lập về phát triển, test và deploy.
+Spring Cloud là một dự án con trong họ nhà Spring, được sử dụng để phát triển các ứng dụng phân tán. Một ứng dụng được gọi là phần tán (Distributed application) khi các phần của nó có thể được phát triển trên các ngôn ngữ khác nhau và được triển khai trên các máy chủ khác nhau.">
+<meta property="og:locale" content="vi">
+
+  
+    <meta property="article:published_time" content="2018-12-18T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2018-12-18T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="Microservice">
+    
+      <meta property="article:section" content="Spring Boot">
+    
+  
+  
+    
+      <meta property="article:tag" content="web architecture">
+    
+      <meta property="article:tag" content="spring boot">
+    
+      <meta property="article:tag" content="eureka">
+    
+      <meta property="article:tag" content="zuul">
+    
+      <meta property="article:tag" content="microservice">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1545140745/1_aVq0q9jjFx1R8DMVhKKFWQ.png">
+  <meta property="twitter:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1545140745/1_aVq0q9jjFx1R8DMVhKKFWQ.png">
+
+
+  <meta property="og:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1541273502/Black_flag.svg.png">
+  <meta property="twitter:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1541273502/Black_flag.svg.png">
+
+
+
+
+  <meta property="og:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/c_scale,w_1836/v1540914499/C360_2016-03-22-17-45-21-487.jpg">
+  <meta property="twitter:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/c_scale,w_1836/v1540914499/C360_2016-03-22-17-45-21-487.jpg">
+
+
+    <title>[Microservice] Dựng Microservice web bằng Spring Boot và Eureka [Phần 1]</title>
+
+    <link rel="icon" href="https://tubean.github.io/favicon/flappybird.png">
+    
+
+    
+
+    <link rel="canonical" href="https://tubean.github.io/2018/12/microservice-springboot-eureka/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://tubean.github.io/css/style-nnm2spxvve8onlujjlegkkytaehyadd4ksxc1hyzzq9a2wvtrgbljqyulomn.min.css" />
+    
+    
+      
+        <link rel="stylesheet"  crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" integrity="sha384-TEMocfGvRuD1rIAacqrknm5BQZ7W7uWitoih+jMNFXQIbNl16bO8OZmylH/Vi/Ei">
+      
+    
+      
+        <link rel="stylesheet"  href="https://tubean.github.io/css/main.css">
+      
+    
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-128433621-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://tubean.github.io/">Bean&#39;s blog</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://tubean.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://res.cloudinary.com/deop9ytsv/image/upload/c_scale,w_1836/v1540914499/C360_2016-03-22-17-45-21-487.jpg" alt="Ảnh đại diện" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://tubean.github.io/#about">
+          <img class="sidebar-profile-picture" src="https://res.cloudinary.com/deop9ytsv/image/upload/c_scale,w_1836/v1540914499/C360_2016-03-22-17-45-21-487.jpg" alt="Ảnh đại diện" />
+        </a>
+        <h4 class="sidebar-profile-name">Tu Bean</h4>
+        
+          <h5 class="sidebar-profile-bio">Coding, writing and sharing</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tubean.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Trang chủ</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tubean.github.io/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">Danh mục</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tubean.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Thẻ thông tin</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tubean.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Lưu trữ</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tubean.github.io/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">Thông tin</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://bitbucket.org/tubean/" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bitbucket-square"></i>
+      
+      <span class="sidebar-button-desc">Bitbucket</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/tubean" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">Github</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.instagram.com/zeref_bean/" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-instagram"></i>
+      
+      <span class="sidebar-button-desc">Instagram</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.linkedin.com/in/tubean/" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-linkedin"></i>
+      
+      <span class="sidebar-button-desc">LinkedIn</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+  <div class="post-header-cover
+              text-center
+              "
+       style="background-image:url('https://res.cloudinary.com/deop9ytsv/image/upload/v1541273502/Black_flag.svg.png')"
+       data-behavior="5">
+    
+      <div class="post-header main-content-wrap text-center">
+  
+    <h1 class="post-title" itemprop="headline">
+      [Microservice] Dựng Microservice web bằng Spring Boot và Eureka [Phần 1]
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2018-12-18T00:00:00Z">
+        
+  tháng 12 18, 2018
+
+      </time>
+    
+    
+  
+  
+    <span>mục</span>
+    
+      <a class="category-link" href="https://tubean.github.io/categories/microservice">Microservice</a>, 
+    
+      <a class="category-link" href="https://tubean.github.io/categories/spring-boot">Spring Boot</a>
+    
+  
+
+  </div>
+
+</div>
+    
+  </div>
+
+
+      <div id="main" data-behavior="5"
+        class="hasCover
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              
+
+<p><code>Microservices</code> là một giải pháp cho phép chia một hệ thống lớn thành một vài các component độc lập về phát triển, test và deploy.</p>
+
+<p><code>Spring Cloud</code> là một dự án con trong họ nhà Spring, được sử dụng để phát triển các ứng dụng phân tán. Một ứng dụng được gọi là phần tán (Distributed application) khi các phần của nó có thể được phát triển trên các ngôn ngữ khác nhau và được triển khai trên các máy chủ khác nhau. Như vậy, Spring Cloud sinh ra là để làm các hệ thống microservice. Tất cả các dự sán Spring Cloud nên được tạo từ Spring Boot để giảm thiểu các cấu hình phức tạp và dễ cài đặt hơn.</p>
+
+<p>Trong series này, chúng ta sẽ cùng tìm hiểu cách xây dựng một hệ thống microservice bằng Spring Boot và Eureka (một dự án trong Spring Cloud). Phần đầu tiên là tạo các microservice và gateway.</p>
+
+<p><img src="https://res.cloudinary.com/deop9ytsv/image/upload/v1545143589/1_Z8HUa8vdvIrF68crSJOPTQ.png" alt="img_1" /></p>
+
+<h1 id="1-tổng-quan">1. Tổng quan</h1>
+
+<p>Nhìn vào sơ đồ các thành phần của hệ thống ở trên, chúng ta cần tạo các service registry, image, gallery và một gateway. Gallery service sẽ sử dụng những bức ảnh lấy từ Image service và sắp xếp chúng thành một album ảnh.</p>
+
+<p>Phiên bản Spring Boot mà chúng ta sẽ sử dụng trong serries này là <code>2.0.0.RELEASE</code>.</p>
+
+<pre><code>&lt;parent&gt;  
+  &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;  
+  &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;  
+  &lt;version&gt;2.0.0.RELEASE&lt;/version&gt;  
+  &lt;relativePath/&gt;  
+&lt;/parent&gt;
+</code></pre>
+
+<h1 id="2-eureka-server">2. Eureka Server</h1>
+
+<p>Đây là một máy chủ dùng để quản lý, đặt tên cho các service, hay còn gọi là <code>service registry</code>. Nhưng tại sao chúng ta lại cần một server để đặt tên cho mỗi service. Lý do:</p>
+
+<ul>
+<li>Chúng ta không muốn hardcode địa chỉ IP của mỗi microservice. Bạn chẳng bao giờ dùng địa chỉ <code>64.233.181.99</code> để truy cập vào trang <code>google.com</code>, đúng chứ?</li>
+<li>Khi mà các service của chúng ta sử dụng IP động, nó sẽ tự động cập nhật, chúng ta không cần thay đổi code.</li>
+</ul>
+
+<p>Vậy là mỗi service sẽ được đăng ký với Eureka và sẽ ping cho Eureka để đảm bảo chúng vẫn hoạt động. Nếu Eureka server không nhận được bất kỳ thông báo nào từ service thì service đó sẽ bị gỡ khỏi Eureka một cách tự động.</p>
+
+<p>Ok, để tạo Eureka server, chúng ta sẽ dùng Maven để quản lý các dependencies. Lưu ý khác với kiến trúc monolithic, mỗi component trong microservice được dựng một cách độc lập. Do đó chúng ta sẽ tạo mới một project Spring Boot và khai báo file <code>pom.xml</code> có các dependencies Web, Eureka Server và DevTools (tùy chọn):</p>
+
+<pre><code class="language-xml">&lt;dependencies&gt;  
+    &lt;dependency&gt;  
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;  
+        &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;  
+    &lt;/dependency&gt;  
+    &lt;dependency&gt;  
+        &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;  
+        &lt;artifactId&gt;spring-cloud-starter-netflix-eureka-server&lt;/artifactId&gt;  
+    &lt;/dependency&gt;  
+
+    &lt;dependency&gt;  
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;  
+        &lt;artifactId&gt;spring-boot-devtools&lt;/artifactId&gt;  
+        &lt;scope&gt;runtime&lt;/scope&gt;  
+    &lt;/dependency&gt;  
+    &lt;dependency&gt;  
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;  
+        &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;  
+        &lt;scope&gt;test&lt;/scope&gt;  
+    &lt;/dependency&gt;  
+&lt;/dependencies&gt;
+</code></pre>
+
+<p>Tiếp theo, trong file <code>application.properties</code>, chúng ta cần cấu hình một số thứ như sau:</p>
+
+<pre><code># Give a name to the eureka server
+
+spring.application.name=eureka-server
+
+# default port for eureka server
+
+server.port=8761
+
+# eureka by default will register itself as a client. So, we need to set it to false.
+
+# What's a client server? See other microservices (image, gallery, auth, etc).
+
+eureka.client.register-with-eureka=false
+
+eureka.client.fetch-registry=false
+</code></pre>
+
+<p>Cuối cùng, trong class main của project, chúng ta sẽ khai báo đây là một Eureka server bằng annotation <code>@EnableEurekaServer</code>:</p>
+
+<pre><code class="language-java">package io.github.tubean.eureka.server;  
+
+import org.springframework.boot.SpringApplication;  
+import org.springframework.boot.autoconfigure.SpringBootApplication;  
+import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;  
+
+@SpringBootApplication  
+@EnableEurekaServer  
+public class ServerApplication {  
+
+    public static void main(String[] args) {  
+        SpringApplication.run(ServerApplication.class, args);  
+    }  
+
+}
+</code></pre>
+
+<p>Đơn giản thế thôi, đi tiếp đến những service về nghiệp vụ nào 😄</p>
+
+<h1 id="3-image-service">3. Image Service</h1>
+
+<p>Các Eureka client service là một service độc lập trong kiến trúc microservice. Mỗi client service chỉ thực hiện duy nhất một nghiệp vụ nào đó trong hệ thống như thanh toán, tài khoản, thông báo, xác thực, cấu hình,&hellip;
+Chúng ta sẽ xây dựng image service như một nguồn để chứa và cung cấp các bức ảnh, mỗi bức ảnh sẽ có id, title và địa chỉ url. Chỉ đơn giản như vậy thôi.</p>
+
+<p>Ok, cũng như Eureka Server, chúng ta sẽ tạo một project Spring Boot mới nhưng sử dụng Eureka Client trong file <code>pom.xml</code>:</p>
+
+<pre><code>&lt;dependencies&gt;  
+    &lt;dependency&gt;  
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;  
+        &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;  
+    &lt;/dependency&gt;  
+    &lt;dependency&gt;  
+        &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;  
+        &lt;artifactId&gt;spring-cloud-starter-netflix-eureka-client&lt;/artifactId&gt;  
+    &lt;/dependency&gt;  
+    &lt;dependency&gt;  
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;  
+        &lt;artifactId&gt;spring-boot-starter-data-rest&lt;/artifactId&gt;  
+    &lt;/dependency&gt;  
+
+    &lt;dependency&gt;  
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;  
+        &lt;artifactId&gt;spring-boot-devtools&lt;/artifactId&gt;  
+        &lt;scope&gt;runtime&lt;/scope&gt;  
+    &lt;/dependency&gt;  
+    &lt;dependency&gt;  
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;  
+        &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;  
+        &lt;scope&gt;test&lt;/scope&gt;  
+    &lt;/dependency&gt;  
+&lt;/dependencies&gt;
+</code></pre>
+
+<p>Trong file <code>appication.properties</code> chúng ta sẽ ghi lại địa chỉ của Eureka server:</p>
+
+<pre><code># serivce name
+
+spring.application.name=image-service
+
+# port
+
+server.port=8200
+
+# eureka server url
+
+eureka.client.service-url.default-zone=http://localhost:8761/eureka
+</code></pre>
+
+<p>Sau đó để chỉ cho Spring Boot biết đây là một Eureka client, chúng ta dùng annotation <code>@EnableEurekaClient</code> trong class main:</p>
+
+<pre><code class="language-java">package io.github.tubean.eureka.image;  
+
+import org.springframework.boot.SpringApplication;  
+import org.springframework.boot.autoconfigure.SpringBootApplication;  
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;  
+
+@SpringBootApplication  
+@EnableEurekaClient  
+public class ImageApplication {  
+
+    public static void main(String[] args) {  
+        SpringApplication.run(ImageApplication.class, args);  
+    }  
+
+}
+</code></pre>
+
+<p>Bây giờ để image service có thể expose data ra ngoài, chúng ta cần có các endpoint đúng không? Tương tự một RESTful web service, chúng ta sẽ tạo một entity định nghĩa cấu trúc chuỗi JSON và một controller điều hướng:</p>
+
+<ul>
+<li>Image.java</li>
+</ul>
+
+<pre><code class="language-java">package io.github.tubean.eureka.image.entity;  
+
+public class Image {  
+    private Integer id;  
+    private String title;  
+    private String url;  
+
+    public Image(Integer id, String title, String url) {  
+        this.id = id;  
+        this.title = title;  
+        this.url = url;  
+    }  
+
+    public Integer getId() {  
+        return id;  
+    }  
+
+    public void setId(Integer id) {  
+        this.id = id;  
+    }  
+
+    public String getTitle() {  
+        return title;  
+    }  
+
+    public void setTitle(String title) {  
+        this.title = title;  
+    }  
+
+    public String getUrl() {  
+        return url;  
+    }  
+
+    public void setUrl(String url) {  
+        this.url = url;  
+    }  
+}
+</code></pre>
+
+<ul>
+<li>HomeController.java</li>
+</ul>
+
+<pre><code class="language-java">package io.github.tubean.eureka.image.controller;  
+
+import io.github.tubean.eureka.image.entity.Image;  
+import org.springframework.beans.factory.annotation.Autowired;  
+import org.springframework.core.env.Environment;  
+import org.springframework.web.bind.annotation.RequestMapping;  
+import org.springframework.web.bind.annotation.RestController;  
+
+import java.util.Arrays;  
+import java.util.List;  
+
+@RestController  
+@RequestMapping(&quot;/&quot;)  
+public class HomeController {  
+   @Autowired  
+  private Environment env;  
+
+   @RequestMapping(&quot;/&quot;)  
+   public String home() {  
+      // This is useful for debugging  
+ // When having multiple instance of image service running at different ports. // We load balance among them, and display which instance received the request.  return &quot;Hello from Image Service running at port: &quot; + env.getProperty(&quot;local.server.port&quot;);  
+   }  
+
+   @RequestMapping(&quot;/images&quot;)  
+   public List&lt;Image&gt; getImages() {  
+      List&lt;Image&gt; images = Arrays.asList(  
+         new Image(1, &quot;Treehouse of Horror V&quot;, &quot;https://www.imdb.com/title/tt0096697/mediaviewer/rm3842005760&quot;),  
+         new Image(2, &quot;The Town&quot;, &quot;https://www.imdb.com/title/tt0096697/mediaviewer/rm3698134272&quot;),  
+         new Image(3, &quot;The Last Traction Hero&quot;, &quot;https://www.imdb.com/title/tt0096697/mediaviewer/rm1445594112&quot;));  
+      return images;  
+   }  
+}
+</code></pre>
+
+<h1 id="4-gallery-service">4. Gallery Service</h1>
+
+<p>Các Eureka client service có thể là một REST client dùng để cung cấp data cho một service khác (REST API service). Do đó, trong hệ thống của chúng ta, gallery service sẽ gọi đến image service thông qua các endpoint mà chúng ta đã tạo ra ở trên, và từ đó sẽ get ra một list ảnh để tạo ra một album.
+Để gọi đến một service từ một REST client, chúng ta có thể sử dụng:</p>
+
+<ol>
+<li><code>RestTemplate</code>: Đây là một object cho phép gửi request đến một REST API service.</li>
+<li><code>FeignClient</code>: hoạt động như một proxy, cung cấp các giải pháp khác cho RestTemplate.</li>
+</ol>
+
+<p>Và cả 2 cách thì cân bằng tải đều có thể áp dụng.</p>
+
+<blockquote>
+<p>Cân bằng tải (Load balancing) là gì?
+Nếu như có nhiều hơn một instance của một service chạy trên các port khác nhau thì chúng ta cần cân bằng những request giữa tất cả các instance đó. Trong điều kiện lý tưởng thì cân bằng tải sẽ giúp các port nhận số lượng request tương đương nhau.</p>
+</blockquote>
+
+<p>Tương tự Image service, chúng ta khai báo file <code>pom.xml</code> cho Gallery service. Và trong <code>application.properties</code>, port sử dụng sẽ khác với Image service:</p>
+
+<pre><code>spring.application.name=gallery-service  
+server.port=8100  
+eureka.client.service-url.default-zone=http://localhost:8761/eureka
+</code></pre>
+
+<p>Trong class main, bên cạnh annotation <code>@EnableEurekaClient</code>, chúng ta sẽ cần tạo thêm một bean cho <code>RestTemplate</code> dùng để gọi đến image service.</p>
+
+<pre><code class="language-java">package io.github.tubean.eureka.gallery;  
+
+import org.springframework.boot.SpringApplication;  
+import org.springframework.boot.autoconfigure.SpringBootApplication;  
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;  
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;  
+import org.springframework.context.annotation.Bean;  
+import org.springframework.context.annotation.Configuration;  
+import org.springframework.web.client.RestTemplate;  
+
+@SpringBootApplication  
+@EnableEurekaClient  
+public class GalleryServiceApplication {  
+
+    public static void main(String[] args) {  
+        SpringApplication.run(GalleryServiceApplication.class, args);  
+    }  
+
+}  
+
+@Configuration  
+class RestTemplateConfig {  
+
+    // Create a bean for restTemplate to call services  
+  @Bean  
+ @LoadBalanced // Load balance between service instances running at different ports.  
+  public RestTemplate restTemplate() {  
+        return new RestTemplate();  
+    }  
+}
+</code></pre>
+
+<p>Đừng quên entity và controller:</p>
+
+<ul>
+<li>Gallery.java</li>
+</ul>
+
+<pre><code class="language-java">package io.github.tubean.eureka.gallery.entity;  
+
+import java.util.List;  
+
+public class Gallery {  
+    private Integer id;  
+    private List&lt;Object&gt; images;  
+
+    public Gallery(Integer id, List&lt;Object&gt; images) {  
+        this.id = id;  
+        this.images = images;  
+    }  
+
+    public Gallery() {  
+    }  
+
+    public Integer getId() {  
+        return id;  
+    }  
+
+    public void setId(Integer id) {  
+        this.id = id;  
+    }  
+
+    public List&lt;Object&gt; getImages() {  
+        return images;  
+    }  
+
+    public void setImages(List&lt;Object&gt; images) {  
+        this.images = images;  
+    }  
+}
+</code></pre>
+
+<ul>
+<li>HomeController.java</li>
+</ul>
+
+<pre><code class="language-java">package io.github.tubean.eureka.gallery.controller;  
+
+import io.github.tubean.eureka.gallery.entity.Gallery;  
+import org.springframework.beans.factory.annotation.Autowired;  
+import org.springframework.core.env.Environment;  
+import org.springframework.web.bind.annotation.PathVariable;  
+import org.springframework.web.bind.annotation.RequestMapping;  
+import org.springframework.web.bind.annotation.RestController;  
+import org.springframework.web.client.RestTemplate;  
+
+import java.util.List;  
+
+@RestController  
+@RequestMapping(&quot;/&quot;)  
+public class HomeController {  
+   @Autowired  
+  private RestTemplate restTemplate;  
+
+   @Autowired  
+  private Environment env;  
+
+   @RequestMapping(&quot;/&quot;)  
+   public String home() {  
+      // This is useful for debugging  
+ // When having multiple instance of gallery service running at different ports. // We load balance among them, and display which instance received the request.  return &quot;Hello from Gallery Service running at port: &quot; + env.getProperty(&quot;local.server.port&quot;);  
+   }  
+
+   @RequestMapping(&quot;/{id}&quot;)  
+   public Gallery getGallery(@PathVariable final int id) {  
+      // create gallery object  
+  Gallery gallery = new Gallery();  
+      gallery.setId(id);  
+
+      // get list of available images   
+ List&lt;Object&gt; images = restTemplate.getForObject(&quot;http://image-service/images/&quot;, List.class);  
+      gallery.setImages(images);  
+
+      return gallery;  
+   }  
+
+   // -------- Admin Area --------  
+ // This method should only be accessed by users with role of 'admin' // We'll add the logic of role based auth later  @RequestMapping(&quot;/admin&quot;)  
+   public String homeAdmin() {  
+      return &quot;This is the admin area of Gallery service running at port: &quot; + env.getProperty(&quot;local.server.port&quot;);  
+   }  
+}
+</code></pre>
+
+<p>Ok, đến đây chúng ta cần chú ý khi sử dụng <code>restTemplate</code> thì trong Eureka Server đã đặt tên cho các service nên chúng ta sẽ sử dụng tên của chúng (<code>image-service</code> thay vì <code>localhost:port</code>) nhằm mục đích sử dụng cân bằng tải.</p>
+
+<h1 id="5-gateway-zuul">5. Gateway - Zuul</h1>
+
+<p>Khi chúng ta gọi đến bất kỳ service nào từ browser, chúng ta không thể gọi trực tiếp bằng tên của chúng như ở trên Gallery server đã làm bởi vì những tên service như vậy phải được bí mật và chỉ sử dụng trong nội bộ các service với nhau.</p>
+
+<p>Nếu chúng ta có nhiều instance của một service, mỗi instance lại sử dụng một port khác nhau. Vậy làm thế nào chúng ta có thể gọi tất cả các service từ browser và phân tán những request đến các instance đó thông qua các cổng khác nhau? Câu trả lời là sử dụng một <code>Gateway</code>.</p>
+
+<p>Một gateway là một entry point đơn trong hệ thống, được dùng để handle các request bằng cách định tuyến chúng đến các service tương ứng. Nó cũng có thể được dùng để xác thực, giám sát và làm nhiều việc khác.</p>
+
+<h2 id="zuul-là-gì">Zuul là gì?</h2>
+
+<p>Nó là một proxy, gateway và một lớp trung gian giữa user và các service của bạn. Eureka server đã giải quyết vấn đề đặt tên cho từng service thay vì dùng địa chỉ IP của chúng. Tuy nhiên một service vẫn có thể có nhiều instance và chúng sẽ chạy trên các cổng khác nhau nên nhiệm vụ của Zuul sẽ là:</p>
+
+<ul>
+<li>Map giữa một prefix path (/gallery/**) và một service (gallery-service). Nó sử dụng Euraka server để định tuyến các service được request.</li>
+<li>Nó giúp cân bằng tải giữa các instance của một service.</li>
+<li>Còn gì nữa? Chúng ta có thể dùng nó để filter request, thêm xác thực,&hellip;</li>
+</ul>
+
+<p>Trong file <code>pom.xml</code> của project Zuul, chúng ta sẽ có các dependencies: Web, Eureka Client và Zuul:</p>
+
+<pre><code>&lt;dependencies&gt;  
+    &lt;dependency&gt;  
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;  
+        &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;  
+    &lt;/dependency&gt;  
+    &lt;dependency&gt;  
+        &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;  
+        &lt;artifactId&gt;spring-cloud-starter-netflix-zuul&lt;/artifactId&gt;  
+    &lt;/dependency&gt;  
+    &lt;dependency&gt;  
+        &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;  
+        &lt;artifactId&gt;spring-cloud-starter-netflix-eureka-client&lt;/artifactId&gt;  
+    &lt;/dependency&gt;  
+    &lt;dependency&gt;  
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;  
+        &lt;artifactId&gt;spring-boot-devtools&lt;/artifactId&gt;  
+        &lt;scope&gt;runtime&lt;/scope&gt;  
+    &lt;/dependency&gt;  
+    &lt;dependency&gt;  
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;  
+        &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;  
+        &lt;scope&gt;test&lt;/scope&gt;  
+    &lt;/dependency&gt;  
+&lt;/dependencies&gt;
+</code></pre>
+
+<blockquote>
+<p>Điều đáng nói là Zuul hoạt động như một Eureka client. Vì vậy chúng ta có thể đặt tên cho nó, chỉ định port và đường dẫn đến Eureka server như các client trước đó.</p>
+</blockquote>
+
+<pre><code>server.port=8762
+
+spring.application.name=zuul-server
+
+eureka.client.service-url.default-zone=http://localhost:8761/eureka/
+
+# A prefix that can added to beginning of all requests.
+
+#zuul.prefix=/api
+
+# Disable accessing services using service name (i.e. gallery-service).
+
+# They should be only accessed through the path defined below.
+
+zuul.ignored-services=*
+
+# Map paths to services
+
+zuul.routes.gallery-service.path=/gallery/**
+
+zuul.routes.gallery-service.service-id=gallery-service
+</code></pre>
+
+<p>Cuối cùng là thêm các annotation để thông báo đây là Zuul và Eureka client:</p>
+
+<pre><code class="language-java">package io.github.tubean.eureka.zuulserver;  
+
+import org.springframework.boot.SpringApplication;  
+import org.springframework.boot.autoconfigure.SpringBootApplication;  
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;  
+import org.springframework.cloud.netflix.zuul.EnableZuulProxy;  
+
+@SpringBootApplication  
+@EnableEurekaClient // It acts as a eureka client  
+@EnableZuulProxy // Enable Zuul  
+public class ZuulServerApplication {  
+
+    public static void main(String[] args) {  
+        SpringApplication.run(ZuulServerApplication.class, args);  
+    }  
+
+}
+</code></pre>
+
+<h1 id="6-testing">6. Testing</h1>
+
+<p>Ok, như vậy là chúng ta đã dựng xong bộ khung cho hệ thống microservice. Chúng ta đã có một service discovery (Eureka server), hai service (Image và Gallery), một cổng gateway (Zuul) và giờ chỉ cần start chúng lên.</p>
+
+<blockquote>
+<p>Để chạy nhiều instance thì trong Eclipse, bạn vào Run -&gt; Configurations/Arguments -&gt; VM options và thêm <code>-Dsever.port=8300</code></p>
+</blockquote>
+
+<p>Để kiểm tra ứng dụng của chúng ta, hãy truy cập vào <code>localhost:8761</code>, đây là cổng của Eureka Server. Và bạn sẽ thấy các server đang chạy như sau:
+<img src="https://res.cloudinary.com/deop9ytsv/image/upload/v1545149154/imag_2.jpg" alt="img_3" />
+Sau đó hãy gọi tiếp đến gallery service bằng đường dẫn <code>localhost:8762/gallery</code>. Chúng ta sẽ nhận được message như sau:
+&gt;Hello from Gallery Service running at port: 8100</p>
+
+<p>Nếu dùng multiple instance, bạn sẽ nhận được 2 dòng như trên với 2 cổng khác nhau.</p>
+
+<p>Tiếp theo chúng ta gọi đến service Image thông qua Gallery bằng đường dẫn <code>localhost:8762/gallery/1</code>. Kết quả nhận được sẽ là:</p>
+
+<pre><code>// 20181218230927
+// http://localhost:8762/gallery/1
+
+{
+  &quot;id&quot;: 1,
+  &quot;images&quot;: [
+    {
+      &quot;id&quot;: 1,
+      &quot;title&quot;: &quot;Treehouse of Horror V&quot;,
+      &quot;url&quot;: &quot;https://www.imdb.com/title/tt0096697/mediaviewer/rm3842005760&quot;
+    },
+    {
+      &quot;id&quot;: 2,
+      &quot;title&quot;: &quot;The Town&quot;,
+      &quot;url&quot;: &quot;https://www.imdb.com/title/tt0096697/mediaviewer/rm3698134272&quot;
+    },
+    {
+      &quot;id&quot;: 3,
+      &quot;title&quot;: &quot;The Last Traction Hero&quot;,
+      &quot;url&quot;: &quot;https://www.imdb.com/title/tt0096697/mediaviewer/rm1445594112&quot;
+    }
+  ]
+}
+</code></pre>
+
+<p>Kết thúc phần đầu tiên ở đây, ở phần tiếp theo chúng ta sẽ tìm hiểu cách để xác thực user bằng JWT.</p>
+
+<h1 id="nguồn-bài-viết">Nguồn bài viết</h1>
+
+<p><a href="https://medium.com/omarelgabrys-blog/microservices-with-spring-boot-intro-to-microservices-part-1-c0d24cd422c3">https://medium.com/omarelgabrys-blog/microservices-with-spring-boot-intro-to-microservices-part-1-c0d24cd422c3</a></p>
+
+<p><a href="https://medium.com/omarelgabrys-blog/microservices-with-spring-boot-creating-our-microserivces-gateway-part-2-31f8aa6b215b">https://medium.com/omarelgabrys-blog/microservices-with-spring-boot-creating-our-microserivces-gateway-part-2-31f8aa6b215b</a></p>
+
+<h1 id="source-code">Source code</h1>
+
+<p><a href="https://github.com/tubean/MSA-springboot-eureka">https://github.com/tubean/MSA-springboot-eureka</a></p>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">THẺ ĐÁNH DẤU</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/web-architecture/">web architecture</a>
+
+  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/spring-boot/">spring boot</a>
+
+  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/eureka/">eureka</a>
+
+  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/zuul/">zuul</a>
+
+  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/microservice/">microservice</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">Tiếp</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2018/12/monolithic-vs-microservice/" data-tooltip="[Web architecture] Kiến trúc monolithic và microservice">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">Trước</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://tubean.github.io/2018/12/microservice-springboot-eureka/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://tubean.github.io/2018/12/microservice-springboot-eureka/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://tubean.github.io/2018/12/microservice-springboot-eureka/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2018 <a href="https://bitbucket.org/tubean/">Do Anh Tu</a>. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">Tiếp</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2018/12/monolithic-vs-microservice/" data-tooltip="[Web architecture] Kiến trúc monolithic và microservice">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">Trước</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://tubean.github.io/2018/12/microservice-springboot-eureka/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://tubean.github.io/2018/12/microservice-springboot-eureka/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://tubean.github.io/2018/12/microservice-springboot-eureka/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ftubean.github.io%2F2018%2F12%2Fmicroservice-springboot-eureka%2F">
+          <i class="fa fa-facebook-official"></i><span>Chia sẻ với Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Ftubean.github.io%2F2018%2F12%2Fmicroservice-springboot-eureka%2F">
+          <i class="fa fa-twitter"></i><span>Chia sẻ với Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Ftubean.github.io%2F2018%2F12%2Fmicroservice-springboot-eureka%2F">
+          <i class="fa fa-google-plus"></i><span>Chia sẻ với Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://res.cloudinary.com/deop9ytsv/image/upload/c_scale,w_1836/v1540914499/C360_2016-03-22-17-45-21-487.jpg" alt="Ảnh đại diện" />
+    
+    <h4 id="about-card-name">Tu Bean</h4>
+    
+      <div id="about-card-bio">Coding, writing and sharing</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Web developer
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        Viet Nam
+      </div>
+    
+  </div>
+</div>
+
+    <div id="algolia-search-modal" class="modal-container">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="close-button"><i class="fa fa-close"></i></span>
+      <a href="https://algolia.com" target="_blank" rel="noopener" class="searchby-algolia text-color-light link-unstyled">
+        <span class="searchby-algolia-text text-color-light text-small">by</span>
+        <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+      </a>
+      <i class="search-icon fa fa-search"></i>
+      <form id="algolia-search-form">
+        <input type="text" id="algolia-search-input" name="search"
+          class="form-control input--large search-input" placeholder="Tìm kiếm" />
+      </form>
+    </div>
+    <div class="modal-body">
+      <div class="no-result text-color-light text-center">không tìm thấy kết quả</div>
+      <div class="results">
+        
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/12/microservice-springboot-eureka/">
+                <h3 class="media-heading">[Microservice] Dựng Microservice web bằng Spring Boot và Eureka [Phần 1]</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Microservices là một giải pháp cho phép chia một hệ thống lớn thành một vài các component độc lập về phát triển, test và deploy.
+Spring Cloud là một dự án con trong họ nhà Spring, được sử dụng để phát triển các ứng dụng phân tán. Một ứng dụng được gọi là phần tán (Distributed application) khi các phần của nó có thể được phát triển trên các ngôn ngữ khác nhau và được triển khai trên các máy chủ khác nhau.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/12/monolithic-vs-microservice/">
+                <h3 class="media-heading">[Web architecture] Kiến trúc monolithic và microservice</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Trong lập trình web hiện nay, hai loại kiến trúc web mà chúng ta thường áp dụng cho ứng dụng của mình là kiến trúc một khối (Monolithic architecture) và kiến trúc microservice (Microservice architecture). Trong bài viết này, chúng ta sẽ tìm hiểu về hai loại kiến trúc này để biết ưu nhược điểm cũng như khi nào sử dụng chúng.
+1. Kiến trúc một khối (Monolithic web architecture) Kiến trúc một khối là mẫu thiết kế được dùng nhiều nhất trong giới lập trình web hiện nay bởi tính đơn giản của nó khi phát triển và khi deploy.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/12/prototype-pattern/">
+                <h3 class="media-heading">[Design Pattern] Prototype Design Pattern</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Trong lập trình hướng đối tượng, khi chúng ta muốn tạo thêm một đối tượng thì thường sử dụng từ khóa new. Tuy nhiên đối với cách tạo đối tượng này thì những thuộc tính ban đầu sẽ thường là trống, trừ khi được khởi tạo giá trị default hoặc khởi tạo ngay trong contructor. Vậy nếu chúng ta muốn tạo mới một đối tượng từ một đối tượng cũ, mang tất cả thuộc tính và giá trị đang có của đối tượng cũ như một bản clone thì làm thế nào?</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/12/spring-boot-mongo-db/">
+                <h3 class="media-heading">[Spring Boot] Dựng app CRUD đơn giản bằng Spring Boot &#43; MongoDB trên Intelij</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">MongoDB hiện đang là cơ sở dữ liệu NoSQL phổ biến nhất. Bài viết này là một hướng dẫn nhỏ về cách sử dụng Spring Boot kết hợp với MongoDB để tạo một app dạng CRUD.
+Các tool sử dụng:  Java Spring Boot Maven MongoDB Postman  1. Tạo database Trước khi bắt đầu xây dựng app, chúng ta cần chuẩn bị một instance của MongoDB để truy xuất tới nó.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/12/web-service-s%E1%BB%B1-kh%C3%A1c-nhau-gi%E1%BB%AFa-soap-v%C3%A0-restful-web-service-trong-java/">
+                <h3 class="media-heading">[Web Service] Sự khác nhau giữa SOAP và RESTful Web Service trong Java</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Cả 2 loại SOAP và RESTful đều cho phép phía client gửi request đến server để query, nhưng chúng được thực hiện bằng những cách khác nhau. Sự khác nhau chính giữa SOAP và REST là cách mà client giao tiếp server thông qua SOAP sẽ bị hạn chế bởi nhiều quy tắc và format được thiết kế chính xác, trong khi với REST cho phép việc giao tiếp thông qua giao thức HTTP và ít các quy tắc rườm rà hơn.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/12/java-functional-composition/">
+                <h3 class="media-heading">[Functional Programming]  Java Functional Composition</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Function composition là một khái niệm về việc nhiều function có thể lồng nhau để làm param của một function khác. Bạn có thể tự compose nhiều function (dùng Lambda Expression) vào trong một function của riêng bạn, nhưng Java cũng cung cấp những cách compose riêng giúp bạn làm việc đó dễ hơn. Trong bài viết này chúng ta cùng tìm hiểu làm thế nào để compose các function bằng các feature có sẵn của Java.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/12/java-higher-order-function/">
+                <h3 class="media-heading">[Functional Programming] Java Higher Order Functions</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Một higher order function là một function nhận một function (method) khác làm parameter, hoặc nó có kết quả trả về là một function. Bài viết này sẽ giới thiệu một vài ví dụ về higher order function.
+1. Sorting Collections Ví dụ đầu tiên về higher order function là method Collections.sort() nhận một Comparator như một tham số:
+List&lt;String&gt; list = new ArrayList&lt;&gt;(); list.add(&quot;One&quot;); list.add(&quot;Abc&quot;); list.add(&quot;BCD&quot;); Collections.sort(list, (String a, String b) -&gt; { return a.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/12/singleton-pattern/">
+                <h3 class="media-heading">[Design Pattern] Singleton Design Pattern</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">1. Singleton là gì? Đã khi nào bạn viết một class mà chỉ muốn nó chỉ có duy nhất một instance? Trong lập trình, chúng ta sẽ đôi lần thấy rằng một số class chỉ nên có duy nhất một instance, vì nếu có nhiều hơn một, chúng ta sẽ gặp phải một vài vấn đề như hành vi chương trình không chính xác, lãng phí tài nguyên hay kết quả không nhất quán.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/12/java-functional-programming/">
+                <h3 class="media-heading">[Functional Programming]  Functional Programing trong Java</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">1. Functional Programming là gì? Functional Programming hay lập trình chức năng là kiểu lập trình mà function được chọn làm đơn vị thao tác cơ bản. Functional programming tập trung vào sử dụng tính năng của các hàm và tránh sử dụng các biến cũng như thay đổi giá trị của chúng. Nó hơi ngược với procedure programming như chúng ta vẫn thường sử dụng (OOP tập trung vào chi tiết hoạt động của chương trình và thường sử dụng các biến và thay đổi trạng thái của chương trình).</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/12/composite-pattern/">
+                <h3 class="media-heading">[Design Pattern] Composite Design Pattern</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Trong bài viết này, chúng ta sẽ đi tìm hiểu về một mẫu thiết kế khá thú vị, đó là Composite pattern. Trong tiếng anh thì từ composite có nghĩa là làm một hỗn hợp, tức là một thứ gì đó được tạo từ rất nhiều thành phần hỗn tạp. Đây là một mẫu thiết kế thuộc nhóm cấu trúc. Một đối tượng composite được tạo thành từ một hay nhiều đối tượng tương tự nhau (hoặc có một số chức năng tương tự nhau).</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+      </div>
+    </div>
+    <div class="modal-footer">
+      <p class="results-count text-medium"
+         data-message-zero="không tìm thấy kết quả"
+         data-message-one="tìm thấy 1 kết quả "
+         data-message-other="tìm thấy {n} kết quả">
+         23 posts found
+      </p>
+    </div>
+  </div>
+</div>
+    
+  
+    
+    <div id="cover" style="background-image:url('https://tubean.github.io/images/cover-v1.2.0.jpg');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://tubean.github.io/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+
+
+  
+    <script crossorigin="anonymous" integrity="sha384-jmxIlussZWB7qCuB+PgKG1uLjjxbVVIayPJwi6cG6Zb4YKq0JIw+OMnkkEC7kYCq" src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js"></script>
+  
+
+  
+    <script crossorigin="anonymous" integrity="sha384-IiI65aU9ZYub2MY9zhtKd1H2ps7xxf+eb2YFG9lX6uRqpXCvBTOidPRCXCrQ++Uc" src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/contrib/auto-render.min.js"></script>
+  
+
+  
+    <script src="https://tubean.github.io/js/main.js"></script>
+  
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'https:\/\/tubean.github.io\/2018\/12\/microservice-springboot-eureka\/';
+          
+            this.page.identifier = '\/2018\/12\/microservice-springboot-eureka\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'beans-blog';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+

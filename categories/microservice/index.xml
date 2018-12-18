@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Microservice on Bean&#39;s blog</title>
+    <link>https://tubean.github.io/categories/microservice/</link>
+    <description>Recent content in Microservice on Bean&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>vi</language>
+    <lastBuildDate>Tue, 18 Dec 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://tubean.github.io/categories/microservice/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>[Microservice] Dựng Microservice web bằng Spring Boot và Eureka [Phần 1]</title>
+      <link>https://tubean.github.io/2018/12/microservice-springboot-eureka/</link>
+      <pubDate>Tue, 18 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://tubean.github.io/2018/12/microservice-springboot-eureka/</guid>
+      <description>Microservices là một giải pháp cho phép chia một hệ thống lớn thành một vài các component độc lập về phát triển, test và deploy.
+Spring Cloud là một dự án con trong họ nhà Spring, được sử dụng để phát triển các ứng dụng phân tán. Một ứng dụng được gọi là phần tán (Distributed application) khi các phần của nó có thể được phát triển trên các ngôn ngữ khác nhau và được triển khai trên các máy chủ khác nhau.</description>
+    </item>
+    
+  </channel>
+</rss>
