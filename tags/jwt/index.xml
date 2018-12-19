@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Eureka on Bean&#39;s blog</title>
-    <link>https://tubean.github.io/tags/eureka/</link>
-    <description>Recent content in Eureka on Bean&#39;s blog</description>
+    <title>Jwt on Bean&#39;s blog</title>
+    <link>https://tubean.github.io/tags/jwt/</link>
+    <description>Recent content in Jwt on Bean&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>vi</language>
     <lastBuildDate>Wed, 19 Dec 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://tubean.github.io/tags/eureka/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://tubean.github.io/tags/jwt/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -20,16 +20,6 @@
       <description>Ở bài viết trước, chúng ta đã dựng được một hệ thống microservice đơn giản với 2 microservice, 1 cổng gateway và 1 naming server. Trong bài viết này, chúng ta sẽ tìm hiểu cách xác thực đối với hệ thống microservice bằng JWT.
 1. Authentication Workflow Chúng ta sẽ xem xét những bước xác thực diễn ra như thế nào trong một hệ thống bình thường:
  Người dùng gửi một request để lấy một token thông qua một hệ thống đăng nhập.</description>
-    </item>
-    
-    <item>
-      <title>[Microservice] Dựng Microservice web bằng Spring Boot và Eureka [Phần 1]</title>
-      <link>https://tubean.github.io/2018/12/microservice-springboot-eureka/</link>
-      <pubDate>Tue, 18 Dec 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://tubean.github.io/2018/12/microservice-springboot-eureka/</guid>
-      <description>Microservices là một giải pháp cho phép chia một hệ thống lớn thành một vài các component độc lập về phát triển, test và deploy.
-Spring Cloud là một dự án con trong họ nhà Spring, được sử dụng để phát triển các ứng dụng phân tán. Một ứng dụng được gọi là phần tán (Distributed application) khi các phần của nó có thể được phát triển trên các ngôn ngữ khác nhau và được triển khai trên các máy chủ khác nhau.</description>
     </item>
     
   </channel>

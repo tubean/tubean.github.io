@@ -1,0 +1,1472 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.49 with theme Tranquilpeak 0.4.3-SNAPSHOT">
+<meta name="author" content="Tu Bean">
+<meta name="keywords" content="web architecture, spring boot, eureka, zuul, microservice, tutorial, intelij, jwt">
+<meta name="description" content="Ở bài viết trước, chúng ta đã dựng được một hệ thống microservice đơn giản với 2 microservice, 1 cổng gateway và 1 naming server. Trong bài viết này, chúng ta sẽ tìm hiểu cách xác thực đối với hệ thống microservice bằng JWT.
+1. Authentication Workflow Chúng ta sẽ xem xét những bước xác thực diễn ra như thế nào trong một hệ thống bình thường:
+ Người dùng gửi một request để lấy một token thông qua một hệ thống đăng nhập.">
+
+
+<meta property="og:description" content="Ở bài viết trước, chúng ta đã dựng được một hệ thống microservice đơn giản với 2 microservice, 1 cổng gateway và 1 naming server. Trong bài viết này, chúng ta sẽ tìm hiểu cách xác thực đối với hệ thống microservice bằng JWT.
+1. Authentication Workflow Chúng ta sẽ xem xét những bước xác thực diễn ra như thế nào trong một hệ thống bình thường:
+ Người dùng gửi một request để lấy một token thông qua một hệ thống đăng nhập.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Microservice] Dựng Microservice web bằng Spring Boot và Eureka [Phần 2]">
+<meta name="twitter:title" content="[Microservice] Dựng Microservice web bằng Spring Boot và Eureka [Phần 2]">
+<meta property="og:url" content="https://tubean.github.io/2018/12/microservice-springboot-eureka-part2/">
+<meta property="twitter:url" content="https://tubean.github.io/2018/12/microservice-springboot-eureka-part2/">
+<meta property="og:site_name" content="Bean&#39;s blog">
+<meta property="og:description" content="Ở bài viết trước, chúng ta đã dựng được một hệ thống microservice đơn giản với 2 microservice, 1 cổng gateway và 1 naming server. Trong bài viết này, chúng ta sẽ tìm hiểu cách xác thực đối với hệ thống microservice bằng JWT.
+1. Authentication Workflow Chúng ta sẽ xem xét những bước xác thực diễn ra như thế nào trong một hệ thống bình thường:
+ Người dùng gửi một request để lấy một token thông qua một hệ thống đăng nhập.">
+<meta name="twitter:description" content="Ở bài viết trước, chúng ta đã dựng được một hệ thống microservice đơn giản với 2 microservice, 1 cổng gateway và 1 naming server. Trong bài viết này, chúng ta sẽ tìm hiểu cách xác thực đối với hệ thống microservice bằng JWT.
+1. Authentication Workflow Chúng ta sẽ xem xét những bước xác thực diễn ra như thế nào trong một hệ thống bình thường:
+ Người dùng gửi một request để lấy một token thông qua một hệ thống đăng nhập.">
+<meta property="og:locale" content="vi">
+
+  
+    <meta property="article:published_time" content="2018-12-19T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2018-12-19T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="Microservice">
+    
+      <meta property="article:section" content="Spring Boot">
+    
+  
+  
+    
+      <meta property="article:tag" content="web architecture">
+    
+      <meta property="article:tag" content="spring boot">
+    
+      <meta property="article:tag" content="eureka">
+    
+      <meta property="article:tag" content="zuul">
+    
+      <meta property="article:tag" content="microservice">
+    
+      <meta property="article:tag" content="jwt">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1545140745/1_aVq0q9jjFx1R8DMVhKKFWQ.png">
+  <meta property="twitter:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1545140745/1_aVq0q9jjFx1R8DMVhKKFWQ.png">
+
+
+  <meta property="og:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1541273502/Black_flag.svg.png">
+  <meta property="twitter:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1541273502/Black_flag.svg.png">
+
+
+
+
+  <meta property="og:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/c_scale,w_1836/v1540914499/C360_2016-03-22-17-45-21-487.jpg">
+  <meta property="twitter:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/c_scale,w_1836/v1540914499/C360_2016-03-22-17-45-21-487.jpg">
+
+
+    <title>[Microservice] Dựng Microservice web bằng Spring Boot và Eureka [Phần 2]</title>
+
+    <link rel="icon" href="https://tubean.github.io/favicon/flappybird.png">
+    
+
+    
+
+    <link rel="canonical" href="https://tubean.github.io/2018/12/microservice-springboot-eureka-part2/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://tubean.github.io/css/style-nnm2spxvve8onlujjlegkkytaehyadd4ksxc1hyzzq9a2wvtrgbljqyulomn.min.css" />
+    
+    
+      
+        <link rel="stylesheet"  crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" integrity="sha384-TEMocfGvRuD1rIAacqrknm5BQZ7W7uWitoih+jMNFXQIbNl16bO8OZmylH/Vi/Ei">
+      
+    
+      
+        <link rel="stylesheet"  href="https://tubean.github.io/css/main.css">
+      
+    
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-128433621-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://tubean.github.io/">Bean&#39;s blog</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://tubean.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://res.cloudinary.com/deop9ytsv/image/upload/c_scale,w_1836/v1540914499/C360_2016-03-22-17-45-21-487.jpg" alt="Ảnh đại diện" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://tubean.github.io/#about">
+          <img class="sidebar-profile-picture" src="https://res.cloudinary.com/deop9ytsv/image/upload/c_scale,w_1836/v1540914499/C360_2016-03-22-17-45-21-487.jpg" alt="Ảnh đại diện" />
+        </a>
+        <h4 class="sidebar-profile-name">Tu Bean</h4>
+        
+          <h5 class="sidebar-profile-bio">Coding, writing and sharing</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tubean.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Trang chủ</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tubean.github.io/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">Danh mục</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tubean.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Thẻ thông tin</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tubean.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Lưu trữ</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tubean.github.io/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">Thông tin</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://bitbucket.org/tubean/" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bitbucket-square"></i>
+      
+      <span class="sidebar-button-desc">Bitbucket</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/tubean" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">Github</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.instagram.com/zeref_bean/" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-instagram"></i>
+      
+      <span class="sidebar-button-desc">Instagram</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.linkedin.com/in/tubean/" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-linkedin"></i>
+      
+      <span class="sidebar-button-desc">LinkedIn</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+  <div class="post-header-cover
+              text-center
+              "
+       style="background-image:url('https://res.cloudinary.com/deop9ytsv/image/upload/v1541273502/Black_flag.svg.png')"
+       data-behavior="5">
+    
+      <div class="post-header main-content-wrap text-center">
+  
+    <h1 class="post-title" itemprop="headline">
+      [Microservice] Dựng Microservice web bằng Spring Boot và Eureka [Phần 2]
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2018-12-19T00:00:00Z">
+        
+  tháng 12 19, 2018
+
+      </time>
+    
+    
+  
+  
+    <span>mục</span>
+    
+      <a class="category-link" href="https://tubean.github.io/categories/microservice">Microservice</a>, 
+    
+      <a class="category-link" href="https://tubean.github.io/categories/spring-boot">Spring Boot</a>
+    
+  
+
+  </div>
+
+</div>
+    
+  </div>
+
+
+      <div id="main" data-behavior="5"
+        class="hasCover
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              
+
+<p>Ở <a href="https://tubean.github.io/2018/12/microservice-springboot-eureka/">bài viết</a>  trước, chúng ta đã dựng được một hệ thống microservice đơn giản với 2 microservice, 1 cổng gateway và 1 naming server. Trong bài viết này, chúng ta sẽ tìm hiểu cách xác thực đối với hệ thống microservice bằng JWT.</p>
+
+<h1 id="1-authentication-workflow">1. Authentication Workflow</h1>
+
+<p>Chúng ta sẽ xem xét những bước xác thực diễn ra như thế nào trong một hệ thống bình thường:</p>
+
+<ol>
+<li>Người dùng gửi một request để lấy một token thông qua một hệ thống đăng nhập.</li>
+<li>Server sẽ xác định danh tính của người dùng và gửi trả về một token.</li>
+<li>Với mỗi request sau đó, người dùng sẽ cung cấp token nhận được để server xác nhận.</li>
+</ol>
+
+<p>Chúng ta sẽ sử dụng một service mới là  <code>auth service</code> để xác nhận danh tính của user và cung cấp token. Vậy còn xác nhận token thì ai đảm nhận? Thực ra chúng ta có thể triển khai việc này trong auth service và cổng gateway của chúng ta sẽ gọi đến service này để xác nhận token trước khi cho phép request gọi đến bất kỳ service nào. Tuy nhiên trong bài viết này, chúng ta sẽ thực hiện việc xác nhận token ở tầng gateway luôn, và nhiệm vụ của auth service chỉ là xác nhận danh tính user sau đó cung cấp một token tương ứng. Dù sử dụng cách nào thì việc chúng ta làm đều có mục đích là chặn các request chưa được xác thực gọi đến các service.</p>
+
+<h1 id="2-json-based-token-jwt">2. JSON Based Token (JWT)</h1>
+
+<p>Một token là một chuỗi String được mã hóa, được gen từ ứng dụng của chúng ta (sau khi xác thực thành công) và được gửi bởi người dùng trong mỗi request để cung cấp quyền truy cập vào các tài nguyên cho phép của ứng dụng. JSON Based Token (JWT) là một chuẩn JSON để tạo token. Nó bao gồm ba phần: header, payload và chữ ký (signature).</p>
+
+<p>Phần header sẽ chứa thuật toán hash:</p>
+
+<pre><code>{type: “JWT”, hash: “HS256”}
+</code></pre>
+
+<p>Phần payload sẽ chứa các thuộc tính (username, email, &hellip;) và giá trị của nó:</p>
+
+<pre><code>{username: &quot;Omar&quot;, email: &quot;omar@example.com&quot;, admin: true }
+</code></pre>
+
+<p>Phần chữ ký là giá trị hash của <code>Header + “.” + Payload + Secret key</code>.</p>
+
+<h1 id="3-gateway">3. Gateway</h1>
+
+<p>Ở trong gateway, chúng ta sẽ cần thêm hai phần: một là xác nhận token cho mỗi request và hai là chặn tất cả các request không được xác thực.</p>
+
+<p>Trong file <code>pom.xml</code> chúng ta sẽ thêm 2 dependency của spring security và JWT:</p>
+
+<pre><code class="language-xml">&lt;dependency&gt;  
+  &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;  
+  &lt;artifactId&gt;spring-boot-starter-security&lt;/artifactId&gt;  
+&lt;/dependency&gt;
+
+&lt;dependency&gt;  
+  &lt;groupId&gt;io.jsonwebtoken&lt;/groupId&gt;  
+  &lt;artifactId&gt;jjwt&lt;/artifactId&gt;  
+  &lt;version&gt;0.9.0&lt;/version&gt;  
+&lt;/dependency&gt;
+</code></pre>
+
+<p>Trong file <code>application.properties</code> chúng ta khai báo đường dẫn path đến auth service (sẽ tạo sau):</p>
+
+<pre><code># Map path to auth service
+
+zuul.routes.auth-service.path=/auth/**
+
+zuul.routes.auth-service.service-id=AUTH-SERVICE
+
+# By default, all requests to gallery service for example will start with: &quot;/gallery/&quot;
+
+# What will be sent to the gallery service is what comes after the path defined,
+
+# So, if request is &quot;/gallery/view/1&quot;, gallery service will get &quot;/view/1&quot;.
+
+# In case of auth, we need to pass the &quot;/auth/&quot; in the path to auth service. So, set strip-prefix to false
+
+zuul.routes.auth-service.strip-prefix=false
+
+# Exclude authorization from sensitive headers
+
+zuul.routes.auth-service.sensitive-headers=Cookie,Set-Cookie
+</code></pre>
+
+<p>Để khai báo cấu hình bảo mật thì chúng ta cần tạo một lớp được extend từ <code>WebSecurityConfigurerAdapter</code> và dùng annotation <code>@EnableWebSecurity</code> cho nó:</p>
+
+<pre><code class="language-java">package io.github.tubean.eureka.zuulserver.security;  
+
+import javax.servlet.http.HttpServletResponse;  
+
+import org.springframework.beans.factory.annotation.Autowired;  
+import org.springframework.context.annotation.Bean;  
+import org.springframework.http.HttpMethod;  
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;  
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;  
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;  
+import org.springframework.security.config.http.SessionCreationPolicy;  
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;  
+
+@EnableWebSecurity     // Enable security config. This annotation denotes config for spring security.  
+public class SecurityTokenConfig extends WebSecurityConfigurerAdapter {  
+   @Autowired  
+  private JwtConfig jwtConfig;  
+
+   @Override  
+  protected void configure(HttpSecurity http) throws Exception {  
+          http  
+      .csrf().disable()  
+          // make sure we use stateless session; session won't be used to store user's state.  
+  .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)      
+      .and()  
+          // handle an authorized attempts   
+ .exceptionHandling().authenticationEntryPoint((req, rsp, e) -&gt; rsp.sendError(HttpServletResponse.SC_UNAUTHORIZED))       
+      .and()  
+         // Add a filter to validate the tokens with every request  
+  .addFilterAfter(new JwtTokenAuthenticationFilter(jwtConfig), UsernamePasswordAuthenticationFilter.class)  
+      // authorization requests config  
+  .authorizeRequests()  
+         // allow all who are accessing &quot;auth&quot; service  
+  .antMatchers(HttpMethod.POST, jwtConfig.getUri()).permitAll()    
+         // must be an admin if trying to access admin area (authentication is also required here)  
+  .antMatchers(&quot;/gallery&quot; + &quot;/admin/**&quot;).hasRole(&quot;ADMIN&quot;)  
+         // Any other request must be authenticated  
+  .anyRequest().authenticated();   
+   }  
+
+   @Bean  
+  public JwtConfig jwtConfig() {  
+          return new JwtConfig();  
+   }  
+}
+</code></pre>
+
+<p>Trong class <code>JwtConfig</code> chúng ta khai báo các biến để cấu hình JWT:</p>
+
+<pre><code class="language-java">package io.github.tubean.eureka.zuulserver.security;  
+
+import org.springframework.beans.factory.annotation.Value;  
+
+public class JwtConfig {  
+    @Value(&quot;${security.jwt.uri:/auth/**}&quot;)  
+    private String Uri;  
+
+    @Value(&quot;${security.jwt.header:Authorization}&quot;)  
+    private String header;  
+
+    @Value(&quot;${security.jwt.prefix:Bearer }&quot;)  
+    private String prefix;  
+
+    @Value(&quot;${security.jwt.expiration:#{24*60*60}}&quot;)  
+    private int expiration;  
+
+    @Value(&quot;${security.jwt.secret:JwtSecretKey}&quot;)  
+    private String secret;  
+
+    public String getUri() {  
+        return Uri;  
+    }  
+
+    public void setUri(String uri) {  
+        Uri = uri;  
+    }  
+
+    public String getHeader() {  
+        return header;  
+    }  
+
+    public void setHeader(String header) {  
+        this.header = header;  
+    }  
+
+    public String getPrefix() {  
+        return prefix;  
+    }  
+
+    public void setPrefix(String prefix) {  
+        this.prefix = prefix;  
+    }  
+
+    public int getExpiration() {  
+        return expiration;  
+    }  
+
+    public void setExpiration(int expiration) {  
+        this.expiration = expiration;  
+    }  
+
+    public String getSecret() {  
+        return secret;  
+    }  
+
+    public void setSecret(String secret) {  
+        this.secret = secret;  
+    }  
+}
+</code></pre>
+
+<p>Spring có các lớp filter cho phép thực thi trong life-cycle của một request. Để khởi động và sử dụng các filter này, chúng ta cần extend chúng. Ở chế độ mặc định thì spring sẽ định nghĩa riêng cho mỗi filter lúc nào thì nên sử dụng. Tuy nhiên thì bạn có thể sửa lại thứ tự một filter sẽ hoạt động trước hoặc sau filter nào.</p>
+
+<p>Công việc tiếp theo là chúng ta cần triển khai một filter dùng để xác nhận token. Filter <code>OncePerRequestFilter</code> là một filter được kích hoạt cho mỗi một lần request đến nên chúng ta sẽ dùng nó để tạo một filter của chúng ta:</p>
+
+<pre><code class="language-java">package io.github.tubean.eureka.zuulserver.security;  
+
+import java.io.IOException;  
+import java.util.List;  
+import java.util.stream.Collectors;  
+
+import javax.servlet.FilterChain;  
+import javax.servlet.ServletException;  
+import javax.servlet.http.HttpServletRequest;  
+import javax.servlet.http.HttpServletResponse;  
+
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;  
+import org.springframework.security.core.authority.SimpleGrantedAuthority;  
+import org.springframework.security.core.context.SecurityContextHolder;  
+import org.springframework.web.filter.OncePerRequestFilter;  
+
+import io.jsonwebtoken.Claims;  
+import io.jsonwebtoken.Jwts;  
+
+public class JwtTokenAuthenticationFilter extends OncePerRequestFilter {  
+
+   private final JwtConfig jwtConfig;  
+
+   public JwtTokenAuthenticationFilter(JwtConfig jwtConfig) {  
+      this.jwtConfig = jwtConfig;  
+   }  
+
+   @Override  
+  protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)  
+         throws ServletException, IOException {  
+
+      // 1. get the authentication header. Tokens are supposed to be passed in the authentication header  
+  String header = request.getHeader(jwtConfig.getHeader());  
+
+      // 2. validate the header and check the prefix  
+  if(header == null || !header.startsWith(jwtConfig.getPrefix())) {  
+         chain.doFilter(request, response);        // If not valid, go to the next filter.  
+  return;  
+      }  
+
+      // If there is no token provided and hence the user won't be authenticated.   
+      // It's Ok. Maybe the user accessing a public path or asking for a token.  
+       // All secured paths that needs a token are already defined and secured in config class.  
+ // And If user tried to access without access token, then he won't be authenticated and an exception will be thrown.       // 3. Get the token  
+  String token = header.replace(jwtConfig.getPrefix(), &quot;&quot;);  
+
+      try {  // exceptions might be thrown in creating the claims if for example the token is expired  
+          // 4. Validate the token  
+  Claims claims = Jwts.parser()  
+               .setSigningKey(jwtConfig.getSecret().getBytes())  
+               .parseClaimsJws(token)  
+               .getBody();  
+
+         String username = claims.getSubject();  
+         if(username != null) {  
+            @SuppressWarnings(&quot;unchecked&quot;)  
+            List&lt;String&gt; authorities = (List&lt;String&gt;) claims.get(&quot;authorities&quot;);  
+
+            // 5. Create auth object  
+ // UsernamePasswordAuthenticationToken: A built-in object, used by spring to represent the current authenticated / being authenticated user. // It needs a list of authorities, which has type of GrantedAuthority interface, where SimpleGrantedAuthority is an implementation of that interface  UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(  
+                         username, null, authorities.stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList()));  
+
+             // 6. Authenticate the user  
+ // Now, user is authenticated  SecurityContextHolder.getContext().setAuthentication(auth);  
+         }  
+
+      } catch (Exception e) {  
+         // In case of failure. Make sure it's clear; so guarantee user won't be authenticated  
+  SecurityContextHolder.clearContext();  
+      }  
+
+      // go to the next filter in the filter chain  
+  chain.doFilter(request, response);  
+   }  
+
+}
+</code></pre>
+
+<h1 id="4-auth-service">4. Auth service</h1>
+
+<p>Trong auth service, chúng ta sẽ làm hai việc: một là xác thực định danh mà người dùng cung cấp và hai là gen ra một token trong trường hợp xác thực hợp lệ hoặc trả về một exception nếu nó không hợp lệ.</p>
+
+<p>Trong file <code>pom.xml</code> chúng ta cần các dependencies sau: Web, Eureka Client, Spring Security và JWT.</p>
+
+<pre><code>&lt;dependency&gt;  
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;  
+    &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;  
+&lt;/dependency&gt;  
+&lt;dependency&gt;  
+    &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;  
+    &lt;artifactId&gt;spring-cloud-starter-netflix-eureka-client&lt;/artifactId&gt;  
+&lt;/dependency&gt;  
+&lt;dependency&gt;  
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;  
+    &lt;artifactId&gt;spring-boot-starter-security&lt;/artifactId&gt;  
+&lt;/dependency&gt;  
+&lt;dependency&gt;  
+    &lt;groupId&gt;io.jsonwebtoken&lt;/groupId&gt;  
+    &lt;artifactId&gt;jjwt&lt;/artifactId&gt;  
+    &lt;version&gt;0.9.0&lt;/version&gt;  
+&lt;/dependency&gt;
+</code></pre>
+
+<p>File <code>application.properties</code> khai báo như các service khác:</p>
+
+<pre><code>spring.application.name=auth-service
+
+server.port=9100
+
+eureka.client.service-url.default-zone=http://localhost:8761/eureka
+</code></pre>
+
+<p>Giống như cấu hình cổng Gateway, chúng ta cần tạo một lớp extends từ <code>WebSecurityConfigurerAdapter</code> và đánh anotation <code>@EnableWebSecurity</code> cho nó:</p>
+
+<pre><code class="language-java">package io.github.tubean.authservice.security;  
+
+import javax.servlet.http.HttpServletResponse;  
+
+import org.springframework.beans.factory.annotation.Autowired;  
+import org.springframework.context.annotation.Bean;  
+import org.springframework.http.HttpMethod;  
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;  
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;  
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;  
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;  
+import org.springframework.security.config.http.SessionCreationPolicy;  
+import org.springframework.security.core.userdetails.UserDetailsService;  
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;  
+
+@EnableWebSecurity // Enable security config. This annotation denotes config for spring security.  
+public class SecurityCredentialsConfig extends WebSecurityConfigurerAdapter {  
+
+   @Autowired  
+  private UserDetailsService userDetailsService;  
+
+   @Autowired  
+  private JwtConfig jwtConfig;  
+
+   @Override  
+  protected void configure(HttpSecurity http) throws Exception {  
+      http  
+          .csrf().disable()  
+           // make sure we use stateless session; session won't be used to store user's state.  
+  .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)  
+           .and()  
+               // handle an authorized attempts   
+ .exceptionHandling().authenticationEntryPoint((req, rsp, e) -&gt; rsp.sendError(HttpServletResponse.SC_UNAUTHORIZED))  
+           .and()  
+          // Add a filter to validate user credentials and add token in the response header  
+           // What's the authenticationManager()?   
+          // An object provided by WebSecurityConfigurerAdapter, used to authenticate the user passing user's credentials  
+ // The filter needs this auth manager to authenticate the user.  .addFilter(new JwtUsernameAndPasswordAuthenticationFilter(authenticationManager(), jwtConfig))   
+      .authorizeRequests()  
+          // allow all POST requests   
+ .antMatchers(HttpMethod.POST, jwtConfig.getUri()).permitAll()  
+          // any other requests must be authenticated  
+  .anyRequest().authenticated();  
+   }  
+
+   // Spring has UserDetailsService interface, which can be overriden to provide our implementation for fetching user from database (or any other source).  
+ // The UserDetailsService object is used by the auth manager to load the user from database. // In addition, we need to define the password encoder also. So, auth manager can compare and verify passwords.  @Override  
+  protected void configure(AuthenticationManagerBuilder auth) throws Exception {  
+      auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());  
+   }  
+
+   @Bean  
+  public JwtConfig jwtConfig() {  
+           return new JwtConfig();  
+   }  
+
+   @Bean  
+  public BCryptPasswordEncoder passwordEncoder() {  
+       return new BCryptPasswordEncoder();  
+   }  
+}
+</code></pre>
+
+<p>Trong đoạn code trên, chúng ta sử dụng interface <code>UserDetailsService</code> nên chúng ta cần implement nó:</p>
+
+<pre><code class="language-java">package io.github.tubean.authservice.security;  
+
+import java.util.Arrays;  
+import java.util.List;  
+
+import org.springframework.beans.factory.annotation.Autowired;  
+import org.springframework.security.core.GrantedAuthority;  
+import org.springframework.security.core.authority.AuthorityUtils;  
+import org.springframework.security.core.userdetails.User;  
+import org.springframework.security.core.userdetails.UserDetails;  
+import org.springframework.security.core.userdetails.UserDetailsService;  
+import org.springframework.security.core.userdetails.UsernameNotFoundException;  
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;  
+import org.springframework.stereotype.Service;  
+
+@Service // It has to be annotated with @Service.  
+public class UserDetailsServiceImpl implements UserDetailsService  {  
+
+   @Autowired  
+  private BCryptPasswordEncoder encoder;  
+
+   @Override  
+  public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {  
+
+      // hard coding the users. All passwords must be encoded.  
+  final List&lt;AppUser&gt; users = Arrays.asList(  
+         new AppUser(1, &quot;tubean&quot;, encoder.encode(&quot;12345&quot;), &quot;USER&quot;),  
+         new AppUser(2, &quot;admin&quot;, encoder.encode(&quot;12345&quot;), &quot;ADMIN&quot;)  
+      );  
+
+
+      for(AppUser appUser: users) {  
+         if(appUser.getUsername().equals(username)) {  
+
+            // Remember that Spring needs roles to be in this format: &quot;ROLE_&quot; + userRole (i.e. &quot;ROLE_ADMIN&quot;)  
+ // So, we need to set it to that format, so we can verify and compare roles (i.e. hasRole(&quot;ADMIN&quot;)).  List&lt;GrantedAuthority&gt; grantedAuthorities = AuthorityUtils  
+                         .commaSeparatedStringToAuthorityList(&quot;ROLE_&quot; + appUser.getRole());  
+
+            // The &quot;User&quot; class is provided by Spring and represents a model class for user to be returned by UserDetailsService  
+ // And used by auth manager to verify and check user authentication.  return new User(appUser.getUsername(), appUser.getPassword(), grantedAuthorities);  
+         }  
+      }  
+
+      // If user not found. Throw this exception.  
+  throw new UsernameNotFoundException(&quot;Username: &quot; + username + &quot; not found&quot;);  
+   }  
+
+   // A (temporary) class represent the user saved in the database.  
+  private static class AppUser {  
+      private Integer id;  
+          private String username, password;  
+          private String role;  
+
+      public AppUser(Integer id, String username, String password, String role) {  
+             this.id = id;  
+             this.username = username;  
+             this.password = password;  
+             this.role = role;  
+          }  
+
+      public Integer getId() {  
+         return id;  
+      }  
+
+      public void setId(Integer id) {  
+         this.id = id;  
+      }  
+
+      public String getUsername() {  
+         return username;  
+      }  
+
+      public void setUsername(String username) {  
+         this.username = username;  
+      }  
+
+      public String getPassword() {  
+         return password;  
+      }  
+
+      public void setPassword(String password) {  
+         this.password = password;  
+      }  
+
+      public String getRole() {  
+         return role;  
+      }  
+
+      public void setRole(String role) {  
+         this.role = role;  
+      }  
+   }  
+}
+</code></pre>
+
+<p>Đây là class hoạt động như một nơi cung cấp cho người dùng, nghĩa là nó tải các thông tin chi tiết của người dùng từ database lên và sử dụng chúng.</p>
+
+<p>Bước tiếp theo cũng là bước cuối cùng, chúng ta cần một filter. Ở đây chúng ta sử dụng <code>JwtUsernameAndPasswordAuthenticationFilter</code> để xác thực định danh người dùng và tạo token. Các thông tin về username hay password phải được gửi dưới dạng POST request.</p>
+
+<pre><code class="language-java">package io.github.tubean.authservice.security;  
+
+import java.io.IOException;  
+import java.sql.Date;  
+import java.util.Collections;  
+import java.util.stream.Collectors;  
+
+import javax.servlet.FilterChain;  
+import javax.servlet.ServletException;  
+import javax.servlet.http.HttpServletRequest;  
+import javax.servlet.http.HttpServletResponse;  
+
+import org.springframework.security.authentication.AuthenticationManager;  
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;  
+import org.springframework.security.core.Authentication;  
+import org.springframework.security.core.AuthenticationException;  
+import org.springframework.security.core.GrantedAuthority;  
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;  
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;  
+
+import com.fasterxml.jackson.databind.ObjectMapper;  
+
+import io.jsonwebtoken.Jwts;  
+import io.jsonwebtoken.SignatureAlgorithm;  
+
+public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePasswordAuthenticationFilter   {  
+
+   // We use auth manager to validate the user credentials  
+  private AuthenticationManager authManager;  
+
+   private final JwtConfig jwtConfig;  
+
+   public JwtUsernameAndPasswordAuthenticationFilter(AuthenticationManager authManager, JwtConfig jwtConfig) {  
+      this.authManager = authManager;  
+      this.jwtConfig = jwtConfig;  
+
+      // By default, UsernamePasswordAuthenticationFilter listens to &quot;/login&quot; path.   
+      // In our case, we use &quot;/auth&quot;. So, we need to override the defaults.  
+  this.setRequiresAuthenticationRequestMatcher(new AntPathRequestMatcher(jwtConfig.getUri(), &quot;POST&quot;));  
+   }  
+
+   @Override  
+  public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)  
+         throws AuthenticationException {  
+
+      try {  
+
+         // 1. Get credentials from request  
+  UserCredentials creds = new ObjectMapper().readValue(request.getInputStream(), UserCredentials.class);  
+
+         // 2. Create auth object (contains credentials) which will be used by auth manager  
+  UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(  
+               creds.getUsername(), creds.getPassword(), Collections.emptyList());  
+
+         // 3. Authentication manager authenticate the user, and use UserDetialsServiceImpl::loadUserByUsername() method to load the user.  
+  return authManager.authenticate(authToken);  
+
+      } catch (IOException e) {  
+         throw new RuntimeException(e);  
+      }  
+   }  
+
+   // Upon successful authentication, generate a token.  
+ // The 'auth' passed to successfulAuthentication() is the current authenticated user.  @Override  
+  protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain,  
+         Authentication auth) throws IOException, ServletException {  
+
+      Long now = System.currentTimeMillis();  
+      String token = Jwts.builder()  
+         .setSubject(auth.getName())      
+         // Convert to list of strings.   
+         // This is important because it affects the way we get them back in the Gateway.  
+  .claim(&quot;authorities&quot;, auth.getAuthorities().stream()  
+            .map(GrantedAuthority::getAuthority).collect(Collectors.toList()))  
+         .setIssuedAt(new Date(now))  
+         .setExpiration(new Date(now + jwtConfig.getExpiration() * 1000))  // in milliseconds  
+  .signWith(SignatureAlgorithm.HS512, jwtConfig.getSecret().getBytes())  
+         .compact();  
+
+      // Add token to header  
+  response.addHeader(jwtConfig.getHeader(), jwtConfig.getPrefix() + token);  
+   }  
+
+   // A (temporary) class just to represent the user credentials  
+  private static class UserCredentials {  
+       private String username, password;  
+
+      public String getUsername() {  
+         return username;  
+      }  
+
+      public void setUsername(String username) {  
+         this.username = username;  
+      }  
+
+      public String getPassword() {  
+         return password;  
+      }  
+
+      public void setPassword(String password) {  
+         this.password = password;  
+      }  
+   }  
+}
+</code></pre>
+
+<blockquote>
+<p>Đừng quên class JwtConfig như bên Gateway!</p>
+</blockquote>
+
+<h1 id="5-testing">5. Testing</h1>
+
+<p>Chúng ta sẽ chạy lần lượt Eureka Server, các service image, gallery, auth và gateway.</p>
+
+<p>Đầu tiên chúng ta thử truy cập vào gallery service thông qua đường dẫn <code>localhost:8762/gallery</code> mà không có token. Chúng ta sẽ nhận về một lỗi 401 như sau:</p>
+
+<pre><code>{
+    &quot;timestamp&quot;: &quot;2018-12-19T16:26:08.131+0000&quot;,
+    &quot;status&quot;: 401,
+    &quot;error&quot;: &quot;Unauthorized&quot;,
+    &quot;message&quot;: &quot;No message available&quot;,
+    &quot;path&quot;: &quot;/gallery&quot;
+}
+</code></pre>
+
+<p>Để nhận token, chúng ta gửi định danh của chúng ta đến địa chỉ <code>localhost:8762/auth</code> như sau:
+<img src="https://res.cloudinary.com/deop9ytsv/image/upload/v1545237441/msa_jwt_img1.jpg" alt="imag1" /></p>
+
+<p>Bây giờ gọi lại đến gallery service kèm theo một token trong header:
+<img src="https://res.cloudinary.com/deop9ytsv/image/upload/v1545237474/Screenshot_2.jpg" alt="img_2" />
+Ngoài ta thì bạn có thể thử chạy nhiều instance của gallery service để test xem các request được phân tán như thế nào. Trong phần tiếp theo, chúng ta sẽ tìm hiểu các xử lý lỗi và theo dõi trong mô hình microservice.</p>
+
+<h1 id="nguồn-bài-viết">Nguồn bài viết</h1>
+
+<p><a href="https://medium.com/omarelgabrys-blog/microservices-with-spring-boot-authentication-with-jwt-part-3-fafc9d7187e8">https://medium.com/omarelgabrys-blog/microservices-with-spring-boot-authentication-with-jwt-part-3-fafc9d7187e8</a></p>
+
+<blockquote>
+<p>Trong bài viết gốc, tác giả có ử dụng thêm service config để chứa nhận phần resources chung của các microservice nhằm mục đích tránh bị trùng lặp. Ví dụ trong hệ thống của chúng ta có sử dụng class JwtConfig ở cả Gateway và auth service. Tuy nhiên do chưa thử thành công nên tôi không đưa nó vào bài viết. Nếu bạn nào đọc mà hiểu thì vui lòng comment phía dưới để tôi thêm vào bài viết. Xin cảm ơn.</p>
+</blockquote>
+
+<h1 id="source-code">Source code</h1>
+
+<p><a href="https://github.com/tubean/MSA-springboot-eureka">https://github.com/tubean/MSA-springboot-eureka</a></p>
+
+<p>Check out branch <code>part2_authen_with_jwt</code>.</p>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">THẺ ĐÁNH DẤU</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/web-architecture/">web architecture</a>
+
+  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/spring-boot/">spring boot</a>
+
+  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/eureka/">eureka</a>
+
+  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/zuul/">zuul</a>
+
+  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/microservice/">microservice</a>
+
+  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/jwt/">jwt</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">Tiếp</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2018/12/microservice-springboot-eureka/" data-tooltip="[Microservice] Dựng Microservice web bằng Spring Boot và Eureka [Phần 1]">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">Trước</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://tubean.github.io/2018/12/microservice-springboot-eureka-part2/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://tubean.github.io/2018/12/microservice-springboot-eureka-part2/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://tubean.github.io/2018/12/microservice-springboot-eureka-part2/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2018 <a href="https://bitbucket.org/tubean/">Do Anh Tu</a>. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">Tiếp</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2018/12/microservice-springboot-eureka/" data-tooltip="[Microservice] Dựng Microservice web bằng Spring Boot và Eureka [Phần 1]">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">Trước</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://tubean.github.io/2018/12/microservice-springboot-eureka-part2/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://tubean.github.io/2018/12/microservice-springboot-eureka-part2/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://tubean.github.io/2018/12/microservice-springboot-eureka-part2/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ftubean.github.io%2F2018%2F12%2Fmicroservice-springboot-eureka-part2%2F">
+          <i class="fa fa-facebook-official"></i><span>Chia sẻ với Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Ftubean.github.io%2F2018%2F12%2Fmicroservice-springboot-eureka-part2%2F">
+          <i class="fa fa-twitter"></i><span>Chia sẻ với Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Ftubean.github.io%2F2018%2F12%2Fmicroservice-springboot-eureka-part2%2F">
+          <i class="fa fa-google-plus"></i><span>Chia sẻ với Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://res.cloudinary.com/deop9ytsv/image/upload/c_scale,w_1836/v1540914499/C360_2016-03-22-17-45-21-487.jpg" alt="Ảnh đại diện" />
+    
+    <h4 id="about-card-name">Tu Bean</h4>
+    
+      <div id="about-card-bio">Coding, writing and sharing</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Web developer
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        Viet Nam
+      </div>
+    
+  </div>
+</div>
+
+    <div id="algolia-search-modal" class="modal-container">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="close-button"><i class="fa fa-close"></i></span>
+      <a href="https://algolia.com" target="_blank" rel="noopener" class="searchby-algolia text-color-light link-unstyled">
+        <span class="searchby-algolia-text text-color-light text-small">by</span>
+        <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+      </a>
+      <i class="search-icon fa fa-search"></i>
+      <form id="algolia-search-form">
+        <input type="text" id="algolia-search-input" name="search"
+          class="form-control input--large search-input" placeholder="Tìm kiếm" />
+      </form>
+    </div>
+    <div class="modal-body">
+      <div class="no-result text-color-light text-center">không tìm thấy kết quả</div>
+      <div class="results">
+        
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/12/microservice-springboot-eureka-part2/">
+                <h3 class="media-heading">[Microservice] Dựng Microservice web bằng Spring Boot và Eureka [Phần 2]</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Ở bài viết trước, chúng ta đã dựng được một hệ thống microservice đơn giản với 2 microservice, 1 cổng gateway và 1 naming server. Trong bài viết này, chúng ta sẽ tìm hiểu cách xác thực đối với hệ thống microservice bằng JWT.
+1. Authentication Workflow Chúng ta sẽ xem xét những bước xác thực diễn ra như thế nào trong một hệ thống bình thường:
+ Người dùng gửi một request để lấy một token thông qua một hệ thống đăng nhập.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/12/microservice-springboot-eureka/">
+                <h3 class="media-heading">[Microservice] Dựng Microservice web bằng Spring Boot và Eureka [Phần 1]</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Microservices là một giải pháp cho phép chia một hệ thống lớn thành một vài các component độc lập về phát triển, test và deploy.
+Spring Cloud là một dự án con trong họ nhà Spring, được sử dụng để phát triển các ứng dụng phân tán. Một ứng dụng được gọi là phần tán (Distributed application) khi các phần của nó có thể được phát triển trên các ngôn ngữ khác nhau và được triển khai trên các máy chủ khác nhau.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/12/monolithic-vs-microservice/">
+                <h3 class="media-heading">[Web architecture] Kiến trúc monolithic và microservice</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Trong lập trình web hiện nay, hai loại kiến trúc web mà chúng ta thường áp dụng cho ứng dụng của mình là kiến trúc một khối (Monolithic architecture) và kiến trúc microservice (Microservice architecture). Trong bài viết này, chúng ta sẽ tìm hiểu về hai loại kiến trúc này để biết ưu nhược điểm cũng như khi nào sử dụng chúng.
+1. Kiến trúc một khối (Monolithic web architecture) Kiến trúc một khối là mẫu thiết kế được dùng nhiều nhất trong giới lập trình web hiện nay bởi tính đơn giản của nó khi phát triển và khi deploy.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/12/prototype-pattern/">
+                <h3 class="media-heading">[Design Pattern] Prototype Design Pattern</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Trong lập trình hướng đối tượng, khi chúng ta muốn tạo thêm một đối tượng thì thường sử dụng từ khóa new. Tuy nhiên đối với cách tạo đối tượng này thì những thuộc tính ban đầu sẽ thường là trống, trừ khi được khởi tạo giá trị default hoặc khởi tạo ngay trong contructor. Vậy nếu chúng ta muốn tạo mới một đối tượng từ một đối tượng cũ, mang tất cả thuộc tính và giá trị đang có của đối tượng cũ như một bản clone thì làm thế nào?</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/12/spring-boot-mongo-db/">
+                <h3 class="media-heading">[Spring Boot] Dựng app CRUD đơn giản bằng Spring Boot &#43; MongoDB trên Intelij</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">MongoDB hiện đang là cơ sở dữ liệu NoSQL phổ biến nhất. Bài viết này là một hướng dẫn nhỏ về cách sử dụng Spring Boot kết hợp với MongoDB để tạo một app dạng CRUD.
+Các tool sử dụng:  Java Spring Boot Maven MongoDB Postman  1. Tạo database Trước khi bắt đầu xây dựng app, chúng ta cần chuẩn bị một instance của MongoDB để truy xuất tới nó.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/12/web-service-s%E1%BB%B1-kh%C3%A1c-nhau-gi%E1%BB%AFa-soap-v%C3%A0-restful-web-service-trong-java/">
+                <h3 class="media-heading">[Web Service] Sự khác nhau giữa SOAP và RESTful Web Service trong Java</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Cả 2 loại SOAP và RESTful đều cho phép phía client gửi request đến server để query, nhưng chúng được thực hiện bằng những cách khác nhau. Sự khác nhau chính giữa SOAP và REST là cách mà client giao tiếp server thông qua SOAP sẽ bị hạn chế bởi nhiều quy tắc và format được thiết kế chính xác, trong khi với REST cho phép việc giao tiếp thông qua giao thức HTTP và ít các quy tắc rườm rà hơn.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/12/java-functional-composition/">
+                <h3 class="media-heading">[Functional Programming]  Java Functional Composition</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Function composition là một khái niệm về việc nhiều function có thể lồng nhau để làm param của một function khác. Bạn có thể tự compose nhiều function (dùng Lambda Expression) vào trong một function của riêng bạn, nhưng Java cũng cung cấp những cách compose riêng giúp bạn làm việc đó dễ hơn. Trong bài viết này chúng ta cùng tìm hiểu làm thế nào để compose các function bằng các feature có sẵn của Java.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/12/java-higher-order-function/">
+                <h3 class="media-heading">[Functional Programming] Java Higher Order Functions</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Một higher order function là một function nhận một function (method) khác làm parameter, hoặc nó có kết quả trả về là một function. Bài viết này sẽ giới thiệu một vài ví dụ về higher order function.
+1. Sorting Collections Ví dụ đầu tiên về higher order function là method Collections.sort() nhận một Comparator như một tham số:
+List&lt;String&gt; list = new ArrayList&lt;&gt;(); list.add(&quot;One&quot;); list.add(&quot;Abc&quot;); list.add(&quot;BCD&quot;); Collections.sort(list, (String a, String b) -&gt; { return a.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/12/singleton-pattern/">
+                <h3 class="media-heading">[Design Pattern] Singleton Design Pattern</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">1. Singleton là gì? Đã khi nào bạn viết một class mà chỉ muốn nó chỉ có duy nhất một instance? Trong lập trình, chúng ta sẽ đôi lần thấy rằng một số class chỉ nên có duy nhất một instance, vì nếu có nhiều hơn một, chúng ta sẽ gặp phải một vài vấn đề như hành vi chương trình không chính xác, lãng phí tài nguyên hay kết quả không nhất quán.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/12/java-functional-programming/">
+                <h3 class="media-heading">[Functional Programming]  Functional Programing trong Java</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">1. Functional Programming là gì? Functional Programming hay lập trình chức năng là kiểu lập trình mà function được chọn làm đơn vị thao tác cơ bản. Functional programming tập trung vào sử dụng tính năng của các hàm và tránh sử dụng các biến cũng như thay đổi giá trị của chúng. Nó hơi ngược với procedure programming như chúng ta vẫn thường sử dụng (OOP tập trung vào chi tiết hoạt động của chương trình và thường sử dụng các biến và thay đổi trạng thái của chương trình).</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+      </div>
+    </div>
+    <div class="modal-footer">
+      <p class="results-count text-medium"
+         data-message-zero="không tìm thấy kết quả"
+         data-message-one="tìm thấy 1 kết quả "
+         data-message-other="tìm thấy {n} kết quả">
+         24 posts found
+      </p>
+    </div>
+  </div>
+</div>
+    
+  
+    
+    <div id="cover" style="background-image:url('https://tubean.github.io/images/cover-v1.2.0.jpg');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://tubean.github.io/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+
+
+  
+    <script crossorigin="anonymous" integrity="sha384-jmxIlussZWB7qCuB+PgKG1uLjjxbVVIayPJwi6cG6Zb4YKq0JIw+OMnkkEC7kYCq" src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js"></script>
+  
+
+  
+    <script crossorigin="anonymous" integrity="sha384-IiI65aU9ZYub2MY9zhtKd1H2ps7xxf+eb2YFG9lX6uRqpXCvBTOidPRCXCrQ++Uc" src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/contrib/auto-render.min.js"></script>
+  
+
+  
+    <script src="https://tubean.github.io/js/main.js"></script>
+  
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'https:\/\/tubean.github.io\/2018\/12\/microservice-springboot-eureka-part2\/';
+          
+            this.page.identifier = '\/2018\/12\/microservice-springboot-eureka-part2\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'beans-blog';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+
