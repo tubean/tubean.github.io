@@ -7,42 +7,52 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="generator" content="Hugo 0.49 with theme Tranquilpeak 0.4.3-SNAPSHOT">
 <meta name="author" content="Tu Bean">
-<meta name="keywords" content="java, design, pattern, adapter">
-<meta name="description" content="Chuyện kể rằng bạn Bean là một developer và đang phát triển một website e-commerce. Trang web này cho phép người dùng mua và thanh toán online bằng cách dùng một cổng thanh toán của bên thứ 3. Mọi thứ đều nhẹ nhàng như cân đường hộp sữa, cho đến một ngày mưa gió bão bùng&hellip; Vào cái ngày định mệnh ấy, PM của bạn Bean thông báo rằng sắp tới website sẽ thay đổi cổng thanh toán và bạn Bean sẽ phải chuẩn bị cho thay đổi này.">
+<meta name="keywords" content="web architecture, spring boot, eureka, zuul, microservice, tutorial, intelij, jwt">
+<meta name="description" content="Ở bài viết trước, chúng ta đã dựng được một hệ thống microservice đơn giản với 2 microservice, 1 cổng gateway và 1 naming server và thực hiện xác thực người dùng bằng JWT. Trong bài viết lần này chúng ta sẽ tìm hiểu cách xử lý lỗi và ghi log trong hệ thống microservice theo thiết kế Circuit Breaker và Log Tracing.
+1. Hystrix Giả sử bạn có 3 service: A, B và C.">
 
 
-<meta property="og:description" content="Chuyện kể rằng bạn Bean là một developer và đang phát triển một website e-commerce. Trang web này cho phép người dùng mua và thanh toán online bằng cách dùng một cổng thanh toán của bên thứ 3. Mọi thứ đều nhẹ nhàng như cân đường hộp sữa, cho đến một ngày mưa gió bão bùng&hellip; Vào cái ngày định mệnh ấy, PM của bạn Bean thông báo rằng sắp tới website sẽ thay đổi cổng thanh toán và bạn Bean sẽ phải chuẩn bị cho thay đổi này.">
+<meta property="og:description" content="Ở bài viết trước, chúng ta đã dựng được một hệ thống microservice đơn giản với 2 microservice, 1 cổng gateway và 1 naming server và thực hiện xác thực người dùng bằng JWT. Trong bài viết lần này chúng ta sẽ tìm hiểu cách xử lý lỗi và ghi log trong hệ thống microservice theo thiết kế Circuit Breaker và Log Tracing.
+1. Hystrix Giả sử bạn có 3 service: A, B và C.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[Design Patterns] Adapter Design Pattern in Java">
-<meta name="twitter:title" content="[Design Patterns] Adapter Design Pattern in Java">
-<meta property="og:url" content="https://tubean.github.io/2018/11/adapter-design-patterns/">
-<meta property="twitter:url" content="https://tubean.github.io/2018/11/adapter-design-patterns/">
+<meta property="og:title" content="[Microservice] Dựng Microservice web bằng Spring Boot và Eureka [Phần 3]">
+<meta name="twitter:title" content="[Microservice] Dựng Microservice web bằng Spring Boot và Eureka [Phần 3]">
+<meta property="og:url" content="https://tubean.github.io/2018/12/microservice-springboot-eureka-part3/">
+<meta property="twitter:url" content="https://tubean.github.io/2018/12/microservice-springboot-eureka-part3/">
 <meta property="og:site_name" content="Bean&#39;s blog">
-<meta property="og:description" content="Chuyện kể rằng bạn Bean là một developer và đang phát triển một website e-commerce. Trang web này cho phép người dùng mua và thanh toán online bằng cách dùng một cổng thanh toán của bên thứ 3. Mọi thứ đều nhẹ nhàng như cân đường hộp sữa, cho đến một ngày mưa gió bão bùng&hellip; Vào cái ngày định mệnh ấy, PM của bạn Bean thông báo rằng sắp tới website sẽ thay đổi cổng thanh toán và bạn Bean sẽ phải chuẩn bị cho thay đổi này.">
-<meta name="twitter:description" content="Chuyện kể rằng bạn Bean là một developer và đang phát triển một website e-commerce. Trang web này cho phép người dùng mua và thanh toán online bằng cách dùng một cổng thanh toán của bên thứ 3. Mọi thứ đều nhẹ nhàng như cân đường hộp sữa, cho đến một ngày mưa gió bão bùng&hellip; Vào cái ngày định mệnh ấy, PM của bạn Bean thông báo rằng sắp tới website sẽ thay đổi cổng thanh toán và bạn Bean sẽ phải chuẩn bị cho thay đổi này.">
+<meta property="og:description" content="Ở bài viết trước, chúng ta đã dựng được một hệ thống microservice đơn giản với 2 microservice, 1 cổng gateway và 1 naming server và thực hiện xác thực người dùng bằng JWT. Trong bài viết lần này chúng ta sẽ tìm hiểu cách xử lý lỗi và ghi log trong hệ thống microservice theo thiết kế Circuit Breaker và Log Tracing.
+1. Hystrix Giả sử bạn có 3 service: A, B và C.">
+<meta name="twitter:description" content="Ở bài viết trước, chúng ta đã dựng được một hệ thống microservice đơn giản với 2 microservice, 1 cổng gateway và 1 naming server và thực hiện xác thực người dùng bằng JWT. Trong bài viết lần này chúng ta sẽ tìm hiểu cách xử lý lỗi và ghi log trong hệ thống microservice theo thiết kế Circuit Breaker và Log Tracing.
+1. Hystrix Giả sử bạn có 3 service: A, B và C.">
 <meta property="og:locale" content="vi">
 
   
-    <meta property="article:published_time" content="2018-11-25T00:00:00">
+    <meta property="article:published_time" content="2018-12-20T00:00:00">
   
   
-    <meta property="article:modified_time" content="2018-11-25T00:00:00">
+    <meta property="article:modified_time" content="2018-12-20T00:00:00">
   
-  
-  
-    
-      <meta property="article:section" content="Java">
-    
-      <meta property="article:section" content="Design Patterns">
-    
   
   
     
-      <meta property="article:tag" content="Java">
+      <meta property="article:section" content="Microservice">
     
-      <meta property="article:tag" content="Design Pattern">
+      <meta property="article:section" content="Spring Boot">
     
-      <meta property="article:tag" content="Adapter">
+  
+  
+    
+      <meta property="article:tag" content="web architecture">
+    
+      <meta property="article:tag" content="spring boot">
+    
+      <meta property="article:tag" content="eureka">
+    
+      <meta property="article:tag" content="zuul">
+    
+      <meta property="article:tag" content="microservice">
+    
+      <meta property="article:tag" content="jwt">
     
   
 
@@ -55,8 +65,8 @@
 
 
 
-  <meta property="og:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1543156961/design-pattern-logo.jpg">
-  <meta property="twitter:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1543156961/design-pattern-logo.jpg">
+  <meta property="og:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1545140745/1_aVq0q9jjFx1R8DMVhKKFWQ.png">
+  <meta property="twitter:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1545140745/1_aVq0q9jjFx1R8DMVhKKFWQ.png">
 
 
   <meta property="og:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1541273502/Black_flag.svg.png">
@@ -69,14 +79,14 @@
   <meta property="twitter:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/c_scale,w_1836/v1540914499/C360_2016-03-22-17-45-21-487.jpg">
 
 
-    <title>[Design Patterns] Adapter Design Pattern in Java</title>
+    <title>[Microservice] Dựng Microservice web bằng Spring Boot và Eureka [Phần 3]</title>
 
     <link rel="icon" href="https://tubean.github.io/favicon/flappybird.png">
     
 
     
 
-    <link rel="canonical" href="https://tubean.github.io/2018/11/adapter-design-patterns/">
+    <link rel="canonical" href="https://tubean.github.io/2018/12/microservice-springboot-eureka-part3/">
 
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
@@ -265,15 +275,15 @@ if (!doNotTrack) {
       <div class="post-header main-content-wrap text-center">
   
     <h1 class="post-title" itemprop="headline">
-      [Design Patterns] Adapter Design Pattern in Java
+      [Microservice] Dựng Microservice web bằng Spring Boot và Eureka [Phần 3]
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2018-11-25T00:00:00Z">
+      <time itemprop="datePublished" datetime="2018-12-20T00:00:00Z">
         
-  tháng 11 25, 2018
+  tháng 12 20, 2018
 
       </time>
     
@@ -282,9 +292,9 @@ if (!doNotTrack) {
   
     <span>mục</span>
     
-      <a class="category-link" href="https://tubean.github.io/categories/java">Java</a>, 
+      <a class="category-link" href="https://tubean.github.io/categories/microservice">Microservice</a>, 
     
-      <a class="category-link" href="https://tubean.github.io/categories/design-patterns">Design Patterns</a>
+      <a class="category-link" href="https://tubean.github.io/categories/spring-boot">Spring Boot</a>
     
   
 
@@ -306,187 +316,214 @@ if (!doNotTrack) {
             <div class="main-content-wrap">
               
 
-<p>Chuyện kể rằng bạn Bean là một developer và đang phát triển một website e-commerce. Trang web này cho phép người dùng mua và thanh toán online bằng cách dùng một cổng thanh toán của bên thứ 3. Mọi thứ đều nhẹ nhàng như cân đường hộp sữa, cho đến một ngày mưa gió bão bùng&hellip;
-Vào cái ngày định mệnh ấy, PM của bạn Bean thông báo rằng sắp tới website sẽ thay đổi cổng thanh toán và bạn Bean sẽ phải chuẩn bị cho thay đổi này.
-Để dễ hình dung thì giả sử hệ thống hiện tại đang sử dụng cổng thanh toán Xpay và yêu cầu người dùng nhập các thông tin như sau:</p>
+<p>Ở <a href="https://tubean.github.io/2018/12/microservice-springboot-eureka-part2/">bài viết</a>  trước, chúng ta đã dựng được một hệ thống microservice đơn giản với 2 microservice, 1 cổng gateway và 1 naming server và thực hiện xác thực người dùng bằng JWT. Trong bài viết lần này chúng ta sẽ tìm hiểu cách xử lý lỗi và ghi log trong hệ thống microservice theo thiết kế <strong>Circuit Breaker</strong> và <strong>Log Tracing</strong>.</p>
 
-<pre><code class="language-java">public interface Xpay {  
-    public String getCreditCardNo();  
-    public String getCustomerName();  
-    public String getCardExpMonth();  
-    public String getCardExpYear();  
-    public Short getCardCVVNo();  
-    public Double getAmount();  
+<h1 id="1-hystrix">1. Hystrix</h1>
 
-    public void setCreditCardNo(String creditCardNo);  
-    public void setCustomerName(String customerName);  
-    public void setCardExpMonth(String cardExpMonth);  
-    public void setCardExpYear(String cardExpYear);  
-    public void setCardCVVNo(Short cardCVVNo);  
-    public void setAmount(Double amount);  
-}
+<p>Giả sử bạn có 3 service: A, B và C. Trong đó service A sẽ gọi đến service B và service B sẽ gọi đến service C. Chuyện gì sẽ xảy ra nếu service B trong một ngày mưa gió bỗng xảy ra sự cố?</p>
+
+<pre><code>A -&gt; B (bị chết) -&gt; C
 </code></pre>
 
-<p>Tình trạng code hiện tại:
-<img src="https://res.cloudinary.com/deop9ytsv/image/upload/v1543157770/Screenshot_3.jpg" alt="image1" /></p>
+<p>Trong một ví dụ khác, hãy tưởng tượng service A gọi một service R  bên thứ ba, nhưng vì một lí do nào đó R bị chết. Bạn sẽ xử lý tình huống này như thế nào? Liệu bạn có có muốn dừng lỗi lại ngay tại service bị chết, không muốn nó làm chết hay bị tắc cả hệ thống của mình?</p>
 
-<p>Và yêu cầu hiện tại là chuyển sang một cổng thanh toán PayD mới yêu cầu các thông số sau:</p>
+<p><code>Hystrix</code> là một thư viện được cung cấp bởi Netflix. Nó được triển khai theo mô hình <strong>circuit breaker</strong>, giúp cho người dùng không còn phải chờ đợi vô ích những service không phản hồi. Ý tưởng chính là ngăn chặn các lỗi được lan truyền một cách nhanh chống và phục hồi càng sớm càng tốt.</p>
 
-<pre><code class="language-java">public interface PayD {  
-    public String getCustCardNo();  
-    public String getCardOwnerName();  
-    public String getCardExpMonthDate();  
-    public Integer getCVVNo();  
-    public Double getTotalAmount();  
+<p>Trong hệ thống microservice đã xây dựng, chúng ta sẽ đưa ra một kịch bản là lỗi sẽ xảy ra ở service Image và chúng ta cần ngăn chặn và xử lý lỗi ở service gọi đến nó là service Gallery. Trong file <code>pom.xml</code> của Gallery service, chúng ta thêm dependency của Hystrix:</p>
 
-    public void setCustCardNo(String custCardNo);  
-    public void setCardOwnerName(String cardOwnerName);  
-    public void setCardExpMonthDate(String cardExpMonthDate);  
-    public void setCVVNo(Integer cVVNo);  
-    public void setTotalAmount(Double totalAmount);  
-}
+<pre><code>&lt;dependency&gt;  
+  &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;  
+  &lt;artifactId&gt;spring-cloud-starter-netflix-hystrix&lt;/artifactId&gt;  
+&lt;/dependency&gt;
 </code></pre>
 
-<p>Yêu cầu phát triển:
-<img src="https://res.cloudinary.com/deop9ytsv/image/upload/v1543157900/adapter2.jpg" alt="image2" /></p>
+<p>Trong class main của Gallery service, chúng ta thêm annotation <code>@EnableCircuitBreaker</code>:</p>
 
-<h1 id="cách-giải-quyết">Cách giải quyết</h1>
+<pre><code class="language-java">@SpringBootApplication  
+@EnableEurekaClient  
+@EnableCircuitBreaker  
+public class GalleryServiceApplication {  
 
-<p>Bởi vì code hiện tại đang chạy tốt trên production nên bạn Bean không thể nào thay đổi toàn bộ source code, refactor lại chỗ nào dùng Xpay thì viết lại thành PayD. Như vậy Bean sẽ một thứ gì đó để chuyển đổi linh hoạt từ Xpay sang PayD, giống như khi bạn có một dây sạc USB-type A mà điện thoại của bạn chỉ nhận cổng USB-type C thì bạn cần mua thêm một adapter để sử dụng. Tương tự trường hợp hiện tại, bạn Bean cũng cần một adapter giúp chuyển từ cổng Xpay sang PayD.</p>
-
-<p><code>Adapter design pattern</code> là mẫu thiết kế cho phép chúng ta điều chỉnh một đối tượng có sẵn sang một đối tượng mong muốn. Đó là mẫu thiết kế hướng về sự linh hoạt sử dụng các interface khác nhau cho cùng một mục đích nào đó mà không cần chỉnh sửa trực tiếp các interface mỗi khi có yêu cầu thay đổi.
-Một adapter sẽ sử dụng đối tượng cần thay đổi (Xpay), sau đó dịch nó sang đối tượng mong muốn có (PayD).
-<img src="https://res.cloudinary.com/deop9ytsv/image/upload/v1543159903/adapter3.jpg" alt="image3" /></p>
-
-<p>Như trong trường hợp của bạn Bean, chúng ta có thể viết một adapter như sau:</p>
-
-<pre><code class="language-java">public class XpayToPayDAdapter implements PayD {  
-    private String custCardNo;  
-    private String cardOwnerName;  
-    private String cardExpMonthDate;  
-    private Integer cVVNo;  
-    private Double totalAmount;  
-
-    private final Xpay xpay;  
-
-    public XpayToPayDAdapter(Xpay xpay){  
-        this.xpay = xpay;  
-        setProp();  
-    }  
-
-    @Override  
-  public String getCustCardNo() {  
-        return custCardNo;  
-    }  
-
-    @Override  
-  public String getCardOwnerName() {  
-        return cardOwnerName;  
-    }  
-
-    @Override  
-  public String getCardExpMonthDate() {  
-        return cardExpMonthDate;  
-    }  
-
-    @Override  
-  public Integer getCVVNo() {  
-        return cVVNo;  
-    }  
-
-    @Override  
-  public Double getTotalAmount() {  
-        return totalAmount;  
-    }  
-
-    @Override  
-  public void setCustCardNo(String custCardNo) {  
-        this.custCardNo = custCardNo;  
-    }  
-
-    @Override  
-  public void setCardOwnerName(String cardOwnerName) {  
-        this.cardOwnerName = cardOwnerName;  
-    }  
-
-    @Override  
-  public void setCardExpMonthDate(String cardExpMonthDate) {  
-        this.cardExpMonthDate = cardExpMonthDate;  
-    }  
-
-    @Override  
-  public void setCVVNo(Integer cVVNo) {  
-        this.cVVNo = cVVNo;  
-    }  
-
-    @Override  
-  public void setTotalAmount(Double totalAmount) {  
-        this.totalAmount = totalAmount;  
-    }  
-
-    private void setProp(){  
-        setCardOwnerName(this.xpay.getCustomerName());  
-        setCustCardNo(this.xpay.getCreditCardNo());  
-        setCardExpMonthDate(this.xpay.getCardExpMonth()+&quot;/&quot;+this.xpay.getCardExpYear());  
-        setCVVNo(this.xpay.getCardCVVNo().intValue());  
-        setTotalAmount(this.xpay.getAmount());  
-    }
-</code></pre>
-
-<p>Adapter impleament theo PayD interface - loại object mong muốn. Và chúng ta thử xem cách sử dụng adapter:</p>
-
-<pre><code class="language-java">public class RunAdapterExample {  
     public static void main(String[] args) {  
-
-        // Object for Xpay  
-  Xpay xpay = new XpayImpl();  
-        xpay.setCreditCardNo(&quot;4789565874102365&quot;);  
-        xpay.setCustomerName(&quot;Tu Bean&quot;);  
-        xpay.setCardExpMonth(&quot;01&quot;);  
-        xpay.setCardExpYear(&quot;2020&quot;);  
-        xpay.setCardCVVNo((short)123);  
-        xpay.setAmount(2565.23);  
-
-        PayD payD = new XpayToPayDAdapter(xpay);  
-        testPayD(payD);  
+        SpringApplication.run(GalleryServiceApplication.class, args);  
     }  
 
-    private static void testPayD(PayD payD){  
-
-        System.out.println(payD.getCardOwnerName());  
-        System.out.println(payD.getCustCardNo());  
-        System.out.println(payD.getCardExpMonthDate());  
-        System.out.println(payD.getCVVNo());  
-        System.out.println(payD.getTotalAmount());  
-    }  
 }
 </code></pre>
 
-<p>Như vậy chúng ta có thể tạo ra một object kiểu PayD thông qua một contructor có tham số truyền vào là Xpay. Các method bên trong adapter cũng đã giúp chuyển đổi phương thức của Xpay sang các phương thức của PayD. Tuy nhiên thì do các method của 2 loại cổng thanh toán là khác nhau nên đôi khi sự chuyển đổi chỉ mang tính tương đối. Ví dụ như ở trên, cổng PayD chỉ có 1 thông số là <code>CardExpMonthDate</code>, còn Xpay thì có 2 thông số <code>CardExpMonth</code> và <code>CardExpYear</code>. Để tạo ra một cách chuyển đổi linh hoạt, chúng ta tạo ra một method chuyển đổi từ 2 thông số của Xpay sang PayD như sau:</p>
+<p>Spring sẽ tìm kiếm tất cả các method được đánh dấu annotation <code>@HytrixCommand</code> và để Hystrix có thể kiểm soát nó. Từ đó Hytrix có thể theo dỗi xem lỗi đến từ method nào và tỉ lệ lỗi trong một service vượt quá ngưỡng quy định, Hystrix sẽ chuyển Circuit breaker và tất cả lệnh yêu cầu trong thời gian nhất định sẽ thất bại ngay lập tức. Trong khi circuit breaker được mở, các lệnh dự phòng cho lỗi sẽ được triển khai, ví dụ như đọc từ bộ đệm, trả về giá trị mặc định hay ghi lại log.</p>
 
-<pre><code class="language-java">setCardExpMonthDate(this.xpay.getCardExpMonth()+&quot;/&quot;+this.xpay.getCardExpYear());
+<p>Như vậy, trong class controller của Gallery, chúng ta sẽ cập nhật lại method <code>getGallery()</code> để thêm annotation và method dự phòng:</p>
+
+<pre><code class="language-java">package io.github.tubean.eureka.gallery.controller;  
+
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;  
+import io.github.tubean.eureka.gallery.entity.Gallery;  
+import org.slf4j.Logger;  
+import org.slf4j.LoggerFactory;  
+import org.springframework.beans.factory.annotation.Autowired;  
+import org.springframework.core.env.Environment;  
+import org.springframework.web.bind.annotation.PathVariable;  
+import org.springframework.web.bind.annotation.RequestMapping;  
+import org.springframework.web.bind.annotation.RestController;  
+import org.springframework.web.client.RestTemplate;  
+
+import java.util.List;  
+
+@RestController  
+@RequestMapping(&quot;/&quot;)  
+public class HomeController {  
+   @Autowired  
+  private RestTemplate restTemplate;  
+
+   @Autowired  
+  private Environment env;  
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(HomeController.class);  
+
+   @RequestMapping(&quot;/&quot;)  
+   public String home() {  
+      // This is useful for debugging  
+ // When having multiple instance of gallery service running at different ports. // We load balance among them, and display which instance received the request.  return &quot;Hello from Gallery Service running at port: &quot; + env.getProperty(&quot;local.server.port&quot;);  
+   }  
+
+   @HystrixCommand(fallbackMethod = &quot;fallback&quot;)  
+   @RequestMapping(&quot;/{id}&quot;)  
+   public Gallery getGallery(@PathVariable final int id) {  
+      LOGGER.info(&quot;Creating gallery object ... &quot;);  
+      // create gallery object  
+  Gallery gallery = new Gallery();  
+      gallery.setId(id);  
+
+      // get list of available images  
+  @SuppressWarnings(&quot;unchecked&quot;)    // we'll throw an exception from image service to simulate a failure  
+  List&lt;Object&gt; images = restTemplate.getForObject(&quot;http://image-service/images/&quot;, List.class);  
+      gallery.setImages(images);  
+
+      LOGGER.info(&quot;Returning images ... &quot;);  
+      return gallery;  
+   }  
+
+   // -------- Admin Area --------  
+ // This method should only be accessed by users with role of 'admin' // We'll add the logic of role based auth later  @RequestMapping(&quot;/admin&quot;)  
+   public String homeAdmin() {  
+      return &quot;This is the admin area of Gallery service running at port: &quot; + env.getProperty(&quot;local.server.port&quot;);  
+   }  
+
+   // a fallback method to be called if failure happened  
+  public Gallery fallback(int galleryId, Throwable hystrixCommand) {  
+      return new Gallery(galleryId);  
+   }  
+}
 </code></pre>
 
-<p>Giải pháp của chúng ta nhìn tổng quát lại như sau:</p>
+<p>Để tạo một kịch bản lỗi, chúng ta sẽ thả một exception trong class controller của  service Image:</p>
 
-<p><img src="https://res.cloudinary.com/deop9ytsv/image/upload/v1543160681/adapter4.jpg" alt="image4" /></p>
+<pre><code class="language-java">package io.github.tubean.eureka.image.controller;  
 
-<h1 id="class-adapter">Class Adapter</h1>
+import io.github.tubean.eureka.image.entity.Image;  
+import org.springframework.beans.factory.annotation.Autowired;  
+import org.springframework.core.env.Environment;  
+import org.springframework.web.bind.annotation.RequestMapping;  
+import org.springframework.web.bind.annotation.RestController;  
 
-<p>Có 2 loại adapter là <code>object adapter</code> và <code>class adapter</code>.  Trong ví dụ trên chúng ta đã dùng loại <code>object adapter</code>, tức là loại adapter sử dụng các thành phần trong object cần chuyển đổi để tạo ra object mong muốn. Trong khi đó, <code>class adapter</code> sẽ dựa vào đa kế thừa để tạo ra một interface thích ứng với các class khác nhau. Tuy nhiên trong java chúng ta không có đa kế thừa như C++ nên loại này có thể không cần để ý.</p>
+import java.util.Arrays;  
+import java.util.List;  
 
-<h1 id="khi-nào-sử-dụng-adapter-pattern">Khi nào sử dụng Adapter Pattern</h1>
+@RestController  
+@RequestMapping(&quot;/&quot;)  
+public class HomeController {  
+   @Autowired  
+  private Environment env;  
 
-<p>Mẫu thiết kế này được sử dụng khi:</p>
+   @RequestMapping(&quot;/&quot;)  
+   public String home() {  
+      // This is useful for debugging  
+ // When having multiple instance of image service running at different ports. // We load balance among them, and display which instance received the request.  return &quot;Hello from Image Service running at port: &quot; + env.getProperty(&quot;local.server.port&quot;);  
+   }  
 
-<ul>
-<li>Bạn đã có sẵn một class nhưng interface của nó thì lại khác phù hợp với cái bạn cần.</li>
-<li>Bạn muốn tạo một class có thể tái sử dụng với các lớp không liên quan hoặc không đoán trước được, các class này không nhất thiết phải có các interface phù hợp trước.</li>
-</ul>
+   @RequestMapping(&quot;/images&quot;)  
+   public List&lt;Image&gt; getImages() {  
+      List&lt;Image&gt; images = Arrays.asList(  
+         new Image(1, &quot;Treehouse of Horror V&quot;, &quot;https://www.imdb.com/title/tt0096697/mediaviewer/rm3842005760&quot;),  
+         new Image(2, &quot;The Town&quot;, &quot;https://www.imdb.com/title/tt0096697/mediaviewer/rm3698134272&quot;),  
+         new Image(3, &quot;The Last Traction Hero&quot;, &quot;https://www.imdb.com/title/tt0096697/mediaviewer/rm1445594112&quot;));  
+      try {  
+         throw new Exception(&quot;Images can't be fetched&quot;);  
+      } catch (Exception e) {  
+         e.printStackTrace();  
+      }  
+      return images;  
+   }  
+}
+</code></pre>
 
-<h1 id="source-code">Source code:</h1>
+<p>Bây giờ hãy test xem hệ thống làm việc như thế nào bằng cách gọi đến service Gallery <code>localhost:8762/gallery/1</code>. Bạn sẽ nhận được kết quả như sau:</p>
 
-<p><a href="https://github.com/tubean/design-pattern">https://github.com/tubean/design-pattern</a></p>
+<pre><code>{  
+    &quot;id&quot;: 1,  
+    &quot;images&quot;: null  
+}
+</code></pre>
+
+<blockquote>
+<p>Đừng quên thêm token để xác thực nếu gặp status 401!</p>
+</blockquote>
+
+<h1 id="2-sleuth">2. Sleuth</h1>
+
+<p>Nếu bạn có 3 service A, B và C. Chúng ta tạo 3 request khác nhau: một request từ A -&gt; B, một cái từ A -&gt; B -&gt; C và cái cuối cùng là từ B -&gt; C.</p>
+
+<pre><code>A -&gt; B  
+A -&gt; B -&gt; C  
+B -&gt; C
+</code></pre>
+
+<p>Nếu như số lượng microservice tăng dần, việc truy tìm các request lan truyền từ service này sang service khác và tìm ra cách một request đi xuyên suốt cả hệ thống ra sao là khá khó khăn. Tuy nhiên <code>Sleuth</code> sẽ giúp chúng ta truy tìm các request bằng cách đặt cho chúng những id unique để ghi log. Một dòng log của Sleuth thường có dạng như sau:</p>
+
+<pre><code> INFO [application-name,trace id,span id, flag]
+</code></pre>
+
+<p>Trong đó, giá trị đầu tiên là tên service, tiếp theo là <code>trace id</code> được sử dụng để tracking nó trong cả hệ thống. Giá trị thứ ba là <code>span id</code> và được sử dụng để tracking bên trong nội bộ microservice. Giá trị cuối cùng cho biết liệu thông tin đó có nên được xuất sang Zipkin hay không? Mình sẽ đề cập chi tiết hơn về Sleuth và Zipkin trong một bài viết khác.</p>
+
+<p>Để sử dụng Sleuth, chúng ta thêm vào file <code>pom.xml</code> của Gallery service (hoặc Image):</p>
+
+<pre><code>&lt;dependency&gt;  
+  &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;  
+  &lt;artifactId&gt;spring-cloud-starter-sleuth&lt;/artifactId&gt;  
+&lt;/dependency&gt;
+</code></pre>
+
+<p>Sau đó trong controller của Gallery, chúng ta sẽ ghi lại một vài thông tin:</p>
+
+<pre><code>import org.slf4j.Logger;  
+import org.slf4j.LoggerFactory;**
+
+// ...  
+private static final Logger LOGGER = LoggerFactory.getLogger(HomeController.class);
+
+public Gallery getGallery(@PathVariable final int id) {  
+ LOGGER.info(&quot;Creating gallery object ... &quot;); // ...   
+ LOGGER.info(&quot;Returning images ... &quot;);  
+ return images;  
+}  
+// ...
+</code></pre>
+
+<p>Cuối cùng, sau khi bạn tạo một request đến gallery service, bạn sẽ thấy được <code>trace id</code> và <code>span id</code> trong màn hình console:</p>
+
+<pre><code>INFO [gallery-service,bb3f24a6afde87ac,591ea3b8354f9319,false]
+</code></pre>
+
+<h1 id="nguồn-bài-viết">Nguồn bài viết</h1>
+
+<p><a href="https://medium.com/omarelgabrys-blog/microservices-with-spring-boot-circuit-breaker-log-tracing-part-4-9cdf5e898988">https://medium.com/omarelgabrys-blog/microservices-with-spring-boot-circuit-breaker-log-tracing-part-4-9cdf5e898988</a></p>
+
+<h1 id="source-code">Source code</h1>
+
+<p><a href="https://github.com/tubean/MSA-springboot-eureka">https://github.com/tubean/MSA-springboot-eureka</a></p>
+
+<p>Checkout branch: <code>part3_circuitbreaker_logtracing</code>.</p>
 
               
             </div>
@@ -499,11 +536,17 @@ Một adapter sẽ sử dụng đối tượng cần thay đổi (Xpay), sau đ�
                   <div class="post-footer-tags">
                     <span class="text-color-light text-small">THẺ ĐÁNH DẤU</span><br/>
                     
-  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/java/">Java</a>
+  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/web-architecture/">web architecture</a>
 
-  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/design-pattern/">Design Pattern</a>
+  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/spring-boot/">spring boot</a>
 
-  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/adapter/">Adapter</a>
+  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/eureka/">eureka</a>
+
+  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/zuul/">zuul</a>
+
+  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/microservice/">microservice</a>
+
+  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/jwt/">jwt</a>
 
                   </div>
                 
@@ -516,7 +559,7 @@ Một adapter sẽ sử dụng đối tượng cần thay đổi (Xpay), sau đ�
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2018/11/excel-file-with-poi/" data-tooltip="[Java] Thao tác với Excel file bằng Apache POI">
+                <a class="post-action-btn btn btn--disabled">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">Tiếp</span>
@@ -524,7 +567,7 @@ Một adapter sẽ sử dụng đối tượng cần thay đổi (Xpay), sau đ�
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2018/11/magical-1000-vs-100/" data-tooltip="[Magical Java] Tại sao 1000 == 1000 là sai, nhưng 100 == 100 lại đúng?">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2018/12/microservice-springboot-eureka-part2/" data-tooltip="[Microservice] Dựng Microservice web bằng Spring Boot và Eureka [Phần 2]">
               
                   <span class="hide-xs hide-sm text-small icon-mr">Trước</span>
                   <i class="fa fa-angle-right"></i>
@@ -542,19 +585,19 @@ Một adapter sẽ sử dụng đối tượng cần thay đổi (Xpay), sau đ�
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://tubean.github.io/2018/11/adapter-design-patterns/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://tubean.github.io/2018/12/microservice-springboot-eureka-part3/">
               <i class="fa fa-facebook-official"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://tubean.github.io/2018/11/adapter-design-patterns/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://tubean.github.io/2018/12/microservice-springboot-eureka-part3/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://tubean.github.io/2018/11/adapter-design-patterns/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://tubean.github.io/2018/12/microservice-springboot-eureka-part3/">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -602,7 +645,7 @@ Một adapter sẽ sử dụng đối tượng cần thay đổi (Xpay), sau đ�
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2018/11/excel-file-with-poi/" data-tooltip="[Java] Thao tác với Excel file bằng Apache POI">
+                <a class="post-action-btn btn btn--disabled">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">Tiếp</span>
@@ -610,7 +653,7 @@ Một adapter sẽ sử dụng đối tượng cần thay đổi (Xpay), sau đ�
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2018/11/magical-1000-vs-100/" data-tooltip="[Magical Java] Tại sao 1000 == 1000 là sai, nhưng 100 == 100 lại đúng?">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2018/12/microservice-springboot-eureka-part2/" data-tooltip="[Microservice] Dựng Microservice web bằng Spring Boot và Eureka [Phần 2]">
               
                   <span class="hide-xs hide-sm text-small icon-mr">Trước</span>
                   <i class="fa fa-angle-right"></i>
@@ -628,19 +671,19 @@ Một adapter sẽ sử dụng đối tượng cần thay đổi (Xpay), sau đ�
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://tubean.github.io/2018/11/adapter-design-patterns/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://tubean.github.io/2018/12/microservice-springboot-eureka-part3/">
               <i class="fa fa-facebook-official"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://tubean.github.io/2018/11/adapter-design-patterns/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://tubean.github.io/2018/12/microservice-springboot-eureka-part3/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://tubean.github.io/2018/11/adapter-design-patterns/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://tubean.github.io/2018/12/microservice-springboot-eureka-part3/">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -670,19 +713,19 @@ Một adapter sẽ sử dụng đối tượng cần thay đổi (Xpay), sau đ�
   <ul class="share-options">
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ftubean.github.io%2F2018%2F11%2Fadapter-design-patterns%2F">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ftubean.github.io%2F2018%2F12%2Fmicroservice-springboot-eureka-part3%2F">
           <i class="fa fa-facebook-official"></i><span>Chia sẻ với Facebook</span>
         </a>
       </li>
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Ftubean.github.io%2F2018%2F11%2Fadapter-design-patterns%2F">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Ftubean.github.io%2F2018%2F12%2Fmicroservice-springboot-eureka-part3%2F">
           <i class="fa fa-twitter"></i><span>Chia sẻ với Twitter</span>
         </a>
       </li>
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Ftubean.github.io%2F2018%2F11%2Fadapter-design-patterns%2F">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Ftubean.github.io%2F2018%2F12%2Fmicroservice-springboot-eureka-part3%2F">
           <i class="fa fa-google-plus"></i><span>Chia sẻ với Google&#43;</span>
         </a>
       </li>
@@ -992,9 +1035,9 @@ $(document).ready(function() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = 'https:\/\/tubean.github.io\/2018\/11\/adapter-design-patterns\/';
+          this.page.url = 'https:\/\/tubean.github.io\/2018\/12\/microservice-springboot-eureka-part3\/';
           
-            this.page.identifier = '\/2018\/11\/adapter-design-patterns\/'
+            this.page.identifier = '\/2018\/12\/microservice-springboot-eureka-part3\/'
           
         };
         (function() {

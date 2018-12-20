@@ -6,10 +6,20 @@
     <description>Recent content in Microservice on Bean&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>vi</language>
-    <lastBuildDate>Wed, 19 Dec 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 20 Dec 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://tubean.github.io/tags/microservice/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>[Microservice] Dựng Microservice web bằng Spring Boot và Eureka [Phần 3]</title>
+      <link>https://tubean.github.io/2018/12/microservice-springboot-eureka-part3/</link>
+      <pubDate>Thu, 20 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://tubean.github.io/2018/12/microservice-springboot-eureka-part3/</guid>
+      <description>Ở bài viết trước, chúng ta đã dựng được một hệ thống microservice đơn giản với 2 microservice, 1 cổng gateway và 1 naming server và thực hiện xác thực người dùng bằng JWT. Trong bài viết lần này chúng ta sẽ tìm hiểu cách xử lý lỗi và ghi log trong hệ thống microservice theo thiết kế Circuit Breaker và Log Tracing.
+1. Hystrix Giả sử bạn có 3 service: A, B và C.</description>
+    </item>
     
     <item>
       <title>[Microservice] Dựng Microservice web bằng Spring Boot và Eureka [Phần 2]</title>
