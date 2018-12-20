@@ -7,7 +7,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="generator" content="Hugo 0.49 with theme Tranquilpeak 0.4.3-SNAPSHOT">
 <meta name="author" content="Tu Bean">
-<meta name="keywords" content="web architecture, spring boot, eureka, zuul, microservice, tutorial, intelij, jwt">
+<meta name="keywords" content="web architecture, spring boot, eureka, zuul, microservice, tutorial, intelij, hystrix, circuit breaker, log tracing, sleuth">
 <meta name="description" content="Ở bài viết trước, chúng ta đã dựng được một hệ thống microservice đơn giản với 2 microservice, 1 cổng gateway và 1 naming server và thực hiện xác thực người dùng bằng JWT. Trong bài viết lần này chúng ta sẽ tìm hiểu cách xử lý lỗi và ghi log trong hệ thống microservice theo thiết kế Circuit Breaker và Log Tracing.
 1. Hystrix Giả sử bạn có 3 service: A, B và C.">
 
@@ -52,7 +52,7 @@
     
       <meta property="article:tag" content="microservice">
     
-      <meta property="article:tag" content="jwt">
+      <meta property="article:tag" content="hystrix">
     
   
 
@@ -546,7 +546,7 @@ public Gallery getGallery(@PathVariable final int id) {
 
   <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/microservice/">microservice</a>
 
-  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/jwt/">jwt</a>
+  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/hystrix/">hystrix</a>
 
                   </div>
                 

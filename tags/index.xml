@@ -120,6 +120,15 @@
     </item>
     
     <item>
+      <title>Hystrix</title>
+      <link>https://tubean.github.io/tags/hystrix/</link>
+      <pubDate>Thu, 20 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://tubean.github.io/tags/hystrix/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Java</title>
       <link>https://tubean.github.io/tags/java/</link>
       <pubDate>Thu, 13 Dec 2018 00:00:00 +0000</pubDate>
@@ -149,7 +158,7 @@
     <item>
       <title>Jwt</title>
       <link>https://tubean.github.io/tags/jwt/</link>
-      <pubDate>Thu, 20 Dec 2018 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 19 Dec 2018 00:00:00 +0000</pubDate>
       
       <guid>https://tubean.github.io/tags/jwt/</guid>
       <description></description>
