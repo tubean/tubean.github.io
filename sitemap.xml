@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://tubean.github.io/2018/12/microservice-key-architectural-concepts/</loc>
+    <lastmod>2018-12-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://tubean.github.io/2018/12/microservice-springboot-eureka-part3/</loc>
     <lastmod>2018-12-20T00:00:00+00:00</lastmod>
   </url>
@@ -146,7 +151,7 @@
   
   <url>
     <loc>https://tubean.github.io/</loc>
-    <lastmod>2018-12-20T00:00:00+00:00</lastmod>
+    <lastmod>2018-12-27T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -170,6 +175,12 @@
   <url>
     <loc>https://tubean.github.io/tags/composition/</loc>
     <lastmod>2018-12-10T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://tubean.github.io/tags/concept/</loc>
+    <lastmod>2018-12-27T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -228,13 +239,13 @@
   </url>
   
   <url>
-    <loc>https://tubean.github.io/tags/hugo/</loc>
+    <loc>https://tubean.github.io/categories/hugo/</loc>
     <lastmod>2018-11-04T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://tubean.github.io/categories/hugo/</loc>
+    <loc>https://tubean.github.io/tags/hugo/</loc>
     <lastmod>2018-11-04T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -246,14 +257,14 @@
   </url>
   
   <url>
-    <loc>https://tubean.github.io/tags/java/</loc>
-    <lastmod>2018-12-13T00:00:00+00:00</lastmod>
+    <loc>https://tubean.github.io/categories/java/</loc>
+    <lastmod>2018-12-15T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://tubean.github.io/categories/java/</loc>
-    <lastmod>2018-12-15T00:00:00+00:00</lastmod>
+    <loc>https://tubean.github.io/tags/java/</loc>
+    <lastmod>2018-12-13T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -276,13 +287,19 @@
   </url>
   
   <url>
-    <loc>https://tubean.github.io/tags/lambda-expression/</loc>
-    <lastmod>2018-11-07T00:00:00+00:00</lastmod>
+    <loc>https://tubean.github.io/tags/key/</loc>
+    <lastmod>2018-12-27T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://tubean.github.io/categories/lambda-expression/</loc>
+    <lastmod>2018-11-07T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://tubean.github.io/tags/lambda-expression/</loc>
     <lastmod>2018-11-07T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -294,25 +311,25 @@
   </url>
   
   <url>
-    <loc>https://tubean.github.io/tags/microservice/</loc>
-    <lastmod>2018-12-20T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://tubean.github.io/categories/microservice/</loc>
-    <lastmod>2018-12-20T00:00:00+00:00</lastmod>
+    <lastmod>2018-12-27T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://tubean.github.io/tags/mongodb/</loc>
-    <lastmod>2018-12-13T00:00:00+00:00</lastmod>
+    <loc>https://tubean.github.io/tags/microservice/</loc>
+    <lastmod>2018-12-27T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://tubean.github.io/categories/mongodb/</loc>
+    <lastmod>2018-12-13T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://tubean.github.io/tags/mongodb/</loc>
     <lastmod>2018-12-13T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -325,7 +342,7 @@
   
   <url>
     <loc>https://tubean.github.io/post/</loc>
-    <lastmod>2018-12-20T00:00:00+00:00</lastmod>
+    <lastmod>2018-12-27T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -348,13 +365,13 @@
   </url>
   
   <url>
-    <loc>https://tubean.github.io/tags/security/</loc>
+    <loc>https://tubean.github.io/categories/security/</loc>
     <lastmod>2018-11-06T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://tubean.github.io/categories/security/</loc>
+    <loc>https://tubean.github.io/tags/security/</loc>
     <lastmod>2018-11-06T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -384,13 +401,13 @@
   </url>
   
   <url>
-    <loc>https://tubean.github.io/tags/spring-boot/</loc>
+    <loc>https://tubean.github.io/categories/spring-boot/</loc>
     <lastmod>2018-12-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://tubean.github.io/categories/spring-boot/</loc>
+    <loc>https://tubean.github.io/tags/spring-boot/</loc>
     <lastmod>2018-12-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -432,20 +449,14 @@
   </url>
   
   <url>
-    <loc>https://tubean.github.io/tags/tutorial/</loc>
-    <lastmod>2018-12-13T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://tubean.github.io/categories/tutorial/</loc>
     <lastmod>2018-12-13T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://tubean.github.io/tags/web-architecture/</loc>
-    <lastmod>2018-12-20T00:00:00+00:00</lastmod>
+    <loc>https://tubean.github.io/tags/tutorial/</loc>
+    <lastmod>2018-12-13T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -456,13 +467,19 @@
   </url>
   
   <url>
-    <loc>https://tubean.github.io/tags/web-service/</loc>
-    <lastmod>2018-12-13T00:00:00+00:00</lastmod>
+    <loc>https://tubean.github.io/tags/web-architecture/</loc>
+    <lastmod>2018-12-27T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://tubean.github.io/categories/web-service/</loc>
+    <lastmod>2018-12-13T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://tubean.github.io/tags/web-service/</loc>
     <lastmod>2018-12-13T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>

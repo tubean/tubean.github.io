@@ -6,10 +6,20 @@
     <description>Recent content in Microservice on Bean&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>vi</language>
-    <lastBuildDate>Thu, 20 Dec 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 27 Dec 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://tubean.github.io/tags/microservice/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>[Microservice] Các khái niệm chính trong microservice</title>
+      <link>https://tubean.github.io/2018/12/microservice-key-architectural-concepts/</link>
+      <pubDate>Thu, 27 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://tubean.github.io/2018/12/microservice-key-architectural-concepts/</guid>
+      <description>Trong bài viết này, chúng ta sẽ tìm hiểu một số khái niệm chính trong hệ thống microservice.
+1. Monolithic Architecture Các ứng dụng doanh nghiệp ngày nay đang được thiết kế để đáp ứng được số lượng lớn nghiệp vụ kinh doanh. Do đó một ứng dụng phần mềm cần cung cấp hàng trăm chức năng và tất cả các những chức năng như vậy thường được gói gọn trong một ứng dụng nguyên khối duy nhất.</description>
+    </item>
     
     <item>
       <title>[Microservice] Dựng Microservice web bằng Spring Boot và Eureka [Phần 3]</title>

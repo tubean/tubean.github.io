@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.49 with theme Tranquilpeak 0.4.3-SNAPSHOT">
+<meta name="author" content="Tu Bean">
+<meta name="keywords" content="web architecture, key, concept, microservice">
+<meta name="description" content="Trong bài viết này, chúng ta sẽ tìm hiểu một số khái niệm chính trong hệ thống microservice.
+1. Monolithic Architecture Các ứng dụng doanh nghiệp ngày nay đang được thiết kế để đáp ứng được số lượng lớn nghiệp vụ kinh doanh. Do đó một ứng dụng phần mềm cần cung cấp hàng trăm chức năng và tất cả các những chức năng như vậy thường được gói gọn trong một ứng dụng nguyên khối duy nhất.">
+
+
+<meta property="og:description" content="Trong bài viết này, chúng ta sẽ tìm hiểu một số khái niệm chính trong hệ thống microservice.
+1. Monolithic Architecture Các ứng dụng doanh nghiệp ngày nay đang được thiết kế để đáp ứng được số lượng lớn nghiệp vụ kinh doanh. Do đó một ứng dụng phần mềm cần cung cấp hàng trăm chức năng và tất cả các những chức năng như vậy thường được gói gọn trong một ứng dụng nguyên khối duy nhất.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Microservice] Các khái niệm chính trong microservice">
+<meta name="twitter:title" content="[Microservice] Các khái niệm chính trong microservice">
+<meta property="og:url" content="https://tubean.github.io/2018/12/microservice-key-architectural-concepts/">
+<meta property="twitter:url" content="https://tubean.github.io/2018/12/microservice-key-architectural-concepts/">
+<meta property="og:site_name" content="Bean&#39;s blog">
+<meta property="og:description" content="Trong bài viết này, chúng ta sẽ tìm hiểu một số khái niệm chính trong hệ thống microservice.
+1. Monolithic Architecture Các ứng dụng doanh nghiệp ngày nay đang được thiết kế để đáp ứng được số lượng lớn nghiệp vụ kinh doanh. Do đó một ứng dụng phần mềm cần cung cấp hàng trăm chức năng và tất cả các những chức năng như vậy thường được gói gọn trong một ứng dụng nguyên khối duy nhất.">
+<meta name="twitter:description" content="Trong bài viết này, chúng ta sẽ tìm hiểu một số khái niệm chính trong hệ thống microservice.
+1. Monolithic Architecture Các ứng dụng doanh nghiệp ngày nay đang được thiết kế để đáp ứng được số lượng lớn nghiệp vụ kinh doanh. Do đó một ứng dụng phần mềm cần cung cấp hàng trăm chức năng và tất cả các những chức năng như vậy thường được gói gọn trong một ứng dụng nguyên khối duy nhất.">
+<meta property="og:locale" content="vi">
+
+  
+    <meta property="article:published_time" content="2018-12-27T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2018-12-27T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="Microservice">
+    
+  
+  
+    
+      <meta property="article:tag" content="web architecture">
+    
+      <meta property="article:tag" content="key">
+    
+      <meta property="article:tag" content="concept">
+    
+      <meta property="article:tag" content="microservice">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1545140745/1_aVq0q9jjFx1R8DMVhKKFWQ.png">
+  <meta property="twitter:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1545140745/1_aVq0q9jjFx1R8DMVhKKFWQ.png">
+
+
+  <meta property="og:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1541273502/Black_flag.svg.png">
+  <meta property="twitter:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1541273502/Black_flag.svg.png">
+
+
+
+
+  <meta property="og:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/c_scale,w_1836/v1540914499/C360_2016-03-22-17-45-21-487.jpg">
+  <meta property="twitter:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/c_scale,w_1836/v1540914499/C360_2016-03-22-17-45-21-487.jpg">
+
+
+    <title>[Microservice] Các khái niệm chính trong microservice</title>
+
+    <link rel="icon" href="https://tubean.github.io/favicon/flappybird.png">
+    
+
+    
+
+    <link rel="canonical" href="https://tubean.github.io/2018/12/microservice-key-architectural-concepts/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://tubean.github.io/css/style-nnm2spxvve8onlujjlegkkytaehyadd4ksxc1hyzzq9a2wvtrgbljqyulomn.min.css" />
+    
+    
+      
+        <link rel="stylesheet"  crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" integrity="sha384-TEMocfGvRuD1rIAacqrknm5BQZ7W7uWitoih+jMNFXQIbNl16bO8OZmylH/Vi/Ei">
+      
+    
+      
+        <link rel="stylesheet"  href="https://tubean.github.io/css/main.css">
+      
+    
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-128433621-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://tubean.github.io/">Bean&#39;s blog</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://tubean.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://res.cloudinary.com/deop9ytsv/image/upload/c_scale,w_1836/v1540914499/C360_2016-03-22-17-45-21-487.jpg" alt="Ảnh đại diện" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://tubean.github.io/#about">
+          <img class="sidebar-profile-picture" src="https://res.cloudinary.com/deop9ytsv/image/upload/c_scale,w_1836/v1540914499/C360_2016-03-22-17-45-21-487.jpg" alt="Ảnh đại diện" />
+        </a>
+        <h4 class="sidebar-profile-name">Tu Bean</h4>
+        
+          <h5 class="sidebar-profile-bio">Coding, writing and sharing</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tubean.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Trang chủ</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tubean.github.io/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">Danh mục</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tubean.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Thẻ thông tin</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tubean.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Lưu trữ</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tubean.github.io/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">Thông tin</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://bitbucket.org/tubean/" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bitbucket-square"></i>
+      
+      <span class="sidebar-button-desc">Bitbucket</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/tubean" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">Github</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.instagram.com/zeref_bean/" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-instagram"></i>
+      
+      <span class="sidebar-button-desc">Instagram</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.linkedin.com/in/tubean/" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-linkedin"></i>
+      
+      <span class="sidebar-button-desc">LinkedIn</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+  <div class="post-header-cover
+              text-center
+              "
+       style="background-image:url('https://res.cloudinary.com/deop9ytsv/image/upload/v1541273502/Black_flag.svg.png')"
+       data-behavior="5">
+    
+      <div class="post-header main-content-wrap text-center">
+  
+    <h1 class="post-title" itemprop="headline">
+      [Microservice] Các khái niệm chính trong microservice
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2018-12-27T00:00:00Z">
+        
+  tháng 12 27, 2018
+
+      </time>
+    
+    
+  
+  
+    <span>mục</span>
+    
+      <a class="category-link" href="https://tubean.github.io/categories/microservice">Microservice</a>
+    
+  
+
+  </div>
+
+</div>
+    
+  </div>
+
+
+      <div id="main" data-behavior="5"
+        class="hasCover
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              
+
+<p>Trong bài viết này, chúng ta sẽ tìm hiểu một số khái niệm chính trong hệ thống microservice.</p>
+
+<h1 id="1-monolithic-architecture">1. Monolithic Architecture</h1>
+
+<p>Các ứng dụng doanh nghiệp ngày nay đang được thiết kế để đáp ứng được số lượng lớn nghiệp vụ kinh doanh. Do đó một ứng dụng phần mềm cần cung cấp hàng trăm chức năng và tất cả các những chức năng như vậy thường được gói gọn trong một ứng dụng nguyên khối duy nhất. ERP, CRM và các hệ thống phần mềm khác nhau là những ví dụ điển hình - chúng được xây dựng dưới dạng nguyên khối với hàng trăm chức năng. Việc triển khai, xử lý sự cố, mở rộng và nâng cấp các ứng dụng như vậy quả là một cơn ác mộng đối với bất kỳ doanh nghiệp nào.</p>
+
+<p>Kiến trúc hướng dịch vụ (service-oriented architecture - SOA) được thiết kế để khắc phục các vấn đề phát sinh từ ứng dụng một khối (monolithic) bằng cách đưa ra khái niệm <code>service</code>. Do đó, với SOA, một ứng dụng sẽ được thiết kế dưới dạng kết hợp các service khác nhau. Khái niệm SOA không có nghĩa là biến từng service thành một khối riêng, nhưng hầu hết các ứng dụng triển khai theo SOA đều có hướng triển khai từng service dưới dạng một khối có cùng thời gian runtime. Vì vậy, tương tự như các ứng dụng một khối, các service này theo thời gian cũng tích lũy nhiều nghiệp vụ và chức năng khác nhau. Sự tăng trưởng này sẽ sớm biến những service đó thành những <em>khối u nguyên khối</em>, không khác gì những ứng dụng một khối thông thường.</p>
+
+<p><img src="https://res.cloudinary.com/deop9ytsv/image/upload/v1545534647/microservice%20in%20practice/soa_1.jpg" alt="img_1" /></p>
+
+<p>Hình 1 cho thấy một ứng dụng phần mềm bán lẻ bao gồm nhiều dịch vụ. Tất cả các service này được deploy trong cùng một ứng dụng runtime. Do đó nó cho thấy một số đặc điểm của một ứng dụng nguyên khối: nó phức tạp, được thiết kế, phát triển và deploy trong cùng một đơn vị duy nhất; nó quá khó để áp dụng các phương pháp phát triển linh hoạt và phân phối nhanh; cập nhật một phần ứng dụng sẽ bắt buộc phải triển khai lại toàn bộ ứng dụng.</p>
+
+<p>Ngoài ra còn một số vấn đề đối với kiến trúc một khối: Nó sẽ khó được scale nếu có xung đột về yêu cầu resource (ví dụ như một service cần nhiều CPU hơn trong khi service khác lại cần nhiều bộ nhớ hơn). Một service không ổn định có thể làm cả ứng dụng bị chết, và thông thường, nó khó có thể đổi mới và áp dụng các công nghệ hay framework mới.</p>
+
+<p>Những đặc điểm này là khởi đầu dẫn đến kiến trúc microservice ra đời. Hãy cùng xem xét cách thức hoạt động của nó.</p>
+
+<h1 id="2-kiến-trúc-microservice">2. Kiến trúc microservice</h1>
+
+<p>Nền tẳng của kiến trúc microservice (MSA) là về việc phát triển một ứng dụng bằng các service nhỏ và độc lập chạy trong tiến trình riêng của chúng. Các service này được phát triển và deploy một cách độc lập.</p>
+
+<p>Hầu hết các định nghĩa về MSA giải thích nó như là một khái niệm kiến trúc tập trung vào việc tách các service sẵn có trong kiến trúc một khối thành một tập hợp các service độc lập. Tuy nhiên thì microservice không chỉ là làm những việc phân chia như thế.</p>
+
+<p>Hãy xem xét điều đó bằng cách nhìn các chức năng trong kiến trúc một khối bằng cách xác định khả năng nghiệp vụ cần có từ ứng dụng - đó là trả lời câu hỏi ứng dụng cần làm gì, có ích hay không? Sau đó những khả năng đó có thể được thực hiện các service độc lập hoàn toàn, đủ tốt và khép kín. Chúng có thể được triển khai trên các stack công nghệ khác nhau, nhưng mỗi service sẽ giải quyết một phạm vi kinh doanh rất cụ thể và hạn chế.</p>
+
+<p>Bằng cách này, kiến trúc hệ thống bán lẻ như hình 1 có thể được mô tả lại như sau:
+<img src="https://res.cloudinary.com/deop9ytsv/image/upload/v1545534647/microservice%20in%20practice/soa_2.jpg" alt="img_2" />
+Bây giờ hãy xem xét các nguyên tắc kiến trúc quan trọng của microservice và quan trọng hơn là tập trung vào cách chúng có thể được sử dụng trong thực tế.</p>
+
+<h1 id="3-thiết-kế-microservice-size-scope-và-capabilities">3. Thiết kế Microservice: Size, Scope và Capabilities.</h1>
+
+<p>Bạn có thể làm một trong hai điều khi nói điều microservice: Một là bạn xây dựng ứng dụng của mình từ đầu và hai là bạn chuyển đổi ứng dụng/service của mình hiện có thành microservice. Dù bằng cách nào, điều quan trọng là bạn phải quyết định đúng kích thước, phạm vi và khả năng của các microservice. Đây có lẽ là điều khó nhất mà bạn cần gặp phải khi thực hiện MSA trong thực tế.</p>
+
+<p>Dưới đây là một vài mối quan tâm chính và quan niệm sai lầm về chúng:</p>
+
+<ul>
+<li>Số dòng code (line of code)/ kích thước team (team size) là số liệu tệ hại: Có một số tranh luận về việc quyết định kích thước của microservice dựa trên số dòng code của việc triển khai hoặc <a href="http://blog.idonethis.com/two-pizza-team/">team size</a>.  Tuy vậy, đây được coi là những số liệu rất không thực tế và tệ hại.</li>
+<li><em>Micro</em> là một thuật ngữ bị hiểu sai: Nhiều lập trình viên có xu hướng nghĩ rằng họ nên cố làm cho service nhỏ nhất có thể. Đây là một hiểu nhầm, không phải càng nhỏ thì càng tốt.</li>
+<li>Trong bối cảnh web service, các service thường được triển khai ở các mức độ chi tiết khác nhau - từ một vài chức năng đến vài chục chức năng. Việc có các webservice và đặt chúng dưới dạng microservice sẽ không đem lại cho bất kỳ lợi ích nào của MSA.</li>
+</ul>
+
+<p>Vậy làm thế nào chúng ta có thể thiết kế service đúng cách trong MSA:</p>
+
+<h2 id="3-1-hướng-dẫn-thiết-kế-microservice">3.1 Hướng dẫn thiết kế microservice</h2>
+
+<ul>
+<li><code>Single Responsibility Priciple (SRP)</code>: Mỗi service cần có phạm vi và bị giới hạn về nghiệp vụ cụ thể, không phụ thuộc lẫn nhau. Điều đó giúp cho chúng ta đáp ứng sự phát triển linh hoạt và nhanh chóng trong cung cấp service.</li>
+<li>Trong giai đoạn thiết kế các microservice, chúng ta nên tìm ranh giới của chúng và tùy chỉnh chúng phù hợp với các nghiệp vụ (hay còn biết đến là giới hạn context trong <a href="https://martinfowler.com/bliki/BoundedContext.html">DomainDriven-Design</a>).</li>
+<li>Chắc chắn việc thiết kế microservice đảm bảo sự phát triển và triển khai nhanh chóng, độc lập của service. Bạn nên tập trung vào phạm vi của microservice, không phải là cố làm cho nó nhỏ hơn.</li>
+<li>Thường thì bạn nên bắt đầu với các ranh giới service rộng, sau đó tái cấu trúc cho các ranh giới nhỏ hơn (dựa trên nghiệp vụ) theo thời gian.
+Trong ví dụ về hệ thống bán lẻ ở trên, bạn có thể thấy nó đã phân chia các chức năng thành 4 microservice khác nhau là <em>inventory</em>, <em>accounting</em>, <em>shipping</em> và <em>store</em>. Chúng đang giải quyết một nghiệp vụ cụ thể và mỗi service đều không phụ thuộc lẫn nhau, đảm bảo phát triển và deploy nhanh chóng.</li>
+</ul>
+
+<h1 id="4-message-trong-microservice">4. Message trong microservice</h1>
+
+<p>Trong kiến trúc một khối, các chức năng nghiệp vụ của các component/ bộ xử lý khác nhau sẽ gọi nhau bằng cách sử dụng các lệnh hàm gọi hoặc các method gọi hàm của ngôn ngữ lập trình. Trong SOA, điều này đã được chuyển sang cách request/response các message service có tính lỏng lẻo hơn, chủ yếu dựa trên SOAP với nhiều giao thức khác nhau như HTTP, JMS.</p>
+
+<h2 id="4-1-tin-nhắn-đồng-bộ-synchronous-messaging-rest-thrift">4.1 Tin nhắn đồng bộ (Synchronous Messaging) - REST, Thrift</h2>
+
+<p>Đối với tin nhắn đồng bộ ( client yêu cầu phản hồi kịp thời từ các service và thời gian đợi để nhận được nó) trong MSA, REST là lựa chọn dễ nhất vì nó cung cấp một kiểu message đơn giản với các request, respose HTTP. Do đó hầu hết các microservice đều sử dụng HTTP bên cạnh các tài nguyên khác (mỗi chức năng đại diện cho một tài nguyên và các hoạt động sẽ được thực hiện trên các tài nguyên khác).
+<img src="https://res.cloudinary.com/deop9ytsv/image/upload/v1545534647/microservice%20in%20practice/soa_3.jpg" alt="img_3" />
+<code>Thift</code> được sử dụng như một thay thế cho REST/HTTP trong đồng bộ tin nhắn.</p>
+
+<h2 id="4-2-tin-nhắn-không-đồng-bộ-asynchronous-amqp-stomp-mqtt">4.2 Tin nhắn không đồng bộ (Asynchronous) - AMQP, STOMP, MQTT</h2>
+
+<p>Đối với một số hoàn cảnh chúng ta bắt buộc phải sử dụng các tin nhắn không đồng bộ ( client không muốn phản hồi ngay lập tức hoặc muốn hoàn toàn không phản hồi). Trong những tình huống này, các giao thức tin nhắn không đồng bộ như AMQP, STOPM hay MQTT được sử dụng phổ biến.</p>
+
+<h2 id="4-3-message-format-json-xml-thrift-protobuf-avro">4.3 Message Format - JSON, XML, Thrift, ProtoBuf, Avro</h2>
+
+<p>Một yếu tố quan trọng khác là định dạng của message. Các ứng dụng một khối truyền thống sử dụng các định dạng nhị phân phức tạp, còn SOA/Web service lại sử dụng các message dựa trên các định dạng message phức tạp (SOAP) hay schema (xsd). Hầu hết các ứng dụng dựa trên microservice sử dụng các định dạng message dựa trên văn bản đơn giản như JSON hay XML trên HTTP REST API. Trong trường hợp chúng ta cần các định dạng message nhị phân (do message văn bản có thể trở nên dài dòng), microservice có thể tận dụng định dạng message nhị phân như binary Thrift, ProtoBuf hay Avro.</p>
+
+<h2 id="4-4-service-contracts-khai-báo-service-interface-swagger-raml-thrift-idl">4.4 Service Contracts - Khai báo Service Interface - Swagger, RAML, Thrift IDL</h2>
+
+<p>Khi bạn có một nghiệp vụ có thể làm thành một service, bạn sẽ cần làm những bản service contract (đại loại một văn bản mà bạn muốn những client khác gọi đến phải tuân theo những nguyên tắc trong đó để trích xuất được dữ liệu). Trong ứng dụng một khối truyền thống, chúng ta hầu như không cần làm bởi vì các service bên trong có thể gọi nhau qua framework hoặc ngôn ngữ nền tảng. Trong SOA/Web service, WSDL thường được dùng để làm service contract, nhưng WSDL không phải là giải pháp trong một hệ thống microservice dùng REST để giao tiếp giữa các service.</p>
+
+<p>Bởi vì chúng ta xây dựng microservice dựa trên kiến trúc REST nên chúng ta có thể sử dụng các kỹ thuật định nghĩa API trong REST để tạo một service contract. Do đó, chúng ta có thể sẻ dụng Swagger và RAML để định nghĩa service contract.</p>
+
+<p>Đối với các hệ thống không dựa trên HTTP/REST, chẳng hạn như Thrift, chúng ta có thể dùng  <code>Interface Definition Languages (IDL)</code> như Thrift IDL.</p>
+
+<h1 id="5-quản-lý-dữ-liệu-phân-tán">5. Quản lý dữ liệu phân tán</h1>
+
+<p>Trong kiến trúc một khối, ứng dụng lưu trữ dữ liệu trong các cơ sở dữ liệu đơn và tập trung để thực hiện các chức năng/khả năng khác nhau của ứng dụng.
+<img src="https://res.cloudinary.com/deop9ytsv/image/upload/v1545534647/microservice%20in%20practice/soa_4.jpg" alt="img_4" />
+Trong MSA&lt; các chức năng được phân tán trên nhiều microservice và nếu chúng ta sử dụng cùng một cơ sở dữ liệu tập trung thì nó rất khó đảm bảo tính lỏng lẻo giữa các service bởi nếu nếu database schema có sự thay đổi ở một service nào đó có thể sẽ làm chết một vài service khác. Do đó, mỗi service cần phải có cơ sở dữ liệu riêng.
+<img src="https://res.cloudinary.com/deop9ytsv/image/upload/v1545534648/microservice%20in%20practice/soa_5.jpg" alt="img_5" />
+Dưới đây là các khía cạnh chính của việc thực hiện quản lý dữ liệu phân tán trong MSA:</p>
+
+<ul>
+<li>Mỗi microservice có thể có một cơ sở dữ liệu riêng để duy trì dữ liệu cần thực hiện chức năng nghiệp vụ của nó.</li>
+<li>Một microservice cụ thể chỉ có thể truy cập vào cơ sở dữ liệu riêng của nó, chứ không phải cơ sở dữ liệu của các service khác.</li>
+<li>Trong một số tình huống, bạn có thể phải cập nhật một số cơ sở dữ liệu cho một giao dịch. Trong các trường hợp như vậy, cơ sở dữ liệu của các service khác chỉ được cập nhật thông qua API của nó (không được phép truy cập trực tiếp vào cơ sở dữ liệu).</li>
+</ul>
+
+<p>Việc quản lý dữ liệu phân tán sẽ cung cấp cho bạn các service tách rời hoàn toàn và tự do lựa chọn các kỹ thuật quản lý dữ liệu khác nhau (SQL hoặc NoSQL,&hellip; các hệ thống quản trị cơ sở dữ liệu khác nhau cho mỗi service). Tuy nhiên, đối với các trường hợp sử dụng transaction phức tạp liên quan đến nhiều service, các transaction  phải được thực hiện bằng cách sử dụng API được cung cấp từ mỗi service và logic tại client hoặc các tầng trung gian (Gateway).</p>
+
+<h1 id="6-quản-trị-phân-tán">6. Quản trị phân tán</h1>
+
+<p>MSA rất thích hợp để quản trị phân tán. Quản trị trong IT được hiểu là các quy trình đảm bảo việc sử dụng công nghệ hiệu quả và cho phép một tổ chức đạt được mục tiêu của mình. Trong SOA, quản trị SOA hướng dẫn phát triển các service có thể sử dụng lại, thiết lập cách thức các service sẽ được thiết kế, phát triển và cách các service đó thay đổi theo thời gian. Nó thiết lập các thỏa thuận giữa bên cung cấp service và người sử dụng service, nói cho người sử dụng biết những gì họ mong muốn và cho bên cung cấp biết những gì họ bắt buộc phải cung cấp. Quản trị SOA có hai loại quản trị thường được dùng phổ biến:</p>
+
+<ul>
+<li>Quản trị <em>Design-time</em>: xác định và kiểm soát cách tạo, thiết kế và phát triển service theo policy.</li>
+<li>Quản trị <em>Run-time</em>: xác định khả năng thực thi các policy trong suốt thời gian thi hành.</li>
+</ul>
+
+<p>Vậy quản trị trong microservice có ý nghĩa là gì? Trong MSA, microservice được xây dựng dưới các service độc lập và tách rời hoàn toàn với các nền tảng công nghệ khác nhau. Do đó không cần xác định một tiêu chuẩn chung cho thiết kế và phát triển service. Chúng ta có thể tóm tắt quản trị phân tán của microservice như sau:</p>
+
+<ul>
+<li>Các service có thể tự đưa ra những nguyên tắc về thiết kế và cách thực hiện của riêng nó.</li>
+<li>MSA khuyến khích việc chia sẻ các service chung hoặc có thể tái sử dụng.</li>
+<li>Các khía cạnh quản trị run-time như SALs, điều tiết, giám sát, các yêu cầu chung về bảo mật và service discovery sẽ không được triển khi trên mỗi service. Thay vào đó, chúng nên được ở trong các component chuyên dụng (thường ở tầng API-gateway).</li>
+</ul>
+
+<h1 id="7-service-registry-và-service-discovery">7. Service Registry và Service Discovery</h1>
+
+<p>Trong MSA, số lượng các service mà bạn cần để làm việc sẽ là khá nhiều. Chúng thay đổi vị trí linh hoạt do tính chất cần phát triển nhanh của microservice. Do đó, bạn cần tìm vị trí của microservice trong suốt thời gian runtime. Giải pháp cho vấn đề này là sử dụng <code>Service Registry</code>.</p>
+
+<h2 id="service-registry">Service Registry</h2>
+
+<p>Service registry là nơi để chứa các metadata của các microservice instances (bao gồm vị trí location, host port,&hellip;). Các microservice instance được đăng ký với service registry khi khởi động và sẽ hủy đăng ký khi bị shut down. Các thành phần khác cần tìm thông tin của một microservice nào đó thì sẽ tìm thông qua service registry.</p>
+
+<h2 id="service-discovery">Service Discovery</h2>
+
+<p>Để tim các microservice đang hoạt động và vị trí location của nó, chúng ta cần đến cơ chế <code>service discovery</code>. Có 2 loại cơ chế <code>service discovery</code> là client-side discovery và server-side discovery. Chúng ta sẽ xem xét kỹ hơn về các cơ chế này:</p>
+
+<ul>
+<li><p>Client-side discovery
+Theo cách tiếp cận này, client hoặc API-gateway sẽ có được vị trí của một service instance bằng cách truy vấn một service registry.
+<img src="https://res.cloudinary.com/deop9ytsv/image/upload/v1545534648/microservice%20in%20practice/soa_6.jpg" alt="img_6" /></p></li>
+
+<li><p>Server-side discovery
+Với phương pháp này, client/API gateway sẽ gửi một request đến một component (ví dụ như một load balancer) chạy trên một location đã biết. Component đó sẽ gọi đến service registry và xác địh vị trí location mà request cần đến.
+<img src="https://res.cloudinary.com/deop9ytsv/image/upload/v1545534646/microservice%20in%20practice/soa_7.jpg" alt="img_7" />
+Các microservice có thể tận dụng các giải pháp deployment như Kubernetes cho service-side discovery.</p></li>
+</ul>
+
+<h1 id="8-deployment">8. Deployment</h1>
+
+<p>Khi nói đến MSA, việc deploy các service đóng một vai trò quan trọng và có các yêu cầu chính như sau:</p>
+
+<ul>
+<li>Khả năng deploy/undeploy độc lập đối với các service khác.</li>
+<li>Phải có khả năng scale cho từng service.</li>
+<li>Deploy nhanh chóng.</li>
+
+<li><p>Lỗi trong một service sẽ không được làm ảnh hưởng đến bất kỳ service nào khác.
+<a href="https://www.docker.com/">Docker</a> (một công cụ mã nguồn mở cho phép các lập trình viên và quản trị viên hệ thống deploy các container trong mỗi trường Linux) cung cấp một cấp tuyệt vời để deploy các service theo các yêu cầu trên. Các ý chính bao gồm:</p></li>
+
+<li><p>Package của service dưới dạng một Docker image.</p></li>
+
+<li><p>Deploy mỗi service instance bằng một container.</p></li>
+
+<li><p>Scale được thực hiện dựa trên việc thay đổi số lượng container instance.</p></li>
+
+<li><p>Build, deploy và khởi động một service sẽ nhanh hơn nhiều khi sử dụng Docker container (so với các máy ảo VM thông thường).</p></li>
+</ul>
+
+<p><a href="https://kubernetes.io/">Kubernetes</a> là một công cụ có khả năng mở rộng các tính năng của Docker bằng cách cho phép quản lý một cụm (cluster) Linux container dưới dạng một hệ thống duy nhất, quản lý và chạy các Docker container trên nhiều máy chủ, cung cấp các vị trí cùng cấp (co-location) của các container, service discovery và các kiểm soát khác. Như bạn có thể thấy, hầu hết các tính năng này đều rất cần thiết trong hệ thống microservice. Do đó, sử dụng Kubernetes (dựa trên Docker) để triển khai hệ thống microservice đã trở thành một giải pháp mạnh mẽ, đặc biệt là đối với các hệ thống có quy mô lớn.
+<img src="https://res.cloudinary.com/deop9ytsv/image/upload/v1545534646/microservice%20in%20practice/soa_8.jpg" alt="img_8" /></p>
+
+<h1 id="9-bảo-mật">9. Bảo mật</h1>
+
+<p>Bảo mật là một yêu cầu quan trọng và phổ biến khi bạn sử dụng microservice trong thực tế. Trước khi tìm hiểu bảo mật trong microservice, chúng ta sẽ xem xét qua cách mà chúng ta thường triển khai bảo mật ở một ứng dụng một khối.</p>
+
+<ul>
+<li>Trong một ứng dụng nguyên khối điển hình, bảo mật là tìm ra &ldquo;ai là người gọi&rdquo;, &ldquo;người gọi có thể làm gì&rdquo; và &ldquo;chúng ta truyền thông tin đó như thế nào&rdquo;.</li>
+<li>Điều này thường được thực hiện tại một component bảo mật chung, nằm ở đầu chuỗi xử lý yêu cầu và component  đó chứa thông tin cần thiết với việc sử dụng vùng lưu trữ người dùng bên dưới.</li>
+</ul>
+
+<p>Vậy thì chúng ta có thể trực tiếp sử dụng lại các nguyên tắc này ở MSA không? Câu trả lời là có, nhưng nó đòi hỏi một component bảo mật được triển khai ở từng service có thể giao tiếp với vùng lưu trữ thông tin user và truy xuất thông tin cần thiết. Đó là một cách giải quyết rất tệ trong bảo mật microservice.</p>
+
+<p>Thay vào đó, chúng ta có thể tận dụng các tiêu chuẩn bảo mật API đang được dùng phổ biến như OAuth 2.0, OpenID Connect để tìm giải pháp tốt hơn cho vấn đề bảo mật. Trước khi đi sâu vào vấn đề đó, trước tiên hãy tóm tắt mục đích của từng tiêu chuẩn và cách chúng ta có thể sử dụng chúng.</p>
+
+<ul>
+<li><code>OAuth 2.0</code>Là một giao thức ủy quyền truy cập. Client xác thực với một server ủy quyền và nhận được mã token, được gọi là &lsquo;Access token&rsquo;. Một access token sẽ không có thông tin nào về user/client. Nó chỉ có một tham chiếu đến thông tin user chỉ có thể truy xuất bởi server ủy quyền. Do đó nó còn được gọi là <code>by-reference token</code> và nó đủ an toàn ngay khi trong mỗi trường mạng internet công khai.</li>
+<li><code>OpenID Connect</code> hoạt động tương tự như OAuth, nhưng ngoài access token, server ủy quyền sẽ phát hành mã token ID có chứa thông tin về người dùng. Điều này thường được triển khai bằng JWT (JSON Web Token) và nó được đăng ký bởi server ủy quyền. Điều này đảm bảo sự tin tưởng giữa server ủy quyền và client. Do đó, JWT còn được gọi là <code>by-value token</code> vì nó chứa thông tin của người dùng và rõ ràng không an toàn khi sử dụng bên ngoài mạng nội bộ.</li>
+</ul>
+
+<p>Bây giờ, hãy xem cách chúng ta có thể sử dụng các tiêu chuẩn này để bảo mật các service trong ví dụ cửa hàng bán lẻ lúc đầu:
+<img src="https://res.cloudinary.com/deop9ytsv/image/upload/v1545534647/microservice%20in%20practice/soa_9.jpg" alt="img_9" />
+Như đã mô tả trong hình trên, các bước chính cần có liên quan đến việc triển khai bảo mật trong hệ thống microservice là:</p>
+
+<ul>
+<li>Để lại việc xác thực cho OAuth 2.0 và OpenID Connect (server ủy quyền), nhờ vậy microservice sẽ cung cấp quyền truy cập thành công khi ai đó có quyền sử dụng dữ liệu.</li>
+<li>Sử dụng API-gateway trong đó có một entry-point duy nhất cho tất cả các yêu cầu của máy khách.</li>
+<li>Client kết nối với server ủy quyền và nhận access token (by reference token). Sau đó sẽ gửi các access token kèm theo trong mỗi lần request đến API-gateway.</li>
+<li>Token sẽ được giải mã ở gateway - API-gateway trích xuất access token và gửi nó đến server ủy quyền để truy xuất JWT. (by value-token).</li>
+<li>Cổng gateway sẽ dùng mã JWT kèm theo mỗi lần request đến tầng microservice.</li>
+<li>JWT chứa các thông tin cần thiết để lưu trữ các phiên người dùng&hellip; Nếu mỗi service đều có thể hiểu một JSON token thì bạn có thể phân phối cơ chế nhận dạng của mình mà cho phép vận chuyển danh tính của người dùng trên toàn hệ thống của bạn.</li>
+<li>Ở mỗi lớp microservice, chúng ta có thể có một component nhỏ để xử lý JWT.</li>
+</ul>
+
+<h1 id="10-inter-service-process-communication">10. Inter-Service/Process Communication</h1>
+
+<p>Trong MSA, các ứng dụng được xây dựng như một tập hợp các service độc lập. Do đó để biết khi nào cần đến nghiệp vụ nào thì chúng ta cần phải có các cấu trúc giao tiếp giữa các service hay quy trình khác nhau.
+Từ khi microservice sử dụng các chuẩn giao thức (như HTTP) và các định dạng message (như JSON,&hellip;) thì yêu cầu tích hợp với một giao thức khác là yêu cầu tối thiểu khi nhắc đến việc giao tiếp giữa các microservice. Một cách tiếp cận khác trong giao tiếp microservice là sử dụng bus message hoặc cổng gateway với khả năng định tuyến tối thiểu và chỉ hoạt động như một &lsquo;dumb pipe&rsquo; không triển khai bất kì nghiệp vụ nào trên gateway. Dựa trên những phương pháp này, chúng ta có một số kiểu giao tiếp như sau:</p>
+
+<h2 id="10-1-point-to-point-style-gọi-service-trực-tiếp">10.1 Point-to-Point Style - Gọi service trực tiếp</h2>
+
+<p>Trong kiểu <code>point-to-point</code> , toàn bộ logic định tuyến message nằm trên mỗi điểm cuối và các service có thể giao tiếp trực tiếp. Mỗi microservice sẽ expose một REST API và một microservice cụ thể hoặc một client bên ngoài có thể gọi một microservice khác thông qua REST API của nó.
+<img src="https://res.cloudinary.com/deop9ytsv/image/upload/v1545534648/microservice%20in%20practice/soa_10.jpg" alt="img_10" />
+Rõ ràng mô hình này hoạt động cho các ứng dụng microservice tương đối đơn giản, nhưng khi số lượng service tăng lên, điều này sẽ trở nên phức tạp vô cùng. Sau tất cả, đó chính là lý do cho việc sử dụng ESB trong triển khai SOA truyền thống, đó là loại bỏ các liên kết tích hợp point-to-point lộn xộn này. Hạn chế của kiểu giao tiếp này được liệt kê như sau:</p>
+
+<ul>
+<li>Các yêu cầu phi chức năng, chẳng hạn như xác thực người dùng cuối, điều chỉnh, giám sát, v.v &hellip; cần phải được thực hiện ở mỗi cấp độ microservice.</li>
+<li>Do việc sao chép các common function, mỗi microservice có thể trở nên phức tạp.</li>
+<li>Không có trung tâm lưu trữ các yêu cầu phi chức năng, như giám sát, truy tìm hoặc bảo mật cần được áp dụng ở mỗi cấp độ service.</li>
+<li>Thông thường kiểu giao tiếp trực tiếp được coi là <code>microservice anti-pattern</code> khi dùng trong các hệ thống microservice quy mô lớn.</li>
+</ul>
+
+<h2 id="10-2-api-gateway-style">10.2 API-Gateway Style</h2>
+
+<p>Ý tưởng chính đằng sau kiểu  API-Gateway là sử dụng một message gateway nhẹ làm điểm vào chính cho tất cả client/consumers và thực hiện các yêu cầu phi chức năng phổ biến ở cấp độ gateway. Nói chung, một API-Gateway cho phép bạn sử dụng API được quản lý qua REST/HTTP. Do đó, bạn có thể expose các business functions của mình được triển khai dưới dạng microservice thông qua API-Gateway dưới dạng một API được quản lý. Trên thực tế, đây là sự kết hợp giữa quản lý MSA và API.
+<img src="https://res.cloudinary.com/deop9ytsv/image/upload/v1545534648/microservice%20in%20practice/soa_11.jpg" alt="img_11" />
+Trong kịch bản kinh doanh bán lẻ ban đầu, như được mô tả trong Hình 11, tất cả các microservice được hiển thị thông qua một API-gateway và đó là điểm vào duy nhất cho tất cả các client. Kiểu API-gateway sẽ đem lại cho bạn những lợi ích sau:</p>
+
+<ul>
+<li>Có khả năng cung cấp các khái niệm trừu tượng cần thiết ở cấp độ gateway cho các microservice, ví dụ: thay vì cung cấp API one-size-fits-all, API-gateway có thể expose API khác nhau cho từng khách hàng.</li>
+<li>Định tuyến/chuyển đổi message nhẹ ở cấp độ gateway- bạn có thể thực hiện lọc, định tuyến và chuyển đổi thông báo cơ bản ở gateway layer.</li>
+<li>Nơi tập trung để áp dụng các yêu cầu phi chức năng, như bảo mật, giám sát và điều tiết - thay vì thực hiện các tính năng chung này ở mỗi lớp microservice.</li>
+<li>Với việc sử dụng mẫu API-gateway, microservice sẽ trở nên nhẹ hơn nữa vì tất cả các yêu cầu phi chức năng được thực hiện ở cấp độ gateway.</li>
+</ul>
+
+<p>Kiểu API-gateway cũng có thể là mẫu được sử dụng rộng rãi nhất trong hầu hết các triển khai microservice.</p>
+
+<h2 id="10-3-message-broker-style">10.3 Message Broker Style</h2>
+
+<p>Trong các tình huống message không đồng bộ, chẳng hạn như các request một chiều sử dụng hàng đợi queues. Điều đó có nghĩa là một microservice có thể là nguồn cung cấp message và nó có thể gửi các message không đồng bộ đến một queue hoặc topic. Sau đó những microservice xử lý message đó sẽ lấy nguồn từ một queue hoặc topic. Kiểu giao tiếp này sẽ tách biệt nguồn cung message và nơi cần sử dụng message. Nó sử dụng một khu vực trung gian để lưu trữ các message cho đến khi những service cần đến có thể xử lý những message đó. Như vậy, các microservice gửi message sẽ không hề biết những microservice nào sử dụng message.
+<img src="https://res.cloudinary.com/deop9ytsv/image/upload/v1545534646/microservice%20in%20practice/soa_12.jpg" alt="img_12" />
+Giao tiếp giữa consumers/producers được tạo thông qua một message broker dựa trên các tiêu chuẩn message không đồng bộ, chẳng hạn như AMQP, MQTT, v.v.</p>
+
+<h1 id="11-transactions">11. Transactions</h1>
+
+<p>Các transaction được hỗ trợ như thế nào trong microservice? Trên thực tế thì đây là một nhiệm vụ phức tạp. Kiến trúc microservice khuyến khích các service không có transaction. Lý do là một service nên hoàn toàn khép kín và chỉ có một nhiệm vụ duy nhất. Do đó, trong hầu hết các trường hợp, transaction chỉ được áp dụng ở phạm vi của các microservice (tức là không phải trên nhiều microservice).</p>
+
+<p>Tuy nhiên, nếu có một yêu cầu bắt buộc là phải có các transaction trên nhiều service, thì các kịch bản như vậy có thể được thực hiện bằng việc bổ sung các &ldquo;hoạt động bù&rdquo; ở cấp độ microservice. Có nghĩa là một microservice cụ thể chỉ có một nhiệm vụ và nếu một microservice cụ thể không thực hiện được nhiệm vụ, chúng ta có thể coi đó là một thất bại của toàn bộ microservice đó. Sau đó, tất cả các hoạt động upstream khác phải được hoàn tác bằng cách gọi hoạt động bù tương ứng của các microservice đó.</p>
+
+<h1 id="12-thiết-kế-khi-gặp-lỗi">12. Thiết kế khi gặp lỗi</h1>
+
+<p>MSA là một bộ service phân tán và so với thiết kế nguyên khối, nó làm tăng khả năng gặp sự cố ở mỗi cấp độ service. Một microservice cụ thể có thể thất bại do sự cố mạng, không có sẵn tài nguyên cơ bản, v.v. Một microservice không có sẵn hoặc không phản hồi sẽ không được phép làm chết cả ứng dụng. Do đó, bản thân mỗi microservice nên có khả năng chịu lỗi, có thể phục hồi và nhờ đó client sẽ xử lý lỗi một cách mềm mại. Hơn nữa, vì các service có thể thất bại bất cứ lúc nào, điều quan trọng là có thể phát hiện (giám sát theo thời gian thực) các lỗi một cách nhanh chóng và nếu có thể, các service này sẽ tự động khôi phục.</p>
+
+<p>Dưới đây là một số phương pháp xử lý lỗi trong microservice:</p>
+
+<h3 id="circuit-breaker">Circuit Breaker</h3>
+
+<p>Khi bạn gọi đến một service, bạn sẽ muốn cài đặt một thành phần giám sát lỗi với mỗi lần gọi, và khi số lỗi đạt ngưỡng nhất định thì thành phần đó sẽ dừng tất cả các request của service (ngắt mạch). Sau một số lượng request nhất định ở trạng thái mở (mà bạn có thể định cấu hình), hãy thay đổi mạch trở lại trạng thái đóng. Thiết kế này khá hữu ích để tránh tiêu thụ tài nguyên không cần thiết, yêu cầu phản hồi chậm trễ do timeout và cũng cung cấp cho chúng ta cách để giám sát hệ thống (dựa vào trạng thái mạch mở hoạt động).</p>
+
+<h3 id="bulkhead">Bulkhead</h3>
+
+<p>Mẫu thiết kế <code>Bulkhead</code> là cách thiết kế để cách ly các thành phần khác nhau trong ứng dụng để khi một service bị lỗi sẽ không ảnh hưởng đến bất kì service nào khác.</p>
+
+<h3 id="timeout">Timeout</h3>
+
+<p>Mẫu timeout là một cơ chế cho phép bạn ngừng chờ phản hồi từ microservice khi bạn nghĩ rằng nó sẽ không đến. Tại đây, bạn có thể chỉ định khoảng thời gian bạn muốn chờ.</p>
+
+<p>Như vậy, chúng ta sẽ sử dụng các mẫu thiết kế này khi nào và như thế nào? Trong hầu hết các trường hợp thì các mẫu này sẽ được áp dụng ở cấp độ gateway. Điều này có nghĩa là khi microservice không khả dụng hoặc không phản hồi ở cấp độ cổng, chúng ta có thể quyết định có nên gửi yêu cầu tới microservice bằng cách sử dụng <code>circuit breaker</code> hoặc mẫu <code>timeout</code> hay không. Áp dụng theo mẫu <code>bulkhead</code> ở gateway cũng rất quan trọng vì nó là điểm đầu vào duy nhất cho tất cả request của client, do đó, sự thất bại trong một service nhất định sẽ không ảnh hưởng đến việc gọi các service khác.</p>
+
+<p>Ngoài ra, cổng gateway có thể được sử dụng làm trung tâm lưu trữ mà tại đó chúng ta có thể có được trạng thái và giám sát từng service, vì mỗi service đều được gọi thông qua cổng gateway.</p>
+
+<h1 id="13-microservice-trong-kiến-trúc-doanh-nghiệp-hiện-đại">13. Microservice trong kiến trúc doanh nghiệp hiện đại</h1>
+
+<p><img src="https://res.cloudinary.com/deop9ytsv/image/upload/v1545534647/microservice%20in%20practice/soa_13.jpg" alt="img_13" />
+Hình 13 minh họa một kiến ​​trúc CNTT doanh nghiệp cấp cao. Ở đây, chúng ta đã sử dụng một kiến ​​trúc lai bao gồm cả microservice và các hệ thống hiện có. Có những quyết định thiết kế chính mà bạn cần phải đưa ra khi giới thiệu MSA cho tổ chức của mình:</p>
+
+<ul>
+<li>Sử dụng MSA để làm giải pháp bất cứ khi nào cần và cố gắng đạt được toàn bộ sức mạnh mà MSA mang lại.</li>
+<li>Tích hợp doanh nghiệp vẫn là bắt buộc : vì chúng ta sẽ có một cách tiếp cận hỗn hợp, bạn vẫn sẽ cần tích hợp tất cả các hệ thống và dịch vụ nội bộ của mình với việc sử dụng một phần mềm tích hợp, chẳng hạn như ESB.</li>
+<li>Bạn sẽ không thể vứt bỏ hầu hết các hệ thống hiện có, bởi các microservice mới có thể cần phải gọi các hệ thống nguyên khối đó để tạo điều kiện cho các yêu cầu kinh doanh khác nhau.</li>
+<li>Các ESB &lsquo;mới&rsquo;: Mặc dù phần mềm tích hợp, chẳng hạn như ESB, vẫn có thể cần thiết cho kiến ​​trúc doanh nghiệp hiện đại, thì một tổ chức vẫn nên tìm kiếm phần mềm tích hợp nhẹ, hiệu suất cao và có thể mở rộng thay vì các frameworks tích hợp hạng nặng.</li>
+<li>Quản lý API: microservice có thể được expose thông qua cổng gateway và tất cả các kỹ thuật quản lý API có thể được áp dụng ở lớp đó. Tất cả các yêu cầu khác như bảo mật, điều chỉnh, lưu trữ và giám sát phải được thực hiện ở cổng gateway. Hơn nữa, các service không dựa trên microservice (SOA truyền thống) cũng có thể được expose thông qua cổng API gateway.</li>
+</ul>
+
+<h1 id="14-tích-hợp-microservice">14. Tích hợp Microservice</h1>
+
+<p>Các câu hỏi thường gặp nhất trong microservice là &lsquo;microservice có thể nói chuyện với nhau không?&rsquo;, &lsquo;làm thế nào để xây dựng các microservice mới bằng cách tận dụng một microservice  hiện có?&rsquo; hoặc &lsquo;làm thế nào để chúng ta soạn thảo/tích hợp microservice và hình thành các service/solution?&rsquo;.</p>
+
+<p>Trên thực tế, MSA thúc đẩy xây dựng một microservice với phạm vi kinh doanh hạn chế và tập trung. Do đó, khi nói đến việc xây dựng các giải pháp CNTT trên MSA, không thể tránh khỏi việc chúng ta phải sử dụng các microservice hiện có. Sự tương tác giữa các microservice có thể được thực hiện theo kiểu point-to-point thông thường. Tuy nhiên, cách tiếp cận đó trở nên khá dễ phá vỡ (với quá nhiều tương tác point-to-point, khó quản lý, duy trì, scale và khắc phục sự cố) khi nói đến các giải pháp microservice. Do đó, chúng ta cần tuân thủ các nguyên tắc tốt nhất về tích hợp các microservices để loại bỏ các nhược điểm của tương tác kiểu point-to-point.</p>
+
+<ul>
+<li>Sử dụng một cổng gateway để expose các microservices: Sử dụng một cổng gateway ở trước tất cả các microservices và tất cả consumers chỉ sử dụng các microservices thông qua cổng gateway .</li>
+<li>Không có gọi trực tiếp giữa các microservices: microservice không thể gọi trực tiếp các microservice, tất cả các cuộc gọi phải đi qua cổng gateway.</li>
+<li>Micro-integration thông qua một máy chủ tích hợp.</li>
+</ul>
+
+<h2 id="14-1-phối-hợp-tại-microservices-layer">14.1 Phối hợp tại Microservices Layer</h2>
+
+<p>Khi bạn phải gọi nhiều microservices để hỗ trợ một yêu cầu business nhất định, bạn có thể xây dựng một microservice khác (một lần nữa giải quyết phạm vi business hạn chế) sẽ điều phối các request service đến các microservices cần thiết và tổng hợp phản hồi cuối cùng và gửi lại cho consumer ban đầu.</p>
+
+<p>Ví dụ, Hình 14 mô tả một kịch bản trong đó chúng ta có một vài microservices là A, B, C và D. Bây giờ chúng tôi muốn đưa ra một chức năng mới đòi hỏi phải gọi microservice A và C một cách tuần tự và cung cấp một phản hồi tổng hợp. Để làm điều này, chúng ta có thể xây dựng một microservice mới (microservice E) và logic phối hợp có chứa dịch vụ gọi A và C được nhúng vào microservice E. Tất cả các yêu cầu của microservice được thực hiện thông qua cổng gateway. Nếu microservice E phải được scale một cách độc lập, điều đó có thể được thực hiện bằng cách scale microservice E, A và C theo yêu cầu.
+<img src="https://res.cloudinary.com/deop9ytsv/image/upload/v1545534646/microservice%20in%20practice/soa_14.jpg" alt="img_14" /></p>
+
+<h2 id="14-2-phối-hợp-tại-gateway-layer">14.2 Phối hợp tại Gateway Layer</h2>
+
+<p>Cách tiếp cận khả thi khác là thực hiện cùng một kịch bản phối hợp bằng cách đưa logic phối hợp đến cấp độ cổng gateway. Trong trường hợp này, chúng ta không phải đưa ra một microservice mới, nhưng sẽ cần một lớp virtual service được lưu trữ trong cổng gateway đảm nhiệm việc điều phối.</p>
+
+<p>Ví dụ, như trong Hình 15, service gọi tới microservice A và C có thể được triển khai bên trong cổng gateway (hầu hết các cài đặt microservice gateway đều hỗ trợ tính năng này).</p>
+
+<p>Khi việc scale business mới được nói đến, chúng ta phải scale quy mô của cổng gateway và microservice A và C. Với điều này, cổng gateway sẽ trở nên hơi nguyên khối vì nó cũng chịu trách nhiệm định tuyến tất cả các microservices requests khác.
+<img src="https://res.cloudinary.com/deop9ytsv/image/upload/v1545534647/microservice%20in%20practice/soa_15.jpg" alt="image_15" /></p>
+
+<h2 id="14-3-micro-integration">14.3 Micro-Integration</h2>
+
+<p>Khi chúng ta phải xây dựng các giải pháp tích hợp, thường thì việc sử dụng một máy chủ tập trung có chứa logic tích hợp được xem xét hàng đầu. Khái niệm tích hợp vi mô (micro-integration) là một framework tích hợp nhẹ có thể được sử dụng để xây dựng các giải pháp tích hợp; nó có thể tích hợp microservers và các service/system khác (tại chỗ hoặc SaaS). Và chúng ta có thể scale chúng tại thời điểm runtime chứ không như phương pháp xây dựng máy chủ tích hợp thông thường, nơi mà chúng ta chỉ có thể scale theo những kịch bản lựa chọn sẵn.</p>
+
+<h2 id="14-4-choreography-style">14.4 Choreography Style</h2>
+
+<p>Một cách tiếp cận khả thi khác là xây dựng các tương tác giữa các microservices bằng cách sử dụng kiểu message không đồng bộ, chẳng hạn như MQTT hoặc Kafka. Trong trường hợp này, không có thành phần trung tâm nào đảm nhiệm các tương tác service. Các service khác nhau có thể thực hiện message bằng các giao thức
+messaging protocol.</p>
+
+<h1 id="15-wso2-microservices-framework-cho-java-wso2-msf4j">15. WSO2 Microservices Framework cho Java (WSO2 MSF4J)</h1>
+
+<p>Có khá nhiều thư viện và framework để xây dựng microservice, nhưng hầu hết trong số đó không thực sự tuân thủ các nguyên tắc cốt lõi của microservice, chẳng hạn như nhẹ hoặc thân thiện với container.</p>
+
+<p>WSO2 cung cấp một microservice framework nhẹ, nhanh và thân thiện với container.</p>
+
+<p><a href="https://wso2.com/products/microservices-framework-for-java/">WSO2 Microservices Framework for Java</a> (WSO2 MSF4J) cung cấp tùy chọn tốt nhất để tạo microservice trong Java với ý định triển khai dựa trên container. Các dịch vụ được phát triển bằng WSO2 MSF4J có thể khởi động chỉ trong vài mili giây trong Docker và có thể dễ dàng tạo Docker image.</p>
+
+<h1 id="16-tổng-kết">16. Tổng kết</h1>
+
+<p>Kh i bạn muốn kết hợp MSA trong môi trường CNTT doanh nghiệp hiện đại ngày nay, các khía cạnh chính bạn cần quan tâm tổng kết lại sau:</p>
+
+<ul>
+<li>Microservice không phải là thuốc chữa bách bệnh - nó không giải quyết tất cả các nhu cầu CNTT của doanh nghiệp của bạn, vì vậy chúng ta cần sử dụng nó với các kiến ​​trúc hiện có khác.</li>
+<li>Dùng SOA hợp lý.</li>
+<li>Hầu hết các doanh nghiệp sẽ không thể chuyển đổi toàn bộ hệ thống CNTT doanh nghiệp của họ sang microservice. Thay vào đó, họ sẽ sử dụng microservice để giải quyết một số trường hợp sử dụng kinh doanh trong đó họ có thể tận dụng sức mạnh của MSA.</li>
+<li>Tích hợp doanh nghiệp sẽ không bao giờ biến mất - điều đó có nghĩa là bạn cần phải có phần mềm tích hợp, chẳng hạn như ESB, để phục vụ cho tất cả các nhu cầu tích hợp doanh nghiệp của bạn.</li>
+<li>Tất cả business functions phải được expose dưới dạng API bằng cách tận dụng các kỹ thuật quản lý API.</li>
+<li>Tương tác giữa các microservices nên được thực hiện qua cổng gateway.</li>
+<li>Việc phối hợp service giữa các microservice có thể được yêu cầu cho một số business và có thể được triển khai bên trong một microservice khác hoặc ở tại lớp gateway.</li>
+</ul>
+
+<h1 id="nguồn">Nguồn</h1>
+
+<p><a href="https://wso2.com/whitepapers/microservices-in-practice-key-architectural-concepts-of-an-msa/">https://wso2.com/whitepapers/microservices-in-practice-key-architectural-concepts-of-an-msa/</a></p>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">THẺ ĐÁNH DẤU</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/web-architecture/">web architecture</a>
+
+  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/key/">key</a>
+
+  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/concept/">concept</a>
+
+  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/microservice/">microservice</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">Tiếp</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2018/12/microservice-springboot-eureka-part3/" data-tooltip="[Microservice] Dựng Microservice web bằng Spring Boot và Eureka [Phần 3]">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">Trước</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://tubean.github.io/2018/12/microservice-key-architectural-concepts/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://tubean.github.io/2018/12/microservice-key-architectural-concepts/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://tubean.github.io/2018/12/microservice-key-architectural-concepts/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2018 <a href="https://bitbucket.org/tubean/">Do Anh Tu</a>. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">Tiếp</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2018/12/microservice-springboot-eureka-part3/" data-tooltip="[Microservice] Dựng Microservice web bằng Spring Boot và Eureka [Phần 3]">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">Trước</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://tubean.github.io/2018/12/microservice-key-architectural-concepts/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://tubean.github.io/2018/12/microservice-key-architectural-concepts/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://tubean.github.io/2018/12/microservice-key-architectural-concepts/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ftubean.github.io%2F2018%2F12%2Fmicroservice-key-architectural-concepts%2F">
+          <i class="fa fa-facebook-official"></i><span>Chia sẻ với Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Ftubean.github.io%2F2018%2F12%2Fmicroservice-key-architectural-concepts%2F">
+          <i class="fa fa-twitter"></i><span>Chia sẻ với Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Ftubean.github.io%2F2018%2F12%2Fmicroservice-key-architectural-concepts%2F">
+          <i class="fa fa-google-plus"></i><span>Chia sẻ với Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://res.cloudinary.com/deop9ytsv/image/upload/c_scale,w_1836/v1540914499/C360_2016-03-22-17-45-21-487.jpg" alt="Ảnh đại diện" />
+    
+    <h4 id="about-card-name">Tu Bean</h4>
+    
+      <div id="about-card-bio">Coding, writing and sharing</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Web developer
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        Viet Nam
+      </div>
+    
+  </div>
+</div>
+
+    <div id="algolia-search-modal" class="modal-container">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="close-button"><i class="fa fa-close"></i></span>
+      <a href="https://algolia.com" target="_blank" rel="noopener" class="searchby-algolia text-color-light link-unstyled">
+        <span class="searchby-algolia-text text-color-light text-small">by</span>
+        <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+      </a>
+      <i class="search-icon fa fa-search"></i>
+      <form id="algolia-search-form">
+        <input type="text" id="algolia-search-input" name="search"
+          class="form-control input--large search-input" placeholder="Tìm kiếm" />
+      </form>
+    </div>
+    <div class="modal-body">
+      <div class="no-result text-color-light text-center">không tìm thấy kết quả</div>
+      <div class="results">
+        
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/12/microservice-key-architectural-concepts/">
+                <h3 class="media-heading">[Microservice] Các khái niệm chính trong microservice</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Trong bài viết này, chúng ta sẽ tìm hiểu một số khái niệm chính trong hệ thống microservice.
+1. Monolithic Architecture Các ứng dụng doanh nghiệp ngày nay đang được thiết kế để đáp ứng được số lượng lớn nghiệp vụ kinh doanh. Do đó một ứng dụng phần mềm cần cung cấp hàng trăm chức năng và tất cả các những chức năng như vậy thường được gói gọn trong một ứng dụng nguyên khối duy nhất.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/12/microservice-springboot-eureka-part3/">
+                <h3 class="media-heading">[Microservice] Dựng Microservice web bằng Spring Boot và Eureka [Phần 3]</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Ở bài viết trước, chúng ta đã dựng được một hệ thống microservice đơn giản với 2 microservice, 1 cổng gateway và 1 naming server và thực hiện xác thực người dùng bằng JWT. Trong bài viết lần này chúng ta sẽ tìm hiểu cách xử lý lỗi và ghi log trong hệ thống microservice theo thiết kế Circuit Breaker và Log Tracing.
+1. Hystrix Giả sử bạn có 3 service: A, B và C.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/12/microservice-springboot-eureka-part2/">
+                <h3 class="media-heading">[Microservice] Dựng Microservice web bằng Spring Boot và Eureka [Phần 2]</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Ở bài viết trước, chúng ta đã dựng được một hệ thống microservice đơn giản với 2 microservice, 1 cổng gateway và 1 naming server. Trong bài viết này, chúng ta sẽ tìm hiểu cách xác thực đối với hệ thống microservice bằng JWT.
+1. Authentication Workflow Chúng ta sẽ xem xét những bước xác thực diễn ra như thế nào trong một hệ thống bình thường:
+ Người dùng gửi một request để lấy một token thông qua một hệ thống đăng nhập.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/12/microservice-springboot-eureka/">
+                <h3 class="media-heading">[Microservice] Dựng Microservice web bằng Spring Boot và Eureka [Phần 1]</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Microservices là một giải pháp cho phép chia một hệ thống lớn thành một vài các component độc lập về phát triển, test và deploy.
+Spring Cloud là một dự án con trong họ nhà Spring, được sử dụng để phát triển các ứng dụng phân tán. Một ứng dụng được gọi là phần tán (Distributed application) khi các phần của nó có thể được phát triển trên các ngôn ngữ khác nhau và được triển khai trên các máy chủ khác nhau.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/12/monolithic-vs-microservice/">
+                <h3 class="media-heading">[Web architecture] Kiến trúc monolithic và microservice</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Trong lập trình web hiện nay, hai loại kiến trúc web mà chúng ta thường áp dụng cho ứng dụng của mình là kiến trúc một khối (Monolithic architecture) và kiến trúc microservice (Microservice architecture). Trong bài viết này, chúng ta sẽ tìm hiểu về hai loại kiến trúc này để biết ưu nhược điểm cũng như khi nào sử dụng chúng.
+1. Kiến trúc một khối (Monolithic web architecture) Kiến trúc một khối là mẫu thiết kế được dùng nhiều nhất trong giới lập trình web hiện nay bởi tính đơn giản của nó khi phát triển và khi deploy.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/12/prototype-pattern/">
+                <h3 class="media-heading">[Design Pattern] Prototype Design Pattern</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Trong lập trình hướng đối tượng, khi chúng ta muốn tạo thêm một đối tượng thì thường sử dụng từ khóa new. Tuy nhiên đối với cách tạo đối tượng này thì những thuộc tính ban đầu sẽ thường là trống, trừ khi được khởi tạo giá trị default hoặc khởi tạo ngay trong contructor. Vậy nếu chúng ta muốn tạo mới một đối tượng từ một đối tượng cũ, mang tất cả thuộc tính và giá trị đang có của đối tượng cũ như một bản clone thì làm thế nào?</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/12/spring-boot-mongo-db/">
+                <h3 class="media-heading">[Spring Boot] Dựng app CRUD đơn giản bằng Spring Boot &#43; MongoDB trên Intelij</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">MongoDB hiện đang là cơ sở dữ liệu NoSQL phổ biến nhất. Bài viết này là một hướng dẫn nhỏ về cách sử dụng Spring Boot kết hợp với MongoDB để tạo một app dạng CRUD.
+Các tool sử dụng:  Java Spring Boot Maven MongoDB Postman  1. Tạo database Trước khi bắt đầu xây dựng app, chúng ta cần chuẩn bị một instance của MongoDB để truy xuất tới nó.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/12/web-service-s%E1%BB%B1-kh%C3%A1c-nhau-gi%E1%BB%AFa-soap-v%C3%A0-restful-web-service-trong-java/">
+                <h3 class="media-heading">[Web Service] Sự khác nhau giữa SOAP và RESTful Web Service trong Java</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Cả 2 loại SOAP và RESTful đều cho phép phía client gửi request đến server để query, nhưng chúng được thực hiện bằng những cách khác nhau. Sự khác nhau chính giữa SOAP và REST là cách mà client giao tiếp server thông qua SOAP sẽ bị hạn chế bởi nhiều quy tắc và format được thiết kế chính xác, trong khi với REST cho phép việc giao tiếp thông qua giao thức HTTP và ít các quy tắc rườm rà hơn.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/12/java-functional-composition/">
+                <h3 class="media-heading">[Functional Programming]  Java Functional Composition</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Function composition là một khái niệm về việc nhiều function có thể lồng nhau để làm param của một function khác. Bạn có thể tự compose nhiều function (dùng Lambda Expression) vào trong một function của riêng bạn, nhưng Java cũng cung cấp những cách compose riêng giúp bạn làm việc đó dễ hơn. Trong bài viết này chúng ta cùng tìm hiểu làm thế nào để compose các function bằng các feature có sẵn của Java.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/12/java-higher-order-function/">
+                <h3 class="media-heading">[Functional Programming] Java Higher Order Functions</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Một higher order function là một function nhận một function (method) khác làm parameter, hoặc nó có kết quả trả về là một function. Bài viết này sẽ giới thiệu một vài ví dụ về higher order function.
+1. Sorting Collections Ví dụ đầu tiên về higher order function là method Collections.sort() nhận một Comparator như một tham số:
+List&lt;String&gt; list = new ArrayList&lt;&gt;(); list.add(&quot;One&quot;); list.add(&quot;Abc&quot;); list.add(&quot;BCD&quot;); Collections.sort(list, (String a, String b) -&gt; { return a.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+      </div>
+    </div>
+    <div class="modal-footer">
+      <p class="results-count text-medium"
+         data-message-zero="không tìm thấy kết quả"
+         data-message-one="tìm thấy 1 kết quả "
+         data-message-other="tìm thấy {n} kết quả">
+         26 posts found
+      </p>
+    </div>
+  </div>
+</div>
+    
+  
+    
+    <div id="cover" style="background-image:url('https://tubean.github.io/images/cover-v1.2.0.jpg');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://tubean.github.io/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+
+
+  
+    <script crossorigin="anonymous" integrity="sha384-jmxIlussZWB7qCuB+PgKG1uLjjxbVVIayPJwi6cG6Zb4YKq0JIw+OMnkkEC7kYCq" src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js"></script>
+  
+
+  
+    <script crossorigin="anonymous" integrity="sha384-IiI65aU9ZYub2MY9zhtKd1H2ps7xxf+eb2YFG9lX6uRqpXCvBTOidPRCXCrQ++Uc" src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/contrib/auto-render.min.js"></script>
+  
+
+  
+    <script src="https://tubean.github.io/js/main.js"></script>
+  
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'https:\/\/tubean.github.io\/2018\/12\/microservice-key-architectural-concepts\/';
+          
+            this.page.identifier = '\/2018\/12\/microservice-key-architectural-concepts\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'beans-blog';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+
