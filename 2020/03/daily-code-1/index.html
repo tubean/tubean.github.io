@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.49 with theme Tranquilpeak 0.4.3-SNAPSHOT">
+<meta name="author" content="Tu Bean">
+<meta name="keywords" content="daily, coding, java, problems, algorithms, tutorial, intelij">
+<meta name="description" content="Chào các bạn.
+Nhân dịp rảnh rỗi do dịch COVID-19, tôi quyết định đào mộ lại cái blog này sau một năm bận các công việc cá nhân.
+Như tiêu đề thì series này sẽ tổng hợp một số câu hỏi phỏng vấn về thuật toán kinh điển trong các công ty cũng như cách giải quyết vấn đề cho mỗi câu hỏi. Mọi bài toán đều có cách giải riêng cho nó.">
+
+
+<meta property="og:description" content="Chào các bạn.
+Nhân dịp rảnh rỗi do dịch COVID-19, tôi quyết định đào mộ lại cái blog này sau một năm bận các công việc cá nhân.
+Như tiêu đề thì series này sẽ tổng hợp một số câu hỏi phỏng vấn về thuật toán kinh điển trong các công ty cũng như cách giải quyết vấn đề cho mỗi câu hỏi. Mọi bài toán đều có cách giải riêng cho nó.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Daily Coding Problem] #1">
+<meta name="twitter:title" content="[Daily Coding Problem] #1">
+<meta property="og:url" content="https://tubean.github.io/2020/03/daily-code-1/">
+<meta property="twitter:url" content="https://tubean.github.io/2020/03/daily-code-1/">
+<meta property="og:site_name" content="Bean&#39;s blog">
+<meta property="og:description" content="Chào các bạn.
+Nhân dịp rảnh rỗi do dịch COVID-19, tôi quyết định đào mộ lại cái blog này sau một năm bận các công việc cá nhân.
+Như tiêu đề thì series này sẽ tổng hợp một số câu hỏi phỏng vấn về thuật toán kinh điển trong các công ty cũng như cách giải quyết vấn đề cho mỗi câu hỏi. Mọi bài toán đều có cách giải riêng cho nó.">
+<meta name="twitter:description" content="Chào các bạn.
+Nhân dịp rảnh rỗi do dịch COVID-19, tôi quyết định đào mộ lại cái blog này sau một năm bận các công việc cá nhân.
+Như tiêu đề thì series này sẽ tổng hợp một số câu hỏi phỏng vấn về thuật toán kinh điển trong các công ty cũng như cách giải quyết vấn đề cho mỗi câu hỏi. Mọi bài toán đều có cách giải riêng cho nó.">
+<meta property="og:locale" content="vi">
+
+  
+    <meta property="article:published_time" content="2020-03-28T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2020-03-28T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="Daily Code Problems">
+    
+      <meta property="article:section" content="Java">
+    
+  
+  
+    
+      <meta property="article:tag" content="daily code">
+    
+      <meta property="article:tag" content="interview">
+    
+      <meta property="article:tag" content="algorithms">
+    
+      <meta property="article:tag" content="java">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1585475653/daily-code.png">
+  <meta property="twitter:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1585475653/daily-code.png">
+
+
+  <meta property="og:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1541273502/Black_flag.svg.png">
+  <meta property="twitter:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1541273502/Black_flag.svg.png">
+
+
+
+
+  <meta property="og:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/c_scale,w_1836/v1540914499/C360_2016-03-22-17-45-21-487.jpg">
+  <meta property="twitter:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/c_scale,w_1836/v1540914499/C360_2016-03-22-17-45-21-487.jpg">
+
+
+    <title>[Daily Coding Problem] #1</title>
+
+    <link rel="icon" href="https://tubean.github.io/favicon/flappybird.png">
+    
+
+    
+
+    <link rel="canonical" href="https://tubean.github.io/2020/03/daily-code-1/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://tubean.github.io/css/style-nnm2spxvve8onlujjlegkkytaehyadd4ksxc1hyzzq9a2wvtrgbljqyulomn.min.css" />
+    
+    
+      
+        <link rel="stylesheet"  crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" integrity="sha384-TEMocfGvRuD1rIAacqrknm5BQZ7W7uWitoih+jMNFXQIbNl16bO8OZmylH/Vi/Ei">
+      
+    
+      
+        <link rel="stylesheet"  href="https://tubean.github.io/css/main.css">
+      
+    
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-128433621-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://tubean.github.io/">Bean&#39;s blog</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://tubean.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://res.cloudinary.com/deop9ytsv/image/upload/c_scale,w_1836/v1540914499/C360_2016-03-22-17-45-21-487.jpg" alt="Ảnh đại diện" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://tubean.github.io/#about">
+          <img class="sidebar-profile-picture" src="https://res.cloudinary.com/deop9ytsv/image/upload/c_scale,w_1836/v1540914499/C360_2016-03-22-17-45-21-487.jpg" alt="Ảnh đại diện" />
+        </a>
+        <h4 class="sidebar-profile-name">Tu Bean</h4>
+        
+          <h5 class="sidebar-profile-bio">Coding, writing and sharing</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tubean.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Trang chủ</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tubean.github.io/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">Danh mục</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tubean.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Thẻ thông tin</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tubean.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Lưu trữ</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tubean.github.io/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">Thông tin</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/tubean" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">Github</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.linkedin.com/in/tubean/" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-linkedin"></i>
+      
+      <span class="sidebar-button-desc">LinkedIn</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+  <div class="post-header-cover
+              text-center
+              "
+       style="background-image:url('https://res.cloudinary.com/deop9ytsv/image/upload/v1541273502/Black_flag.svg.png')"
+       data-behavior="5">
+    
+      <div class="post-header main-content-wrap text-center">
+  
+    <h1 class="post-title" itemprop="headline">
+      [Daily Coding Problem] #1
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2020-03-28T00:00:00Z">
+        
+  tháng 3 28, 2020
+
+      </time>
+    
+    
+  
+  
+    <span>mục</span>
+    
+      <a class="category-link" href="https://tubean.github.io/categories/daily-code-problems">Daily Code Problems</a>, 
+    
+      <a class="category-link" href="https://tubean.github.io/categories/java">Java</a>
+    
+  
+
+  </div>
+
+</div>
+    
+  </div>
+
+
+      <div id="main" data-behavior="5"
+        class="hasCover
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              
+
+<p>Chào các bạn.</p>
+
+<p>Nhân dịp rảnh rỗi do dịch COVID-19, tôi quyết định đào mộ lại cái blog này sau một năm bận các công việc cá nhân.</p>
+
+<p>Như tiêu đề thì series này sẽ tổng hợp một số câu hỏi phỏng vấn về thuật toán kinh điển trong các công ty cũng như cách giải quyết vấn đề cho mỗi câu hỏi. Mọi bài toán đều có cách giải riêng cho nó. Vì vậy tôi rất hoan nghênh sự đóng góp của các bạn trong việc phân tích và đưa ra những lời giải độc đáo cho mỗi vấn đề.</p>
+
+<p>Khởi đầu chúng ta sẽ cùng xem xét một câu hỏi tương đối dễ thường được hỏi bởi Google:</p>
+
+<h1 id="problem">Problem</h1>
+
+<pre><code>Given a list of numbers and a number  `k`, return whether any two numbers from the list add up to  `k`.
+
+For example, given  `[10, 15, 3, 7]`  and  `k`  of  `17`, return true since  `10 + 7`  is  17.
+
+Bonus: Can you do this in one pass?
+</code></pre>
+
+<p>Đối với câu hỏi này, cách đơn giản nhất mà chúng ta có thể nghĩ ngay là đối với từng phần tử của mảng, chúng ta sẽ lấy hiệu số của <code>k</code> và phần tử đó, sau đó duyệt tìm xem có tồn tại hiệu số đó trong mảng hay không. Tuy nhiên cách này sẽ không giải quyết được câu hỏi bonus là thực hiện trong một lần duyệt duy nhất.</p>
+
+<h1 id="method">Method</h1>
+
+<p>Dưới đây sẽ là một đáp án sử dụng HashSet để thực hiện giải thuật với độ phức tạp O(n):</p>
+
+<pre><code>1) Tạo một hashset S
+2) Duyệt từng phần tử i của mảng như sau
+   (a)    Nếu [k - A[i]] có trong hashset thì chúng ta có cặp số (A[i], k - A[i]) thỏa mãn
+   (b)    Thêm phần tử A[i] vào S.
+</code></pre>
+
+<h1 id="coding-implementation">Coding implementation</h1>
+
+<pre><code>private static void printPairs(int[] initArr, int sum) {
+HashSet&lt;Integer&gt; hs = new HashSet&lt;&gt;();
+ boolean isExist = false;
+  for (int value : initArr) {
+    int temp = sum - value;
+     if (hs.contains(temp)) {
+        System.out.println(&quot;System found &quot; + value + &quot; and &quot; + temp);
+        isExist = true;
+        }
+     hs.add(value);
+     }
+  if(!isExist) {
+    System.out.println(&quot;There is no satisfiable pair&quot;);
+    }
+  }
+</code></pre>
+
+<h1 id="source-code">Source code</h1>
+
+<p><a href="https://github.com/tubean/dailycode">https://github.com/tubean/dailycode</a></p>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">THẺ ĐÁNH DẤU</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/daily-code/">daily code</a>
+
+  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/interview/">interview</a>
+
+  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/algorithms/">algorithms</a>
+
+  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/java/">java</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">Tiếp</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2018/12/microservice-key-architectural-concepts/" data-tooltip="[Microservice] Các khái niệm chính trong microservice">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">Trước</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://tubean.github.io/2020/03/daily-code-1/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://tubean.github.io/2020/03/daily-code-1/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://tubean.github.io/2020/03/daily-code-1/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2020 <a href="https://bitbucket.org/tubean/">Do Anh Tu</a>. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">Tiếp</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2018/12/microservice-key-architectural-concepts/" data-tooltip="[Microservice] Các khái niệm chính trong microservice">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">Trước</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://tubean.github.io/2020/03/daily-code-1/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://tubean.github.io/2020/03/daily-code-1/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://tubean.github.io/2020/03/daily-code-1/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ftubean.github.io%2F2020%2F03%2Fdaily-code-1%2F">
+          <i class="fa fa-facebook-official"></i><span>Chia sẻ với Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Ftubean.github.io%2F2020%2F03%2Fdaily-code-1%2F">
+          <i class="fa fa-twitter"></i><span>Chia sẻ với Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Ftubean.github.io%2F2020%2F03%2Fdaily-code-1%2F">
+          <i class="fa fa-google-plus"></i><span>Chia sẻ với Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://res.cloudinary.com/deop9ytsv/image/upload/c_scale,w_1836/v1540914499/C360_2016-03-22-17-45-21-487.jpg" alt="Ảnh đại diện" />
+    
+    <h4 id="about-card-name">Tu Bean</h4>
+    
+      <div id="about-card-bio">Coding, writing and sharing</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Web developer
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        Viet Nam
+      </div>
+    
+  </div>
+</div>
+
+    <div id="algolia-search-modal" class="modal-container">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="close-button"><i class="fa fa-close"></i></span>
+      <a href="https://algolia.com" target="_blank" rel="noopener" class="searchby-algolia text-color-light link-unstyled">
+        <span class="searchby-algolia-text text-color-light text-small">by</span>
+        <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+      </a>
+      <i class="search-icon fa fa-search"></i>
+      <form id="algolia-search-form">
+        <input type="text" id="algolia-search-input" name="search"
+          class="form-control input--large search-input" placeholder="Tìm kiếm" />
+      </form>
+    </div>
+    <div class="modal-body">
+      <div class="no-result text-color-light text-center">không tìm thấy kết quả</div>
+      <div class="results">
+        
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2020/03/daily-code-1/">
+                <h3 class="media-heading">[Daily Coding Problem] #1</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Mar 3, 2020
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Chào các bạn.
+Nhân dịp rảnh rỗi do dịch COVID-19, tôi quyết định đào mộ lại cái blog này sau một năm bận các công việc cá nhân.
+Như tiêu đề thì series này sẽ tổng hợp một số câu hỏi phỏng vấn về thuật toán kinh điển trong các công ty cũng như cách giải quyết vấn đề cho mỗi câu hỏi. Mọi bài toán đều có cách giải riêng cho nó.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/12/microservice-key-architectural-concepts/">
+                <h3 class="media-heading">[Microservice] Các khái niệm chính trong microservice</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Trong bài viết này, chúng ta sẽ tìm hiểu một số khái niệm chính trong hệ thống microservice.
+1. Monolithic Architecture Các ứng dụng doanh nghiệp ngày nay đang được thiết kế để đáp ứng được số lượng lớn nghiệp vụ kinh doanh. Do đó một ứng dụng phần mềm cần cung cấp hàng trăm chức năng và tất cả các những chức năng như vậy thường được gói gọn trong một ứng dụng nguyên khối duy nhất.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/12/microservice-springboot-eureka-part3/">
+                <h3 class="media-heading">[Microservice] Dựng Microservice web bằng Spring Boot và Eureka [Phần 3]</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Ở bài viết trước, chúng ta đã dựng được một hệ thống microservice đơn giản với 2 microservice, 1 cổng gateway và 1 naming server và thực hiện xác thực người dùng bằng JWT. Trong bài viết lần này chúng ta sẽ tìm hiểu cách xử lý lỗi và ghi log trong hệ thống microservice theo thiết kế Circuit Breaker và Log Tracing.
+1. Hystrix Giả sử bạn có 3 service: A, B và C.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/12/microservice-springboot-eureka-part2/">
+                <h3 class="media-heading">[Microservice] Dựng Microservice web bằng Spring Boot và Eureka [Phần 2]</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Ở bài viết trước, chúng ta đã dựng được một hệ thống microservice đơn giản với 2 microservice, 1 cổng gateway và 1 naming server. Trong bài viết này, chúng ta sẽ tìm hiểu cách xác thực đối với hệ thống microservice bằng JWT.
+1. Authentication Workflow Chúng ta sẽ xem xét những bước xác thực diễn ra như thế nào trong một hệ thống bình thường:
+ Người dùng gửi một request để lấy một token thông qua một hệ thống đăng nhập.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/12/microservice-springboot-eureka/">
+                <h3 class="media-heading">[Microservice] Dựng Microservice web bằng Spring Boot và Eureka [Phần 1]</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Microservices là một giải pháp cho phép chia một hệ thống lớn thành một vài các component độc lập về phát triển, test và deploy.
+Spring Cloud là một dự án con trong họ nhà Spring, được sử dụng để phát triển các ứng dụng phân tán. Một ứng dụng được gọi là phần tán (Distributed application) khi các phần của nó có thể được phát triển trên các ngôn ngữ khác nhau và được triển khai trên các máy chủ khác nhau.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/12/monolithic-vs-microservice/">
+                <h3 class="media-heading">[Web architecture] Kiến trúc monolithic và microservice</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Trong lập trình web hiện nay, hai loại kiến trúc web mà chúng ta thường áp dụng cho ứng dụng của mình là kiến trúc một khối (Monolithic architecture) và kiến trúc microservice (Microservice architecture). Trong bài viết này, chúng ta sẽ tìm hiểu về hai loại kiến trúc này để biết ưu nhược điểm cũng như khi nào sử dụng chúng.
+1. Kiến trúc một khối (Monolithic web architecture) Kiến trúc một khối là mẫu thiết kế được dùng nhiều nhất trong giới lập trình web hiện nay bởi tính đơn giản của nó khi phát triển và khi deploy.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/12/prototype-pattern/">
+                <h3 class="media-heading">[Design Pattern] Prototype Design Pattern</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Trong lập trình hướng đối tượng, khi chúng ta muốn tạo thêm một đối tượng thì thường sử dụng từ khóa new. Tuy nhiên đối với cách tạo đối tượng này thì những thuộc tính ban đầu sẽ thường là trống, trừ khi được khởi tạo giá trị default hoặc khởi tạo ngay trong contructor. Vậy nếu chúng ta muốn tạo mới một đối tượng từ một đối tượng cũ, mang tất cả thuộc tính và giá trị đang có của đối tượng cũ như một bản clone thì làm thế nào?</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/12/spring-boot-mongo-db/">
+                <h3 class="media-heading">[Spring Boot] Dựng app CRUD đơn giản bằng Spring Boot &#43; MongoDB trên Intelij</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">MongoDB hiện đang là cơ sở dữ liệu NoSQL phổ biến nhất. Bài viết này là một hướng dẫn nhỏ về cách sử dụng Spring Boot kết hợp với MongoDB để tạo một app dạng CRUD.
+Các tool sử dụng:  Java Spring Boot Maven MongoDB Postman  1. Tạo database Trước khi bắt đầu xây dựng app, chúng ta cần chuẩn bị một instance của MongoDB để truy xuất tới nó.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/12/web-service-s%E1%BB%B1-kh%C3%A1c-nhau-gi%E1%BB%AFa-soap-v%C3%A0-restful-web-service-trong-java/">
+                <h3 class="media-heading">[Web Service] Sự khác nhau giữa SOAP và RESTful Web Service trong Java</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Cả 2 loại SOAP và RESTful đều cho phép phía client gửi request đến server để query, nhưng chúng được thực hiện bằng những cách khác nhau. Sự khác nhau chính giữa SOAP và REST là cách mà client giao tiếp server thông qua SOAP sẽ bị hạn chế bởi nhiều quy tắc và format được thiết kế chính xác, trong khi với REST cho phép việc giao tiếp thông qua giao thức HTTP và ít các quy tắc rườm rà hơn.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tubean.github.io/2018/12/java-functional-composition/">
+                <h3 class="media-heading">[Functional Programming]  Java Functional Composition</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Function composition là một khái niệm về việc nhiều function có thể lồng nhau để làm param của một function khác. Bạn có thể tự compose nhiều function (dùng Lambda Expression) vào trong một function của riêng bạn, nhưng Java cũng cung cấp những cách compose riêng giúp bạn làm việc đó dễ hơn. Trong bài viết này chúng ta cùng tìm hiểu làm thế nào để compose các function bằng các feature có sẵn của Java.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+      </div>
+    </div>
+    <div class="modal-footer">
+      <p class="results-count text-medium"
+         data-message-zero="không tìm thấy kết quả"
+         data-message-one="tìm thấy 1 kết quả "
+         data-message-other="tìm thấy {n} kết quả">
+         27 posts found
+      </p>
+    </div>
+  </div>
+</div>
+    
+  
+    
+    <div id="cover" style="background-image:url('https://tubean.github.io/images/cover-v1.2.0.jpg');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://tubean.github.io/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+
+
+  
+    <script crossorigin="anonymous" integrity="sha384-jmxIlussZWB7qCuB+PgKG1uLjjxbVVIayPJwi6cG6Zb4YKq0JIw+OMnkkEC7kYCq" src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js"></script>
+  
+
+  
+    <script crossorigin="anonymous" integrity="sha384-IiI65aU9ZYub2MY9zhtKd1H2ps7xxf+eb2YFG9lX6uRqpXCvBTOidPRCXCrQ++Uc" src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/contrib/auto-render.min.js"></script>
+  
+
+  
+    <script src="https://tubean.github.io/js/main.js"></script>
+  
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'https:\/\/tubean.github.io\/2020\/03\/daily-code-1\/';
+          
+            this.page.identifier = '\/2020\/03\/daily-code-1\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'beans-blog';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+

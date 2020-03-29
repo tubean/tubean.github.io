@@ -6,10 +6,21 @@
     <description>Recent content in Java on Bean&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>vi</language>
-    <lastBuildDate>Sat, 15 Dec 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 28 Mar 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://tubean.github.io/categories/java/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>[Daily Coding Problem] #1</title>
+      <link>https://tubean.github.io/2020/03/daily-code-1/</link>
+      <pubDate>Sat, 28 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://tubean.github.io/2020/03/daily-code-1/</guid>
+      <description>Chào các bạn.
+Nhân dịp rảnh rỗi do dịch COVID-19, tôi quyết định đào mộ lại cái blog này sau một năm bận các công việc cá nhân.
+Như tiêu đề thì series này sẽ tổng hợp một số câu hỏi phỏng vấn về thuật toán kinh điển trong các công ty cũng như cách giải quyết vấn đề cho mỗi câu hỏi. Mọi bài toán đều có cách giải riêng cho nó.</description>
+    </item>
     
     <item>
       <title>[Design Pattern] Prototype Design Pattern</title>

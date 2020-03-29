@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Interview on Bean&#39;s blog</title>
+    <link>https://tubean.github.io/tags/interview/</link>
+    <description>Recent content in Interview on Bean&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>vi</language>
+    <lastBuildDate>Sat, 28 Mar 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://tubean.github.io/tags/interview/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>[Daily Coding Problem] #1</title>
+      <link>https://tubean.github.io/2020/03/daily-code-1/</link>
+      <pubDate>Sat, 28 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://tubean.github.io/2020/03/daily-code-1/</guid>
+      <description>Chào các bạn.
+Nhân dịp rảnh rỗi do dịch COVID-19, tôi quyết định đào mộ lại cái blog này sau một năm bận các công việc cá nhân.
+Như tiêu đề thì series này sẽ tổng hợp một số câu hỏi phỏng vấn về thuật toán kinh điển trong các công ty cũng như cách giải quyết vấn đề cho mỗi câu hỏi. Mọi bài toán đều có cách giải riêng cho nó.</description>
+    </item>
+    
+  </channel>
+</rss>
