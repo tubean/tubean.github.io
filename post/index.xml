@@ -6,10 +6,23 @@
     <description>Recent content in Posts on Bean&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>vi</language>
-    <lastBuildDate>Sun, 29 Mar 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 30 Mar 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://tubean.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>[Daily Coding Problem] #3</title>
+      <link>https://tubean.github.io/2020/03/daily-code-3/</link>
+      <pubDate>Mon, 30 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://tubean.github.io/2020/03/daily-code-3/</guid>
+      <description>Chào các bạn.
+Câu hỏi hôm nay là về kiểu cấu trúc dữ liệu dạng cây:
+Problem  Given the root to a binary tree, implement serialize(root), which serializes the tree into a string, and deserialize(s), which deserializes the string back into the tree.
+ For example, given the following Node class
+class Node: def __init__(self, val, left=None, right=None): self.val = val self.left = left self.right = right  The following test should pass:</description>
+    </item>
     
     <item>
       <title>[Daily Coding Problem] #2</title>
