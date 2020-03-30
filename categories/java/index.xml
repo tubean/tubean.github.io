@@ -6,10 +6,22 @@
     <description>Recent content in Java on Bean&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>vi</language>
-    <lastBuildDate>Sat, 28 Mar 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 29 Mar 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://tubean.github.io/categories/java/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>[Daily Coding Problem] #2</title>
+      <link>https://tubean.github.io/2020/03/daily-code-2/</link>
+      <pubDate>Sun, 29 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://tubean.github.io/2020/03/daily-code-2/</guid>
+      <description>Chào các bạn.
+Ngày hôm nay chúng ta sẽ xem xét một câu hỏi của Uber:
+Problem  Given an array of integers, return a new array such that each element at index i of the new array is the product of all the numbers in the original array except the one at i.
+For example, if our input was [1, 2, 3, 4, 5], the expected output would be [120, 60, 40, 30, 24].</description>
+    </item>
     
     <item>
       <title>[Daily Coding Problem] #1</title>
