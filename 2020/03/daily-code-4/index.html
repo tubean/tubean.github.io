@@ -7,20 +7,58 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="generator" content="Hugo 0.49 with theme Tranquilpeak 0.4.3-SNAPSHOT">
 <meta name="author" content="Tu Bean">
-<meta name="keywords" content="">
-<meta name="description" content="Bean&#39;s blog">
+<meta name="keywords" content="daily, coding, java, problems, algorithms, tutorial, intelij">
+<meta name="description" content="Chào các bạn.
+Câu hỏi hôm nay như sau:
+Problem  Given an array of integers, find the first missing positive integer in linear time and constant space. In other words, find the lowest positive integer that does not exist in the array. The array can contain duplicates and negative numbers as well.
+For example, the input [3, 4, -1, 1] should give 2. The input [1, 2, 0] should give 3.">
 
 
-<meta property="og:description" content="Bean&#39;s blog">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Java">
-<meta name="twitter:title" content="Java">
-<meta property="og:url" content="https://tubean.github.io/categories/java/">
-<meta property="twitter:url" content="https://tubean.github.io/categories/java/">
+<meta property="og:description" content="Chào các bạn.
+Câu hỏi hôm nay như sau:
+Problem  Given an array of integers, find the first missing positive integer in linear time and constant space. In other words, find the lowest positive integer that does not exist in the array. The array can contain duplicates and negative numbers as well.
+For example, the input [3, 4, -1, 1] should give 2. The input [1, 2, 0] should give 3.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Daily Coding Problem] #4">
+<meta name="twitter:title" content="[Daily Coding Problem] #4">
+<meta property="og:url" content="https://tubean.github.io/2020/03/daily-code-4/">
+<meta property="twitter:url" content="https://tubean.github.io/2020/03/daily-code-4/">
 <meta property="og:site_name" content="Bean&#39;s blog">
-<meta property="og:description" content="Bean&#39;s blog">
-<meta name="twitter:description" content="Bean&#39;s blog">
+<meta property="og:description" content="Chào các bạn.
+Câu hỏi hôm nay như sau:
+Problem  Given an array of integers, find the first missing positive integer in linear time and constant space. In other words, find the lowest positive integer that does not exist in the array. The array can contain duplicates and negative numbers as well.
+For example, the input [3, 4, -1, 1] should give 2. The input [1, 2, 0] should give 3.">
+<meta name="twitter:description" content="Chào các bạn.
+Câu hỏi hôm nay như sau:
+Problem  Given an array of integers, find the first missing positive integer in linear time and constant space. In other words, find the lowest positive integer that does not exist in the array. The array can contain duplicates and negative numbers as well.
+For example, the input [3, 4, -1, 1] should give 2. The input [1, 2, 0] should give 3.">
 <meta property="og:locale" content="vi">
+
+  
+    <meta property="article:published_time" content="2020-03-31T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2020-03-31T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="Daily Code Problems">
+    
+      <meta property="article:section" content="Java">
+    
+  
+  
+    
+      <meta property="article:tag" content="daily code">
+    
+      <meta property="article:tag" content="interview">
+    
+      <meta property="article:tag" content="algorithms">
+    
+      <meta property="article:tag" content="java">
+    
+  
 
 
 <meta name="twitter:card" content="summary">
@@ -31,6 +69,12 @@
 
 
 
+  <meta property="og:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1585475653/daily-code.png">
+  <meta property="twitter:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1585475653/daily-code.png">
+
+
+  <meta property="og:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1541273502/Black_flag.svg.png">
+  <meta property="twitter:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1541273502/Black_flag.svg.png">
 
 
 
@@ -39,16 +83,14 @@
   <meta property="twitter:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/c_scale,w_1836/v1540914499/C360_2016-03-22-17-45-21-487.jpg">
 
 
-    <title>Java</title>
+    <title>[Daily Coding Problem] #4</title>
 
     <link rel="icon" href="https://tubean.github.io/favicon/flappybird.png">
     
-      <link rel="alternate" type="application/rss+xml" title="RSS" href="https://tubean.github.io/categories/java/index.xml">
-    
 
     
 
-    <link rel="canonical" href="https://tubean.github.io/categories/java/">
+    <link rel="canonical" href="https://tubean.github.io/2020/03/daily-code-4/">
 
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
@@ -89,7 +131,7 @@ if (!doNotTrack) {
 
   <body>
     <div id="blog">
-      <header id="header" data-behavior="2">
+      <header id="header" data-behavior="5">
   <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
   <div class="header-title">
     <a class="header-title-link" href="https://tubean.github.io/">Bean&#39;s blog</a>
@@ -109,7 +151,7 @@ if (!doNotTrack) {
   
 </header>
 
-      <nav id="sidebar" data-behavior="2">
+      <nav id="sidebar" data-behavior="5">
   <div class="sidebar-container">
     
       <div class="sidebar-profile">
@@ -208,471 +250,228 @@ if (!doNotTrack) {
 </nav>
 
       
+  <div class="post-header-cover
+              text-center
+              "
+       style="background-image:url('https://res.cloudinary.com/deop9ytsv/image/upload/v1541273502/Black_flag.svg.png')"
+       data-behavior="5">
+    
+      <div class="post-header main-content-wrap text-center">
+  
+    <h1 class="post-title" itemprop="headline">
+      [Daily Coding Problem] #4
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2020-03-31T00:00:00Z">
         
+  tháng 3 31, 2020
 
-      
-      <div id="main" data-behavior="2"
-        class="
+      </time>
+    
+    
+  
+  
+    <span>mục</span>
+    
+      <a class="category-link" href="https://tubean.github.io/categories/daily-code-problems">Daily Code Problems</a>, 
+    
+      <a class="category-link" href="https://tubean.github.io/categories/java">Java</a>
+    
+  
+
+  </div>
+
+</div>
+    
+  </div>
+
+
+      <div id="main" data-behavior="5"
+        class="hasCover
                hasCoverMetaIn
                ">
-        
-          <section class="postShorten-group main-content-wrap">
-            
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              
+
+<p>Chào các bạn.</p>
+
+<p>Câu hỏi hôm nay như sau:</p>
+
+<h1 id="problem">Problem</h1>
+
+<blockquote>
+<p>Given an array of integers, find the first missing positive integer in linear time and constant space. In other words, find the lowest positive integer that does not exist in the array. The array can contain duplicates and negative numbers as well.</p>
+
+<p>For example, the input [3, 4, -1, 1] should give 2. The input [1, 2, 0] should give 3.</p>
+
+<p>You can modify the input array in-place.</p>
+
+<p>Vietsub: Tìm số nguyên dương nhỏ nhất còn không tồn tại trong một mảng số nguyên cho trước với độ phức tạp của thuật toán là O(n).</p>
+</blockquote>
+
+<h1 id="method">Method</h1>
+
+<p>Giả sử chúng ta có mảng sau: [7, 4, -3, 8, 1, 2]. (6 phần tử)</p>
+
+<ol>
+<li>Dễ thấy rằng các số nguyên không dương sẽ không cần quan tâm vì chúng ta đang tìm một số nguyên dương. Số nguyên dương nhỏ nhất là 1 nên nếu không tồn tại số 1 trong mảng thì ngay lập tức có thể trả về 1. Hơn nữa những phần tử có giá trị lớn hơn số lượng các phần tử của mảng cũng không cần quan tâm.
+Dựa vào những điều này chúng ta có thể lập thành một mảng mới -&gt; [1, 4, 1, 1, 1, 2]</li>
+<li>Đối với từng phần tử, chúng ta đánh số thứ tự cho chúng như sau: [1(1), 4(2), 1(3), 1(4), 1(5), 2(6)]</li>
+<li>Giả sử các số trong ngoặc là giá trị các phần tử của một mảng mới, những số ngoài ngoặc là chỉ số index của các phần tử thì ta sẽ nhận được một mảng như sau: <a href="vị trí 1 lặp lại nhiều lần thì ta ghi đè bằng giá trị cuối cùng"> 5(1), 6(2), null(3), 2(4), null(5), null(6) </a>.</li>
+<li>Dễ thấy vị trí thứ 3 là phần tử đầu tiên trong mảng mới bị null và do đó 3 là số nguyên dương ta cần tìm.</li>
+</ol>
+
+<h1 id="code-implementation">Code implementation</h1>
+
+<pre><code>public static int firstMissingPositive(int[] nums) {
+    if(nums == null || nums.length == 0) return 1;
+
+    int n = nums.length;
+    boolean containsOne = false;
+
+    // step 1: check array contains number 1 and replace all negative number or greater than n to 1.
+    for(int i = 0; i &lt; n; i++) {
+        if(nums[i] == 1) {
+            containsOne = true;
+        } else if (nums[i] &lt;= 0 || nums[i] &gt; n) nums[i] = 1;
+    }
+
+    // return 1 when there is no number 1 in array
+    if (!containsOne) return 1;
+
+    // step 2: find index of each element in sequence array
+    for(int i = 0; i &lt; n; i++) {
+        int index = Math.abs(nums[i]) - 1;
+        if(nums[index] &gt; 0) nums[index] = -1 * nums[index];
+
+    }
+
+    // step 3: in the new array, find the first number which greater than 0 then return its index + 1
+    for(int i = 0; i &lt; n; i++) {
+        if(nums[i] &gt; 0) return i+1;
+    }
+
+    // special case: 1,2,3 -&gt; 4
+    return n + 1;
+}
+</code></pre>
+
+<h1 id="source-code">Source code</h1>
+
+<p><a href="https://github.com/tubean/dailycode/tree/master/src/day4">https://github.com/tubean/dailycode/tree/master/src/day4</a></p>
+
+<h1 id="reference">Reference</h1>
+
+<p><a href="https://www.youtube.com/watch?v=9SnkdYXNIzM">https://www.youtube.com/watch?v=9SnkdYXNIzM</a></p>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
             
               
-  
-    
-  
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">THẺ ĐÁNH DẤU</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/daily-code/">daily code</a>
 
+  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/interview/">interview</a>
 
-  
+  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/algorithms/">algorithms</a>
 
-<article class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="https://tubean.github.io/2018/12/java-higher-order-function/">
-          [Functional Programming] Java Higher Order Functions
-        </a>
-      </h1>
-      
-  <div class="postShorten-meta post-meta">
-    
-      <time itemprop="datePublished" datetime="2018-12-10T00:00:00Z">
-        
-  tháng 12 10, 2018
+  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/java/">java</a>
 
-      </time>
-    
-    
-  
-  
-    <span>mục</span>
-    
-      <a class="category-link" href="https://tubean.github.io/categories/java">Java</a>, 
-    
-      <a class="category-link" href="https://tubean.github.io/categories/functional-programming">Functional Programming</a>
-    
-  
-
-  </div>
-
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      
-        Một higher order function là một function nhận một function (method) khác làm parameter, hoặc nó có kết quả trả về là một function. Bài viết này sẽ giới thiệu một vài ví dụ về higher order function.
-1. Sorting Collections Ví dụ đầu tiên về higher order function là method Collections.sort() nhận một Comparator như một tham số:
-List&lt;String&gt; list = new ArrayList&lt;&gt;(); list.add(&quot;One&quot;); list.add(&quot;Abc&quot;); list.add(&quot;BCD&quot;); Collections.sort(list, (String a, String b) -&gt; { return a.
-      
-      <p>
-        <a href="https://tubean.github.io/2018/12/java-higher-order-function/" class="postShorten-excerpt_link link">Đọc tiếp...</a>
-        
-      </p>
-    </div>
-  </div>
-  
-    <a href="https://tubean.github.io/2018/12/java-higher-order-function/">
-      <div class="postShorten-thumbnailimg">
-        <img alt="" itemprop="image" src="https://res.cloudinary.com/deop9ytsv/image/upload/v1542691153/java_logo.png"/>
-      </div>
-    </a>
-  
-</article>
-
-            
+                  </div>
+                
               
-  
-    
-  
-
-
-  
-
-<article class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="https://tubean.github.io/2018/12/singleton-pattern/">
-          [Design Pattern] Singleton Design Pattern
-        </a>
-      </h1>
-      
-  <div class="postShorten-meta post-meta">
-    
-      <time itemprop="datePublished" datetime="2018-12-09T00:00:00Z">
-        
-  tháng 12 9, 2018
-
-      </time>
-    
-    
-  
-  
-    <span>mục</span>
-    
-      <a class="category-link" href="https://tubean.github.io/categories/java">Java</a>, 
-    
-      <a class="category-link" href="https://tubean.github.io/categories/design-patterns">Design Patterns</a>
-    
-  
-
-  </div>
-
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      
-        1. Singleton là gì? Đã khi nào bạn viết một class mà chỉ muốn nó chỉ có duy nhất một instance? Trong lập trình, chúng ta sẽ đôi lần thấy rằng một số class chỉ nên có duy nhất một instance, vì nếu có nhiều hơn một, chúng ta sẽ gặp phải một vài vấn đề như hành vi chương trình không chính xác, lãng phí tài nguyên hay kết quả không nhất quán.
-      
-      <p>
-        <a href="https://tubean.github.io/2018/12/singleton-pattern/" class="postShorten-excerpt_link link">Đọc tiếp...</a>
-        
-      </p>
-    </div>
-  </div>
-  
-    <a href="https://tubean.github.io/2018/12/singleton-pattern/">
-      <div class="postShorten-thumbnailimg">
-        <img alt="" itemprop="image" src="https://res.cloudinary.com/deop9ytsv/image/upload/v1543156961/design-pattern-logo.jpg"/>
-      </div>
-    </a>
-  
-</article>
-
             
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
               
-  
-    
-  
-
-
-  
-
-<article class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="https://tubean.github.io/2018/12/java-functional-programming/">
-          [Functional Programming]  Functional Programing trong Java
-        </a>
-      </h1>
-      
-  <div class="postShorten-meta post-meta">
-    
-      <time itemprop="datePublished" datetime="2018-12-09T00:00:00Z">
-        
-  tháng 12 9, 2018
-
-      </time>
-    
-    
-  
-  
-    <span>mục</span>
-    
-      <a class="category-link" href="https://tubean.github.io/categories/java">Java</a>, 
-    
-      <a class="category-link" href="https://tubean.github.io/categories/functional-programming">Functional Programming</a>
-    
-  
-
-  </div>
-
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      
-        1. Functional Programming là gì? Functional Programming hay lập trình chức năng là kiểu lập trình mà function được chọn làm đơn vị thao tác cơ bản. Functional programming tập trung vào sử dụng tính năng của các hàm và tránh sử dụng các biến cũng như thay đổi giá trị của chúng. Nó hơi ngược với procedure programming như chúng ta vẫn thường sử dụng (OOP tập trung vào chi tiết hoạt động của chương trình và thường sử dụng các biến và thay đổi trạng thái của chương trình).
-      
-      <p>
-        <a href="https://tubean.github.io/2018/12/java-functional-programming/" class="postShorten-excerpt_link link">Đọc tiếp...</a>
-        
-      </p>
-    </div>
-  </div>
-  
-    <a href="https://tubean.github.io/2018/12/java-functional-programming/">
-      <div class="postShorten-thumbnailimg">
-        <img alt="" itemprop="image" src="https://res.cloudinary.com/deop9ytsv/image/upload/v1542691153/java_logo.png"/>
-      </div>
-    </a>
-  
-</article>
-
-            
+                <a class="post-action-btn btn btn--disabled">
               
-  
-    
-  
-
-
-  
-
-<article class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="https://tubean.github.io/2018/12/composite-pattern/">
-          [Design Pattern] Composite Design Pattern
-        </a>
-      </h1>
-      
-  <div class="postShorten-meta post-meta">
-    
-      <time itemprop="datePublished" datetime="2018-12-05T00:00:00Z">
-        
-  tháng 12 5, 2018
-
-      </time>
-    
-    
-  
-  
-    <span>mục</span>
-    
-      <a class="category-link" href="https://tubean.github.io/categories/java">Java</a>, 
-    
-      <a class="category-link" href="https://tubean.github.io/categories/design-patterns">Design Patterns</a>
-    
-  
-
-  </div>
-
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      
-        Trong bài viết này, chúng ta sẽ đi tìm hiểu về một mẫu thiết kế khá thú vị, đó là Composite pattern. Trong tiếng anh thì từ composite có nghĩa là làm một hỗn hợp, tức là một thứ gì đó được tạo từ rất nhiều thành phần hỗn tạp. Đây là một mẫu thiết kế thuộc nhóm cấu trúc. Một đối tượng composite được tạo thành từ một hay nhiều đối tượng tương tự nhau (hoặc có một số chức năng tương tự nhau).
-      
-      <p>
-        <a href="https://tubean.github.io/2018/12/composite-pattern/" class="postShorten-excerpt_link link">Đọc tiếp...</a>
-        
-      </p>
-    </div>
-  </div>
-  
-    <a href="https://tubean.github.io/2018/12/composite-pattern/">
-      <div class="postShorten-thumbnailimg">
-        <img alt="" itemprop="image" src="https://res.cloudinary.com/deop9ytsv/image/upload/v1543156961/design-pattern-logo.jpg"/>
-      </div>
-    </a>
-  
-</article>
-
-            
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">Tiếp</span>
+                </a>
+            </li>
+            <li class="post-action">
               
-  
-    
-  
-
-
-  
-
-<article class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="https://tubean.github.io/2018/12/junix-5x/">
-          [Java] Unit Test với JUnit 5x
-        </a>
-      </h1>
-      
-  <div class="postShorten-meta post-meta">
-    
-      <time itemprop="datePublished" datetime="2018-12-01T00:00:00Z">
-        
-  tháng 12 1, 2018
-
-      </time>
-    
-    
-  
-  
-    <span>mục</span>
-    
-      <a class="category-link" href="https://tubean.github.io/categories/java">Java</a>, 
-    
-      <a class="category-link" href="https://tubean.github.io/categories/testing">Testing</a>
-    
-  
-
-  </div>
-
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      
-        Phiên bản hiện tại của JUnit là JUnit 5 và nó bao gồm các component khác nhau:
- JUnit Platform: layer nền tảng cho phép những testing framework có thể chạy trên máy ảo JVM. JUnit Jupiter: đây chính là phiên bản JUnit 5 và được chạy trên JUnit Platform. JUnit Vintage: kế thừa từ TestEngine và cho phép chạy các phiên bản cũ hơn của JUnit.  1. Cài đặt bằng Gradle buildscript { repositories { mavenCentral() // The following is only necessary if you want to use SNAPSHOT releases.
-      
-      <p>
-        <a href="https://tubean.github.io/2018/12/junix-5x/" class="postShorten-excerpt_link link">Đọc tiếp...</a>
-        
-      </p>
-    </div>
-  </div>
-  
-    <a href="https://tubean.github.io/2018/12/junix-5x/">
-      <div class="postShorten-thumbnailimg">
-        <img alt="" itemprop="image" src="https://res.cloudinary.com/deop9ytsv/image/upload/v1543633941/junit.jpg"/>
-      </div>
-    </a>
-  
-</article>
-
-            
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2020/03/daily-code-3/" data-tooltip="[Daily Coding Problem] #3">
               
-  
-    
-  
-
-
-  
-
-<article class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="https://tubean.github.io/2018/11/junix-4x/">
-          [Java] Unit Test với JUnit 4x
-        </a>
-      </h1>
+                  <span class="hide-xs hide-sm text-small icon-mr">Trước</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
       
-  <div class="postShorten-meta post-meta">
-    
-      <time itemprop="datePublished" datetime="2018-11-30T00:00:00Z">
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
         
-  tháng 11 30, 2018
-
-      </time>
-    
-    
-  
-  
-    <span>mục</span>
-    
-      <a class="category-link" href="https://tubean.github.io/categories/java">Java</a>, 
-    
-      <a class="category-link" href="https://tubean.github.io/categories/testing">Testing</a>
-    
-  
-
-  </div>
-
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      
-        Trong bài viết này chúng ta cùng tìm hiểu về test và unit test bằng JUnit 4.x.
-1. Một số thuật ngữ trong kiểm thử (testing) 1.1 Code under test Những đoạn code được kiểm thử thường gọi code under test. Nếu bạn đang kiểm thử một ứng dụng nào đó thì nó được gọi là application under test.
-1.2 Test fixture Đây là các điều kiện để có thể bắt đầu kiểm thử.
-      
-      <p>
-        <a href="https://tubean.github.io/2018/11/junix-4x/" class="postShorten-excerpt_link link">Đọc tiếp...</a>
-        
-      </p>
-    </div>
-  </div>
-  
-    <a href="https://tubean.github.io/2018/11/junix-4x/">
-      <div class="postShorten-thumbnailimg">
-        <img alt="" itemprop="image" src="https://res.cloudinary.com/deop9ytsv/image/upload/v1543633941/junit.jpg"/>
-      </div>
-    </a>
-  
-</article>
-
-            
-              
-  
-    
-  
-
-
-  
-
-<article class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="https://tubean.github.io/2018/11/facade-design-patterns/">
-          [Design Patterns] Facade Design Pattern in Java
-        </a>
-      </h1>
-      
-  <div class="postShorten-meta post-meta">
-    
-      <time itemprop="datePublished" datetime="2018-11-29T00:00:00Z">
-        
-  tháng 11 29, 2018
-
-      </time>
-    
-    
-  
-  
-    <span>mục</span>
-    
-      <a class="category-link" href="https://tubean.github.io/categories/java">Java</a>, 
-    
-      <a class="category-link" href="https://tubean.github.io/categories/design-patterns">Design Patterns</a>
-    
-  
-
-  </div>
-
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      
-        Trong bài viết này, chúng ta cùng xem xét mẫu thiết kế khác, đó là Facade pattern. Trước khi đi vào chi tiết mẫu thiết kế, chúng ta cùng xem xét câu chuyện sau:
-Công ty phần mềm A vận hành một sản phẩm tên là Schedule Server. Đó là một ứng dụng làm rất nhiều việc như gửi mail, sms, đọc và viết file đến địa chỉ đích, gửi và nhận file giữa 2 server.
-      
-      <p>
-        <a href="https://tubean.github.io/2018/11/facade-design-patterns/" class="postShorten-excerpt_link link">Đọc tiếp...</a>
-        
-      </p>
-    </div>
-  </div>
-  
-    <a href="https://tubean.github.io/2018/11/facade-design-patterns/">
-      <div class="postShorten-thumbnailimg">
-        <img alt="" itemprop="image" src="https://res.cloudinary.com/deop9ytsv/image/upload/v1543156961/design-pattern-logo.jpg"/>
-      </div>
-    </a>
-  
-</article>
-
-            
-            
-  <div class="pagination-bar">
-    <ul class="pagination">
-      
-        
-          <li class="pagination-prev">
-            <a class="btn btn--default btn--small" href="https://tubean.github.io/categories/java/">
-              <i class="fa fa-angle-left text-base icon-mr"></i>
-              <span>Trang trước</span>
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://tubean.github.io/2020/03/daily-code-4/">
+              <i class="fa fa-facebook-official"></i>
             </a>
           </li>
         
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://tubean.github.io/2020/03/daily-code-4/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
         
-          <li class="pagination-next">
-            <a class="btn btn--default btn--small" href="https://tubean.github.io/categories/java/page/3/">
-              <span>Trang sau</span>
-              <i class="fa fa-angle-right text-base icon-ml"></i>
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://tubean.github.io/2020/03/daily-code-4/">
+              <i class="fa fa-google-plus"></i>
             </a>
           </li>
         
       
-      <li class="pagination-number">trang thứ 2 trong 3 trang.</li>
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
     </ul>
-  </div>
+  
+</div>
 
-
-          </section>
-        
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
     &copy; 2020 <a href="https://bitbucket.org/tubean/">Do Anh Tu</a>. All Rights Reserved
@@ -680,6 +479,102 @@ Công ty phần mềm A vận hành một sản phẩm tên là Schedule Server.
 </footer>
 
       </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">Tiếp</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2020/03/daily-code-3/" data-tooltip="[Daily Coding Problem] #3">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">Trước</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://tubean.github.io/2020/03/daily-code-4/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://tubean.github.io/2020/03/daily-code-4/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://tubean.github.io/2020/03/daily-code-4/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ftubean.github.io%2F2020%2F03%2Fdaily-code-4%2F">
+          <i class="fa fa-facebook-official"></i><span>Chia sẻ với Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Ftubean.github.io%2F2020%2F03%2Fdaily-code-4%2F">
+          <i class="fa fa-twitter"></i><span>Chia sẻ với Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Ftubean.github.io%2F2020%2F03%2Fdaily-code-4%2F">
+          <i class="fa fa-google-plus"></i><span>Chia sẻ với Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
     </div>
     
     <div id="about">
@@ -987,6 +882,32 @@ $(document).ready(function() {
 });
 </script>
 
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'https:\/\/tubean.github.io\/2020\/03\/daily-code-4\/';
+          
+            this.page.identifier = '\/2020\/03\/daily-code-4\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'beans-blog';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
 
 
 
