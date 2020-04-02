@@ -6,10 +6,24 @@
     <description>Recent content in Java on Bean&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>vi</language>
-    <lastBuildDate>Wed, 01 Apr 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 02 Apr 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://tubean.github.io/categories/java/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>[Daily Coding Problem] #6</title>
+      <link>https://tubean.github.io/2020/04/daily-code-6/</link>
+      <pubDate>Thu, 02 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://tubean.github.io/2020/04/daily-code-6/</guid>
+      <description>Chào các bạn.
+Câu hỏi hôm nay như sau:
+Problem  This problem was asked by Facebook.
+Given the mapping a = 1, b = 2, &amp;hellip; z = 26, and an encoded message, count the number of ways it can be decoded.
+For example, the message &amp;lsquo;111&amp;rsquo; would give 3, since it could be decoded as &amp;lsquo;aaa&amp;rsquo;, &amp;lsquo;ka&amp;rsquo;, and &amp;lsquo;ak&amp;rsquo;.
+You can assume that the messages are decodable. For example, &amp;lsquo;001&amp;rsquo; is not allowed.</description>
+    </item>
     
     <item>
       <title>[Daily Coding Problem] #5</title>
