@@ -6,10 +6,24 @@
     <description>Recent content in Daily Code Problems on Bean&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>vi</language>
-    <lastBuildDate>Thu, 02 Apr 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 03 Apr 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://tubean.github.io/categories/daily-code-problems/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>[Daily Coding Problem] #7</title>
+      <link>https://tubean.github.io/2020/04/daily-code-7/</link>
+      <pubDate>Fri, 03 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://tubean.github.io/2020/04/daily-code-7/</guid>
+      <description>Chào các bạn.
+Câu hỏi hôm nay như sau:
+Problem  A unival tree (which stands for &amp;ldquo;universal value&amp;rdquo;) is a tree where all nodes under it have the same value.
+Given the root to a binary tree, count the number of unival subtrees.
+For example, the following tree has 5 unival subtrees:
+ 0 / \ 1 0 / \ 1 0 / \ 1 1   Code implementation private static int getUnivalCount(TreeNode node){ if (node == null)return 0; int count = getUnivalCount(node.</description>
+    </item>
     
     <item>
       <title>[Daily Coding Problem] #6</title>
