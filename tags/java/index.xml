@@ -6,10 +6,22 @@
     <description>Recent content in Java on Bean&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>vi</language>
-    <lastBuildDate>Fri, 03 Apr 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 04 Apr 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://tubean.github.io/tags/java/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>[Daily Coding Problem] #8</title>
+      <link>https://tubean.github.io/2020/04/daily-code-8/</link>
+      <pubDate>Sat, 04 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://tubean.github.io/2020/04/daily-code-8/</guid>
+      <description>Chào các bạn.
+Câu hỏi hôm nay như sau:
+Problem  Given a list of integers, write a function that returns the largest sum of non-adjacent numbers. Numbers can be 0 or negative.
+For example, [2, 4, 6, 2, 5] should return 13, since we pick 2, 6, and 5. [5, 1, 1, 5] should return 10, since we pick 5 and 5. Follow-up: Can you do this in O(N) time and constant space?</description>
+    </item>
     
     <item>
       <title>[Daily Coding Problem] #7</title>
