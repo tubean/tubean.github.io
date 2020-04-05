@@ -6,10 +6,22 @@
     <description>Recent content in Daily Code on Bean&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>vi</language>
-    <lastBuildDate>Sat, 04 Apr 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 05 Apr 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://tubean.github.io/tags/daily-code/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>[Daily Coding Problem] #9</title>
+      <link>https://tubean.github.io/2020/04/daily-code-9/</link>
+      <pubDate>Sun, 05 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://tubean.github.io/2020/04/daily-code-9/</guid>
+      <description>Chào các bạn.
+Câu hỏi hôm nay như sau:
+Problem  Implement a job scheduler which takes in a function f and an integer n, and calls f after n milliseconds.
+ Code public class Main { public static void main(String[] args) { solution(() -&amp;gt; System.out.println(&amp;quot;Hello World&amp;quot;), 10000); } public static void solution(Command command, int n) { new Timer().schedule(new TimerTask() { @Override public void run() { command.execute(); } }, n); } interface Command { void execute(); } }  Source code https://github.</description>
+    </item>
     
     <item>
       <title>[Daily Coding Problem] #8</title>

@@ -7,20 +7,58 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="generator" content="Hugo 0.49 with theme Tranquilpeak 0.4.3-SNAPSHOT">
 <meta name="author" content="Tu Bean">
-<meta name="keywords" content="">
-<meta name="description" content="Bean&#39;s blog">
+<meta name="keywords" content="daily, coding, java, problems, algorithms, tutorial, intelij">
+<meta name="description" content="Chào các bạn.
+Câu hỏi hôm nay như sau:
+Problem  Implement a job scheduler which takes in a function f and an integer n, and calls f after n milliseconds.
+ Code public class Main { public static void main(String[] args) { solution(() -&gt; System.out.println(&quot;Hello World&quot;), 10000); } public static void solution(Command command, int n) { new Timer().schedule(new TimerTask() { @Override public void run() { command.execute(); } }, n); } interface Command { void execute(); } }  Source code https://github.">
 
 
-<meta property="og:description" content="Bean&#39;s blog">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Daily Code Problems">
-<meta name="twitter:title" content="Daily Code Problems">
-<meta property="og:url" content="https://tubean.github.io/categories/daily-code-problems/">
-<meta property="twitter:url" content="https://tubean.github.io/categories/daily-code-problems/">
+<meta property="og:description" content="Chào các bạn.
+Câu hỏi hôm nay như sau:
+Problem  Implement a job scheduler which takes in a function f and an integer n, and calls f after n milliseconds.
+ Code public class Main { public static void main(String[] args) { solution(() -&gt; System.out.println(&quot;Hello World&quot;), 10000); } public static void solution(Command command, int n) { new Timer().schedule(new TimerTask() { @Override public void run() { command.execute(); } }, n); } interface Command { void execute(); } }  Source code https://github.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Daily Coding Problem] #9">
+<meta name="twitter:title" content="[Daily Coding Problem] #9">
+<meta property="og:url" content="https://tubean.github.io/2020/04/daily-code-9/">
+<meta property="twitter:url" content="https://tubean.github.io/2020/04/daily-code-9/">
 <meta property="og:site_name" content="Bean&#39;s blog">
-<meta property="og:description" content="Bean&#39;s blog">
-<meta name="twitter:description" content="Bean&#39;s blog">
+<meta property="og:description" content="Chào các bạn.
+Câu hỏi hôm nay như sau:
+Problem  Implement a job scheduler which takes in a function f and an integer n, and calls f after n milliseconds.
+ Code public class Main { public static void main(String[] args) { solution(() -&gt; System.out.println(&quot;Hello World&quot;), 10000); } public static void solution(Command command, int n) { new Timer().schedule(new TimerTask() { @Override public void run() { command.execute(); } }, n); } interface Command { void execute(); } }  Source code https://github.">
+<meta name="twitter:description" content="Chào các bạn.
+Câu hỏi hôm nay như sau:
+Problem  Implement a job scheduler which takes in a function f and an integer n, and calls f after n milliseconds.
+ Code public class Main { public static void main(String[] args) { solution(() -&gt; System.out.println(&quot;Hello World&quot;), 10000); } public static void solution(Command command, int n) { new Timer().schedule(new TimerTask() { @Override public void run() { command.execute(); } }, n); } interface Command { void execute(); } }  Source code https://github.">
 <meta property="og:locale" content="vi">
+
+  
+    <meta property="article:published_time" content="2020-04-05T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2020-04-05T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="Daily Code Problems">
+    
+      <meta property="article:section" content="Java">
+    
+  
+  
+    
+      <meta property="article:tag" content="daily code">
+    
+      <meta property="article:tag" content="interview">
+    
+      <meta property="article:tag" content="algorithms">
+    
+      <meta property="article:tag" content="java">
+    
+  
 
 
 <meta name="twitter:card" content="summary">
@@ -31,6 +69,12 @@
 
 
 
+  <meta property="og:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1585475653/daily-code.png">
+  <meta property="twitter:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1585475653/daily-code.png">
+
+
+  <meta property="og:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1541273502/Black_flag.svg.png">
+  <meta property="twitter:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1541273502/Black_flag.svg.png">
 
 
 
@@ -39,16 +83,14 @@
   <meta property="twitter:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/c_scale,w_1836/v1540914499/C360_2016-03-22-17-45-21-487.jpg">
 
 
-    <title>Daily Code Problems</title>
+    <title>[Daily Coding Problem] #9</title>
 
     <link rel="icon" href="https://tubean.github.io/favicon/flappybird.png">
     
-      <link rel="alternate" type="application/rss+xml" title="RSS" href="https://tubean.github.io/categories/daily-code-problems/index.xml">
-    
 
     
 
-    <link rel="canonical" href="https://tubean.github.io/categories/daily-code-problems/">
+    <link rel="canonical" href="https://tubean.github.io/2020/04/daily-code-9/">
 
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
@@ -89,7 +131,7 @@ if (!doNotTrack) {
 
   <body>
     <div id="blog">
-      <header id="header" data-behavior="2">
+      <header id="header" data-behavior="5">
   <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
   <div class="header-title">
     <a class="header-title-link" href="https://tubean.github.io/">Bean&#39;s blog</a>
@@ -109,7 +151,7 @@ if (!doNotTrack) {
   
 </header>
 
-      <nav id="sidebar" data-behavior="2">
+      <nav id="sidebar" data-behavior="5">
   <div class="sidebar-container">
     
       <div class="sidebar-profile">
@@ -208,35 +250,19 @@ if (!doNotTrack) {
 </nav>
 
       
-        
-
-      
-      <div id="main" data-behavior="2"
-        class="
-               hasCoverMetaIn
-               ">
-        
-          <section class="postShorten-group main-content-wrap">
-            
-            
-              
-  
+  <div class="post-header-cover
+              text-center
+              "
+       style="background-image:url('https://res.cloudinary.com/deop9ytsv/image/upload/v1541273502/Black_flag.svg.png')"
+       data-behavior="5">
     
+      <div class="post-header main-content-wrap text-center">
   
-
-
+    <h1 class="post-title" itemprop="headline">
+      [Daily Coding Problem] #9
+    </h1>
   
-
-<article class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="https://tubean.github.io/2020/04/daily-code-9/">
-          [Daily Coding Problem] #9
-        </a>
-      </h1>
-      
+  
   <div class="postShorten-meta post-meta">
     
       <time itemprop="datePublished" datetime="2020-04-05T00:00:00Z">
@@ -258,434 +284,164 @@ if (!doNotTrack) {
 
   </div>
 
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      
-        Chào các bạn.
-Câu hỏi hôm nay như sau:
-Problem  Implement a job scheduler which takes in a function f and an integer n, and calls f after n milliseconds.
- Code public class Main { public static void main(String[] args) { solution(() -&gt; System.out.println(&quot;Hello World&quot;), 10000); } public static void solution(Command command, int n) { new Timer().schedule(new TimerTask() { @Override public void run() { command.execute(); } }, n); } interface Command { void execute(); } }  Source code https://github.
-      
-      <p>
-        <a href="https://tubean.github.io/2020/04/daily-code-9/" class="postShorten-excerpt_link link">Đọc tiếp...</a>
-        
-      </p>
-    </div>
+</div>
+    
   </div>
-  
-    <a href="https://tubean.github.io/2020/04/daily-code-9/">
-      <div class="postShorten-thumbnailimg">
-        <img alt="" itemprop="image" src="https://res.cloudinary.com/deop9ytsv/image/upload/v1585475653/daily-code.png"/>
-      </div>
-    </a>
-  
-</article>
 
+
+      <div id="main" data-behavior="5"
+        class="hasCover
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              
+
+<p>Chào các bạn.</p>
+
+<p>Câu hỏi hôm nay như sau:</p>
+
+<h1 id="problem">Problem</h1>
+
+<blockquote>
+<p>Implement a job scheduler which takes in a function f and an integer n, and calls f after n milliseconds.</p>
+</blockquote>
+
+<h1 id="code">Code</h1>
+
+<pre><code>public class Main {
+    public static void main(String[] args) {
+        solution(() -&gt; System.out.println(&quot;Hello World&quot;), 10000);
+    }
+
+    public static void solution(Command command, int n) {
+        new Timer().schedule(new TimerTask() {
+            @Override
+            public void run() {
+                command.execute();
+            }
+        }, n);
+
+    }
+
+    interface Command {
+        void execute();
+    }
+
+}
+</code></pre>
+
+<h1 id="source-code">Source code</h1>
+
+<p><a href="https://github.com/tubean/dailycode/tree/master/src/day9">https://github.com/tubean/dailycode/tree/master/src/day9</a></p>
+
+<p>#Reference
+<a href="https://codereview.stackexchange.com/questions/214538/implement-a-job-scheduler-which-takes-in-a-function-f-and-an-integer-n-and-call">https://codereview.stackexchange.com/questions/214538/implement-a-job-scheduler-which-takes-in-a-function-f-and-an-integer-n-and-call</a></p>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
             
               
-  
-    
-  
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">THẺ ĐÁNH DẤU</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/daily-code/">daily code</a>
 
+  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/interview/">interview</a>
 
-  
+  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/algorithms/">algorithms</a>
 
-<article class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="https://tubean.github.io/2020/04/daily-code-8/">
-          [Daily Coding Problem] #8
-        </a>
-      </h1>
-      
-  <div class="postShorten-meta post-meta">
-    
-      <time itemprop="datePublished" datetime="2020-04-04T00:00:00Z">
-        
-  tháng 4 4, 2020
+  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/java/">java</a>
 
-      </time>
-    
-    
-  
-  
-    <span>mục</span>
-    
-      <a class="category-link" href="https://tubean.github.io/categories/daily-code-problems">Daily Code Problems</a>, 
-    
-      <a class="category-link" href="https://tubean.github.io/categories/java">Java</a>
-    
-  
-
-  </div>
-
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      
-        Chào các bạn.
-Câu hỏi hôm nay như sau:
-Problem  Given a list of integers, write a function that returns the largest sum of non-adjacent numbers. Numbers can be 0 or negative.
-For example, [2, 4, 6, 2, 5] should return 13, since we pick 2, 6, and 5. [5, 1, 1, 5] should return 10, since we pick 5 and 5. Follow-up: Can you do this in O(N) time and constant space?
-      
-      <p>
-        <a href="https://tubean.github.io/2020/04/daily-code-8/" class="postShorten-excerpt_link link">Đọc tiếp...</a>
-        
-      </p>
-    </div>
-  </div>
-  
-    <a href="https://tubean.github.io/2020/04/daily-code-8/">
-      <div class="postShorten-thumbnailimg">
-        <img alt="" itemprop="image" src="https://res.cloudinary.com/deop9ytsv/image/upload/v1585475653/daily-code.png"/>
-      </div>
-    </a>
-  
-</article>
-
-            
+                  </div>
+                
               
-  
-    
-  
-
-
-  
-
-<article class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="https://tubean.github.io/2020/04/daily-code-7/">
-          [Daily Coding Problem] #7
-        </a>
-      </h1>
-      
-  <div class="postShorten-meta post-meta">
-    
-      <time itemprop="datePublished" datetime="2020-04-03T00:00:00Z">
-        
-  tháng 4 3, 2020
-
-      </time>
-    
-    
-  
-  
-    <span>mục</span>
-    
-      <a class="category-link" href="https://tubean.github.io/categories/daily-code-problems">Daily Code Problems</a>, 
-    
-      <a class="category-link" href="https://tubean.github.io/categories/java">Java</a>
-    
-  
-
-  </div>
-
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      
-        Chào các bạn.
-Câu hỏi hôm nay như sau:
-Problem  A unival tree (which stands for &ldquo;universal value&rdquo;) is a tree where all nodes under it have the same value.
-Given the root to a binary tree, count the number of unival subtrees.
-For example, the following tree has 5 unival subtrees:
- 0 / \ 1 0 / \ 1 0 / \ 1 1   Code implementation private static int getUnivalCount(TreeNode node){ if (node == null)return 0; int count = getUnivalCount(node.
-      
-      <p>
-        <a href="https://tubean.github.io/2020/04/daily-code-7/" class="postShorten-excerpt_link link">Đọc tiếp...</a>
-        
-      </p>
-    </div>
-  </div>
-  
-    <a href="https://tubean.github.io/2020/04/daily-code-7/">
-      <div class="postShorten-thumbnailimg">
-        <img alt="" itemprop="image" src="https://res.cloudinary.com/deop9ytsv/image/upload/v1585475653/daily-code.png"/>
-      </div>
-    </a>
-  
-</article>
-
             
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
               
-  
-    
-  
-
-
-  
-
-<article class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="https://tubean.github.io/2020/04/daily-code-6/">
-          [Daily Coding Problem] #6
-        </a>
-      </h1>
-      
-  <div class="postShorten-meta post-meta">
-    
-      <time itemprop="datePublished" datetime="2020-04-02T00:00:00Z">
-        
-  tháng 4 2, 2020
-
-      </time>
-    
-    
-  
-  
-    <span>mục</span>
-    
-      <a class="category-link" href="https://tubean.github.io/categories/daily-code-problems">Daily Code Problems</a>, 
-    
-      <a class="category-link" href="https://tubean.github.io/categories/java">Java</a>
-    
-  
-
-  </div>
-
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      
-        Chào các bạn.
-Câu hỏi hôm nay như sau:
-Problem  This problem was asked by Facebook.
-Given the mapping a = 1, b = 2, &hellip; z = 26, and an encoded message, count the number of ways it can be decoded.
-For example, the message &lsquo;111&rsquo; would give 3, since it could be decoded as &lsquo;aaa&rsquo;, &lsquo;ka&rsquo;, and &lsquo;ak&rsquo;.
-You can assume that the messages are decodable. For example, &lsquo;001&rsquo; is not allowed.
-      
-      <p>
-        <a href="https://tubean.github.io/2020/04/daily-code-6/" class="postShorten-excerpt_link link">Đọc tiếp...</a>
-        
-      </p>
-    </div>
-  </div>
-  
-    <a href="https://tubean.github.io/2020/04/daily-code-6/">
-      <div class="postShorten-thumbnailimg">
-        <img alt="" itemprop="image" src="https://res.cloudinary.com/deop9ytsv/image/upload/v1585475653/daily-code.png"/>
-      </div>
-    </a>
-  
-</article>
-
-            
+                <a class="post-action-btn btn btn--disabled">
               
-  
-    
-  
-
-
-  
-
-<article class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="https://tubean.github.io/2020/04/daily-code-5/">
-          [Daily Coding Problem] #5
-        </a>
-      </h1>
-      
-  <div class="postShorten-meta post-meta">
-    
-      <time itemprop="datePublished" datetime="2020-04-01T00:00:00Z">
-        
-  tháng 4 1, 2020
-
-      </time>
-    
-    
-  
-  
-    <span>mục</span>
-    
-      <a class="category-link" href="https://tubean.github.io/categories/daily-code-problems">Daily Code Problems</a>, 
-    
-      <a class="category-link" href="https://tubean.github.io/categories/java">Java</a>
-    
-  
-
-  </div>
-
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      
-        Chào các bạn.
-Câu hỏi hôm nay như sau:
-Problem  This problem was asked by Google.
-An XOR linked list is a more memory efficient doubly linked list. Instead of each node holding next and prev fields, it holds a field named both, which is an XOR of the next node and the previous node. Implement an XOR linked list; it has an add(element) which adds the element to the end, and a get(index) which returns the node at index.
-      
-      <p>
-        <a href="https://tubean.github.io/2020/04/daily-code-5/" class="postShorten-excerpt_link link">Đọc tiếp...</a>
-        
-      </p>
-    </div>
-  </div>
-  
-    <a href="https://tubean.github.io/2020/04/daily-code-5/">
-      <div class="postShorten-thumbnailimg">
-        <img alt="" itemprop="image" src="https://res.cloudinary.com/deop9ytsv/image/upload/v1585475653/daily-code.png"/>
-      </div>
-    </a>
-  
-</article>
-
-            
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">Tiếp</span>
+                </a>
+            </li>
+            <li class="post-action">
               
-  
-    
-  
-
-
-  
-
-<article class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="https://tubean.github.io/2020/03/daily-code-4/">
-          [Daily Coding Problem] #4
-        </a>
-      </h1>
-      
-  <div class="postShorten-meta post-meta">
-    
-      <time itemprop="datePublished" datetime="2020-03-31T00:00:00Z">
-        
-  tháng 3 31, 2020
-
-      </time>
-    
-    
-  
-  
-    <span>mục</span>
-    
-      <a class="category-link" href="https://tubean.github.io/categories/daily-code-problems">Daily Code Problems</a>, 
-    
-      <a class="category-link" href="https://tubean.github.io/categories/java">Java</a>
-    
-  
-
-  </div>
-
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      
-        Chào các bạn.
-Câu hỏi hôm nay như sau:
-Problem  Given an array of integers, find the first missing positive integer in linear time and constant space. In other words, find the lowest positive integer that does not exist in the array. The array can contain duplicates and negative numbers as well.
-For example, the input [3, 4, -1, 1] should give 2. The input [1, 2, 0] should give 3.
-      
-      <p>
-        <a href="https://tubean.github.io/2020/03/daily-code-4/" class="postShorten-excerpt_link link">Đọc tiếp...</a>
-        
-      </p>
-    </div>
-  </div>
-  
-    <a href="https://tubean.github.io/2020/03/daily-code-4/">
-      <div class="postShorten-thumbnailimg">
-        <img alt="" itemprop="image" src="https://res.cloudinary.com/deop9ytsv/image/upload/v1585475653/daily-code.png"/>
-      </div>
-    </a>
-  
-</article>
-
-            
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2020/04/daily-code-8/" data-tooltip="[Daily Coding Problem] #8">
               
-  
-    
-  
-
-
-  
-
-<article class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="https://tubean.github.io/2020/03/daily-code-3/">
-          [Daily Coding Problem] #3
-        </a>
-      </h1>
+                  <span class="hide-xs hide-sm text-small icon-mr">Trước</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
       
-  <div class="postShorten-meta post-meta">
-    
-      <time itemprop="datePublished" datetime="2020-03-30T00:00:00Z">
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
         
-  tháng 3 30, 2020
-
-      </time>
-    
-    
-  
-  
-    <span>mục</span>
-    
-      <a class="category-link" href="https://tubean.github.io/categories/daily-code-problems">Daily Code Problems</a>, 
-    
-      <a class="category-link" href="https://tubean.github.io/categories/java">Java</a>
-    
-  
-
-  </div>
-
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      
-        Chào các bạn.
-Câu hỏi hôm nay là về kiểu cấu trúc dữ liệu dạng cây:
-Problem  Given the root to a binary tree, implement serialize(root), which serializes the tree into a string, and deserialize(s), which deserializes the string back into the tree.
- For example, given the following Node class
-class Node: def __init__(self, val, left=None, right=None): self.val = val self.left = left self.right = right  The following test should pass:
-      
-      <p>
-        <a href="https://tubean.github.io/2020/03/daily-code-3/" class="postShorten-excerpt_link link">Đọc tiếp...</a>
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://tubean.github.io/2020/04/daily-code-9/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
         
-      </p>
-    </div>
-  </div>
-  
-    <a href="https://tubean.github.io/2020/03/daily-code-3/">
-      <div class="postShorten-thumbnailimg">
-        <img alt="" itemprop="image" src="https://res.cloudinary.com/deop9ytsv/image/upload/v1585475653/daily-code.png"/>
-      </div>
-    </a>
-  
-</article>
-
-            
-            
-  <div class="pagination-bar">
-    <ul class="pagination">
-      
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://tubean.github.io/2020/04/daily-code-9/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
         
-        
-          <li class="pagination-next">
-            <a class="btn btn--default btn--small" href="https://tubean.github.io/categories/daily-code-problems/page/2/">
-              <span>Trang sau</span>
-              <i class="fa fa-angle-right text-base icon-ml"></i>
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://tubean.github.io/2020/04/daily-code-9/">
+              <i class="fa fa-google-plus"></i>
             </a>
           </li>
         
       
-      <li class="pagination-number">trang thứ 1 trong 2 trang.</li>
-    </ul>
-  </div>
-
-
-          </section>
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
         
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
     &copy; 2020 <a href="https://bitbucket.org/tubean/">Do Anh Tu</a>. All Rights Reserved
@@ -693,6 +449,102 @@ class Node: def __init__(self, val, left=None, right=None): self.val = val self.
 </footer>
 
       </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">Tiếp</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2020/04/daily-code-8/" data-tooltip="[Daily Coding Problem] #8">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">Trước</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://tubean.github.io/2020/04/daily-code-9/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://tubean.github.io/2020/04/daily-code-9/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://tubean.github.io/2020/04/daily-code-9/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ftubean.github.io%2F2020%2F04%2Fdaily-code-9%2F">
+          <i class="fa fa-facebook-official"></i><span>Chia sẻ với Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Ftubean.github.io%2F2020%2F04%2Fdaily-code-9%2F">
+          <i class="fa fa-twitter"></i><span>Chia sẻ với Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Ftubean.github.io%2F2020%2F04%2Fdaily-code-9%2F">
+          <i class="fa fa-google-plus"></i><span>Chia sẻ với Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
     </div>
     
     <div id="about">
@@ -1014,6 +866,32 @@ $(document).ready(function() {
 });
 </script>
 
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'https:\/\/tubean.github.io\/2020\/04\/daily-code-9\/';
+          
+            this.page.identifier = '\/2020\/04\/daily-code-9\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'beans-blog';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
 
 
 
