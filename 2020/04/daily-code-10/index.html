@@ -7,40 +7,60 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="generator" content="Hugo 0.49 with theme Tranquilpeak 0.4.3-SNAPSHOT">
 <meta name="author" content="Tu Bean">
-<meta name="keywords" content="design, pattern, java, composite">
-<meta name="description" content="Trong bài viết này, chúng ta sẽ đi tìm hiểu về một mẫu thiết kế khá thú vị, đó là Composite pattern. Trong tiếng anh thì từ composite có nghĩa là làm một hỗn hợp, tức là một thứ gì đó được tạo từ rất nhiều thành phần hỗn tạp. Đây là một mẫu thiết kế thuộc nhóm cấu trúc. Một đối tượng composite được tạo thành từ một hay nhiều đối tượng tương tự nhau (hoặc có một số chức năng tương tự nhau).">
+<meta name="keywords" content="daily, coding, java, problems, algorithms, tutorial, intelij">
+<meta name="description" content="Chào các bạn.
+Câu hỏi hôm nay như sau:
+Problem  Implement an autocomplete system. That is, given a query string s and a set of all possible query strings, return all strings in the set that have s as a prefix.
+For example, given the query string de and the set of strings [dog, deer, deal], return [deer, deal].
+Hint: Try preprocessing the dictionary into a more efficient data structure to speed up queries.">
 
 
-<meta property="og:description" content="Trong bài viết này, chúng ta sẽ đi tìm hiểu về một mẫu thiết kế khá thú vị, đó là Composite pattern. Trong tiếng anh thì từ composite có nghĩa là làm một hỗn hợp, tức là một thứ gì đó được tạo từ rất nhiều thành phần hỗn tạp. Đây là một mẫu thiết kế thuộc nhóm cấu trúc. Một đối tượng composite được tạo thành từ một hay nhiều đối tượng tương tự nhau (hoặc có một số chức năng tương tự nhau).">
+<meta property="og:description" content="Chào các bạn.
+Câu hỏi hôm nay như sau:
+Problem  Implement an autocomplete system. That is, given a query string s and a set of all possible query strings, return all strings in the set that have s as a prefix.
+For example, given the query string de and the set of strings [dog, deer, deal], return [deer, deal].
+Hint: Try preprocessing the dictionary into a more efficient data structure to speed up queries.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[Design Pattern] Composite Design Pattern">
-<meta name="twitter:title" content="[Design Pattern] Composite Design Pattern">
-<meta property="og:url" content="https://tubean.github.io/2018/12/composite-pattern/">
-<meta property="twitter:url" content="https://tubean.github.io/2018/12/composite-pattern/">
+<meta property="og:title" content="[Daily Coding Problem] #10">
+<meta name="twitter:title" content="[Daily Coding Problem] #10">
+<meta property="og:url" content="https://tubean.github.io/2020/04/daily-code-10/">
+<meta property="twitter:url" content="https://tubean.github.io/2020/04/daily-code-10/">
 <meta property="og:site_name" content="Bean&#39;s blog">
-<meta property="og:description" content="Trong bài viết này, chúng ta sẽ đi tìm hiểu về một mẫu thiết kế khá thú vị, đó là Composite pattern. Trong tiếng anh thì từ composite có nghĩa là làm một hỗn hợp, tức là một thứ gì đó được tạo từ rất nhiều thành phần hỗn tạp. Đây là một mẫu thiết kế thuộc nhóm cấu trúc. Một đối tượng composite được tạo thành từ một hay nhiều đối tượng tương tự nhau (hoặc có một số chức năng tương tự nhau).">
-<meta name="twitter:description" content="Trong bài viết này, chúng ta sẽ đi tìm hiểu về một mẫu thiết kế khá thú vị, đó là Composite pattern. Trong tiếng anh thì từ composite có nghĩa là làm một hỗn hợp, tức là một thứ gì đó được tạo từ rất nhiều thành phần hỗn tạp. Đây là một mẫu thiết kế thuộc nhóm cấu trúc. Một đối tượng composite được tạo thành từ một hay nhiều đối tượng tương tự nhau (hoặc có một số chức năng tương tự nhau).">
+<meta property="og:description" content="Chào các bạn.
+Câu hỏi hôm nay như sau:
+Problem  Implement an autocomplete system. That is, given a query string s and a set of all possible query strings, return all strings in the set that have s as a prefix.
+For example, given the query string de and the set of strings [dog, deer, deal], return [deer, deal].
+Hint: Try preprocessing the dictionary into a more efficient data structure to speed up queries.">
+<meta name="twitter:description" content="Chào các bạn.
+Câu hỏi hôm nay như sau:
+Problem  Implement an autocomplete system. That is, given a query string s and a set of all possible query strings, return all strings in the set that have s as a prefix.
+For example, given the query string de and the set of strings [dog, deer, deal], return [deer, deal].
+Hint: Try preprocessing the dictionary into a more efficient data structure to speed up queries.">
 <meta property="og:locale" content="vi">
 
   
-    <meta property="article:published_time" content="2018-12-05T00:00:00">
+    <meta property="article:published_time" content="2020-04-06T00:00:00">
   
   
-    <meta property="article:modified_time" content="2018-12-05T00:00:00">
+    <meta property="article:modified_time" content="2020-04-06T00:00:00">
   
   
   
+    
+      <meta property="article:section" content="Daily Code Problems">
     
       <meta property="article:section" content="Java">
     
-      <meta property="article:section" content="Design Patterns">
-    
   
   
     
-      <meta property="article:tag" content="design pattern">
+      <meta property="article:tag" content="daily code">
     
-      <meta property="article:tag" content="composite">
+      <meta property="article:tag" content="interview">
+    
+      <meta property="article:tag" content="algorithms">
+    
+      <meta property="article:tag" content="java">
     
   
 
@@ -53,8 +73,8 @@
 
 
 
-  <meta property="og:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1543156961/design-pattern-logo.jpg">
-  <meta property="twitter:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1543156961/design-pattern-logo.jpg">
+  <meta property="og:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1585475653/daily-code.png">
+  <meta property="twitter:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1585475653/daily-code.png">
 
 
   <meta property="og:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/v1541273502/Black_flag.svg.png">
@@ -67,14 +87,14 @@
   <meta property="twitter:image" content="https://res.cloudinary.com/deop9ytsv/image/upload/c_scale,w_1836/v1540914499/C360_2016-03-22-17-45-21-487.jpg">
 
 
-    <title>[Design Pattern] Composite Design Pattern</title>
+    <title>[Daily Coding Problem] #10</title>
 
     <link rel="icon" href="https://tubean.github.io/favicon/flappybird.png">
     
 
     
 
-    <link rel="canonical" href="https://tubean.github.io/2018/12/composite-pattern/">
+    <link rel="canonical" href="https://tubean.github.io/2020/04/daily-code-10/">
 
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
@@ -243,15 +263,15 @@ if (!doNotTrack) {
       <div class="post-header main-content-wrap text-center">
   
     <h1 class="post-title" itemprop="headline">
-      [Design Pattern] Composite Design Pattern
+      [Daily Coding Problem] #10
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2018-12-05T00:00:00Z">
+      <time itemprop="datePublished" datetime="2020-04-06T00:00:00Z">
         
-  tháng 12 5, 2018
+  tháng 4 6, 2020
 
       </time>
     
@@ -260,9 +280,9 @@ if (!doNotTrack) {
   
     <span>mục</span>
     
-      <a class="category-link" href="https://tubean.github.io/categories/java">Java</a>, 
+      <a class="category-link" href="https://tubean.github.io/categories/daily-code-problems">Daily Code Problems</a>, 
     
-      <a class="category-link" href="https://tubean.github.io/categories/design-patterns">Design Patterns</a>
+      <a class="category-link" href="https://tubean.github.io/categories/java">Java</a>
     
   
 
@@ -284,246 +304,27 @@ if (!doNotTrack) {
             <div class="main-content-wrap">
               
 
-<p>Trong bài viết này, chúng ta sẽ đi tìm hiểu về một mẫu thiết kế khá thú vị, đó là <code>Composite pattern</code>. Trong tiếng anh thì từ <code>composite</code> có nghĩa là làm một hỗn hợp, tức là một thứ gì đó được tạo từ rất nhiều thành phần hỗn tạp.
-Đây là một mẫu thiết kế thuộc nhóm cấu trúc. Một đối tượng <em>composite</em> được tạo thành từ một hay nhiều đối tượng tương tự nhau (hoặc có một số chức năng tương tự nhau). Ý tưởng là có thể thao tác trên một nhóm đối tượng theo cách thao tác trên một đối tượng duy nhất và các đối tượng của nhóm phải có các thao tác chung. (method chung).</p>
+<p>Chào các bạn.</p>
 
-<p>Điều này tương tự như việc bạn có một cấu trúc dạng cây được tạo thành từ nhiều nhánh khác nhau, mỗi nhánh lại có thể được tạo từ nhiều nhánh khác, tất cả đều giống nhau về mặt cấu trúc và tạo nên một thứ hỗn độn. Trong thực tế thì chúng ta gặp nhiều bài toán cần dùng đến cấu trúc như vậy như hệ thống các thư mục, file, hệ thống các thẻ tag trong html, xml,&hellip;</p>
+<p>Câu hỏi hôm nay như sau:</p>
 
-<h1 id="1-composite-pattern-là-gì">1. Composite Pattern là gì?</h1>
+<h1 id="problem">Problem</h1>
 
-<p>Nếu bạn quen thuộc với cấu trúc dữ liệu dạng tree, bạn sẽ biết một tree sẽ có <code>parents</code> và <code>children</code>. Một parent có thể có nhiều <code>children</code>, nhưng một <code>chid</code> chỉ có một <code>parent</code>. Trong mẫu thiết kế Composite, những element có children được gọi là <code>Nodes</code>, những element không có children được gọi là <code>Leafs</code>.</p>
+<blockquote>
+<p>Implement an autocomplete system. That is, given a query string s and a set of all possible query strings, return all strings in the set that have s as a prefix.</p>
 
-<p>Một mẫu thiết kế Composite sẽ có 4 thành phần:</p>
+<p>For example, given the query string de and the set of strings [dog, deer, deal], return [deer, deal].</p>
 
-<ul>
-<li>Component</li>
-<li>Leaf</li>
-<li>Composite</li>
-<li>Client</li>
-</ul>
+<p>Hint: Try preprocessing the dictionary into a more efficient data structure to speed up queries.</p>
+</blockquote>
 
-<p>Hình dưới đây mô tả cấu trúc thường thấy của một đối Composite:
-<img src="https://res.cloudinary.com/deop9ytsv/image/upload/v1544023400/composite-1.jpg" alt="image1" /></p>
+<h1 id="source-code">Source code</h1>
 
-<h1 id="2-sơ-đồ-mẫu-composite-uml">2. Sơ đồ mẫu Composite UML</h1>
+<p><a href="https://github.com/tubean/dailycode/tree/master/src/day10">https://github.com/tubean/dailycode/tree/master/src/day10</a></p>
 
-<p><img src="https://res.cloudinary.com/deop9ytsv/image/upload/v1544023400/composite-2.jpg" alt="img-2" />
-Trong biểu đồ trên thì:</p>
+<h1 id="reference">Reference</h1>
 
-<ul>
-<li>Component (thành phần):
-
-<ul>
-<li>Khai báo interface hoặc abtract chung cho các thành phần đối tượng.</li>
-<li>Chứa các method thao tác chung của các thành phần đối tượng.</li>
-</ul></li>
-<li>Leaf (Lá):
-
-<ul>
-<li>Biểu diễn các đối tượng lá trong thành phần đối tượng.</li>
-</ul></li>
-<li>Composite (hỗn hợp):
-
-<ul>
-<li>Định nghĩa một thao tác cho các thành phần có thành phần con.</li>
-<li>Lưu trữ các thành con.</li>
-<li>Thực thi sự quản lý các thành phần con của Component.</li>
-</ul></li>
-<li>Client:
-
-<ul>
-<li>Điều khiển các đối tượng trong Composite thông qua các method trong Component.</li>
-</ul></li>
-</ul>
-
-<h1 id="3-ví-dụ">3. Ví dụ</h1>
-
-<p>Một file html là một cấu trúc phân cấp, bắt đầu từ thẻ tag  <code>&lt;html&gt;</code> và sau đó gồm nhiều các thẻ tag khác có thể là parent hoặc child tag.
-Trong ví dụ này chúng ta sẽ sử dụng lớp component như là một lớp trừu tượng, trong đó bao gồm các method quan trọng được dùng trong các composite và leaf.</p>
-
-<pre><code class="language-java">public abstract class HtmlTag {  
-    public abstract String getTagName();  
-
-    public abstract void setStartTag(String tag);  
-
-    public abstract void setEndTag(String tag);  
-
-    public void setTagBody(String tagBody) {  
-        throw new UnsupportedOperationException(&quot;Current operation is not support for this object&quot;);  
-    }  
-
-    public void addChildTag(HtmlTag htmlTag) {  
-        throw new UnsupportedOperationException(&quot;Current operation is not support for this object&quot;);  
-    }  
-
-    public void removeChildTag(HtmlTag htmlTag) {  
-        throw new UnsupportedOperationException(&quot;Current operation is not support for this object&quot;);  
-    }  
-
-    public List&lt;HtmlTag&gt; getChildren() {  
-        throw new UnsupportedOperationException(&quot;Current operation is not support for this object&quot;);  
-    }  
-
-    public abstract void generateHtml();  
-}
-</code></pre>
-
-<p>Trong lớp <code>HtmlTag</code> thì các method được định nghĩa đều sẽ được dùng bởi các lớp composite và leaf. Có một vài method nên được sử dụng cụ thể trong cả từng class con, vì vậy nên chúng ta sẽ giữ nó ở dạng abtract trong lớp cha. Ví dụ như <em>getTagName()</em>.
-Một số method chỉ hữu dụng trong composite nhưng lại không mấy có tác dụng trong leaf như <em>removeChildTag()</em>. Chúng ta sẽ để chúng ở dạng default và cung cấp một loại Exception cho những object không sử dụng chúng.</p>
-
-<p>Bây giờ chúng ta sẽ tạo một Composite class như sau:</p>
-
-<pre><code class="language-java">public class HtmlParentElement extends HtmlTag {  
-    private String tagName;  
-    private String startTag;  
-    private String endTag;  
-    private List&lt;HtmlTag&gt; childrenTag;  
-
-    public HtmlParentElement(String tagName) {  
-        this.tagName = tagName;  
-        this.startTag = &quot;&quot;;  
-        this.endTag = &quot;&quot;;  
-        this.childrenTag = new ArrayList&lt;&gt;();  
-    }  
-
-    @Override  
-  public String getTagName() {  
-        return tagName;  
-    }  
-
-    @Override  
-  public void setStartTag(String tag) {  
-        this.startTag = tag;  
-    }  
-
-    @Override  
-  public void setEndTag(String tag) {  
-        this.endTag = tag;  
-    }  
-
-    @Override  
-  public void addChildTag(HtmlTag htmlTag) {  
-        childrenTag.add(htmlTag);  
-    }  
-
-    @Override  
-  public void removeChildTag(HtmlTag htmlTag) {  
-        childrenTag.remove(htmlTag);  
-    }  
-
-    @Override  
-  public List&lt;HtmlTag&gt; getChildren() {  
-        return childrenTag;  
-    }  
-
-    @Override  
-  public void generateHtml() {  
-        System.out.println(startTag);  
-        for (HtmlTag tag : childrenTag) {  
-            tag.generateHtml();  
-        }  
-        System.out.println(endTag);  
-
-    }  
-
-}
-</code></pre>
-
-<p><code>HtmlParentElement</code> là lớp composite và nó cần implement các method như <em>addChildTag</em>, removeChildTag_, <em>getChildren</em>.</p>
-
-<pre><code class="language-java">public class HtmlElement extends HtmlTag {  
-    private String tagName;  
-    private String startTag;  
-    private String endTag;  
-    private String tagBody;  
-
-    public HtmlElement(String tagName) {  
-        this.tagName = tagName;  
-        this.tagBody = &quot;&quot;;  
-        this.startTag = &quot;&quot;;  
-        this.endTag = &quot;&quot;;  
-    }  
-
-    @Override  
-  public String getTagName() {  
-        return tagName;  
-    }  
-
-    @Override  
-  public void setStartTag(String tag) {  
-        this.startTag = tag;  
-    }  
-
-    @Override  
-  public void setEndTag(String tag) {  
-        this.endTag = tag;  
-    }  
-
-    @Override  
-  public void setTagBody(String tagBody) {  
-        this.tagBody = tagBody;  
-    }  
-
-    @Override  
-  public void generateHtml() {  
-        System.out.println(startTag + &quot;&quot; + tagBody + &quot;&quot; + endTag);  
-    }  
-}
-</code></pre>
-
-<p><code>HtmlElement</code> là lớp leaf và nó có nhiệm vụ chính là implement các opearation method. Trong ví dụ này là <em>generateHtml</em>.</p>
-
-<p>Cuối cùng là chạy test:</p>
-
-<pre><code class="language-java">public class TestCompositePattern {  
-    public static void main(String[] args) {  
-        HtmlTag parentTag = new HtmlParentElement(&quot;&lt;html&gt;&quot;);  
-        parentTag.setStartTag(&quot;&lt;html&gt;&quot;);  
-        parentTag.setEndTag(&quot;&lt;/html&gt;&quot;);  
-
-        HtmlTag p1 = new HtmlParentElement(&quot;&lt;body&gt;&quot;);  
-        p1.setStartTag(&quot;&lt;body&gt;&quot;);  
-        p1.setEndTag(&quot;&lt;/body&gt;&quot;);  
-
-        parentTag.addChildTag(p1);  
-
-        HtmlTag child1 = new HtmlElement(&quot;&lt;p&gt;&quot;);  
-        child1.setStartTag(&quot;&lt;p&gt;&quot;);  
-        child1.setEndTag(&quot;&lt;/p&gt;&quot;);  
-        child1.setTagBody(&quot;Testing html tag library&quot;);  
-        p1.addChildTag(child1);  
-
-        child1 = new HtmlElement(&quot;&lt;p&gt;&quot;);  
-        child1.setStartTag(&quot;&lt;p&gt;&quot;);  
-        child1.setEndTag(&quot;&lt;/p&gt;&quot;);  
-        child1.setTagBody(&quot;Paragraph 2&quot;);  
-        p1.addChildTag(child1);  
-
-        parentTag.generateHtml();  
-
-    }
-</code></pre>
-
-<p>Kết quả của đoạn test trên sẽ là:</p>
-
-<pre><code>&lt;html&gt;
-&lt;body&gt;
-&lt;p&gt;Testing html tag library&lt;/p&gt;
-&lt;p&gt;Paragraph 2&lt;/p&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
-
-<h1 id="4-khi-nào-dùng-composite-pattern">4. Khi nào dùng Composite Pattern</h1>
-
-<ul>
-<li>Khi bạn muốn tạo ra các đối tượng trong các cấu trúc cây để biểu diễn hệ thống phân lớp.</li>
-<li>Khi bạn muốn client có thể bỏ qua sự khác nhau giữa các thành phần cấu tạo object và bản thân object. Các client tác động đến từng đối tượng và các thành phần của đối tượng một cách thống nhất.</li>
-</ul>
-
-<h1 id="5-source-code">5. Source code</h1>
-
-<p><a href="https://github.com/tubean/design-pattern/">https://github.com/tubean/design-pattern/</a></p>
+<p><a href="https://www.youtube.com/watch?v=wjWSfRfiiIs">https://www.youtube.com/watch?v=wjWSfRfiiIs</a></p>
 
               
             </div>
@@ -536,9 +337,13 @@ Một số method chỉ hữu dụng trong composite nhưng lại không mấy c
                   <div class="post-footer-tags">
                     <span class="text-color-light text-small">THẺ ĐÁNH DẤU</span><br/>
                     
-  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/design-pattern/">design pattern</a>
+  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/daily-code/">daily code</a>
 
-  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/composite/">composite</a>
+  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/interview/">interview</a>
+
+  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/algorithms/">algorithms</a>
+
+  <a class="tag tag--primary tag--small" href="https://tubean.github.io/tags/java/">java</a>
 
                   </div>
                 
@@ -551,7 +356,7 @@ Một số method chỉ hữu dụng trong composite nhưng lại không mấy c
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2018/12/java-functional-programming/" data-tooltip="[Functional Programming]  Functional Programing trong Java">
+                <a class="post-action-btn btn btn--disabled">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">Tiếp</span>
@@ -559,7 +364,7 @@ Một số method chỉ hữu dụng trong composite nhưng lại không mấy c
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2018/12/junix-5x/" data-tooltip="[Java] Unit Test với JUnit 5x">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2020/04/daily-code-9/" data-tooltip="[Daily Coding Problem] #9">
               
                   <span class="hide-xs hide-sm text-small icon-mr">Trước</span>
                   <i class="fa fa-angle-right"></i>
@@ -577,19 +382,19 @@ Một số method chỉ hữu dụng trong composite nhưng lại không mấy c
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://tubean.github.io/2018/12/composite-pattern/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://tubean.github.io/2020/04/daily-code-10/">
               <i class="fa fa-facebook-official"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://tubean.github.io/2018/12/composite-pattern/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://tubean.github.io/2020/04/daily-code-10/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://tubean.github.io/2018/12/composite-pattern/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://tubean.github.io/2020/04/daily-code-10/">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -637,7 +442,7 @@ Một số method chỉ hữu dụng trong composite nhưng lại không mấy c
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2018/12/java-functional-programming/" data-tooltip="[Functional Programming]  Functional Programing trong Java">
+                <a class="post-action-btn btn btn--disabled">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">Tiếp</span>
@@ -645,7 +450,7 @@ Một số method chỉ hữu dụng trong composite nhưng lại không mấy c
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2018/12/junix-5x/" data-tooltip="[Java] Unit Test với JUnit 5x">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://tubean.github.io/2020/04/daily-code-9/" data-tooltip="[Daily Coding Problem] #9">
               
                   <span class="hide-xs hide-sm text-small icon-mr">Trước</span>
                   <i class="fa fa-angle-right"></i>
@@ -663,19 +468,19 @@ Một số method chỉ hữu dụng trong composite nhưng lại không mấy c
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://tubean.github.io/2018/12/composite-pattern/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://tubean.github.io/2020/04/daily-code-10/">
               <i class="fa fa-facebook-official"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://tubean.github.io/2018/12/composite-pattern/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://tubean.github.io/2020/04/daily-code-10/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://tubean.github.io/2018/12/composite-pattern/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://tubean.github.io/2020/04/daily-code-10/">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -705,19 +510,19 @@ Một số method chỉ hữu dụng trong composite nhưng lại không mấy c
   <ul class="share-options">
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ftubean.github.io%2F2018%2F12%2Fcomposite-pattern%2F">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ftubean.github.io%2F2020%2F04%2Fdaily-code-10%2F">
           <i class="fa fa-facebook-official"></i><span>Chia sẻ với Facebook</span>
         </a>
       </li>
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Ftubean.github.io%2F2018%2F12%2Fcomposite-pattern%2F">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Ftubean.github.io%2F2020%2F04%2Fdaily-code-10%2F">
           <i class="fa fa-twitter"></i><span>Chia sẻ với Twitter</span>
         </a>
       </li>
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Ftubean.github.io%2F2018%2F12%2Fcomposite-pattern%2F">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Ftubean.github.io%2F2020%2F04%2Fdaily-code-10%2F">
           <i class="fa fa-google-plus"></i><span>Chia sẻ với Google&#43;</span>
         </a>
       </li>
@@ -1054,9 +859,9 @@ $(document).ready(function() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = 'https:\/\/tubean.github.io\/2018\/12\/composite-pattern\/';
+          this.page.url = 'https:\/\/tubean.github.io\/2020\/04\/daily-code-10\/';
           
-            this.page.identifier = '\/2018\/12\/composite-pattern\/'
+            this.page.identifier = '\/2020\/04\/daily-code-10\/'
           
         };
         (function() {
