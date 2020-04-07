@@ -6,10 +6,23 @@
     <description>Recent content in Algorithms on Bean&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>vi</language>
-    <lastBuildDate>Mon, 06 Apr 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 07 Apr 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://tubean.github.io/tags/algorithms/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>[Daily Coding Problem] #11</title>
+      <link>https://tubean.github.io/2020/04/daily-code-11/</link>
+      <pubDate>Tue, 07 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://tubean.github.io/2020/04/daily-code-11/</guid>
+      <description>Chào các bạn.
+Câu hỏi hôm nay như sau:
+Problem  There exists a staircase with N steps, and you can climb up either 1 or 2 steps at a time. Given N, write a function that returns the number of unique ways you can climb the staircase. The order of the steps matters.
+For example, if N is 4, then there are 5 unique ways:
+ 1, 1, 1, 1 2, 1, 1 1, 2, 1 1, 1, 2 2, 2  What if, instead of being able to climb 1 or 2 steps at a time, you could climb any number from a set of positive integers X?</description>
+    </item>
     
     <item>
       <title>[Daily Coding Problem] #10</title>
