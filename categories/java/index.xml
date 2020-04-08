@@ -6,10 +6,24 @@
     <description>Recent content in Java on Bean&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>vi</language>
-    <lastBuildDate>Tue, 07 Apr 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 08 Apr 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://tubean.github.io/categories/java/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>[Daily Coding Problem] #12</title>
+      <link>https://tubean.github.io/2020/04/daily-code-12/</link>
+      <pubDate>Wed, 08 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://tubean.github.io/2020/04/daily-code-12/</guid>
+      <description>Chào các bạn.
+Câu hỏi hôm nay như sau:
+Problem  Given an integer k and a string s, find the length of the longest substring that contains at most k distinct characters.
+For example, given s = &amp;ldquo;abcba&amp;rdquo; and k = 2, the longest substring with k distinct characters is &amp;ldquo;bcb&amp;rdquo;.__
+ Method Ý tưởng của bài này là:
+ Bắt đầu một chuỗi substring đầu tiên là ký tự đầu, sau đó thêm dần các ký tự tiếp của chuỗi sao cho số lượng ký tự unique không vượt quá k.</description>
+    </item>
     
     <item>
       <title>[Daily Coding Problem] #11</title>
