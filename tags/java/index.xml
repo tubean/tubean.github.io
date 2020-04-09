@@ -6,10 +6,24 @@
     <description>Recent content in Java on Bean&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>vi</language>
-    <lastBuildDate>Wed, 08 Apr 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 09 Apr 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://tubean.github.io/tags/java/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>[Daily Coding Problem] #13</title>
+      <link>https://tubean.github.io/2020/04/daily-code-13/</link>
+      <pubDate>Thu, 09 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://tubean.github.io/2020/04/daily-code-13/</guid>
+      <description>Chào các bạn.
+Câu hỏi hôm nay như sau:
+Problem  The area of a circle is defined as πr^2. Estimate π to 3 decimal places using a Monte Carlo method.
+Hint: The basic equation of a circle is x2 + y2 = r2.
+ Method Phương pháp Monte Carlo là dựa vào xác suất thống kê để tính toán số Pi. Theo đó thì :
+ Giả sử ta có 1 bảng mục tiêu hình vuông 1x1.</description>
+    </item>
     
     <item>
       <title>[Daily Coding Problem] #12</title>
