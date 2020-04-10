@@ -6,10 +6,22 @@
     <description>Recent content in Algorithms on Bean&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>vi</language>
-    <lastBuildDate>Thu, 09 Apr 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 10 Apr 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://tubean.github.io/tags/algorithms/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>[Daily Coding Problem] #14</title>
+      <link>https://tubean.github.io/2020/04/daily-code-14/</link>
+      <pubDate>Fri, 10 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://tubean.github.io/2020/04/daily-code-14/</guid>
+      <description>Chào các bạn.
+Câu hỏi hôm nay như sau:
+Problem  This problem was asked by Facebook. Given a stream of elements too large to store in memory, pick a random element from the stream with uniform probability.
+Vietsub: Cho một file chứa rất lớn số lượng số tự nhiên. Yêu cầu bạn chỉ được đọc qua file 1 lần (sequential read) và phải chọn được một số ngẫu nhiên trong đó sao cho xác suất mỗi phần tử được chọn là bằng nhau, và bằng 1/N, với N là số lượng phần tử trong file.</description>
+    </item>
     
     <item>
       <title>[Daily Coding Problem] #13</title>
